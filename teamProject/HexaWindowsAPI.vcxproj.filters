@@ -141,6 +141,12 @@
     <ClInclude Include="item.h">
       <Filter>MainGame\inventory</Filter>
     </ClInclude>
+    <ClInclude Include="stage1.h">
+      <Filter>MainGame\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="stage2.h">
+      <Filter>MainGame\scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -208,6 +214,12 @@
     </ClCompile>
     <ClCompile Include="item.cpp">
       <Filter>MainGame\inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="stage2.cpp">
+      <Filter>MainGame\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="stage1.cpp">
+      <Filter>MainGame\scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
