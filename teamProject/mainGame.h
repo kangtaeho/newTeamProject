@@ -7,6 +7,7 @@ class mainGame : public gameNode
 private:
 	
 	int a;
+	int b;
 public:
 	virtual HRESULT init();			
 	virtual void release();			
