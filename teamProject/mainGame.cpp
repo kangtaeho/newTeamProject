@@ -29,6 +29,7 @@ void mainGame::update()				//¿¬»ê ÇÔ¼ö
 
 
 	int a = 0;//aaa sibal ²¨Á®
+	int b = 0;//aaa sibal ²¨Á®
 
 	SCENEMANAGER->update();
 
