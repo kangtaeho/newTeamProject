@@ -28,7 +28,7 @@ void mainGame::update()				//연산 함수
 	gameNode::update();
 
 
-	int a = 0;
+	int a = 0;//aaa
 
 	SCENEMANAGER->update();
 
