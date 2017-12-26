@@ -46,6 +46,18 @@
     <Filter Include="2DFramework\action">
       <UniqueIdentifier>{3f3f370e-8e1b-4f86-815d-4200ae13fb4d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\scene">
+      <UniqueIdentifier>{87ba848d-f5f2-4cd7-aea1-755a9c56746c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\character">
+      <UniqueIdentifier>{7298406d-3ef7-4ff0-9afc-921cdf43c441}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\enemy">
+      <UniqueIdentifier>{cf3f8d0d-3c01-4771-939f-41310e7f25fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\inventory">
+      <UniqueIdentifier>{00d68757-9e69-436e-97f8-f54bee546eaa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
