@@ -28,7 +28,7 @@ void mainGame::update()				//연산 함수
 	gameNode::update();
 
 
-	int a = 0;//aaa sibal
+	int a = 0;//aaa sibal 꺼져
 
 	SCENEMANAGER->update();
 
