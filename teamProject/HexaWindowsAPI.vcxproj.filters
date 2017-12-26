@@ -142,10 +142,10 @@
       <Filter>MainGame\inventory</Filter>
     </ClInclude>
     <ClInclude Include="stage1.h">
-      <Filter>소스 파일</Filter>
+      <Filter>MainGame\scene</Filter>
     </ClInclude>
     <ClInclude Include="stage2.h">
-      <Filter>소스 파일</Filter>
+      <Filter>MainGame\scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -216,10 +216,10 @@
       <Filter>MainGame\inventory</Filter>
     </ClCompile>
     <ClCompile Include="stage1.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>MainGame\scene</Filter>
     </ClCompile>
     <ClCompile Include="stage2.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>MainGame\scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
