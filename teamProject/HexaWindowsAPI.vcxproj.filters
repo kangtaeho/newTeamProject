@@ -138,6 +138,9 @@
     <ClInclude Include="zOrderManager.h">
       <Filter>2DFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>MainGame\inventory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -202,6 +205,9 @@
     </ClCompile>
     <ClCompile Include="zOrderManager.cpp">
       <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="item.cpp">
+      <Filter>MainGame\inventory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
