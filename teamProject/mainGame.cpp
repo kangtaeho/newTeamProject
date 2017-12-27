@@ -13,8 +13,6 @@ HRESULT mainGame::init()			//초기화 함수
 {
 	gameNode::init(true);
 
-	int a = 0;
-
 	return S_OK;
 }
 
