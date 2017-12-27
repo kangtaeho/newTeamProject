@@ -19,7 +19,6 @@ HRESULT enemy::init()
 
 
 
-
 	return S_OK;
 }
 
