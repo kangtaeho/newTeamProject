@@ -25,10 +25,10 @@ public:
 
 	
 	//오브젝트(투척)용		이미지 키,    이미지 파일이름,   넓이,     높이,   좌표			데미지  *** 프레임이 아닌 그냥 이미지로 만들어둠!!!!
-	HRESULT init(string strKey, const char* fileName, int width, int height, POINT point, int itemEffect);
+	HRESULT init(string strKey, const char* fileName, int width, int height, int frameX, int frameY, POINT point, int itemEffect);
 
 	//상점(물약)용		이미지 키,    이미지 파일이름,   넓이,     높이,           좌표		회복량			가격  *** 프레임이 아닌 그냥 이미지로 만들어둠!!!!
-	HRESULT init(string strKey, const char* fileName, int width, int height, POINT point, int itemEffect, int price);
+	HRESULT init(string strKey, const char* fileName, int width, int height, int frameX, int frameY, POINT point, int itemEffect, int price);
 
 	void release();
 	void update();
