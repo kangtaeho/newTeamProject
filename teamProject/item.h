@@ -38,9 +38,7 @@ public:
 	void setPoint(POINT point){ _x = point.x; _y = point.y; }	
 	
 	//아이템 효과 가져오기(투척아이템 : 데미지, 물약 : 회복량)
-	int getItemEffect(){
-		return _itemEffect;
-	}
+	int getItemEffect(){return _itemEffect;}
 
 };
 
