@@ -35,10 +35,10 @@ using namespace HEXA_UTIL;
 //=====================================
 
 #define WINNAME		(LPTSTR)(TEXT("Hexa API"))
-#define WINSTARTX	500
+#define WINSTARTX	50
 #define WINSTARTY	50
-#define WINSIZEX	800	
-#define WINSIZEY	800
+#define WINSIZEX	1152	
+#define WINSIZEY	648
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
 
 #define RND randomFunction::getSingleton()
