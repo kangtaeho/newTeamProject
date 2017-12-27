@@ -7,6 +7,6 @@ public:
 	money();
 	~money();
 
-	virtual HRESULT init(POINT point);
+	HRESULT init(POINT point);
 };
 

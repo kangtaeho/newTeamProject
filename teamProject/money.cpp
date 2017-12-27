@@ -10,6 +10,7 @@ money::money()
 money::~money()
 {
 }
+
 HRESULT money::init(POINT point)
 {
 	//이미지 초기화
