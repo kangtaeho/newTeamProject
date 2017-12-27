@@ -8,6 +8,7 @@ private:
 	
 	int a;
 	int b;
+	int c;
 
 public:
 	virtual HRESULT init();			
