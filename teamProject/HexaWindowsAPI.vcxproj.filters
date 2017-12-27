@@ -147,6 +147,9 @@
     <ClInclude Include="stage2.h">
       <Filter>MainGame\scene</Filter>
     </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>MainGame\enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -220,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="stage2.cpp">
       <Filter>MainGame\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>MainGame\enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
