@@ -6,11 +6,6 @@ class mainGame : public gameNode
 {
 private:
 	
-	int a;
-	int b;
-	int c;
-	int d;
-
 	//ÇöÀç¾À
 	gameNode* _currentScene;
 

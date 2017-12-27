@@ -93,7 +93,10 @@
     <ClInclude Include="keyAniManager.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="mainGame.h" />
+    <ClInclude Include="money.h" />
+    <ClInclude Include="orangePotion.h" />
     <ClInclude Include="randomFunction.h" />
+    <ClInclude Include="redPotion.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
@@ -106,6 +109,7 @@
     <ClInclude Include="timer.h" />
     <ClInclude Include="txtData.h" />
     <ClInclude Include="utils.h" />
+    <ClInclude Include="whitePotion.h" />
     <ClInclude Include="zOrderManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +127,9 @@
     <ClCompile Include="keyAniManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="mainGame.cpp" />
+    <ClCompile Include="money.cpp" />
+    <ClCompile Include="orangePotion.cpp" />
+    <ClCompile Include="redPotion.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stage1.cpp" />
@@ -135,6 +142,7 @@
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="txtData.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="whitePotion.cpp" />
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="zOrderManager.cpp" />
   </ItemGroup>
