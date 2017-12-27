@@ -13,7 +13,7 @@ protected:
 	image* _itemImage;		//아이템 이미지
 	float _x, _y;			//아이템 중점좌표
 	tagItemType	_itemType;	//아이템 종류
-	int _itemEffect;		//아이템 효과(투척 -> 데미지 & 물약 -> 회복)
+	int _itemEffect;		//아이템 효과(투척 -> 데미지 & 물약 -> 회복 & 돈->획득량)
 	int _price;				//아이템 가격
 	int _count;				//들고있는 갯수
 
