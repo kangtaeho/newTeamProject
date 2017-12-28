@@ -168,6 +168,9 @@
     <ClInclude Include="inventory.h">
       <Filter>MainGame\inventory</Filter>
     </ClInclude>
+    <ClInclude Include="character.h">
+      <Filter>MainGame\character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -259,6 +262,9 @@
     </ClCompile>
     <ClCompile Include="inventory.cpp">
       <Filter>MainGame\inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="character.cpp">
+      <Filter>MainGame\character</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
