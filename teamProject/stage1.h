@@ -6,6 +6,15 @@
 #include "stone.h"
 #include "character.h"
 
+static enum stageState 
+{
+	MOVING,
+	FIGHTING,
+	CLEAR
+
+
+};
+
 class stage1 : public gameNode
 {
 
@@ -18,6 +27,9 @@ private:
 	enemy* _enemy;
 
 	item* _stone; // πÃ¥œµπµ¢¿Ã §∑§∑
+
+
+	stageState _ss;
 public:
 	stage1();
 	~stage1();

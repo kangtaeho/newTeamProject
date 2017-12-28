@@ -13,7 +13,7 @@ stage2::~stage2()
 
 HRESULT stage2::init()
 {
-	IMAGEMANAGER->addImage("스테이지_01", "./images/02_stageg00.bmp", 5795, 2593, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("스테이지_01", "./images/02_stage00.bmp", 5795, 2593, true, RGB(255, 0, 255));
 
 	_mainPlayer = new character;
 	_mainPlayer->init();
