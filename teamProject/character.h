@@ -77,14 +77,14 @@ public:
 	float getX() { return _x; }
 	float getY() { return _y; }
 
-	void MakeRightStop(void* obj);
-	void MakeLeftStop(void* obj);
-	void MakeRightLand(void* obj);
-	void MakeLeftLand(void* obj);
-	void MakeRightFall(void* obj);
-	void MakeLeftFall(void* obj);
-	void MakeRightDown(void* obj);
-	void MakeLeftDown(void* obj);
+	static void MakeRightStop(void* obj);
+	static void MakeLeftStop(void* obj);
+	static void MakeRightLand(void* obj);
+	static void MakeLeftLand(void* obj);
+	static void MakeRightFall(void* obj);
+	static void MakeLeftFall(void* obj);
+	static void MakeRightDown(void* obj);
+	static void MakeLeftDown(void* obj);
 
 
 	void ZmoveOn() { _Zmove = 1.5f; }
