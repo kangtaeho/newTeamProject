@@ -25,15 +25,20 @@ HRESULT enemy::init()
 	_enemyDirection = ENEMYDIRECTION_RIGHT_STOP;
 	_jump = 0;
 	_Gravity = 0.2f;
+	_HP = 100;
 
-//int rightStop[] = { 0 };
-//KEYANIMANAGER->addArrayFrameAnimation("enemyRightStop", "enemy01", rightStop, 1,6,true);
-//int leftStop[] = { 16 };
-//KEYANIMANAGER->addArrayFrameAnimation("enemyleftStop", "enemy01", leftStop, 1, 6, true);
-//int rightMove[] = { 0,1,2,1 };
-//KEYANIMANAGER->addArrayFrameAnimation("enemyRightMove", "enemy01", rightMove, 4, 10, true);
-//int leftMove[] = { 16,15,14,15 };
-//KEYANIMANAGER->addArrayFrameAnimation("enemyLeftMove", "enemy01", leftMove, 4, 10, true);
+	//int rightStop[] = { 0 };
+	//KEYANIMANAGER->addArrayFrameAnimation("enemyRightStop", "enemy01", rightStop, 1,6,true);
+	//int leftStop[] = { 16 };
+	//KEYANIMANAGER->addArrayFrameAnimation("enemyleftStop", "enemy01", leftStop, 1, 6, true);
+	//int rightMove[] = { 0,1,2,1 };
+	//KEYANIMANAGER->addArrayFrameAnimation("enemyRightMove", "enemy01", rightMove, 4, 10, true);
+	//int leftMove[] = { 16,15,14,15 };
+	//KEYANIMANAGER->addArrayFrameAnimation("enemyLeftMove", "enemy01", leftMove, 4, 10, true);
+	//int rightJumpAttack[] = { 20,21 };
+	//KEYANIMANAGER->addArrayFrameAnimation("enemyRightJumpAttack", "enemy01", rightJumpAttack, 2, 10, true);
+	//int leftJumpAttack[] = { 29,28 };
+	//KEYANIMANAGER->addArrayFrameAnimation("enemyLeftJumpAttack", "enemy01", leftJumpAttack, 2, 10, true);
 
 	return S_OK;
 }
