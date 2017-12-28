@@ -25,9 +25,15 @@ HRESULT stage1::init()
 	_knife = new knife;
 	_knife->init(PointMake(300, 300));
 
+<<<<<<< HEAD
 	_enemy = new enemy;
 	_enemy->init();
 
+=======
+	//미니돌덩이 //병철
+	_stone = new stone;
+	_stone->init(PointMake(300, 350));
+>>>>>>> d91d087382d8938c79086f37a8ccdb79a060cacf
 	return S_OK;
 }
 
@@ -140,8 +146,15 @@ void stage1::update()
 void stage1::render()
 {
 	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
+	
 	_knife->render();
+<<<<<<< HEAD
 	_enemy->render();
+=======
+	_stone->render();
+
+	
+>>>>>>> d91d087382d8938c79086f37a8ccdb79a060cacf
 
 	//유아이박스는 메인게임에다 그냥 고정박아버림 // 병철
 
