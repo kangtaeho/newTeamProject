@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include "item.h"
 #include "knife.h"
+#include "enemy.h"
 class stage1 : public gameNode
 {
 
@@ -11,6 +12,8 @@ private:
 	RECT* currentRC;
 
 	item* _knife; // 칼 스테이지로 가져옴
+	enemy* _enemy;
+
 public:
 	stage1();
 	~stage1();

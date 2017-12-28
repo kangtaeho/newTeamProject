@@ -24,6 +24,10 @@ HRESULT stage1::init()
 	//칼추가 //병철
 	_knife = new knife;
 	_knife->init(PointMake(300, 300));
+
+	_enemy = new enemy;
+	_enemy->init();
+
 	return S_OK;
 }
 
@@ -129,6 +133,7 @@ void stage1::update()
 		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
+	_enemy->update();
 	
 }
 
@@ -136,6 +141,7 @@ void stage1::render()
 {
 	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	_knife->render();
+	_enemy->render();
 
 	//유아이박스는 메인게임에다 그냥 고정박아버림 // 병철
 
