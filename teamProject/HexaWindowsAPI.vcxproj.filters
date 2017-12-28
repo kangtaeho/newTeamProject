@@ -97,6 +97,9 @@
     <ClCompile Include="winMain.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="character.cpp">
+      <Filter>MainGame\character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h">
@@ -207,6 +210,9 @@
     <ClInclude Include="targetver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="character.h">
+      <Filter>MainGame\character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -271,6 +277,9 @@
     </Filter>
     <Filter Include="헤더 파일">
       <UniqueIdentifier>{95a891cc-5ece-4f69-897f-e92927e1b624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\character">
+      <UniqueIdentifier>{9effb95f-dcb9-469c-aed3-9819c0731e46}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

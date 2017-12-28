@@ -81,6 +81,7 @@
     <ClInclude Include="action.h" />
     <ClInclude Include="animation.h" />
     <ClInclude Include="cameraManager.h" />
+    <ClInclude Include="character.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="effect.h" />
@@ -119,6 +120,7 @@
     <ClCompile Include="action.cpp" />
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="cameraManager.cpp" />
+    <ClCompile Include="character.cpp" />
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
