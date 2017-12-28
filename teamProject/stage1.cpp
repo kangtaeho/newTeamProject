@@ -15,15 +15,15 @@ stage1::~stage1()
 HRESULT stage1::init()
 {
 	IMAGEMANAGER->addImage("½ºÅ×ÀÌÁö_00", "./images/01_stage00.bmp", 3456, 648, true, RGB(255, 0, 255));
-
-
-
 	rc1 = RectMakeCenter(500, BACKGROUNDSIZEY / 2, 100, 100);
 	currentRC = &rc1;
-	
+
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	CAMERAMANAGER->setCameraAim(&rc1);
 
+	//Ä®Ãß°¡ //º´Ã¶
+	_knife = new knife;
+	_knife->init(PointMake(300, 300));
 	return S_OK;
 }
 
