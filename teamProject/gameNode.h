@@ -3,6 +3,8 @@
 
 static image* _backBuffer = IMAGEMANAGER->addImage("backBuffer", WINSIZEX, WINSIZEY);
 
+class character;
+
 class gameNode
 {
 private:
