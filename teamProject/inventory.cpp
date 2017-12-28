@@ -13,6 +13,8 @@ inventory::~inventory()
 
 HRESULT inventory::init() {
 
+	_inventoryBmp = IMAGEMANAGER->addImage("인벤토리창", "./images/inventory.bmp", 280, 396, true, RGB(255, 0, 255));
+
 	return S_OK;
 }
 
