@@ -37,6 +37,9 @@ private:
 	float _strong;
 	float _effectT, _maxEffectT;
 
+	int _backgroundsizex;
+	int _backgroundsizey;
+
 public:
 	cameraManager();
 	~cameraManager();
@@ -73,6 +76,8 @@ public:
 
 	//카메라 이펙팅
 	void cameraEffecting();
+
+	void backGroundSizeSetting(int x, int y);
 
 	int getCameraCondition() { return _cameraCondition; }
 
