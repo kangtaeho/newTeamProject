@@ -17,6 +17,8 @@ HRESULT enemy::init()
 {
 	//_image = IMAGEMANAGER->addFrameImage("enemy",)
 
+
+	//디폴트
 	_rcEnemy = RectMakeCenter(BACKGROUNDSIZEX / 3, BACKGROUNDSIZEY / 2, 100, 100);
 	_speed = 3;
 	_currentRC = &_rcEnemy;
@@ -34,6 +36,7 @@ void enemy::release()
 
 void enemy::update()
 {
+	//카메라확인겸 움직이는지 확인중
 	int _x = (_rcEnemy.left + _rcEnemy.right) / 2;
 	int	_y = (_rcEnemy.top + _rcEnemy.bottom) / 2;
 
@@ -47,8 +50,8 @@ void enemy::update()
 
 void enemy::render()
 {
+	//에네미rc
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x, CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y, 100, 100);
-
 
 }
 
