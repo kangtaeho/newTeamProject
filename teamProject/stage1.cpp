@@ -135,7 +135,7 @@ void stage1::update()
 void stage1::render()
 {
 	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
-	
+	_knife->render();
 
 	//유아이박스는 메인게임에다 그냥 고정박아버림 // 병철
 

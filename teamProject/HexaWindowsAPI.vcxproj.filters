@@ -32,6 +32,7 @@
     <ClCompile Include="whitePotion.cpp" />
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="zOrderManager.cpp" />
+    <ClCompile Include="cameraManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h" />
@@ -69,6 +70,7 @@
     <ClInclude Include="utils.h" />
     <ClInclude Include="whitePotion.h" />
     <ClInclude Include="zOrderManager.h" />
+    <ClInclude Include="cameraManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
