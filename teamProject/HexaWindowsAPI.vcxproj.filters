@@ -168,6 +168,12 @@
     <ClInclude Include="inventory.h">
       <Filter>MainGame\inventory</Filter>
     </ClInclude>
+    <ClInclude Include="knife.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="cameraManager.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -259,6 +265,12 @@
     </ClCompile>
     <ClCompile Include="inventory.cpp">
       <Filter>MainGame\inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="knife.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="cameraManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
