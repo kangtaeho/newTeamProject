@@ -14,13 +14,21 @@
     <ProjectGuid>{1DFC11EA-FEF8-4657-8F70-D7904DFABE34}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>HexaWindowsAPI</RootNamespace>
+<<<<<<< HEAD
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+=======
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+>>>>>>> f324de58a0596a81a96305f5631944ec2e92160a
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
+<<<<<<< HEAD
     <PlatformToolset>v141</PlatformToolset>
+=======
+    <PlatformToolset>v120</PlatformToolset>
+>>>>>>> f324de58a0596a81a96305f5631944ec2e92160a
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -80,7 +88,11 @@
   <ItemGroup>
     <ClInclude Include="action.h" />
     <ClInclude Include="animation.h" />
+<<<<<<< HEAD
     <ClInclude Include="character.h" />
+=======
+    <ClInclude Include="cameraManager.h" />
+>>>>>>> f324de58a0596a81a96305f5631944ec2e92160a
     <ClInclude Include="collision.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="effect.h" />
@@ -94,6 +106,7 @@
     <ClInclude Include="item.h" />
     <ClInclude Include="keyAniManager.h" />
     <ClInclude Include="keyManager.h" />
+    <ClInclude Include="knife.h" />
     <ClInclude Include="mainGame.h" />
     <ClInclude Include="money.h" />
     <ClInclude Include="orangePotion.h" />
@@ -117,7 +130,11 @@
   <ItemGroup>
     <ClCompile Include="action.cpp" />
     <ClCompile Include="animation.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="character.cpp" />
+=======
+    <ClCompile Include="cameraManager.cpp" />
+>>>>>>> f324de58a0596a81a96305f5631944ec2e92160a
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
@@ -130,6 +147,7 @@
     <ClCompile Include="item.cpp" />
     <ClCompile Include="keyAniManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
+    <ClCompile Include="knife.cpp" />
     <ClCompile Include="mainGame.cpp" />
     <ClCompile Include="money.cpp" />
     <ClCompile Include="orangePotion.cpp" />
