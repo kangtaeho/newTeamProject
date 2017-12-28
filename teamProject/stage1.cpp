@@ -15,6 +15,13 @@ stage1::~stage1()
 HRESULT stage1::init()
 {
 	IMAGEMANAGER->addImage("스테이지_00", "./images/01_stage00.bmp", 3456, 648, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("스테이지_00_red", "./images/01_stage00_red.bmp", 3456, 648, true, RGB(255, 0, 255));
+	//레드칠한거 
+
+	// 스테이지상태
+	_ss = MOVING;
+
+	//카메라 렉트
 	rc1 = RectMakeCenter(500, BACKGROUNDSIZEY / 2, 100, 100);
 	currentRC = &rc1;
 
@@ -23,14 +30,14 @@ HRESULT stage1::init()
 
 	//칼추가 //병철
 	_knife = new knife;
-	_knife->init(PointMake(300, 300));
+	_knife->init(PointMake(1000, 350));
 
 	_enemy = new enemy;
 	_enemy->init();
 
 	//미니돌덩이 //병철
 	_stone = new stone;
-	_stone->init(PointMake(300, 350));
+	_stone->init(PointMake(2000, 450));
 
 	_mainPlayer = new character;
 	_mainPlayer->init();
@@ -146,7 +153,7 @@ void stage1::update()
 void stage1::render()
 {
 	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
-	
+	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	_knife->render();
 	_enemy->render();
 	_stone->render();

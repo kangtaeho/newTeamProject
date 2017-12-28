@@ -1,15 +1,12 @@
 #pragma once
 #include "gameNode.h"
 #include "character.h"
-
-class stage2 : public gameNode
+class stage3 : public gameNode
 {
 private:
-
-
 public:
-	stage2();
-	~stage2();
+	stage3();
+	~stage3();
 
 	HRESULT init();
 	void release();
@@ -17,6 +14,6 @@ public:
 	void render();
 
 	virtual void setMainPlayer(character* mainPlayer) { _mainPlayer = mainPlayer; }
-	virtual character* getMainPlayer(){ return _mainPlayer; }
-}; 
+	virtual character* getMainPlayer() { return _mainPlayer; }
+};
 

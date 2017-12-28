@@ -103,6 +103,9 @@
     <ClCompile Include="stone.cpp">
       <Filter>MainGame\inventory\item</Filter>
     </ClCompile>
+    <ClCompile Include="stage3.cpp">
+      <Filter>MainGame\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h">
@@ -218,6 +221,9 @@
     </ClInclude>
     <ClInclude Include="stone.h">
       <Filter>MainGame\inventory\item</Filter>
+    </ClInclude>
+    <ClInclude Include="stage3.h">
+      <Filter>MainGame\scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
