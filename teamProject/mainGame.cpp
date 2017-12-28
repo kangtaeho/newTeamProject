@@ -13,6 +13,17 @@ HRESULT mainGame::init()			//초기화 함수
 {
 	gameNode::init(true);
 
+	//병철 추가 // 스테이지 1 씬 //20171227 7:43
+	SCENEMANAGER->addScene("스테이지00", new stage1);
+	//SCENEMANAGER->addLoadingScene("스테이지01", new stage2);
+
+	SCENEMANAGER->changeScene("스테이지00");
+
+	IMAGEMANAGER->addImage("유아이박스", "./images/ui_box.bmp", 1152, 144, true, RGB(255, 0, 255));
+
+	//재호 : 이미지 출력 실험용
+	//IMAGEMANAGER->addImage("상점", "./images/shop.bmp", 262, 396, true, RGB(255, 0, 255));
+
 	return S_OK;
 }
 
@@ -28,7 +39,6 @@ void mainGame::update()				//연산 함수
 	gameNode::update();
 
 
-	int a = 0;
 
 	SCENEMANAGER->update();
 
@@ -41,6 +51,14 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==================== 건들지마라 ======================
 	
+	SCENEMANAGER->render();
+
+	//병철추가 //유아이박스 카메라 영향 안받음 위치고정 // 20121227 7:45
+	IMAGEMANAGER->findImage("유아이박스")->render(getMemDC(), 0, WINSIZEY - IMAGEMANAGER->findImage("유아이박스")->getHeight());
+
+	//재호 : 이미지 출력 실험용
+	//IMAGEMANAGER->findImage("상점")->render(getMemDC(), WINSIZEX/2 - 300, 40);
+
 	//==================== 건들지마라 =======================
 	TIMEMANAGER->render(getMemDC());
 	this->getBackBuffer()->render(getHDC(), 0, 0);

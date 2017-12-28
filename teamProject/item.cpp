@@ -9,4 +9,30 @@ item::item()
 
 item::~item()
 {
+
+}
+
+HRESULT item::init()
+{
+
+	return S_OK;
+}
+
+HRESULT item::init(POINT point)
+{
+
+	return S_OK;
+}
+
+void item::release()
+{
+
+}
+void item::update()
+{
+
+}
+void item::render()
+{
+
 }
