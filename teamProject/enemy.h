@@ -44,11 +44,15 @@ private:
 
 
 	//이미지와 위치값과 렉트와 HP설정
-	image* _image;
-	RECT _rcEnemy;
-	RECT* _currentRC;
-	int _currentHP;
-	int _speed;
+	image* _image;				//이미지
+	RECT _rcEnemy;				//렉트
+	RECT* _currentRC;			//커언트렉트
+	int _HP;					//체력
+	int _maxHP;					//최대체력
+	int _speed;					//속도
+	int _x, _y;					//xy값
+	float _ZMove;				//z무브
+	float _jump, _Gravity;		//점프,중력
 
 	animation* _enemyMotion;
 
