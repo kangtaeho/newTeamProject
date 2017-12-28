@@ -11,12 +11,18 @@ private:
 	HDC _hdc;
 	bool _managerInit;
 
+protected:
+	character* _mainPlayer;
+
 public:
 	virtual HRESULT init();		//초기화 함수
 	virtual HRESULT init(bool managerInit);
 	virtual void release();		//메모리 해제 함수
 	virtual void update();		//연산 함수
 	virtual void render();		//그려주는 함수(a.k.a WM_PAINT)
+
+	virtual void setMainPlayer(character* mainPlayer) {}
+	virtual character* getMainPlayer(){ return _mainPlayer; }
 
 	//백버퍼 접근자
 	image* getBackBuffer() { return _backBuffer; }

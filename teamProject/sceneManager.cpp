@@ -114,7 +114,12 @@ HRESULT sceneManager::changeScene(string sceneName)
 	if ( SUCCEEDED(find->second->init()) )
 	{
 		//ÇöÀç ¾À(´Ù¸¥¾ÀÀÌ ÀÖ´Ù¸é) ÇØ´ç¾ÀÀ» ³¯·ÁÁÖ°í
-		if ( _currentScene ) _currentScene->release();
+		if (_currentScene)
+		{
+
+			find->second->setMainPlayer(_currentScene->getMainPlayer());
+			_currentScene->release();
+		}
 		//¹Ù²Ù·Á´Â ¾ÀÀ¸·Î ¾ÀÀ» ¹Ù²ãÁØ´Ù
 		_currentScene = find->second;
 

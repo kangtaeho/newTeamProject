@@ -31,6 +31,9 @@ HRESULT stage1::init()
 	//¹Ì´Ïµ¹µ¢ÀÌ //º´Ã¶
 	_stone = new stone;
 	_stone->init(PointMake(300, 350));
+
+	_mainPlayer = new character;
+	_mainPlayer->init();
 	return S_OK;
 }
 
