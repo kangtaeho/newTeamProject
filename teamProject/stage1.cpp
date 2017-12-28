@@ -25,6 +25,9 @@ HRESULT stage1::init()
 	_knife = new knife;
 	_knife->init(PointMake(300, 300));
 
+	_enemy = new enemy;
+	_enemy->init();
+
 	//¹Ì´Ïµ¹µ¢ÀÌ //º´Ã¶
 	_stone = new stone;
 	_stone->init(PointMake(300, 350));
@@ -133,6 +136,7 @@ void stage1::update()
 		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
+	_enemy->update();
 	
 }
 
@@ -141,6 +145,7 @@ void stage1::render()
 	IMAGEMANAGER->findImage("½ºÅ×ÀÌÁö_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	
 	_knife->render();
+	_enemy->render();
 	_stone->render();
 
 	
