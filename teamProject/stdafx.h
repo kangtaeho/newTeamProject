@@ -43,8 +43,8 @@ using namespace HEXA_UTIL;
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
 
 //기성 추가
-#define BACKGROUNDSIZEX 3456
-#define BACKGROUNDSIZEY 648
+//#define BACKGROUNDSIZEX 3456
+//#define BACKGROUNDSIZEY 648
 
 #define RND randomFunction::getSingleton()
 #define KEYMANAGER keyManager::getSingleton()
