@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "gameNode.h"
-
+#include "character.h"
 
 gameNode::gameNode()
 {

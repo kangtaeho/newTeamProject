@@ -6,7 +6,6 @@ class stage2 : public gameNode
 {
 private:
 
-	character* _mainCharacter;
 
 public:
 	stage2();
@@ -16,5 +15,8 @@ public:
 	void release();
 	void update();
 	void render();
+
+	virtual void setMainPlayer(character* mainPlayer) { _mainPlayer = mainPlayer; }
+	virtual character* getMainPlayer(){ return _mainPlayer; }
 };
 
