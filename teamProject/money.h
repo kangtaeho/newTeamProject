@@ -8,5 +8,6 @@ public:
 	~money();
 
 	HRESULT init(POINT point);
+	void render();
 };
 
