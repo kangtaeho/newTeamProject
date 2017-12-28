@@ -59,6 +59,7 @@ private:
 	bool _isRight;
 
 	RECT _rc;
+	RECT _colliRect;
 
 	CHARA _state;
 	animation * _motion;
@@ -71,6 +72,10 @@ public:
 	void release();
 	void update();
 	void render();
+
+	RECT getRect() { return _colliRect; }
+	float getX() { return _x; }
+	float getY() { return _y; }
 
 	void MakeRightStop(void* obj);
 	void MakeLeftStop(void* obj);

@@ -21,6 +21,9 @@ HRESULT character::init()
 	_isRight = true;
 	_JP = 0;
 	_gravity = 0.2f;
+
+	_state = CHARA_RIGHT_STOP;
+
 	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 
 	int RightStop[] = { 0 };
@@ -29,7 +32,15 @@ HRESULT character::init()
 	int LeftStop[] = { 127 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftStop", "JIMMY", LeftStop, 1, 6, true);
 
-	//int RightMove[] =
+	int RightMove[] = { 0,1,2,1 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightMove", "JIMMY", RightMove, 4, 10, true);
+
+	int LeftMove[] = { 127,126,125,126 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightMove", "JIMMY", RightMove, 4, 10, true);
+
+	int RightLand[] = { 4 };
+
+
 
 
 
@@ -42,11 +53,27 @@ void character::release()
 }
 void character::update()
 {
-
+	if (KEYMANAGER->isStayKeyDown(VK_UP))
+	{
+		_y -= 5;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+	{
+		_y += 5;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+	{
+		_x += 5;
+	}
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	{
+		_x -= 5;
+	}
+	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 }
 void character::render()
 {
-
+	_image->aniRender(getMemDC(), _rc.left, _rc.top,_motion);
 }
 
 void MakeRightStop(void* obj)
