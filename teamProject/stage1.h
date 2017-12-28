@@ -4,7 +4,7 @@ class stage1 : public gameNode
 {
 
 private:
-	image* _stage1;
+
 
 public:
 	stage1();

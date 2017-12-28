@@ -150,6 +150,9 @@
     <ClInclude Include="enemy.h">
       <Filter>MainGame\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="knife.h">
+      <Filter>MainGame\inventory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -226,6 +229,9 @@
     </ClCompile>
     <ClCompile Include="enemy.cpp">
       <Filter>MainGame\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="knife.cpp">
+      <Filter>MainGame\inventory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
