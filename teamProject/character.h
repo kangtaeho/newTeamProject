@@ -43,8 +43,8 @@ enum CHARA {
 	CHARA_LEFT_DOWN,
 	CHARA_RIGHT_JUMP_KICK,
 	CHARA_LEFT_JUMP_KICK,
-	CHARA_RIGHT_JUMP_ATT,
-	CHARA_LEFT_JUMP_ATT,
+	CHARA_RIGHT_ATT,
+	CHARA_LEFT_ATT,
 
 };
 
@@ -74,6 +74,8 @@ public:
 
 	void MakeRightStop(void* obj);
 	void MakeLeftStop(void* obj);
+	void MakeRightLand(void* obj);
+	void MakeLeftLand(void* obj);
 	void MakeRightFall(void* obj);
 	void MakeLeftFall(void* obj);
 	void MakeRightDown(void* obj);

@@ -57,6 +57,14 @@ void MakeLeftStop(void* obj)
 {
 	
 }
+void MakeRightStop(void* obj)
+{
+	
+}
+void MakeLeftStop(void* obj) 
+{
+	
+}
 void MakeRightFall(void* obj)	
 {
 	
