@@ -10,7 +10,7 @@ private:
 	RECT rc1;
 	RECT* currentRC;
 
-	item* _knife;
+	item* _knife; // 칼 스테이지로 가져옴
 public:
 	stage1();
 	~stage1();
