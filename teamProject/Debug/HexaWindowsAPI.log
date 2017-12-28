@@ -1,1 +1,9 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.Cpp.Platform.targets(57,5): error MSB8020: v120에 대한 빌드 도구(플랫폼 도구 집합 = 'v120')를 찾을 수 없습니다. v120 빌드 도구를 사용하여 빌드하려면 v120 빌드 도구를 설치하십시오.  [프로젝트] 메뉴를 선택하거나 솔루션을 마우스 오른쪽 단추로 클릭한 다음 "솔루션 대상 변경"을 선택하여 현재 Visual Studio 도구로 업그레이드할 수도 있습니다.
+﻿  inventory.cpp
+c:\users\kang\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  orangePotion.cpp
+c:\users\kang\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  HexaWindowsAPI.vcxproj -> C:\Users\kang\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.exe
+  HexaWindowsAPI.vcxproj -> C:\Users\kang\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.pdb (Full PDB)
