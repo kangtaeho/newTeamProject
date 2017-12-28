@@ -84,11 +84,11 @@ void MakeLeftStop(void* obj)
 {
 
 }
-void MakeRightStop(void* obj)
+void MakeRightLand(void* obj)
 {
 
 }
-void MakeLeftStop(void* obj)
+void MakeLeftLand(void* obj)
 {
 
 }
