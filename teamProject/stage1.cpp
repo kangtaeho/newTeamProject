@@ -15,6 +15,8 @@ stage1::~stage1()
 HRESULT stage1::init()
 {
 	IMAGEMANAGER->addImage("스테이지_00", "./images/01_stage00.bmp", 3456, 648, true, RGB(255, 0, 255));
+	_stone = new stone;
+	stone->init(PointMake(10, 10));
 	return S_OK;
 }
 

@@ -29,3 +29,7 @@ HRESULT money::init(POINT point)
 
 	return S_OK;
 }
+
+void money::render(){
+
+}

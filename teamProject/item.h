@@ -31,10 +31,19 @@ public:
 
 	//아이템 좌표 설정 (투척시 사용)
 	void setPoint(POINT point){ _x = point.x; _y = point.y; }		
+
 	//아이템 효과 가져오기(투척아이템 : 데미지, 물약 : 회복량)
 	int getItemEffect(){return _itemEffect;}
+
 	//물약 이미지는 이걸 통해 그리면 됨
 	image*	getItemImage(){ return _itemImage; }
+
+	//물약 소지 갯수 변경 및 가져오기(사용시 인수값 = -1)
+	void setCount(int count) { _count += count; }
+	int getCount(){ return _count; }
+
+	//가격 가져오기
+	int getPrice(){ return _price; }
 
 
 };
