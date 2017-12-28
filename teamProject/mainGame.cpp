@@ -42,10 +42,9 @@ void mainGame::update()				//연산 함수
 
 	SCENEMANAGER->update();
 
-	if (KEYMANAGER->isOnceKeyDown('P')) 
-	{
-		SCENEMANAGER->changeScene("스테이지01");
-	}
+
+
+	
 
 
 }

@@ -147,6 +147,11 @@ void stage1::update()
 	}
 
 	_enemy->update();
+
+	if (KEYMANAGER->isOnceKeyDown('P'))
+	{
+		SCENEMANAGER->changeScene("스테이지01");
+	}
 	
 }
 

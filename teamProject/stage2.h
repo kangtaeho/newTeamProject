@@ -1,6 +1,6 @@
 #pragma once
 #include "gameNode.h"
-#include "character.h"
+#include "character.h" //카메라 해주세요 기성씨~
 
 class stage2 : public gameNode
 {

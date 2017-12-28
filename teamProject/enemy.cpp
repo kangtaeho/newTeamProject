@@ -26,14 +26,14 @@ HRESULT enemy::init()
 	_jump = 0;
 	_Gravity = 0.2f;
 
-	int rightStop[] = { 0 };
-	KEYANIMANAGER->addArrayFrameAnimation("enemyRightStop", "enemy01", rightStop, 1,6,true);
-	int leftStop[] = { 16 };
-	KEYANIMANAGER->addArrayFrameAnimation("enemyleftStop", "enemy01", leftStop, 1, 6, true);
-	int rightMove[] = { 0,1,2,1 };
-	KEYANIMANAGER->addArrayFrameAnimation("enemyRightMove", "enemy01", rightMove, 4, 10, true);
-	int leftMove[] = { 16,15,14,15 };
-	KEYANIMANAGER->addArrayFrameAnimation("enemyLeftMove", "enemy01", leftMove, 4, 10, true);
+//int rightStop[] = { 0 };
+//KEYANIMANAGER->addArrayFrameAnimation("enemyRightStop", "enemy01", rightStop, 1,6,true);
+//int leftStop[] = { 16 };
+//KEYANIMANAGER->addArrayFrameAnimation("enemyleftStop", "enemy01", leftStop, 1, 6, true);
+//int rightMove[] = { 0,1,2,1 };
+//KEYANIMANAGER->addArrayFrameAnimation("enemyRightMove", "enemy01", rightMove, 4, 10, true);
+//int leftMove[] = { 16,15,14,15 };
+//KEYANIMANAGER->addArrayFrameAnimation("enemyLeftMove", "enemy01", leftMove, 4, 10, true);
 
 	return S_OK;
 }

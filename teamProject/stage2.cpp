@@ -27,6 +27,10 @@ void stage2::release()
 
 void stage2::update()
 {
+	if (KEYMANAGER->isOnceKeyDown('P'))
+	{
+		SCENEMANAGER->changeScene("스테이지00");
+	}
 }
 
 void stage2::render()
