@@ -6,7 +6,7 @@ class stage1 : public gameNode
 {
 
 private:
-	image* _stage1;
+
 
 	item* _stone;
 public:

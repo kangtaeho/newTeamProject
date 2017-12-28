@@ -93,6 +93,7 @@
     <ClInclude Include="item.h" />
     <ClInclude Include="keyAniManager.h" />
     <ClInclude Include="keyManager.h" />
+    <ClInclude Include="knife.h" />
     <ClInclude Include="mainGame.h" />
     <ClInclude Include="money.h" />
     <ClInclude Include="orangePotion.h" />
@@ -128,6 +129,7 @@
     <ClCompile Include="item.cpp" />
     <ClCompile Include="keyAniManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
+    <ClCompile Include="knife.cpp" />
     <ClCompile Include="mainGame.cpp" />
     <ClCompile Include="money.cpp" />
     <ClCompile Include="orangePotion.cpp" />

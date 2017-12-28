@@ -7,6 +7,9 @@
 class inventory:public gameNode
 {
 private:
+	image* _inventoryBmp;				// 인벤토리 이미지
+	float _x, _y;						// 인벤토리 이미지를 뿌릴 left, top 좌표
+
 
 public:
 	inventory();
