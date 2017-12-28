@@ -105,7 +105,7 @@ void stage2::update()
 			}
 			else
 			{
-				if (currentRC->right >= 3456)
+				if (currentRC->right >= 5795)
 				{
 					currentRC->left -= 5;
 					currentRC->right -= 5;
