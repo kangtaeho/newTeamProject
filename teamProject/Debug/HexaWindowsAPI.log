@@ -1,32 +1,75 @@
-﻿  knife.cpp
-c:\users\woght\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=' : 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\woght\documents\github\newteamproject\teamproject\knife.cpp(20): warning C4244: '=' : 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
-  건너뛰고 있습니다... (관련된 변경 내용 없음)
+<<<<<<< HEAD
+﻿  stdafx.cpp
   zOrderManager.cpp
-  whitePotion.cpp
+  winMain.cpp
   utils.cpp
   txtData.cpp
+c:\users\ksb\documents\github\newteamproject\teamproject\txtdata.cpp(51): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\ksb\documents\github\newteamproject\teamproject\txtdata.cpp(55): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\ksb\documents\github\newteamproject\teamproject\txtdata.cpp(55): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\string.h(93): note: 'strcat' 선언을 참조하십시오.
+c:\users\ksb\documents\github\newteamproject\teamproject\txtdata.cpp(88): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\string.h(439): note: 'strtok' 선언을 참조하십시오.
+c:\users\ksb\documents\github\newteamproject\teamproject\txtdata.cpp(91): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\string.h(439): note: 'strtok' 선언을 참조하십시오.
+c:\users\ksb\documents\github\newteamproject\teamproject\txtdata.cpp(84): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
   timer.cpp
   timeManager.cpp
+  stage2.cpp
+  stage1.cpp
   soundManager.cpp
   sceneManager.cpp
-  redPotion.cpp
-  orangePotion.cpp
-  money.cpp
+  mainGame.cpp
   keyManager.cpp
   keyAniManager.cpp
   item.cpp
-  inventory.cpp
   iniDataManager.cpp
+c:\users\ksb\documents\github\newteamproject\teamproject\inidatamanager.cpp(52): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\ksb\documents\github\newteamproject\teamproject\inidatamanager.cpp(46): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+c:\users\ksb\documents\github\newteamproject\teamproject\inidatamanager.cpp(71): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+c:\users\ksb\documents\github\newteamproject\teamproject\inidatamanager.cpp(89): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
   imageManager.cpp
   image.cpp
+c:\users\ksb\documents\github\newteamproject\teamproject\image.cpp(346): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\ksb\documents\github\newteamproject\teamproject\image.cpp(356): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\ksb\documents\github\newteamproject\teamproject\image.cpp(491): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\ksb\documents\github\newteamproject\teamproject\image.cpp(496): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\ksb\documents\github\newteamproject\teamproject\image.cpp(501): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   gameNode.cpp
+c:\users\ksb\documents\github\newteamproject\teamproject\gamenode.cpp(99): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\ksb\documents\github\newteamproject\teamproject\gamenode.cpp(100): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\ksb\documents\github\newteamproject\teamproject\gamenode.cpp(93): warning C4101: 'hdc' :참조되지 않은 지역 변수입니다.
+c:\users\ksb\documents\github\newteamproject\teamproject\gamenode.cpp(92): warning C4101: 'ps' :참조되지 않은 지역 변수입니다.
   enemy.cpp
   effectManager.cpp
+=======
+﻿  stage1.cpp
+c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  knife.cpp
+c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\wkrqu\documents\github\newteamproject\teamproject\knife.cpp(20): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+>>>>>>> 165a294dd3199e895605a68304a63dce8ac80b2c
+  코드를 생성하고 있습니다...
+c:\users\ksb\documents\github\newteamproject\teamproject\inidatamanager.cpp(79): warning C4172: 지역 변수 또는 임시: data의 주소를 반환하고 있습니다.
+c:\users\ksb\documents\github\newteamproject\teamproject\txtdata.cpp(58): warning C4172: 지역 변수 또는 임시: str의 주소를 반환하고 있습니다.
+  컴파일하고 있습니다...
+<<<<<<< HEAD
   effect.cpp
   collision.cpp
-  cameraManager.cpp
   animation.cpp
   action.cpp
-  HexaWindowsAPI.vcxproj -> C:\Users\woght\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.exe
+  코드를 생성하고 있습니다...
+  HexaWindowsAPI.vcxproj -> C:\Users\ksb\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.exe
+  HexaWindowsAPI.vcxproj -> C:\Users\ksb\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.pdb (Partial PDB)
+=======
+  winMain.cpp
+c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  mainGame.cpp
+c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  HexaWindowsAPI.vcxproj -> C:\Users\wkrqu\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.exe
+  HexaWindowsAPI.vcxproj -> C:\Users\wkrqu\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.pdb (Partial PDB)
+>>>>>>> 165a294dd3199e895605a68304a63dce8ac80b2c
