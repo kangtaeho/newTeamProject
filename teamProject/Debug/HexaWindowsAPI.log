@@ -1,14 +1,32 @@
-﻿  stage1.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  knife.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\wkrqu\documents\github\newteamproject\teamproject\knife.cpp(20): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  knife.cpp
+c:\users\woght\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=' : 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\knife.cpp(20): warning C4244: '=' : 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   코드를 생성하고 있습니다...
-  컴파일하고 있습니다...
-  winMain.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  mainGame.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
-  HexaWindowsAPI.vcxproj -> C:\Users\wkrqu\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.exe
-  HexaWindowsAPI.vcxproj -> C:\Users\wkrqu\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.pdb (Partial PDB)
+  건너뛰고 있습니다... (관련된 변경 내용 없음)
+  zOrderManager.cpp
+  whitePotion.cpp
+  utils.cpp
+  txtData.cpp
+  timer.cpp
+  timeManager.cpp
+  soundManager.cpp
+  sceneManager.cpp
+  redPotion.cpp
+  orangePotion.cpp
+  money.cpp
+  keyManager.cpp
+  keyAniManager.cpp
+  item.cpp
+  inventory.cpp
+  iniDataManager.cpp
+  imageManager.cpp
+  image.cpp
+  gameNode.cpp
+  enemy.cpp
+  effectManager.cpp
+  effect.cpp
+  collision.cpp
+  cameraManager.cpp
+  animation.cpp
+  action.cpp
+  HexaWindowsAPI.vcxproj -> C:\Users\woght\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.exe
