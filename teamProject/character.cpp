@@ -189,35 +189,35 @@ void character::render()
 	_image->aniRender(getMemDC(), _rc.left, _rc.top,_motion);
 }
 
-void MakeRightStop(void* obj)
+void character::MakeRightStop(void* obj)
 {
 
 }
-void MakeLeftStop(void* obj)
+void character::MakeLeftStop(void* obj)
 {
 
 }
-void MakeRightLand(void* obj)
+void character::MakeRightLand(void* obj)
 {
 
 }
-void MakeLeftLand(void* obj)
+void character::MakeLeftLand(void* obj)
 {
 
 }
-void MakeRightFall(void* obj)
+void character::MakeRightFall(void* obj)
 {
 
 }
-void MakeLeftFall(void* obj)
+void character::MakeLeftFall(void* obj)
 {
 
 }
-void MakeRightDown(void* obj)
+void character::MakeRightDown(void* obj)
 {
 
 }
-void MakeLeftDown(void* obj)
+void character::MakeLeftDown(void* obj)
 {
 
 }
