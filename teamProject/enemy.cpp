@@ -17,9 +17,9 @@ HRESULT enemy::init()
 {
 	//_image = IMAGEMANAGER->addFrameImage("enemy",)
 
-	
+
 	//µðÆúÆ®
-	_rcEnemy = RectMakeCenter(3456 / 3, 648 / 2, 100, 100);
+	_rcEnemy = RectMakeCenter(BACKGROUNDSIZEX / 3, BACKGROUNDSIZEY / 2, 100, 100);
 	_speed = 3;
 	_currentRC = &_rcEnemy;
 
@@ -41,8 +41,8 @@ void enemy::update()
 	int	_y = (_rcEnemy.top + _rcEnemy.bottom) / 2;
 
 
-	if (_x < 3456 / 3 - 300) _speed = 3;
-	if (_x > 3456 / 3 + 300) _speed = -3;
+	if (_x < BACKGROUNDSIZEX / 3 - 300) _speed = 3;
+	if (_x > BACKGROUNDSIZEX / 3 + 300) _speed = -3;
 
 	_x += _speed;
 	_rcEnemy = RectMakeCenter(_x, _y, 100, 100);

@@ -5,8 +5,7 @@
 class stage2 : public gameNode
 {
 private:
-	RECT rc1;
-	RECT* currentRC;
+
 
 public:
 	stage2();

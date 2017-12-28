@@ -14,10 +14,11 @@ cameraManager::~cameraManager()
 
 
 //카메라 초기 설정
-HRESULT cameraManager::init()
+HRESULT cameraManager::init(void)
 {
-	backGroundSizeSetting(_backgroundsizex, _backgroundsizey);
-
+	//초기 카메라 위치 배경 크기의 중앙으로 설정
+	_camera.x = BACKGROUNDSIZEX / 2 - WINSIZEX / 2;
+	_camera.y = BACKGROUNDSIZEY / 2 - WINSIZEY / 2;
 	_cameraCondition = CAMERA_FREE;
 	_aim = NULL;
 	return S_OK;
@@ -74,18 +75,18 @@ void cameraManager::cameraRevision()
 	{
 		_camera.x = 0;
 	}
-	else if (_camera.x > _backgroundsizex - WINSIZEX)
+	else if (_camera.x > BACKGROUNDSIZEX - WINSIZEX)
 	{
-		_camera.x = _backgroundsizex - WINSIZEX;
+		_camera.x = BACKGROUNDSIZEX - WINSIZEX;
 	}
 
 	if (_camera.y < 0)
 	{
 		_camera.y = 0;
 	}
-	else if (_camera.y > _backgroundsizey - WINSIZEY)
+	else if (_camera.y > BACKGROUNDSIZEY - WINSIZEY)
 	{
-		_camera.y = _backgroundsizey - WINSIZEY;
+		_camera.y = BACKGROUNDSIZEY - WINSIZEY;
 	}
 }
 
@@ -125,17 +126,6 @@ void cameraManager::cameraEffecting()
 		_cameraCondition = _prevCameraCondition;
 	}
 
-}
-
-void cameraManager::backGroundSizeSetting(int x, int y)
-{
-
-	_backgroundsizex = x;
-	_backgroundsizey = y;
-	//초기 카메라 위치 배경 크기의 중앙으로 설정
-	//_camera.x = _backgroundsizex / 2 - WINSIZEX / 2;
-	//_camera.y = _backgroundsizey / 2 - WINSIZEY / 2;
-	
 }
 
 void cameraManager::cameraMove(bool isX, float speed)
