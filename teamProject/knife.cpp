@@ -26,5 +26,5 @@ HRESULT knife::init(POINT point)
 
 void knife::render()
 {
-	_itemImage->frameRender(getMemDC(), 300, 300, 0, 0);
+	_itemImage->frameRender(getMemDC(), 300,400, 1, 0);
 }
