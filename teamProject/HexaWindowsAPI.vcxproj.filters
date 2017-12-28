@@ -58,6 +58,9 @@
     <Filter Include="MainGame\inventory">
       <UniqueIdentifier>{00d68757-9e69-436e-97f8-f54bee546eaa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\inventory\item">
+      <UniqueIdentifier>{b449a694-adac-4c3e-9d1d-369bca1d14ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -138,9 +141,6 @@
     <ClInclude Include="zOrderManager.h">
       <Filter>2DFramework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="item.h">
-      <Filter>MainGame\inventory</Filter>
-    </ClInclude>
     <ClInclude Include="stage1.h">
       <Filter>MainGame\scene</Filter>
     </ClInclude>
@@ -150,7 +150,22 @@
     <ClInclude Include="enemy.h">
       <Filter>MainGame\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="knife.h">
+    <ClInclude Include="item.h">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClInclude>
+    <ClInclude Include="orangePotion.h">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClInclude>
+    <ClInclude Include="redPotion.h">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClInclude>
+    <ClInclude Include="whitePotion.h">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClInclude>
+    <ClInclude Include="money.h">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClInclude>
+    <ClInclude Include="inventory.h">
       <Filter>MainGame\inventory</Filter>
     </ClInclude>
   </ItemGroup>
@@ -218,9 +233,6 @@
     <ClCompile Include="zOrderManager.cpp">
       <Filter>2DFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="item.cpp">
-      <Filter>MainGame\inventory</Filter>
-    </ClCompile>
     <ClCompile Include="stage1.cpp">
       <Filter>MainGame\scene</Filter>
     </ClCompile>
@@ -230,7 +242,22 @@
     <ClCompile Include="enemy.cpp">
       <Filter>MainGame\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="knife.cpp">
+    <ClCompile Include="item.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
+    <ClCompile Include="orangePotion.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
+    <ClCompile Include="redPotion.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
+    <ClCompile Include="whitePotion.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
+    <ClCompile Include="money.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
+    <ClCompile Include="inventory.cpp">
       <Filter>MainGame\inventory</Filter>
     </ClCompile>
   </ItemGroup>
