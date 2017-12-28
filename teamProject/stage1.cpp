@@ -15,8 +15,9 @@ stage1::~stage1()
 HRESULT stage1::init()
 {
 	IMAGEMANAGER->addImage("½ºÅ×ÀÌÁö_00", "./images/01_stage00.bmp", 3456, 648, true, RGB(255, 0, 255));
-	_stone = new stone;
-	stone->init(PointMake(10, 10));
+	//Ä®Ãß°¡ //º´Ã¶
+	_knife = new knife;
+	_knife->init(PointMake(300, 300));
 	return S_OK;
 }
 

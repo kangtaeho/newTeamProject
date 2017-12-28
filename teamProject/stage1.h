@@ -1,14 +1,14 @@
 #pragma once
 #include "gameNode.h"
 #include "item.h"
-#include "stone.h"
+#include "knife.h"
 class stage1 : public gameNode
 {
 
 private:
 
 
-	item* _stone;
+	item* _knife;
 public:
 	stage1();
 	~stage1();
