@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "stage1.h"
+#include "stage2.h"
 
 class mainGame : public gameNode
 {
@@ -8,10 +9,10 @@ private:
 	
 	//ÇöÀç¾À
 	gameNode* _currentScene;
-
+	gameNode* _loadingScene;
 	//½ºÅ×ÀÌÁö 1 ¾À
 	gameNode* _stage1;
-	//gameNode* _stage2;
+	gameNode* _stage2;
 	
 
 	/*
