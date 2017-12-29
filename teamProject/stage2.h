@@ -10,6 +10,9 @@ private:
 
 	image* _woodBoat; //나무쪽배 ㅇㅇ
 	RECT _woodRc;	 //쪽배 렉트
+
+	int _alpha;
+	stageState _ss;
 public:
 	stage2();
 	~stage2();
