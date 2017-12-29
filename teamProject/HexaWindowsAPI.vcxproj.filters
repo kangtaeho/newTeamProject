@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="action.cpp">
+      <Filter>2DFramework\action</Filter>
+    </ClCompile>
+    <ClCompile Include="animation.cpp">
+      <Filter>2DFramework\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="effect.cpp">
+      <Filter>2DFramework\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>2DFramework\image</Filter>
+    </ClCompile>
+    <ClCompile Include="cameraManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="effectManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="imageManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="iniDataManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="keyAniManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="keyManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="sceneManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="soundManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="timeManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="zOrderManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="timer.cpp">
+      <Filter>2DFramework\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="txtData.cpp">
+      <Filter>2DFramework\txtData</Filter>
+    </ClCompile>
+    <ClCompile Include="collision.cpp">
+      <Filter>2DFramework\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>2DFramework\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="gameNode.cpp">
+      <Filter>2DFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="mainGame.cpp">
+      <Filter>MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>MainGame\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="stage1.cpp">
+      <Filter>MainGame\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="stage2.cpp">
+      <Filter>MainGame\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="item.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
+    <ClCompile Include="knife.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
+    <ClCompile Include="money.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
+    <ClCompile Include="orangePotion.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
+    <ClCompile Include="redPotion.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
+    <ClCompile Include="whitePotion.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
+    <ClCompile Include="inventory.cpp">
+      <Filter>MainGame\inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="winMain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="character.cpp">
+      <Filter>MainGame\character</Filter>
+    </ClCompile>
+    <ClCompile Include="stone.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
+    <ClCompile Include="stage3.cpp">
+      <Filter>MainGame\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="startscene.cpp">
+      <Filter>MainGame\scene</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="action.h">
+      <Filter>2DFramework\action</Filter>
+    </ClInclude>
+    <ClInclude Include="animation.h">
+      <Filter>2DFramework\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="effect.h">
+      <Filter>2DFramework\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="image.h">
+      <Filter>2DFramework\image</Filter>
+    </ClInclude>
+    <ClInclude Include="cameraManager.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="effectManager.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="imageManager.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="iniDataManager.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="keyAniManager.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="keyManager.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="sceneManager.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="soundManager.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="timeManager.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="zOrderManager.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="singletonBase.h">
+      <Filter>2DFramework\singletonBase</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>2DFramework\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="txtData.h">
+      <Filter>2DFramework\txtData</Filter>
+    </ClInclude>
+    <ClInclude Include="collision.h">
+      <Filter>2DFramework\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>2DFramework\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="gameNode.h">
+      <Filter>2DFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="mainGame.h">
+      <Filter>MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>MainGame\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="stage1.h">
+      <Filter>MainGame\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="stage2.h">
+      <Filter>MainGame\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClInclude>
+    <ClInclude Include="knife.h">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClInclude>
+    <ClInclude Include="money.h">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClInclude>
+    <ClInclude Include="orangePotion.h">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClInclude>
+    <ClInclude Include="redPotion.h">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClInclude>
+    <ClInclude Include="whitePotion.h">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClInclude>
+    <ClInclude Include="inventory.h">
+      <Filter>MainGame\inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="commonMacroFunction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="randomFunction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="character.h">
+      <Filter>MainGame\character</Filter>
+    </ClInclude>
+    <ClInclude Include="stone.h">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClInclude>
+    <ClInclude Include="stage3.h">
+      <Filter>MainGame\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="startscene.h">
+      <Filter>MainGame\scene</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="2DFramework">
+      <UniqueIdentifier>{a696d197-6798-464b-bce3-c1818f705291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DFramework\action">
+      <UniqueIdentifier>{3a3f2eb6-9790-4e4c-b307-6ec43802ea62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DFramework\animation">
+      <UniqueIdentifier>{50e5408e-a57c-420a-af67-e3756e8f7bce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DFramework\button">
+      <UniqueIdentifier>{33e0b9cb-2ad9-42d0-862d-4dbde967cb52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DFramework\effect">
+      <UniqueIdentifier>{e85ef2f0-dbd7-4efc-a480-a0bf96873029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DFramework\image">
+      <UniqueIdentifier>{3155f63f-6a60-4c58-b8f8-7d410f4c3cd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DFramework\Manager">
+      <UniqueIdentifier>{c8395548-8c35-45f8-87fd-defdec0223f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DFramework\progressBar">
+      <UniqueIdentifier>{48616a63-4366-4743-9b85-94dbf6dec32d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DFramework\singletonBase">
+      <UniqueIdentifier>{821cb057-1e4c-4d5c-8f72-23412bc68479}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DFramework\timer">
+      <UniqueIdentifier>{5451bb71-c15b-4859-b527-27a9ee39069e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DFramework\utils">
+      <UniqueIdentifier>{fed92773-727f-448f-b666-1f44f4996e07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DFramework\txtData">
+      <UniqueIdentifier>{6c63780b-5147-4a5f-bce0-d61c48de5fa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame">
+      <UniqueIdentifier>{7a89e690-eb0b-4c1f-b2f6-5539095ee369}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\enemy">
+      <UniqueIdentifier>{40367cd0-9a4f-4d35-8cd4-fe3fa310e06c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\scene">
+      <UniqueIdentifier>{cbfef14c-52dc-47f2-8258-d88fb4d81e0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\inventory">
+      <UniqueIdentifier>{0e318542-e346-4126-9d2c-aa84cd6648cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\inventory\item">
+      <UniqueIdentifier>{ee6e7d8b-04cc-4f3f-9770-0402ddcbf675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{58578066-283f-4b61-aa98-a6970aa10563}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{a5fd79ce-005f-4363-a98a-5c96c91894c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{95a891cc-5ece-4f69-897f-e92927e1b624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\character">
+      <UniqueIdentifier>{9effb95f-dcb9-469c-aed3-9819c0731e46}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

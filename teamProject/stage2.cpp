@@ -17,8 +17,7 @@ HRESULT stage2::init()
 
 	IMAGEMANAGER->addImage("스테이지_01", "./images/02_stage00.bmp", 5795, 2593, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("스테이지_01_red", "./images/02_stage00_red.bmp", 5795, 2593, true, RGB(255, 0, 255));
-	//IMAGEMANAGER->addImage("쪽배", "./images/boat.bmp", 527,75,true,RGB(255,0,255) );
-	rc1 = RectMakeCenter(760, 2300, 100, 100);
+	rc1 = RectMakeCenter(500, 2393, 100, 100);
 	currentRC = &rc1;
 
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
@@ -141,6 +140,6 @@ void stage2::render()
 
 	IMAGEMANAGER->findImage("스테이지_01")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_01_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
-	
+
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc1).x, CAMERAMANAGER->CameraRelativePoint(rc1).y, 100, 100);
 }

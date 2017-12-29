@@ -1,113 +1,74 @@
 ﻿  stdafx.cpp
   zOrderManager.cpp
   winMain.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\stage1.h(16): warning C4091: 'static ': ignored on left of 'stageState' when no variable is declared
-  whitePotion.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\woght\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=' : 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\item.h(34): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   utils.cpp
   txtData.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\txtdata.cpp(51): warning C4018: '<': signed/unsigned mismatch
-c:\users\wkrqu\documents\github\newteamproject\teamproject\txtdata.cpp(55): warning C4018: '<': signed/unsigned mismatch
-c:\users\wkrqu\documents\github\newteamproject\teamproject\txtdata.cpp(55): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: see declaration of 'strcat'
-c:\users\wkrqu\documents\github\newteamproject\teamproject\txtdata.cpp(88): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(453): note: see declaration of 'strtok'
-c:\users\wkrqu\documents\github\newteamproject\teamproject\txtdata.cpp(91): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(453): note: see declaration of 'strtok'
-c:\users\wkrqu\documents\github\newteamproject\teamproject\txtdata.cpp(84): warning C4101: 'temp': unreferenced local variable
+c:\users\woght\documents\github\newteamproject\teamproject\txtdata.cpp(51): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\txtdata.cpp(55): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\txtdata.cpp(55): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(118) : 'strcat' 선언을 참조하십시오.
+c:\users\woght\documents\github\newteamproject\teamproject\txtdata.cpp(58): warning C4172: 지역 변수 또는 임시 변수의 주소를 반환하고 있습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\txtdata.cpp(88): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(204) : 'strtok' 선언을 참조하십시오.
+c:\users\woght\documents\github\newteamproject\teamproject\txtdata.cpp(91): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(204) : 'strtok' 선언을 참조하십시오.
+c:\users\woght\documents\github\newteamproject\teamproject\txtdata.cpp(84): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
   timer.cpp
   timeManager.cpp
-  stone.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\stone.cpp(20): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\stone.cpp(29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\stone.cpp(30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   startscene.cpp
-  stage3.cpp
-  stage2.cpp
-  stage1.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\stage1.h(16): warning C4091: 'static ': ignored on left of 'stageState' when no variable is declared
   soundManager.cpp
   sceneManager.cpp
-  redPotion.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  orangePotion.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  money.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\money.cpp(23): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
   mainGame.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\stage1.h(16): warning C4091: 'static ': ignored on left of 'stageState' when no variable is declared
-  knife.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\knife.cpp(20): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\knife.cpp(30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\knife.cpp(31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\woght\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=' : 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\item.h(34): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   keyManager.cpp
-  Generating Code...
-c:\users\wkrqu\documents\github\newteamproject\teamproject\txtdata.cpp(58): warning C4172: returning address of local variable or temporary: str
-  Compiling...
   keyAniManager.cpp
-  item.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   inventory.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\woght\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=' : 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\item.h(34): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   iniDataManager.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\inidatamanager.cpp(52): warning C4018: '<': signed/unsigned mismatch
-c:\users\wkrqu\documents\github\newteamproject\teamproject\inidatamanager.cpp(46): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: see declaration of 'sprintf'
-c:\users\wkrqu\documents\github\newteamproject\teamproject\inidatamanager.cpp(71): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: see declaration of 'sprintf'
-c:\users\wkrqu\documents\github\newteamproject\teamproject\inidatamanager.cpp(89): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: see declaration of 'sprintf'
+c:\users\woght\documents\github\newteamproject\teamproject\inidatamanager.cpp(46): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : 'sprintf' 선언을 참조하십시오.
+c:\users\woght\documents\github\newteamproject\teamproject\inidatamanager.cpp(52): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\inidatamanager.cpp(71): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : 'sprintf' 선언을 참조하십시오.
+c:\users\woght\documents\github\newteamproject\teamproject\inidatamanager.cpp(79): warning C4172: 지역 변수 또는 임시 변수의 주소를 반환하고 있습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\inidatamanager.cpp(89): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : 'sprintf' 선언을 참조하십시오.
   imageManager.cpp
   image.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\image.cpp(346): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\image.cpp(356): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\image.cpp(491): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\image.cpp(496): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\image.cpp(501): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\woght\documents\github\newteamproject\teamproject\image.cpp(346): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\image.cpp(356): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\image.cpp(491): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\image.cpp(496): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\image.cpp(501): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   gameNode.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\gamenode.cpp(101): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\gamenode.cpp(102): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\gamenode.cpp(95): warning C4101: 'hdc': unreferenced local variable
-c:\users\wkrqu\documents\github\newteamproject\teamproject\gamenode.cpp(94): warning C4101: 'ps': unreferenced local variable
-  enemy.cpp
+c:\users\woght\documents\github\newteamproject\teamproject\gamenode.cpp(101): warning C4244: '=' : 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\gamenode.cpp(102): warning C4244: '=' : 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\woght\documents\github\newteamproject\teamproject\gamenode.cpp(94): warning C4101: 'ps' :참조되지 않은 지역 변수입니다.
+c:\users\woght\documents\github\newteamproject\teamproject\gamenode.cpp(95): warning C4101: 'hdc' :참조되지 않은 지역 변수입니다.
   effectManager.cpp
   effect.cpp
   collision.cpp
-  character.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\character.cpp(27): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\character.cpp(28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\character.cpp(302): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  cameraManager.cpp
-c:\users\wkrqu\documents\github\newteamproject\teamproject\cameramanager.cpp(103): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\cameramanager.cpp(104): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\cameramanager.cpp(115): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\cameramanager.cpp(116): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\cameramanager.cpp(145): warning C4244: '+=': conversion from 'float' to 'LONG', possible loss of data
-c:\users\wkrqu\documents\github\newteamproject\teamproject\cameramanager.cpp(146): warning C4244: '+=': conversion from 'float' to 'LONG', possible loss of data
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
   animation.cpp
   action.cpp
-  Generating Code...
-c:\users\wkrqu\documents\github\newteamproject\teamproject\character.cpp(321): warning C4700: uninitialized local variable 'C' used
-c:\users\wkrqu\documents\github\newteamproject\teamproject\character.cpp(337): warning C4700: uninitialized local variable 'C' used
-c:\users\wkrqu\documents\github\newteamproject\teamproject\character.cpp(313): warning C4700: uninitialized local variable 'C' used
-c:\users\wkrqu\documents\github\newteamproject\teamproject\character.cpp(328): warning C4700: uninitialized local variable 'C' used
-c:\users\wkrqu\documents\github\newteamproject\teamproject\inidatamanager.cpp(79): warning C4172: returning address of local variable or temporary: data
-  HexaWindowsAPI.vcxproj -> C:\Users\wkrqu\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.exe
-  HexaWindowsAPI.vcxproj -> C:\Users\wkrqu\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.pdb (Full PDB)
+  코드를 생성하고 있습니다...
+  건너뛰고 있습니다... (관련된 변경 내용 없음)
+  whitePotion.cpp
+  stone.cpp
+  stage3.cpp
+  stage2.cpp
+  stage1.cpp
+  redPotion.cpp
+  orangePotion.cpp
+  money.cpp
+  knife.cpp
+  item.cpp
+  enemy.cpp
+  character.cpp
+  cameraManager.cpp
+  HexaWindowsAPI.vcxproj -> C:\Users\woght\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.exe
