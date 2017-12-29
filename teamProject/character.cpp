@@ -214,10 +214,10 @@ void character::update()
 	{
 	case CHARA_RIGHT_STOP:
 		break;
-	case CHARA_LEFT:
-		break;
-	case STOP:
-		break;
+	//case CHARA_LEFT:
+	//	break;
+	//case STOP:
+	//	break;
 	case CHARA_RIGHT_MOVE:
 		break;
 	case CHARA_LEFT_MOVE:
@@ -339,11 +339,16 @@ void character::MakeLeftFall(void* obj)
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftJump"));
 	C->getMotion()->start();
 }
-static void MakeRightHold(void* obj)
+void character::MakeRightHold(void* obj)
 {
 
 }
-static void MakeLeftHold(void* obj)
+void character::MakeLeftHold(void* obj)
 {
 
 }
+
+//치송아 바로 커밋하지말고 반드시 디버깅 잘 되는거 확인하고
+//커밋해줭 (from. 태호)
+void character::MakeRightDrill(void* obj){}
+void character::MakeLeftDrill(void* obj){}

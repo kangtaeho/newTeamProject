@@ -16,10 +16,12 @@ private:
 	image* _orangePotionNumberBmp;		// 주황포션 숫자 이미지
 	image* _whitePotionNumberBmp;		// 하얀색포션 숫자 이미지
 
-	POINT _selectShopPos;				// 상점에서 선택박스 움직일 때 좌표
+	POINT _selectShopPos[2][3];				// 상점에서 선택박스 움직일 때 좌표
 	POINT _selectInvenPos;				// 인벤토리에서 선택박스 움직일 때 좌표
 	
 	int _currentMoney;					// 현재 가진 돈
+	int _currentSelectX;				// 0일때 상점 1일때 인벤
+	int _currentSelectY;				// 개별위치
 
 	bool _openShop;
 	bool _openInventory;

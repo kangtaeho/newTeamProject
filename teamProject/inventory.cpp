@@ -26,11 +26,11 @@ HRESULT inventory::init() {
 	_selectShopPos[0][1].y = 153;
 	_selectShopPos[0][2].x = 17;
 	_selectShopPos[0][2].y = 199;
-	_selectShopPos[1][0].x = 17;
+	_selectShopPos[1][0].x = 297;
 	_selectShopPos[1][0].y = 107;
-	_selectShopPos[1][1].x = 17;
+	_selectShopPos[1][1].x = 297;
 	_selectShopPos[1][1].y = 153;
-	_selectShopPos[1][2].x = 17;
+	_selectShopPos[1][2].x = 297;
 	_selectShopPos[1][2].y = 199;
 
 	_RPotion = new redPotion;
@@ -70,7 +70,7 @@ void inventory::shopState() {
 
 	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) {
 		_currentSelectX++;
-		if (_currentSelectX > 1) _currentSelectX = 1;
+		if (_currentSelectX > 1) _currentSelectX = 1;			
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_UP)) {
