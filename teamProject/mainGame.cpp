@@ -24,6 +24,9 @@ HRESULT mainGame::init()			//초기화 함수
 	//재호 : 이미지 출력 실험용
 	//IMAGEMANAGER->addImage("상점", "./images/shop.bmp", 262, 396, true, RGB(255, 0, 255));
 
+	_inven = new inventory;
+	_inven->init();
+
 	return S_OK;
 }
 
@@ -62,6 +65,8 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 
 	//재호 : 이미지 출력 실험용
 	//IMAGEMANAGER->findImage("상점")->render(getMemDC(), WINSIZEX/2 - 300, 40);
+
+	_inven->render();
 
 	//==================== 건들지마라 =======================
 	TIMEMANAGER->render(getMemDC());
