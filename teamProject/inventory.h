@@ -12,9 +12,9 @@ private:
 	image* _shopBmp;					// 상점 이미지
 	image* _selectBoxBmp;				// 선택 박스
 
-	image* _redPotionNumberBmp;			// 빨간포션 숫자 이미지
-	image* _orangePotionNumberBmp;		// 주황포션 숫자 이미지
-	image* _whitePotionNumberBmp;		// 하얀색포션 숫자 이미지
+	image* _RNumberBmp;			// 빨간포션 숫자 이미지
+	image* _ONumberBmp;		// 주황포션 숫자 이미지
+	image* _WNumberBmp;		// 하얀색포션 숫자 이미지
 
 	POINT _selectShopPos[2][3];			// 상점에서 선택박스 움직일 때 좌표
 	POINT _selectInvenPos[3];			// 인벤토리에서 선택박스 움직일 때 좌표
