@@ -2,6 +2,8 @@
 #include "image.h"
 
 static image* _backBuffer = IMAGEMANAGER->addImage("backBuffer", WINSIZEX, WINSIZEY);
+///백버퍼 추가
+static image* _backBuffer2 = IMAGEMANAGER->addImage("backBuffer2", WINSIZEX, WINSIZEY);
 
 class character;
 
@@ -26,6 +28,8 @@ public:
 
 	//백버퍼 접근자
 	image* getBackBuffer() { return _backBuffer; }
+	///백버퍼 2접근자
+	image* getBackBuffer2() { return _backBuffer2; }
 	
 	//메모리DC 접근자
 	HDC getMemDC() { return _backBuffer->getMemDC(); }
