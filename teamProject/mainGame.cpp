@@ -51,11 +51,11 @@ void mainGame::update()				//연산 함수
 	gameNode::update();
 
 	
-
+	
 	SCENEMANAGER->update();
 
 
-
+	//BYTE _alpha;
 	
 
 
@@ -94,5 +94,6 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	//==================== 건들지마라 =======================
 	TIMEMANAGER->render(getMemDC());
 	this->getBackBuffer()->render(getHDC(), 0, 0);
+	//this->getBackBuffer()->alphaRender(getHDC(), 0, 0, _alpha);
 
 }

@@ -183,3 +183,4 @@ void stage1::render()
 
 	IMAGEMANAGER->findImage("Èæ¹éÃ¢")->alphaRender(getMemDC(), 255 - _alpha);
 }
+ 
