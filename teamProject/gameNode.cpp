@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "gameNode.h"
-
+#include "character.h"
 
 gameNode::gameNode()
 {
@@ -47,6 +47,7 @@ HRESULT gameNode::init(bool managerInit)
 		TXTDATA->init();
 		INIDATA->init();
 		ZORDERMANAGER->init();
+		CAMERAMANAGER->init();
 		
 	}
 
@@ -69,6 +70,7 @@ void gameNode::release()
 		TXTDATA->releaseSingleton();
 		INIDATA->releaseSingleton();
 		ZORDERMANAGER->releaseSingleton();
+		CAMERAMANAGER->releaseSingleton();
 		
 	}
 
@@ -78,7 +80,7 @@ void gameNode::release()
 		
 void gameNode::update()	
 {
-	
+	CAMERAMANAGER->update();
 }
 	
 void gameNode::render()

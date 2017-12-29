@@ -25,6 +25,7 @@
 #include "sceneManager.h"
 #include "keyAniManager.h"
 #include "zOrderManager.h"
+#include "cameraManager.h"
 
 
 using namespace std;
@@ -41,6 +42,10 @@ using namespace HEXA_UTIL;
 #define WINSIZEY	648
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
 
+//기성 추가
+//#define BACKGROUNDSIZEX 3456
+//#define BACKGROUNDSIZEY 648
+
 #define RND randomFunction::getSingleton()
 #define KEYMANAGER keyManager::getSingleton()
 #define IMAGEMANAGER imageManager::getSingleton()
@@ -52,6 +57,7 @@ using namespace HEXA_UTIL;
 #define TXTDATA txtData::getSingleton()
 #define INIDATA iniDataManager::getSingleton()
 #define ZORDERMANAGER zOrderManager::getSingleton()
+#define CAMERAMANAGER  cameraManager::getSingleton()
 
 //=============================================================
 // ## 17.10.18 ## Macro ##

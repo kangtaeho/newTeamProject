@@ -15,7 +15,7 @@ HRESULT mainGame::init()			//초기화 함수
 
 	//병철 추가 // 스테이지 1 씬 //20171227 7:43
 	SCENEMANAGER->addScene("스테이지00", new stage1);
-	SCENEMANAGER->addLoadingScene("스테이지01", new stage2);
+	SCENEMANAGER->addScene("스테이지01", new stage2);
 
 	SCENEMANAGER->changeScene("스테이지00");
 
@@ -41,9 +41,13 @@ void mainGame::update()				//연산 함수
 {
 	gameNode::update();
 
-
+	
 
 	SCENEMANAGER->update();
+
+
+
+	
 
 
 }
