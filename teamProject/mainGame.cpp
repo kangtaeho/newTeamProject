@@ -17,7 +17,13 @@ HRESULT mainGame::init()			//초기화 함수
 	SCENEMANAGER->addScene("스테이지00", new stage1);
 	SCENEMANAGER->addScene("스테이지01", new stage2);
 
-	SCENEMANAGER->changeScene("스테이지00");
+	//재호 : 게임시작화면
+	SCENEMANAGER->addScene("스타트", new startscene);
+
+
+	//SCENEMANAGER->changeScene("스테이지00");
+	SCENEMANAGER->changeScene("스타트", false);
+
 
 	IMAGEMANAGER->addImage("유아이박스", "./images/ui_box.bmp", 1152, 144, true, RGB(255, 0, 255));
 
@@ -58,10 +64,20 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==================== 건들지마라 ======================
 	
-	SCENEMANAGER->render();
+	
 
 	//병철추가 //유아이박스 카메라 영향 안받음 위치고정 // 20121227 7:45
-	IMAGEMANAGER->findImage("유아이박스")->render(getMemDC(), 0, WINSIZEY - IMAGEMANAGER->findImage("유아이박스")->getHeight());
+	if (SCENEMANAGER->isStartScene("스타트"))
+	{
+		SCENEMANAGER->render();
+	}
+	else{
+
+		SCENEMANAGER->render();
+		IMAGEMANAGER->findImage("유아이박스")->render(getMemDC(), 0, WINSIZEY - IMAGEMANAGER->findImage("유아이박스")->getHeight());
+
+	}
+	
 
 	//재호 : 이미지 출력 실험용
 	//IMAGEMANAGER->findImage("상점")->render(getMemDC(), WINSIZEX/2 - 300, 40);

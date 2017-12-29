@@ -35,10 +35,10 @@ public:
 	//¾À º¯°æ
 	HRESULT changeScene(string sceneName);
 	HRESULT changeScene(string sceneName, string loadingSceneName);
-
+	HRESULT changeScene(string sceneName, bool isNeedPlayer);
 	friend DWORD CALLBACK loadingThread(LPVOID prc);
 
-
+	bool isStartScene(string sceneName);
 
 	sceneManager();
 	~sceneManager();
