@@ -20,7 +20,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
+<<<<<<< HEAD
     <PlatformToolset>v141</PlatformToolset>
+=======
+    <PlatformToolset>v120</PlatformToolset>
+>>>>>>> 3c49f1366842648e427ea18ee8c307427a802559
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -106,6 +110,7 @@
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stage1.h" />
+    <ClInclude Include="stage1Story.h" />
     <ClInclude Include="stage2.h" />
     <ClInclude Include="stage3.h" />
     <ClInclude Include="startscene.h" />
@@ -144,6 +149,7 @@
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stage1.cpp" />
+    <ClCompile Include="stage1Story.cpp" />
     <ClCompile Include="stage2.cpp" />
     <ClCompile Include="stage3.cpp" />
     <ClCompile Include="startscene.cpp" />

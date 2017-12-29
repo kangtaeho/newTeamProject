@@ -471,7 +471,7 @@ void character::MakeLeftFall(void* obj)
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftJump"));
 	C->getMotion()->start();
 }
-static void MakeRightHold(void* obj)
+void character::MakeRightHold(void* obj)
 {
 	character* C;
 
@@ -479,7 +479,7 @@ static void MakeRightHold(void* obj)
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightHold"));
 	C->getMotion()->start();
 }
-static void MakeLeftHold(void* obj)
+void character::MakeLeftHold(void* obj)
 {
 	character* C;
 
@@ -487,4 +487,13 @@ static void MakeLeftHold(void* obj)
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftHold"));
 	C->getMotion()->start();
 }
+void character::MakeRightDrill(void* obj)
+{
+
+}
+void character::MakeLeftDrill(void* obj)
+{
+
+}
+
 
