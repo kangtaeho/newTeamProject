@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include "stage1.h"
 #include "stage2.h"
+#include"inventory.h"
 
 class mainGame : public gameNode
 {
@@ -23,7 +24,6 @@ private:
 	_item = new money; (이후 .cpp파일, money말고 포션종류, 오브젝트 등 자기가 필요한 아이템에 따라 변경가능)
 	_item -> init(PointMake(10, 10));
 
-
 	
 	포션초기화
 	_item = new redPotion;
@@ -34,6 +34,9 @@ private:
 
 	오브젝트, 돈 렌더는 잠시 보류
 	*/
+
+	//태호 인벤토리 테스트
+	inventory* _inven;
 
 public:
 	virtual HRESULT init();			
