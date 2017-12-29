@@ -16,8 +16,8 @@ HRESULT character::init()
 
 	_state = CHARA_RIGHT_STOP;
 
-	_x = WINSIZEX / 2;
-	_y = WINSIZEY / 2;
+	_x = _StartX= WINSIZEX / 2;
+	_y = _StartY= WINSIZEY / 2;
 	_isRight = true;
 	_JP = 0;
 	_gravity = 0.2f;
@@ -25,6 +25,7 @@ HRESULT character::init()
 	_state = CHARA_RIGHT_STOP;
 
 	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
+	_colliRect = RectMakeCenter(_x, _y, 54, 120);
 
 	int RightStop[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightStop", "JIMMY", RightStop, 1, 6, true);
@@ -62,11 +63,127 @@ HRESULT character::init()
 	int LeftKick[] = { 118,117,118 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftKick", "JIMMY", LeftKick, 3, 10, false, MakeLeftStop, this);
 
+	int RightJumpKick[] = { 19 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightJumpKick", "JIMMY", RightJumpKick, 1, 6, true);
+
+	int LeftJumpKick[] = { 140 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftJumpKick", "JIMMY", LeftJumpKick, 1, 6, true);
+
+	int RightATT[] = { 48,47,46,45,48,47,46 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightATT", "JIMMY", RightATT, 7, 10, false, MakeRightFall, this);
+
+	int LeftATT[] = { 45,46,48,47,45,46,48 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftATT", "JIMMY", LeftATT, 7, 10, false, MakeLeftFall, this);
+
 	int RightHead[] = { 11,12,11 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHead", "JIMMY", RightHead, 3, 10, false, MakeRightStop, this);
 
 	int LeftHead[] = { 116,115,116 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHead", "JIMMY", LeftHead, 3, 10, false, MakeLeftStop, this);
+
+	int RightUpper[] = { 13,14,15 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightUpper", "JIMMY", RightUpper, 3, 10, false, MakeRightStop, this);
+
+	int LeftUpper[] = { 114,113,112 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftUpper", "JIMMY", LeftUpper, 3, 10, false, MakeLeftStop, this);
+
+	int RightHighKick[] = { 16,17,18 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHighKick", "JIMMY", RightHighKick, 3, 10, false, MakeRightStop, this);
+
+	int LeftHighKick[] = { 143,142,141 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHighKick", "JIMMY", LeftHighKick, 3, 10, false, MakeLeftStop, this);
+
+	int RightBackBlow[] = { 25 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightBackBlow", "JIMMY", RightBackBlow, 1, 6, false, MakeRightStop, this);
+
+	int LeftBackBlow[] = { 134 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftBackBlow", "JIMMY", LeftBackBlow, 1, 6, false, MakeLeftStop, this);
+
+	int RightGrab[] = { 20 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightgrab", "JIMMY", RightGrab, 1, 6, false, MakeRightHold, this);
+
+	int RightHold[] = { 21 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHold", "JIMMY", RightHold, 1, 6, true);
+
+	int LeftGrab[] = { 140 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightgrab", "JIMMY", RightGrab, 1, 6, false, MakeLeftHold, this);
+
+	int LeftHold[] = { 139 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHold", "JIMMY", RightHold, 1, 6, true);
+
+	int RightBackSting[] = { 54,55 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightBackSting", "JIMMY", RightBackSting, 2, 10, false, MakeRightHold, this);
+
+	int LeftBackSting[] = { 170,169 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftBackSting", "JIMMY", LeftBackSting, 2, 10, false, MakeLeftHold, this);
+
+	int RightTigerKick[] = { 26 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightTigerKick", "JIMMY", RightTigerKick, 1, 10, false, MakeRightHold, this);
+
+	int LeftTigerKick[] = { 133 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftTigerKick", "JIMMY", LeftTigerKick, 1, 10, false, MakeLeftHold, this);
+
+	int RightSwing[] = { 22,23,24 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightSwing", "JIMMY", RightSwing, 3, 10, false, MakeRightStop, this);
+
+	int LeftSwing[] = { 138,137,136 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftSwing", "JIMMY", LeftSwing, 3, 10, false, MakeLeftStop, this);
+
+	int RightJump[] = { 3 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightJump", "JIMMY", RightJump, 1, 6, true);
+
+	int LeftJump[] = { 124 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftJump", "JIMMY", LeftJump, 1, 6, true);
+
+	int RightBackKick[] = { 28,29,30 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightBackKick", "JIMMY", RightBackKick, 3, 10, false, MakeRightStop, this);
+
+	int LeftBackKick[] = { 131,130,129 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftBackKick", "JIMMY", LeftBackKick, 3, 10, false, MakeLeftStop, this);
+
+	int RightReadyDrill[] = { 32 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightReadyDrill", "JIMMY", RightReadyDrill, 1, 10, false, MakeRightDrill, this);
+
+	int RightDrill[] = { 33,34,35 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightDrill", "JIMMY", RightDrill, 3, 10, true);
+	int RightKneeKick[] = { 51 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightKneeKick", "JIMMY", RightKneeKick, 1, 6, true);
+
+
+	int LeftReadyDrill[] = { 159 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftReadyDrill", "JIMMY", LeftReadyDrill, 1, 10, false, MakeLeftDrill, this);
+
+	int LeftDrill[] = { 158,157,156 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftDrill", "JIMMY", LeftDrill, 3, 10, true);
+	int LeftKneeKick[] = { 172 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftKneeKick", "JIMMY", LeftKneeKick, 1, 10, true);
+
+	int StairMove[] = { 62,63 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYStairMove", "JIMMY", StairMove, 2, 10, true);
+
+	int StairStop[] = { 62 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYStairStop", "JIMMY", StairStop, 1, 6, true);
+
+	int RightHit[] = { 74 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHit", "JIMMY", RightHit, 1, 10, true);
+
+	int LeftHit[] = { 181 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHit", "JIMMY", LeftHit, 1, 10, true);
+
+	int RightStriked[] = { 77 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightStriked", "JIMMY", RightStriked, 1, 6, true);
+
+	int LeftStriked[] = { 178 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftStriked", "JIMMY", LeftStriked, 1, 6, true);
+
+	int RightDown[] = { 78 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightDown", "JIMMY", RightDown, 1, 80, true);
+
+	int LeftDown[] = { 177 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftDown", "JIMMY", LeftDown, 1, 80, true);
+
+
+
 
 		return S_OK;
 
@@ -97,10 +214,10 @@ void character::update()
 	{
 	case CHARA_RIGHT_STOP:
 		break;
-	case CHARA_LEFT:
-		break;
-	case STOP:
-		break;
+	//case CHARA_LEFT:
+	//	break;
+	//case STOP:
+	//	break;
 	case CHARA_RIGHT_MOVE:
 		break;
 	case CHARA_LEFT_MOVE:
@@ -191,33 +308,47 @@ void character::render()
 
 void character::MakeRightStop(void* obj)
 {
+	character* C;
 
+	C->setState(CHARA_RIGHT_STOP);
+	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightStop"));
+	C->getMotion()->start();
 }
 void character::MakeLeftStop(void* obj)
 {
+	character* C;
 
-}
-void character::MakeRightLand(void* obj)
-{
-
-}
-void character::MakeLeftLand(void* obj)
-{
-
+	C->setState(CHARA_LEFT_STOP);
+	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftStop"));
+	C->getMotion()->start();
 }
 void character::MakeRightFall(void* obj)
 {
+	character* C;
+	C->setJP(0);
+	C->setState(CHARA_RIGHT_JUMP);
+	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightJump"));
+	C->getMotion()->start();
 
 }
 void character::MakeLeftFall(void* obj)
 {
-
+	character* C;
+	C->setJP(0);
+	C->setState(CHARA_LEFT_JUMP);
+	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftJump"));
+	C->getMotion()->start();
 }
-void character::MakeRightDown(void* obj)
+void character::MakeRightHold(void* obj)
 {
 
 }
-void character::MakeLeftDown(void* obj)
+void character::MakeLeftHold(void* obj)
 {
 
 }
+
+//치송아 바로 커밋하지말고 반드시 디버깅 잘 되는거 확인하고
+//커밋해줭 (from. 태호)
+void character::MakeRightDrill(void* obj){}
+void character::MakeLeftDrill(void* obj){}

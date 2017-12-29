@@ -2,10 +2,11 @@
 #include "gameNode.h"
 
 #define CHARASPEED 3;
+#define CHARAJUMP 6;
 
 enum CHARA {
 	CHARA_RIGHT_STOP,
-	CHARA_LEFT, STOP,
+	CHARA_LEFT_STOP,
 	CHARA_RIGHT_MOVE,
 	CHARA_LEFT_MOVE,
 	CHARA_RIGHT_LAND,
@@ -79,13 +80,23 @@ public:
 
 	static void MakeRightStop(void* obj);
 	static void MakeLeftStop(void* obj);
-	static void MakeRightLand(void* obj);
-	static void MakeLeftLand(void* obj);
 	static void MakeRightFall(void* obj);
 	static void MakeLeftFall(void* obj);
-	static void MakeRightDown(void* obj);
-	static void MakeLeftDown(void* obj);
+	static void MakeRightHold(void* obj);
+	static void MakeLeftHold(void* obj);
+	static void MakeRightDrill(void* obj);
+	static void MakeLeftDrill(void* obj);
 
+	//캐릭터 상태접근자,설정자
+	CHARA getState() { return _state; }
+	void setState(CHARA C) { _state = C; }
+
+	//캐릭터 모션접근자,설정자
+	animation * getMotion() { return _motion; }
+	void setMotion(animation * ani) { _motion = ani; }
+
+	//점프파워 설정
+	void setJP(float J) { _JP = J; }
 
 	void ZmoveOn() { _Zmove = 1.5f; }
 	void ZmoveOff() { _Zmove = 0; };
