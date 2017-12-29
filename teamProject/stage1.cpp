@@ -36,7 +36,7 @@ HRESULT stage1::init()
 	_knife->init(PointMake(1000, 350));
 
 	_enemy = new enemy;
-	_enemy->init();
+	_enemy->init(PointMake(1500,400));
 
 	//πÃ¥œµπµ¢¿Ã //∫¥√∂
 	_stone = new stone;
