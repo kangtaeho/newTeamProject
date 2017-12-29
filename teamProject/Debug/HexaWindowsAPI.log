@@ -1,6 +1,0 @@
-﻿  enemy.cpp
-c:\users\gp62mvr\documents\github\newteamproject\teamproject\enemy.cpp(22): error C2065: 'BACKGROUNDSIZEX': 선언되지 않은 식별자입니다.
-c:\users\gp62mvr\documents\github\newteamproject\teamproject\enemy.cpp(22): error C2065: 'BACKGROUNDSIZEY': 선언되지 않은 식별자입니다.
-c:\users\gp62mvr\documents\github\newteamproject\teamproject\enemy.cpp(22): error C2660: 'RectMakeCenter': 함수는 3개의 매개 변수를 사용하지 않습니다.
-c:\users\gp62mvr\documents\github\newteamproject\teamproject\enemy.cpp(59): error C2065: 'BACKGROUNDSIZEX': 선언되지 않은 식별자입니다.
-c:\users\gp62mvr\documents\github\newteamproject\teamproject\enemy.cpp(60): error C2065: 'BACKGROUNDSIZEX': 선언되지 않은 식별자입니다.
