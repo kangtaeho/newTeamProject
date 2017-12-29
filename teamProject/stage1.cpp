@@ -18,14 +18,15 @@ HRESULT stage1::init()
 	CAMERAMANAGER->backGroundSizeSetting(3456, 648);
 
 	IMAGEMANAGER->addImage("스테이지_00", "./images/01_stage00.bmp", 3456, 648, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("스테이지_00_red", "./images/01_stage00_red.bmp", 3456, 648, true, RGB(255, 0, 255));
 	//레드칠한거 
+	IMAGEMANAGER->addImage("스테이지_00_red", "./images/01_stage00_red.bmp", 3456, 648, true, RGB(255, 0, 255));
+	
 
 	// 스테이지상태
 	_ss = MOVING;
 
 	//카메라 렉트
-	rc1 = RectMakeCenter(500, 300 , 100, 100);
+	rc1 = RectMakeCenter(50, 300 , 100, 100);
 	currentRC = &rc1;
 
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
@@ -166,7 +167,6 @@ void stage1::render()
 	_enemy->render();
 	_stone->render();
 
-	
 
 	//유아이박스는 메인게임에다 그냥 고정박아버림 // 병철
 

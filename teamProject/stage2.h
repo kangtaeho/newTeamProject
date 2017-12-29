@@ -8,6 +8,8 @@ private:
 	RECT rc1;
 	RECT* currentRC;
 
+	image* _woodBoat; //나무쪽배 ㅇㅇ
+	RECT _woodRc;	 //쪽배 렉트
 public:
 	stage2();
 	~stage2();

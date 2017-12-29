@@ -1,6 +1,12 @@
-﻿  enemy.cpp
-c:\users\gp62mvr\documents\github\newteamproject\teamproject\enemy.cpp(22): error C2065: 'BACKGROUNDSIZEX': 선언되지 않은 식별자입니다.
-c:\users\gp62mvr\documents\github\newteamproject\teamproject\enemy.cpp(22): error C2065: 'BACKGROUNDSIZEY': 선언되지 않은 식별자입니다.
-c:\users\gp62mvr\documents\github\newteamproject\teamproject\enemy.cpp(22): error C2660: 'RectMakeCenter': 함수는 3개의 매개 변수를 사용하지 않습니다.
-c:\users\gp62mvr\documents\github\newteamproject\teamproject\enemy.cpp(59): error C2065: 'BACKGROUNDSIZEX': 선언되지 않은 식별자입니다.
-c:\users\gp62mvr\documents\github\newteamproject\teamproject\enemy.cpp(60): error C2065: 'BACKGROUNDSIZEX': 선언되지 않은 식별자입니다.
+﻿  stage2.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  mainGame.cpp
+c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\wkrqu\documents\github\newteamproject\teamproject\item.h(34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\wkrqu\documents\github\newteamproject\teamproject\stage1.h(16): warning C4091: 'static ': 변수를 선언하지 않으면 'stageState' 왼쪽은 무시됩니다.
+  코드를 생성하고 있습니다...
+  건너뛰고 있습니다... (관련된 변경 내용 없음)
+  winMain.cpp
+  HexaWindowsAPI.vcxproj -> C:\Users\wkrqu\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.exe
+  HexaWindowsAPI.vcxproj -> C:\Users\wkrqu\Documents\GitHub\newTeamProject\teamProject\Debug\HexaWindowsAPI.pdb (Partial PDB)
