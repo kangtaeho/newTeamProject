@@ -8,8 +8,7 @@
 class mainGame : public gameNode
 {
 private:
-	///Àá±ñÃß°¡ fadein
-	BYTE _alpha;
+	
 	//ÇöÀç¾À
 	gameNode* _currentScene;
 	gameNode* _loadingScene;
