@@ -6,14 +6,6 @@
 #include "stone.h"
 #include "character.h"
 
-static enum stageState 
-{
-	MOVING,
-	FIGHTING,
-	CLEAR
-
-
-};
 
 class stage1 : public gameNode
 {
@@ -30,6 +22,7 @@ private:
 
 
 	stageState _ss;
+	int _alpha;
 public:
 	stage1();
 	~stage1();

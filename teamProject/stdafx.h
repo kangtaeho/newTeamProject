@@ -74,3 +74,9 @@ using namespace HEXA_UTIL;
 extern HINSTANCE _hInstance;	
 extern HWND	_hWnd;			
 extern POINT _ptMouse;
+static enum stageState
+{
+	MOVING,
+	FIGHTING,
+	CLEAR
+};

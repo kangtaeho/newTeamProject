@@ -20,11 +20,11 @@ HRESULT stage1::init()
 	IMAGEMANAGER->addImage("스테이지_00", "./images/01_stage00.bmp", 3456, 648, true, RGB(255, 0, 255));
 	//레드칠한거 
 	IMAGEMANAGER->addImage("스테이지_00_red", "./images/01_stage00_red.bmp", 3456, 648, true, RGB(255, 0, 255));
-	
+	IMAGEMANAGER->addImage("흑백창", "./images/backWindow.bmp", 1152, 648, true, RGB(255, 0, 255));
 
 	// 스테이지상태
 	_ss = MOVING;
-
+	_alpha = 255;
 	//카메라 렉트
 	rc1 = RectMakeCenter(50, 300 , 100, 100);
 	currentRC = &rc1;
@@ -54,7 +54,10 @@ void stage1::release()
 
 void stage1::update()
 {
-
+	if (KEYMANAGER->isOnceKeyDown('1'))
+	{
+		_ss = CLEAR;
+	}
 
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
@@ -152,11 +155,17 @@ void stage1::update()
 
 	_enemy->update();
 
-	if (KEYMANAGER->isOnceKeyDown('P'))
+	if (KEYMANAGER->isOnceKeyDown('P') || _alpha <=0)
 	{
 		SCENEMANAGER->changeScene("스테이지01");
 	}
 	
+	
+	if (_ss == CLEAR)
+	{
+		if (_alpha>0)
+		_alpha-=5;
+	}
 }
 
 void stage1::render()
@@ -166,11 +175,12 @@ void stage1::render()
 	_knife->render();
 	_enemy->render();
 	_stone->render();
-
+	
 
 	//유아이박스는 메인게임에다 그냥 고정박아버림 // 병철
 
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc1).x, CAMERAMANAGER->CameraRelativePoint(rc1).y, 100, 100);
-	
+
+	IMAGEMANAGER->findImage("흑백창")->alphaRender(getMemDC(), 255 - _alpha);
 }
  
