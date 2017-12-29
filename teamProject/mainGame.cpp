@@ -22,6 +22,8 @@ HRESULT mainGame::init()			//초기화 함수
 
 
 	//SCENEMANAGER->changeScene("스테이지00");
+
+	//재호 : 게임 시작신으로설정
 	SCENEMANAGER->changeScene("스타트", false);
 
 
@@ -67,6 +69,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	
 
 	//병철추가 //유아이박스 카메라 영향 안받음 위치고정 // 20121227 7:45
+	//재호 : 현재신이 스타트 신이면 유아이박스 안그리도록
 	if (SCENEMANAGER->isStartScene("스타트"))
 	{
 		SCENEMANAGER->render();

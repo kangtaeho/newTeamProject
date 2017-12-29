@@ -27,6 +27,7 @@ void startscene::update()
 {
 	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
+		//스타트를 가르키고 있다면
 		if (_index)
 		SCENEMANAGER->changeScene("스테이지00", false);
 
@@ -34,6 +35,7 @@ void startscene::update()
 		/*else
 			SCENEMANAGER->changeScene("스테이지00", false);*/
 	}
+	//화살표이동
 	if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
 	{
 		if (_index)
