@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include "startscene.h"
 #include "stage1.h"
+#include "stage1Story.h"
 #include "stage2.h"
 #include"inventory.h"
 

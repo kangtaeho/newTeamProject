@@ -29,7 +29,7 @@ void startscene::update()
 	{
 		//스타트를 가르키고 있다면
 		if (_index)
-		SCENEMANAGER->changeScene("스테이지00", false);
+		SCENEMANAGER->changeScene("스테이지1스토리", false);
 
 		//옵션화면 미구현
 		/*else

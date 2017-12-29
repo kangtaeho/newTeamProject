@@ -29,10 +29,12 @@ void stage1Story::update()
 {
 	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
-
+		_index++;
+		if (_index >= 4)
+			SCENEMANAGER->changeScene("스테이지00",false);
 	}
 }
 void stage1Story::render()
 {
-
+	_storyImage[_index]->render(getMemDC());
 }
