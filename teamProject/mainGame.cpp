@@ -65,8 +65,11 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 
 	//재호 : 이미지 출력 실험용
 	//IMAGEMANAGER->findImage("상점")->render(getMemDC(), WINSIZEX/2 - 300, 40);
-
-	_inven->render();
+	
+	//태호 : 인벤토리 랜더 실험용
+	if (KEYMANAGER->isToggleKey('0')) {
+		_inven->render();
+	}
 
 	//==================== 건들지마라 =======================
 	TIMEMANAGER->render(getMemDC());
