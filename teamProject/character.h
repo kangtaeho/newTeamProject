@@ -1,8 +1,9 @@
 #pragma once
 #include "gameNode.h"
 
-#define CHARASPEED 3;
+#define CHARASPEED 8;
 #define CHARAJUMP 6;
+#define CHARAZMOVE 4;
 
 enum CHARA {
 	CHARA_RIGHT_STOP,
@@ -53,17 +54,17 @@ class character : public gameNode
 {
 private:
 	float _x, _y;
-	float _StartX, _StartY;
-	float _Zmove;
-	float _JP, _gravity;
-	int _HP, _maxHP;
-	bool _isRight;
+	float _StartX, _StartY;//점프시 돌아올 지점
+	float _Zmove;//상하 이동용
+	float _JP, _gravity;//점프, 중력
+	int _HP, _maxHP;//현피, 맥피
+	bool _isRight;//오른쪽?
 
-	RECT _rc;
-	RECT _colliRect;
+	RECT _rc;//렌더용 렉트
+	RECT _colliRect;//통신용 렉트
 
-	CHARA _state;
-	animation * _motion;
+	CHARA _state;//상태값
+	animation * _motion;//모션
 	image * _image;
 
 public:
@@ -73,6 +74,9 @@ public:
 	void release();
 	void update();
 	void render();
+
+	//렉트최신화함수
+	void RectUpdate();
 
 	RECT getRect() { return _colliRect; }
 	float getX() { return _x; }
@@ -98,7 +102,10 @@ public:
 	//점프파워 설정
 	void setJP(float J) { _JP = J; }
 
-	void ZmoveOn() { _Zmove = 1.5f; }
+	//상하이동가능
+	void ZmoveOn() { _Zmove = CHARAZMOVE; }
+
+	//상하이동불가능
 	void ZmoveOff() { _Zmove = 0; };
 };
 
