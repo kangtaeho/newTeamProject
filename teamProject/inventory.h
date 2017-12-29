@@ -9,6 +9,9 @@ class inventory:public gameNode
 private:
 	image* _blackWindowBmp;				// 흑백화면 만들기 위한 검정색 윈도우 창
 	image* _inventoryBmp;				// 인벤토리 이미지
+	image* _shopBmp;					// 상점 이미지
+
+	int _currentMoney;
 
 	bool _openShop;
 	bool _openInventory;
