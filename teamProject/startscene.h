@@ -3,6 +3,7 @@
 class startscene :
 	public gameNode
 {
+	bool _index;
 public:
 	startscene();
 	~startscene();
