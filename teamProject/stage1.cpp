@@ -58,108 +58,108 @@ void stage1::update()
 	{
 		_ss = CLEAR;
 	}
-
-	if (KEYMANAGER->isStayKeyDown(VK_UP))
-	{
-		if (CAMERAMANAGER->getCameraCondition() != CAMERA_EFFECT)
+	if (_ss != CLEAR){
+		if (KEYMANAGER->isStayKeyDown(VK_UP))
 		{
-			if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
+			if (CAMERAMANAGER->getCameraCondition() != CAMERA_EFFECT)
 			{
-				CAMERAMANAGER->cameraMove(false, 0);
-				currentRC->bottom -= 5;
-				currentRC->top -= 5;
-			}
-			else
-			{
-				currentRC->bottom -= 5;
-				currentRC->top -= 5;
-			}
-		}
-	}
-
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-	{
-		if (CAMERAMANAGER->getCameraCondition() != CAMERA_EFFECT)
-		{
-			if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
-			{
-				CAMERAMANAGER->cameraMove(false, 0);
-				currentRC->bottom += 5;
-				currentRC->top += 5;
-			}
-			else {
-				currentRC->bottom += 5;
-				currentRC->top += 5;
-			}
-		}
-	}
-
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
-	{
-		if (CAMERAMANAGER->getCameraCondition() != CAMERA_EFFECT)
-		{
-			if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
-			{
-				CAMERAMANAGER->cameraMove(true, 0);
-				currentRC->left -= 5;
-				currentRC->right -= 5;
-			}
-			else
-			{
-				if (currentRC->left <= 0)
+				if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 				{
-					currentRC->left += 5;
-					currentRC->right += 5;
+					CAMERAMANAGER->cameraMove(false, 0);
+					currentRC->bottom -= 5;
+					currentRC->top -= 5;
 				}
-				currentRC->left -= 5;
-				currentRC->right -= 5;
+				else
+				{
+					currentRC->bottom -= 5;
+					currentRC->top -= 5;
+				}
 			}
 		}
-	}
 
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
-	{
-		if (CAMERAMANAGER->getCameraCondition() != CAMERA_EFFECT)
+		if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 		{
-			if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
+			if (CAMERAMANAGER->getCameraCondition() != CAMERA_EFFECT)
 			{
-				CAMERAMANAGER->cameraMove(true, 0);
-				currentRC->left += 5;
-				currentRC->right += 5;
-			}
-			else
-			{
-				if (currentRC->right >= 3456)
+				if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 				{
+					CAMERAMANAGER->cameraMove(false, 0);
+					currentRC->bottom += 5;
+					currentRC->top += 5;
+				}
+				else {
+					currentRC->bottom += 5;
+					currentRC->top += 5;
+				}
+			}
+		}
+
+		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+		{
+			if (CAMERAMANAGER->getCameraCondition() != CAMERA_EFFECT)
+			{
+				if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
+				{
+					CAMERAMANAGER->cameraMove(true, 0);
 					currentRC->left -= 5;
 					currentRC->right -= 5;
 				}
-				currentRC->left += 5;
-				currentRC->right += 5;
+				else
+				{
+					if (currentRC->left <= 0)
+					{
+						currentRC->left += 5;
+						currentRC->right += 5;
+					}
+					currentRC->left -= 5;
+					currentRC->right -= 5;
+				}
 			}
 		}
+
+		if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+		{
+			if (CAMERAMANAGER->getCameraCondition() != CAMERA_EFFECT)
+			{
+				if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
+				{
+					CAMERAMANAGER->cameraMove(true, 0);
+					currentRC->left += 5;
+					currentRC->right += 5;
+				}
+				else
+				{
+					if (currentRC->right >= 3456)
+					{
+						currentRC->left -= 5;
+						currentRC->right -= 5;
+					}
+					currentRC->left += 5;
+					currentRC->right += 5;
+				}
+			}
+		}
+
+		if (KEYMANAGER->isOnceKeyDown('W'))
+		{
+			currentRC = &rc1;
+			CAMERAMANAGER->setCameraAim(currentRC);
+			CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+
+		}
+
+		if (KEYMANAGER->isOnceKeyDown('F'))
+		{
+			CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+		}
+
+		_enemy->update();
+
+		if (KEYMANAGER->isOnceKeyDown('P') || _alpha <= 0)
+		{
+			SCENEMANAGER->changeScene("스테이지01");
+		}
 	}
-
-	if (KEYMANAGER->isOnceKeyDown('W'))
-	{
-		currentRC = &rc1;
-		CAMERAMANAGER->setCameraAim(currentRC);
-		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-
-	}
-
-	if (KEYMANAGER->isOnceKeyDown('F'))
-	{
-		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
-	}
-
-	_enemy->update();
-
-	if (KEYMANAGER->isOnceKeyDown('P') || _alpha <=0)
-	{
-		SCENEMANAGER->changeScene("스테이지01");
-	}
-	
 	
 	if (_ss == CLEAR)
 	{
