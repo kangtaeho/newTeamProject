@@ -4,7 +4,9 @@
 
 inventory::inventory()
 	:_openShop(false),
-	_openInventory(false)
+	_openInventory(false),
+	_currentSelectX(0),
+	_currentSelectY(0)
 {
 }
 
@@ -33,6 +35,15 @@ HRESULT inventory::init() {
 	_selectShopPos[1][2].x = 297;
 	_selectShopPos[1][2].y = 199;
 
+	_selectInvenPos[0].x = 17;
+	_selectInvenPos[0].y = 107;
+	_selectInvenPos[1].x = 17;
+	_selectInvenPos[1].y = 153;
+	_selectInvenPos[2].x = 17;
+	_selectInvenPos[2].y = 199;
+
+	_currentMoney = 11500;
+
 	_RPotion = new redPotion;
 	_RPotion->init();
 	
@@ -55,13 +66,25 @@ void inventory::render() {
 	
 	_blackWindowBmp->alphaRender(getMemDC(), 100);
 	_shopBmp->render(getMemDC(), WINSIZEX / 2 - _shopBmp->getWidth() / 2, WINSIZEY / 2 - _shopBmp->getHeight() / 2);
+
+	_selectBoxBmp->render(getMemDC(), WINSIZEX / 2 - _shopBmp->getWidth() / 2 +
+									  _selectShopPos[_currentSelectX][_currentSelectY].x,
+									  WINSIZEY / 2 - _shopBmp->getHeight() / 2 +
+									  _selectShopPos[_currentSelectX][_currentSelectY].y);
+	
+
+	char str[100];
+	sprintf(str, "%d", _currentMoney);
+	SetTextAlign(getMemDC(), TA_RIGHT);
+	TextOut(getMemDC(), (WINSIZEX / 2 - _shopBmp->getWidth() / 2) + 431, (WINSIZEY / 2 - _shopBmp->getHeight() / 2)+75, str, strlen(str));
+
 	//_inventoryBmp->render(getMemDC(), WINSIZEX / 2 - _inventoryBmp->getWidth() / 2, WINSIZEY / 2 - _inventoryBmp->getHeight() / 2);
 	
 }
 
 void inventory::shopState() {
 
-	if (!_openShop) return;	
+	//if (!_openShop) return;	
 
 	if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) {
 		_currentSelectX--;
@@ -81,6 +104,31 @@ void inventory::shopState() {
 	if (KEYMANAGER->isOnceKeyDown(VK_DOWN)) {
 		_currentSelectY++;
 		if (_currentSelectY >2) _currentSelectY = 2;
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('Z')) {
+		if (_currentSelectX == 0) {								//0이면 상점안에 선택상자가 있는것
+
+			switch (_currentSelectY) {
+				case 0:
+					if (_currentMoney >= 5) {
+					}
+				break;
+
+				case 1:
+					if (_currentMoney >= 48)
+				break;
+
+				case 2:
+					if (_currentMoney >= 96)
+				break;
+			}
+
+		}
+
+		if (_currentSelectY == 1) {
+
+		}
 	}
 
 }

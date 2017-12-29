@@ -32,6 +32,8 @@ HRESULT mainGame::init()			//초기화 함수
 	//재호 : 이미지 출력 실험용
 	//IMAGEMANAGER->addImage("상점", "./images/shop.bmp", 262, 396, true, RGB(255, 0, 255));
 
+
+	///태호 : 인벤토리 실험용
 	_inven = new inventory;
 	_inven->init();
 
@@ -53,7 +55,8 @@ void mainGame::update()				//연산 함수
 
 	SCENEMANAGER->update();
 
-
+	//태호 인벤토리 실험용
+	_inven->update();
 
 	
 
