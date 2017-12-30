@@ -46,7 +46,7 @@ private:
 	//이미지와 위치값과 렉트와 HP설정
 	image* _imageEnemy;				//이미지
 	RECT _rcEnemy;				//렉트
-	RECT _CollircEnemy;			//커언트렉트
+	RECT _CollircEnemy;			//충돌렉트
 	int _HP;					//체력
 	int _maxHP;					//최대체력
 	int _speed;					//속도

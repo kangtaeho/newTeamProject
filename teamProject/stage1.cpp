@@ -35,6 +35,7 @@ HRESULT stage1::init()
 	_knife = new knife;
 	_knife->init(PointMake(1000, 350));
 
+	//에너미 추가...중  //수빈
 	_enemy = new enemy;
 	_enemy->init(PointMake(1500,400));
 
