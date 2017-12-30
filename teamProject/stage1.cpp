@@ -132,6 +132,7 @@ void stage1::render()
 	_enemy->render();
 	_stone->render();
 
+	_mainPlayer->render();
 	//유아이박스는 메인게임에다 그냥 고정박아버림 // 병철
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc1).x, CAMERAMANAGER->CameraRelativePoint(rc1).y, 100, 100);
 	
@@ -238,6 +239,7 @@ void stage1::characterMovement() {
 	}
 
 	_enemy->update();
+	_mainPlayer->update();
 
 	/*if (KEYMANAGER->isOnceKeyDown('P'))
 	{

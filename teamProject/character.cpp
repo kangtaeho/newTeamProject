@@ -233,7 +233,7 @@ HRESULT character::init()
 	int LeftDown[] = { 177 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftDown", "JIMMY", LeftDown, 1, 2, false, MakeLeftLand, this);
 
-
+	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
 
 
 		return S_OK;
@@ -934,6 +934,7 @@ void character::update()
 }
 void character::render()
 {
+	//_image->frameRender(getMemDC(), 100, 100, 0, 0);
 	_image->aniRender(getMemDC(), _rc.left, _rc.top,_motion);
 }
 
