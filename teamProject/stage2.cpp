@@ -166,6 +166,12 @@ void stage2::update()
 			CAMERAMANAGER->setCameraAim(currentRC);
 			CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
 		}
+		if (KEYMANAGER->isOnceKeyDown('G'))
+		{
+			CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+			currentRC = &rc1;
+			CAMERAMANAGER->setCameraAim(currentRC);
+		}
 
 		if (KEYMANAGER->isOnceKeyDown('F'))
 		{
