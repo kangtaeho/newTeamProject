@@ -21,8 +21,8 @@ HRESULT stage1::init()
 	IMAGEMANAGER->addImage("스테이지_00_red", "./images/01_stage00_red.bmp", 3456, 648, true, RGB(255, 0, 255));
 	//레드칠한거 
 	IMAGEMANAGER->addImage("검은화면", "./images/backWindow.bmp", 1152, 648, true, RGB(255, 0, 255));
-	//알파값 초기화
-	_alpha = 0;
+	//알파값,웨이브정보 초기화
+	_alpha = _firstWave = _secondWave = 0;
 
 	// 스테이지상태
 	// 기존 moving 에서 ready로 수정
@@ -54,6 +54,9 @@ HRESULT stage1::init()
 	_inven->init();
 
 	_stopCharacter = false;
+
+	_em = new enemyManager;
+	_em->init();
 
 	return S_OK;
 }
@@ -237,4 +240,48 @@ void stage1::characterMovement() {
 	{
 		SCENEMANAGER->changeScene("스테이지01");
 	}*/
+}
+
+void stage1::makeEnemy(){
+
+	/*
+	카메라 특정 지점일때 몬스터 생성
+	첫 웨이브가 나왔냐 && 카메라가 특정 지점에 왔냐
+	if (!firstWave && 카메라가 특정지점이냐)
+	{
+
+	쫄따구 1마리 생성
+	_em -> setMinion()
+
+	카메라 고정 추가(기성아 부탁한다)
+
+
+	}
+
+	첫 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	else if(firstWave && _em.size() == 0)
+	{
+
+	카메라 다시 이동(기성아 부탁한다)
+
+	}
+
+	두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
+	if(!secondWave && 카메라가 특정지점이냐)
+	{
+	정예몹 1마리 생성
+	_em -> setPick()
+
+	카메라 고정 추가(이것도 부탁해)
+	}
+
+	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	else if(secondWave && _em.size() == 0)
+	{
+
+	카메라 다시 이동(기성아 부탁한다)
+
+	}
+
+	*/
 }
