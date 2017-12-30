@@ -12,7 +12,7 @@ character::~character()
 }
 HRESULT character::init()
 {
-	_image = IMAGEMANAGER->addFrameImage("JIMMY", "images/JIMMY.bmp", 1024, 700, 16, 14, true, RGB(255, 0, 255));
+	_image = IMAGEMANAGER->addFrameImage("JIMMY", "./images/JIMMY.bmp", 3072, 2100, 16, 14, true, RGB(255, 0, 255));
 
 	_state = CHARA_RIGHT_STOP;
 
