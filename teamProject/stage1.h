@@ -9,11 +9,10 @@
 
 static enum stageState 
 {
+	READY,		//알파값을 위한 준비모드(재호 추가)
 	MOVING,
 	FIGHTING,
 	CLEAR
-
-
 };
 
 class stage1 : public gameNode
@@ -29,6 +28,7 @@ private:
 
 	item* _stone; // 미니돌덩이 ㅇㅇ
 
+	int _alpha;	//알파렌더를 위한 변수
 
 	inventory* _inven;				//인벤토리 클래스 생성
 
