@@ -58,6 +58,8 @@ HRESULT stage1::init()
 	_em = new enemyManager;
 	_em->init();
 
+	SOUNDMANAGER->play("스테이지1",0.5f);
+
 	return S_OK;
 }
 
@@ -91,7 +93,7 @@ void stage1::update()
 			characterMovement();
 		}
 
-		if (KEYMANAGER->isOnceKeyDown('1')) { //인벤토리 오픈
+		if (KEYMANAGER->isOnceKeyDown('1')&&!_inven->getOpenShop()) { //인벤토리 오픈
 			if (_inven->getOpenInventory()) {
 				_inven->closeInventory();
 				_stopCharacter = false;
@@ -102,7 +104,7 @@ void stage1::update()
 			}
 		}
 
-		if (KEYMANAGER->isOnceKeyDown('2')) { //상점 오픈
+		if (KEYMANAGER->isOnceKeyDown('2')&&!_inven->getOpenInventory()) { //상점 오픈
 			if (_inven->getOpenShop()) {
 				_inven->closeShop();
 				_stopCharacter = false;
@@ -115,6 +117,7 @@ void stage1::update()
 		if (KEYMANAGER->isOnceKeyDown('3')) //강제로 클리어상태로 전환
 		{
 			_ss = CLEAR;
+			SOUNDMANAGER->stop("스테이지1");
 		}
 
 		_inven->update();

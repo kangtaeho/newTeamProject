@@ -17,6 +17,7 @@ HRESULT startscene::init()
 	IMAGEMANAGER->addImage("selecttri", "./images/selecttri.bmp", 30, 35, true, RGB(255, 0, 255));
 
 	_index = true;
+	SOUNDMANAGER->play("게임시작화면");
 	return S_OK;
 }
 void startscene::release()
@@ -30,7 +31,7 @@ void startscene::update()
 		//스타트를 가르키고 있다면
 		if (_index)
 		SCENEMANAGER->changeScene("1스테이지대화", false);
-
+		SOUNDMANAGER->stop("게임시작화면");
 		//옵션화면 미구현
 		/*else
 			SCENEMANAGER->changeScene("스테이지00", false);*/

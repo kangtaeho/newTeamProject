@@ -64,6 +64,7 @@ void soundManager::addSound(string keyName, string soundName, bool bgm, bool loo
 		}
 	}
 
+	_listSounds.insert(make_pair(keyName, _mTotalSounds.size()));
 	_mTotalSounds.insert(make_pair(keyName, &_sound[_mTotalSounds.size()]));
 }
 
@@ -72,15 +73,15 @@ void soundManager::play(string keyName, float volume) //0.0 ~ 1.0f
 {
 	arrSoundsIter iter = _mTotalSounds.begin();
 
-	int count = 0;
-
-	for ( iter; iter != _mTotalSounds.end(); ++iter, count++ )
+	for ( iter; iter != _mTotalSounds.end(); ++iter)
 	{
 		if ( keyName == iter->first )
 		{
-			_system->playSound(FMOD_CHANNEL_FREE, _sound[count], false, &_channel[count]);
+			_listSoundsIter = _listSounds.find(keyName);
+			_system->playSound(FMOD_CHANNEL_FREE, _sound[_listSoundsIter->second], false, &_channel[_listSoundsIter->second]);
 
-			_channel[count]->setVolume(volume);
+			_channel[_listSoundsIter->second]->setVolume(volume);
+
 			break;
 		}
 	}
@@ -91,13 +92,12 @@ void soundManager::stop(string keyName)
 {
 	arrSoundsIter iter = _mTotalSounds.begin();
 
-	int count = 0;
-
-	for ( iter; iter != _mTotalSounds.end(); ++iter, count++ )
+	for ( iter; iter != _mTotalSounds.end(); ++iter)
 	{
 		if ( keyName == iter->first )
 		{
-			_channel[count]->stop();
+			_listSoundsIter = _listSounds.find(keyName);
+			_channel[_listSoundsIter->second]->stop();
 			break;
 		}
 	}
@@ -108,13 +108,12 @@ void soundManager::pause(string keyName)
 {
 	arrSoundsIter iter = _mTotalSounds.begin();
 
-	int count = 0;
-
-	for ( iter; iter != _mTotalSounds.end(); ++iter, count++ )
+	for ( iter; iter != _mTotalSounds.end(); ++iter )
 	{
 		if ( keyName == iter->first )
 		{
-			_channel[count]->setPaused(true);
+			_listSoundsIter = _listSounds.find(keyName);
+			_channel[_listSoundsIter->second]->setPaused(true);
 			break;
 		}
 	}
@@ -124,13 +123,12 @@ void soundManager::resume(string keyName)
 {
 	arrSoundsIter iter = _mTotalSounds.begin();
 
-	int count = 0;
-
-	for ( iter; iter != _mTotalSounds.end(); ++iter, count++ )
+	for ( iter; iter != _mTotalSounds.end(); ++iter )
 	{
 		if ( keyName == iter->first )
 		{
-			_channel[count]->setPaused(false);
+			_listSoundsIter = _listSounds.find(keyName);
+			_channel[_listSoundsIter->second]->setPaused(false);
 			break;
 		}
 	}

@@ -13,6 +13,17 @@ HRESULT mainGame::init()			//초기화 함수
 {
 	gameNode::init(true);
 
+	SOUNDMANAGER->addSound("게임시작화면", "./sounds/게임시작화면.mp3", true, false);
+	SOUNDMANAGER->addSound("스테이지1", "./sounds/스테이지1.mp3", true, true);
+	SOUNDMANAGER->addSound("스테이지2", "./sounds/스테이지2.mp3", true, true);
+	SOUNDMANAGER->addSound("스테이지3", "./sounds/스테이지3.mp3", true, true);
+	SOUNDMANAGER->addSound("크억(죽을때)", "./sounds/크억(죽을때).wav", false, false);
+	SOUNDMANAGER->addSound("흐앗(발차기할때)", "./sounds/흐앗(발차기할때).wav", false, false);
+	SOUNDMANAGER->addSound("흣(때릴때)", "./sounds/흣(때릴때).wav", false, false);
+	SOUNDMANAGER->addSound("펀치맞을때", "./sounds/펀치맞을때.wav", false, false);
+
+
+
 	//병철 추가 // 스테이지 1 씬 //20171227 7:43
 	SCENEMANAGER->addScene("스테이지00", new stage1);
 	SCENEMANAGER->addScene("스테이지01", new stage2);
@@ -34,7 +45,6 @@ HRESULT mainGame::init()			//초기화 함수
 	//재호 : 이미지 출력 실험용
 	//IMAGEMANAGER->addImage("상점", "./images/shop.bmp", 262, 396, true, RGB(255, 0, 255));
 
-
 	return S_OK;
 }
 
@@ -48,7 +58,6 @@ void mainGame::release()			//메모리 해제 함수
 void mainGame::update()				//연산 함수
 {
 	gameNode::update();
-
 	
 
 	SCENEMANAGER->update();

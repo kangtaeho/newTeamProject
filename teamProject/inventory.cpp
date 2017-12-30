@@ -213,7 +213,7 @@ void inventory::shopState() {
 			case 0:
 				if (_RPotion->getCount() == 0) break;
 				
-				_currentMoney += 4;
+				_currentMoney += 5;
 				_RPotion->setCount((_RPotion->getCount()) - 1);
 				
 				break;
@@ -221,7 +221,7 @@ void inventory::shopState() {
 			case 1:
 				if (_OPotion->getCount() == 0) break;
 				
-				_currentMoney -= 40;
+				_currentMoney += 48;
 				_OPotion->setCount((_OPotion->getCount()) - 1);
 				
 				break;
@@ -229,7 +229,7 @@ void inventory::shopState() {
 			case 2:
 				if (_WPotion->getCount() == 0) break;
 
-				_currentMoney -= 90;
+				_currentMoney += 96;
 				_WPotion->setCount((_WPotion->getCount()) - 1);
 		
 				break;

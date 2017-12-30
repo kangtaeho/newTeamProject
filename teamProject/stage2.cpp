@@ -32,6 +32,8 @@ HRESULT stage2::init()
 	_mainPlayer = new character;
 	_mainPlayer->init();
 
+	SOUNDMANAGER->play("스테이지2",0.5f);
+
 	return S_OK;
 }
 
@@ -56,6 +58,7 @@ void stage2::update()
 			_alpha -= 5;
 		else
 			SCENEMANAGER->changeScene("3스테이지대화");
+			SOUNDMANAGER->stop("스테이지2");
 	}
 	//스테이지가 준비 or 클리어 상태가 아닐때만 조작 가능
 	else if (_ss != READY || _ss != CLEAR)
