@@ -41,7 +41,7 @@ HRESULT character::init()
 
 	//왼쪽 움직임
 	int LeftMove[] = { 127,126,125,126 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightMove", "JIMMY", LeftMove, 4, 10, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftMove", "JIMMY", LeftMove, 4, 10, true);
 
 	//오른쪽 착지+일어섬
 	int RightLand[] = { 4 };
@@ -133,11 +133,11 @@ HRESULT character::init()
 
 	//왼쪽 잡는 자세
 	int LeftGrab[] = { 140 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightgrab", "JIMMY", LeftGrab, 1, 6, false, MakeLeftHold, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftgrab", "JIMMY", LeftGrab, 1, 6, false, MakeLeftHold, this);
 
 	//왼쪽 붙잡은 자세
 	int LeftHold[] = { 139 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHold", "JIMMY", LeftHold, 1, 6, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHold", "JIMMY", LeftHold, 1, 6, true);
 
 	//오른쪽 잡고 등찍기
 	int RightBackSting[] = { 54,55 };
