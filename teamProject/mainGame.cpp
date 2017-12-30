@@ -33,10 +33,6 @@ HRESULT mainGame::init()			//초기화 함수
 	//IMAGEMANAGER->addImage("상점", "./images/shop.bmp", 262, 396, true, RGB(255, 0, 255));
 
 
-	///태호 : 인벤토리 실험용
-	_inven = new inventory;
-	_inven->init();
-
 	return S_OK;
 }
 
@@ -54,9 +50,6 @@ void mainGame::update()				//연산 함수
 	
 
 	SCENEMANAGER->update();
-
-	//태호 인벤토리 실험용
-	_inven->update();
 
 	
 
@@ -88,10 +81,6 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	//재호 : 이미지 출력 실험용
 	//IMAGEMANAGER->findImage("상점")->render(getMemDC(), WINSIZEX/2 - 300, 40);
 	
-	//태호 : 인벤토리 랜더 실험용
-	if (KEYMANAGER->isToggleKey('0')) {
-		_inven->render();
-	}
 
 	//==================== 건들지마라 =======================
 	TIMEMANAGER->render(getMemDC());

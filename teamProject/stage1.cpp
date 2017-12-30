@@ -44,6 +44,12 @@ HRESULT stage1::init()
 
 	_mainPlayer = new character;
 	_mainPlayer->init();
+
+	_inven = new inventory;
+	_inven->init();
+
+	_stopCharacter = false;
+
 	return S_OK;
 }
 
@@ -53,7 +59,52 @@ void stage1::release()
 
 void stage1::update()
 {
+	if (!_stopCharacter) {
+	characterMovement();
+	}
 
+	if (KEYMANAGER->isOnceKeyDown('1')) { //인벤토리 오픈
+		if (_inven->getOpenInventory()) {
+			_inven->closeInventory();
+			_stopCharacter = false;
+		}
+		else {
+			_inven->openInventory();
+			_stopCharacter = true;
+		}
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('2')) { //상점 오픈
+		if (_inven->getOpenShop()) {
+			_inven->closeShop();
+			_stopCharacter = false;
+		}
+		else {
+			_inven->openShop();
+			_stopCharacter = true;
+		}
+	}
+
+	_inven->update();
+
+}
+
+void stage1::render()
+{
+	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
+	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
+	_knife->render();
+	_enemy->render();
+	_stone->render();
+
+	//유아이박스는 메인게임에다 그냥 고정박아버림 // 병철
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc1).x, CAMERAMANAGER->CameraRelativePoint(rc1).y, 100, 100);
+	
+	_inven->render();
+
+}
+
+void stage1::characterMovement() {
 
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
@@ -155,21 +206,4 @@ void stage1::update()
 	{
 		SCENEMANAGER->changeScene("스테이지01");
 	}
-	
-}
-
-void stage1::render()
-{
-	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
-	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
-	_knife->render();
-	_enemy->render();
-	_stone->render();
-
-	
-
-	//유아이박스는 메인게임에다 그냥 고정박아버림 // 병철
-
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc1).x, CAMERAMANAGER->CameraRelativePoint(rc1).y, 100, 100);
-	
 }

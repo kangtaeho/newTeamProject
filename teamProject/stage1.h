@@ -5,6 +5,7 @@
 #include "enemy.h"
 #include "stone.h"
 #include "character.h"
+#include "inventory.h"
 
 static enum stageState 
 {
@@ -29,6 +30,10 @@ private:
 	item* _stone; // ¹Ì´Ïµ¹µ¢ÀÌ ¤·¤·
 
 
+	inventory* _inven;				//ÀÎº¥Åä¸® Å¬·¡½º »ı¼º
+
+	bool _stopCharacter;			//Ä³¸¯ÅÍ°¡ ¸Ø­Ÿ´Ï?(ÀÎº¥Åä¸® ¿­¶§ »ç¿ë)
+
 	stageState _ss;
 public:
 	stage1();
@@ -41,5 +46,7 @@ public:
 
 	virtual void setMainPlayer(character* mainPlayer) { _mainPlayer = mainPlayer; }
 	virtual character* getMainPlayer(){ return _mainPlayer; }
+
+	void characterMovement();							//Ä³¸¯ÅÍ Å°¸ÅÁöÀú¸¦ °ü¸®ÇÏ´Â ÇÔ¼ö
 };
 

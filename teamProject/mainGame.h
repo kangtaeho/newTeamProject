@@ -3,7 +3,6 @@
 #include "startscene.h"
 #include "stage1.h"
 #include "stage2.h"
-#include"inventory.h"
 
 class mainGame : public gameNode
 {
@@ -36,8 +35,6 @@ private:
 	오브젝트, 돈 렌더는 잠시 보류
 	*/
 
-	//태호 인벤토리 테스트
-	inventory* _inven;
 
 public:
 	virtual HRESULT init();			
