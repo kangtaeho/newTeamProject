@@ -7,13 +7,15 @@
 #include "character.h"
 #include "inventory.h"
 
-static enum stageState 
+/*
+static enum stageState
 {
-	READY,		//¾ËÆÄ°ªÀ» À§ÇÑ ÁØºñ¸ğµå(ÀçÈ£ Ãß°¡)
-	MOVING,
-	FIGHTING,
-	CLEAR
+READY,		//¾ËÆÄ°ªÀ» À§ÇÑ ÁØºñ¸ğµå(ÀçÈ£ Ãß°¡)
+MOVING,
+FIGHTING,
+CLEAR
 };
+*/
 
 class stage1 : public gameNode
 {
@@ -34,7 +36,7 @@ private:
 
 	bool _stopCharacter;			//Ä³¸¯ÅÍ°¡ ¸Ø­Ÿ´Ï?(ÀÎº¥Åä¸® ¿­¶§ »ç¿ë)
 
-	stageState _ss;
+	stageState _ss;	//½ºÅ×ÀÌÁö »óÅÂ(stdafx.h¿¡ Á¤ÀÇµÇ¾îÀÖÀ½)
 public:
 	stage1();
 	~stage1();

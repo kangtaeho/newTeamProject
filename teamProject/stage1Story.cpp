@@ -32,6 +32,7 @@ void stage1Story::update()
 	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
 		_index++;
+		//이미지 인덱스 넘길때 씬 전환
 		if (_index >= 4)
 			SCENEMANAGER->changeScene("스테이지00",false);
 	}

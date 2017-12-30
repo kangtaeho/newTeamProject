@@ -1,6 +1,17 @@
 #pragma once
 #include "gameNode.h"
 #include "character.h"
+
+/*
+static enum stageState
+{
+READY,		//알파값을 위한 준비모드(재호 추가)
+MOVING,
+FIGHTING,
+CLEAR
+};
+*/
+
 class stage3 : public gameNode
 {
 private:

@@ -110,6 +110,7 @@
     <ClInclude Include="stage1Story.h" />
     <ClInclude Include="stage2.h" />
     <ClInclude Include="stage3.h" />
+    <ClInclude Include="stage3Story.h" />
     <ClInclude Include="startscene.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="stone.h" />
@@ -150,6 +151,7 @@
     <ClCompile Include="stage1Story.cpp" />
     <ClCompile Include="stage2.cpp" />
     <ClCompile Include="stage3.cpp" />
+    <ClCompile Include="stage3Story.cpp" />
     <ClCompile Include="startscene.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

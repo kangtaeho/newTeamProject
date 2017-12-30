@@ -74,3 +74,11 @@ using namespace HEXA_UTIL;
 extern HINSTANCE _hInstance;	
 extern HWND	_hWnd;			
 extern POINT _ptMouse;
+
+static enum stageState
+{
+	READY,		//알파값을 위한 준비모드(재호 추가)
+	MOVING,
+	FIGHTING,
+	CLEAR
+};

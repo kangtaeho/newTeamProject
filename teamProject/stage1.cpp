@@ -232,8 +232,8 @@ void stage1::characterMovement() {
 
 	_enemy->update();
 
-	if (KEYMANAGER->isOnceKeyDown('P'))
+	/*if (KEYMANAGER->isOnceKeyDown('P'))
 	{
 		SCENEMANAGER->changeScene("스테이지01");
-	}
+	}*/
 }

@@ -19,8 +19,9 @@ HRESULT mainGame::init()			//초기화 함수
 
 	//재호 : 게임시작화면
 	SCENEMANAGER->addScene("스타트", new startscene);
-	//재호 : 1스테이지 대화화면
+	//재호 : 1,3스테이지 대화화면
 	SCENEMANAGER->addScene("1스테이지대화", new stage1Story);
+	SCENEMANAGER->addScene("3스테이지대화", new stage3Story);
 
 	//SCENEMANAGER->changeScene("스테이지00");
 
@@ -67,7 +68,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 
 	//병철추가 //유아이박스 카메라 영향 안받음 위치고정 // 20121227 7:45
 	//재호 : 현재신이 스타트 신 or 대화씬이면 유아이박스 안그리도록
-	if (SCENEMANAGER->isStartScene("스타트") || SCENEMANAGER->isStartScene("1스테이지대화"))
+	if (SCENEMANAGER->isStartScene("스타트") || SCENEMANAGER->isStartScene("1스테이지대화") || SCENEMANAGER->isStartScene("3스테이지대화" ))
 	{
 		SCENEMANAGER->render();
 	}
