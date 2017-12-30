@@ -28,6 +28,7 @@ void stage1Story::release()
 }
 void stage1Story::update()
 {
+	//X키 누를때마다 대화 넘어감
 	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
 		_index++;
