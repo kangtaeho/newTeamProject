@@ -23,10 +23,10 @@ HRESULT stage2::init()
 	_alpha = 0;
 	_ss = READY;
 
-	rc1 = RectMakeCenter(500, 2393, 100, 100);
+	rc1 = RectMakeCenter(720, 2300, 100, 100);
 	currentRC = &rc1;
 
-	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	CAMERAMANAGER->setCameraAim(&rc1);
 
 	_mainPlayer = new character;
@@ -110,6 +110,12 @@ void stage2::update()
 					currentRC->left -= 5;
 					currentRC->right -= 5;
 				}
+				else if (CAMERAMANAGER->getCameraCondition() == CAMERA_STAGE2)
+				{
+					CAMERAMANAGER->stage2CameraFollow(true, -5);
+					currentRC->left -= 5;
+					currentRC->right -= 5;
+				}
 				else
 				{
 					if (currentRC->left <= 0)
@@ -133,6 +139,12 @@ void stage2::update()
 					currentRC->left += 5;
 					currentRC->right += 5;
 				}
+				else if (CAMERAMANAGER->getCameraCondition() == CAMERA_STAGE2)
+				{
+					CAMERAMANAGER->stage2CameraFollow(true, 5);
+					currentRC->left += 5;
+					currentRC->right += 5;
+				}
 				else
 				{
 					if (currentRC->right >= 5795)
@@ -146,12 +158,13 @@ void stage2::update()
 			}
 		}
 
+		//카메라 위치보정을 위해 에이밍으로 바꾼후 스테이지2 카메라로 변경
 		if (KEYMANAGER->isOnceKeyDown('W'))
 		{
+			CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 			currentRC = &rc1;
 			CAMERAMANAGER->setCameraAim(currentRC);
-			CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-
+			CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
 		}
 
 		if (KEYMANAGER->isOnceKeyDown('F'))
