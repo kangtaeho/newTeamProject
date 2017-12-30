@@ -109,6 +109,9 @@
     <ClCompile Include="startscene.cpp">
       <Filter>MainGame\scene</Filter>
     </ClCompile>
+    <ClCompile Include="enemyManager.cpp">
+      <Filter>MainGame\enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h">
@@ -230,6 +233,9 @@
     </ClInclude>
     <ClInclude Include="startscene.h">
       <Filter>MainGame\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyManager.h">
+      <Filter>MainGame\enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
