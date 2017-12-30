@@ -2,8 +2,11 @@
 #include "gameNode.h"
 #include "startscene.h"
 #include "stage1.h"
+#include "stage1Story.h"
 #include "stage2.h"
-#include"inventory.h"
+#include "stage3.h"
+#include "stage3Story.h"
+
 
 class mainGame : public gameNode
 {
@@ -12,9 +15,11 @@ private:
 	//현재씬
 	gameNode* _currentScene;
 	gameNode* _loadingScene;
-	//스테이지 1 씬
-	gameNode* _stage1;
-	gameNode* _stage2;
+
+	//이거 필요없어서 주석처리함 (재호)
+	////스테이지 1 씬
+	//gameNode* _stage1;
+	//gameNode* _stage2;
 	
 
 	/*
@@ -36,8 +41,6 @@ private:
 	오브젝트, 돈 렌더는 잠시 보류
 	*/
 
-	//태호 인벤토리 테스트
-	inventory* _inven;
 
 public:
 	virtual HRESULT init();			

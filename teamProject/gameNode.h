@@ -11,8 +11,10 @@ private:
 	HDC _hdc;
 	bool _managerInit;
 
+
 protected:
 	character* _mainPlayer;
+	POINT		_playerStartPoint;
 
 public:
 	virtual HRESULT init();		//초기화 함수

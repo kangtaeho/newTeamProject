@@ -6,7 +6,9 @@ inventory::inventory()
 	:_openShop(false),
 	_openInventory(false),
 	_currentSelectX(0),
-	_currentSelectY(0)
+	_currentSelectY(0),
+	_quickPotion(0),
+	_quickCount(0)
 {
 }
 
@@ -66,6 +68,7 @@ HRESULT inventory::init() {
 	_WPotion->init();
 	
 	return S_OK;
+
 }
 
 void inventory::release() {
@@ -84,39 +87,71 @@ void inventory::update() {
 
 void inventory::render() {
 	
-	_blackWindowBmp->alphaRender(getMemDC(), 100);
-	_shopBmp->render(getMemDC(), WINSIZEX / 2 - _shopBmp->getWidth() / 2, WINSIZEY / 2 - _shopBmp->getHeight() / 2);
+	if (_openShop) {
+		_blackWindowBmp->alphaRender(getMemDC(), 100);
+		_shopBmp->render(getMemDC(), WINSIZEX / 2 - _shopBmp->getWidth() / 2, WINSIZEY / 2 - _shopBmp->getHeight() / 2);
 
-	_selectBoxBmp->render(getMemDC(), WINSIZEX / 2 - _shopBmp->getWidth() / 2 +
-									  _selectShopPos[_currentSelectX][_currentSelectY].x,
-									  WINSIZEY / 2 - _shopBmp->getHeight() / 2 +
-									  _selectShopPos[_currentSelectX][_currentSelectY].y);
-	
-	_RNumberBmp->frameRender(getMemDC(), WINSIZEX / 2 - _shopBmp->getWidth() / 2 + 512,
-										 WINSIZEY / 2 - _shopBmp->getHeight() / 2 + 111,
-										 _RNumberBmp->getFrameX(),
-										 _RNumberBmp->getFrameY());
+		_selectBoxBmp->render(getMemDC(), WINSIZEX / 2 - _shopBmp->getWidth() / 2 +
+			_selectShopPos[_currentSelectX][_currentSelectY].x,
+			WINSIZEY / 2 - _shopBmp->getHeight() / 2 +
+			_selectShopPos[_currentSelectX][_currentSelectY].y);
 
-	_ONumberBmp->frameRender(getMemDC(), WINSIZEX / 2 - _shopBmp->getWidth() / 2 + 512,
-										 WINSIZEY / 2 - _shopBmp->getHeight() / 2 + 157,
-										 _ONumberBmp->getFrameX(),
-										 _ONumberBmp->getFrameY());
+		_RNumberBmp->frameRender(getMemDC(), WINSIZEX / 2 - _shopBmp->getWidth() / 2 + 512,
+			WINSIZEY / 2 - _shopBmp->getHeight() / 2 + 111,
+			_RNumberBmp->getFrameX(),
+			_RNumberBmp->getFrameY());
 
-	_WNumberBmp->frameRender(getMemDC(), WINSIZEX / 2 - _shopBmp->getWidth() / 2 + 512,
-										 WINSIZEY / 2 - _shopBmp->getHeight() / 2 + 203,
-										 _WNumberBmp->getFrameX(),
-										 _WNumberBmp->getFrameY());
+		_ONumberBmp->frameRender(getMemDC(), WINSIZEX / 2 - _shopBmp->getWidth() / 2 + 512,
+			WINSIZEY / 2 - _shopBmp->getHeight() / 2 + 157,
+			_ONumberBmp->getFrameX(),
+			_ONumberBmp->getFrameY());
 
-	char str[100];
-	sprintf(str, "%d", _currentMoney);
-	SetTextAlign(getMemDC(), TA_RIGHT);
-	TextOut(getMemDC(), (WINSIZEX / 2 - _shopBmp->getWidth() / 2) + 431, (WINSIZEY / 2 - _shopBmp->getHeight() / 2)+75, str, strlen(str));
+		_WNumberBmp->frameRender(getMemDC(), WINSIZEX / 2 - _shopBmp->getWidth() / 2 + 512,
+			WINSIZEY / 2 - _shopBmp->getHeight() / 2 + 203,
+			_WNumberBmp->getFrameX(),
+			_WNumberBmp->getFrameY());
+
+		char str[100];
+		sprintf(str, "%d", _currentMoney);
+		SetTextAlign(getMemDC(), TA_RIGHT);
+		TextOut(getMemDC(), (WINSIZEX / 2 - _shopBmp->getWidth() / 2) + 431, (WINSIZEY / 2 - _shopBmp->getHeight() / 2) + 75, str, strlen(str));
+	}
+
+	if (_openInventory) {
+		_blackWindowBmp->alphaRender(getMemDC(), 100);
+		_inventoryBmp->render(getMemDC(), WINSIZEX / 2 - _inventoryBmp->getWidth() / 2, WINSIZEY / 2 - _inventoryBmp->getHeight() / 2);
+
+		_selectBoxBmp->render(getMemDC(), WINSIZEX / 2 - _inventoryBmp->getWidth() / 2 +
+										  _selectInvenPos[_currentSelectY].x,
+										  WINSIZEY / 2 - _shopBmp->getHeight() / 2 +
+										  _selectInvenPos[_currentSelectY].y);
+
+		_RNumberBmp->frameRender(getMemDC(), WINSIZEX / 2 - _inventoryBmp->getWidth() / 2 + 233,
+											 WINSIZEY / 2 - _inventoryBmp->getHeight() / 2 + 111,
+											 _RNumberBmp->getFrameX(),
+											 _RNumberBmp->getFrameY());
+
+		_ONumberBmp->frameRender(getMemDC(), WINSIZEX / 2 - _inventoryBmp->getWidth() / 2 + 233,
+											 WINSIZEY / 2 - _inventoryBmp->getHeight() / 2 + 157,
+											 _ONumberBmp->getFrameX(),
+											 _ONumberBmp->getFrameY());
+
+		_WNumberBmp->frameRender(getMemDC(), WINSIZEX / 2 - _inventoryBmp->getWidth() / 2 + 233,
+											 WINSIZEY / 2 - _inventoryBmp->getHeight() / 2 + 203,
+											 _WNumberBmp->getFrameX(),
+											 _WNumberBmp->getFrameY());
+
+		char str[100];
+		sprintf(str, "%d", _currentMoney);
+		SetTextAlign(getMemDC(), TA_RIGHT);
+		TextOut(getMemDC(), (WINSIZEX / 2 - _inventoryBmp->getWidth() / 2) + 151, (WINSIZEY / 2 - _inventoryBmp->getHeight() / 2) + 75, str, strlen(str));
+	}
 	
 }
 
 void inventory::shopState() {
 
-	//if (!_openShop) return;	
+	if (!_openShop) return;	
 
 	if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) {
 		_currentSelectX--;
@@ -208,5 +243,34 @@ void inventory::shopState() {
 void inventory::inventoryState() {
 	
 	if (!_openInventory) return;
+
+	if (KEYMANAGER->isOnceKeyDown(VK_UP)) {
+		_currentSelectY--;
+		if (_currentSelectY < 0) _currentSelectY = 0;
+	}
+
+	if (KEYMANAGER->isOnceKeyDown(VK_DOWN)) {
+		_currentSelectY++;
+		if (_currentSelectY >2) _currentSelectY = 2;
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('Z')) {
+		switch (_currentSelectY) {
+			case 0:
+				_quickPotion = _RPotion->getItemEffect();
+				_quickCount = _RPotion->getCount();
+			break;
+
+			case 1:
+				_quickPotion = _OPotion->getItemEffect();
+				_quickCount = _OPotion->getCount();
+			break;
+
+			case 2:
+				_quickPotion = _WPotion->getItemEffect();
+				_quickCount = _WPotion->getCount();
+			break;
+		}
+	}
 
 }
