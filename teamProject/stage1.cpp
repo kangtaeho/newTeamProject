@@ -47,6 +47,9 @@ HRESULT stage1::init()
 		_enemy->init(PointMake(300 + i * 25, 300 + i * 25));
 	}
 
+		_boss00 = new boss00;
+		_boss00->init(PointMake(500,300));
+
 	//¹Ì´Ïµ¹µ¢ÀÌ //º´Ã¶
 	_stone = new stone;
 	_stone->init(PointMake(2000, 450));
@@ -134,6 +137,7 @@ void stage1::render()
 	IMAGEMANAGER->findImage("½ºÅ×ÀÌÁö_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	_knife->render();
 	_enemy->render();
+	_boss00->render();
 	_stone->render();
 
 	_mainPlayer->render();
