@@ -25,7 +25,11 @@ private:
 
 	RECT rc1;
 	RECT* currentRC;
+	image* DOOR; // ¹®Ãß°¡(º´Ã¶)
+	RECT DOORRC; // ¹®Ãß°¡(º´Ã¶)
 
+	//float doorX, doorY;
+	
 	item* _knife; // Ä® ½ºÅ×ÀÌÁö·Î °¡Á®¿È
 	enemy* _enemy;
 
@@ -35,7 +39,7 @@ private:
 
 	inventory* _inven;				//ÀÎº¥Åä¸® Å¬·¡½º »ı¼º
 
-	bool _stopCharacter;			//Ä³¸¯ÅÍ°¡ ¸Ø­Ÿ´Ï?(ÀÎº¥Åä¸® ¿­¶§ »ç¿ë)
+	bool _stopCharacter;			//Ä³¸¯ÅÍ°¡ ¸ØÃè´Ï?(ÀÎº¥Åä¸® ¿­¶§ »ç¿ë)
 
 	stageState _ss;	//½ºÅ×ÀÌÁö »óÅÂ(stdafx.h¿¡ Á¤ÀÇµÇ¾îÀÖÀ½)
 
@@ -57,5 +61,6 @@ public:
 	void makeEnemy();	//¸ó½ºÅÍ »ı¼º ÇÔ¼ö
 
 	void characterMovement();							//Ä³¸¯ÅÍ Å°¸ÅÁöÀú¸¦ °ü¸®ÇÏ´Â ÇÔ¼ö
+	void doorCollision();
 };
 

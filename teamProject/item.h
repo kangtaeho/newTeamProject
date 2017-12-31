@@ -4,7 +4,7 @@
 enum tagItemType{
 	POTION,		//拱距 家葛前
 	THROW,		//捧么 家葛前(甘 object)
-	MONEY		//捣
+	MONEY,		//捣
 };
 class item :
 	public gameNode

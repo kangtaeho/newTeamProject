@@ -21,6 +21,12 @@ HRESULT stage1::init()
 	IMAGEMANAGER->addImage("스테이지_00_red", "./images/01_stage00_red.bmp", 3456, 648, true, RGB(255, 0, 255));
 	//레드칠한거 
 	IMAGEMANAGER->addImage("검은화면", "./images/backWindow.bmp", 1152, 648, true, RGB(255, 0, 255));
+
+	DOOR = IMAGEMANAGER->addFrameImage("스테이지1_문", "./images/door.bmp", 460, 155, 3, 1, true, RGB(255, 0, 255));
+	DOOR->setX(3225);
+	DOOR->setY(258);
+	//DOORRC = RectMakeCenter(1000, 300, 200, 200);
+	
 	//알파값,웨이브정보 초기화
 	_alpha = _firstWave = _secondWave = 0;
 
@@ -120,7 +126,7 @@ void stage1::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('3')) //강제로 클리어상태로 전환
 		{
-			_ss = CLEAR;
+			_ss = CLEAR; 
 			SOUNDMANAGER->stop("스테이지1");
 		}
 
@@ -137,9 +143,14 @@ void stage1::render()
 	_stone->render();
 
 	_mainPlayer->render();
-	//유아이박스는 메인게임에다 그냥 고정박아버림 // 병철
+	
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc1).x, CAMERAMANAGER->CameraRelativePoint(rc1).y, 100, 100);
 	
+	//문 렉트
+	//Rectangle(getMemDC(), DOORRC.left, DOORRC.top, DOORRC.right, DOORRC.bottom);
+	IMAGEMANAGER->findImage("스테이지1_문")->frameRender(getMemDC(), 
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).x,
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).y, 0, 0);
 	_inven->render();
 
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255-_alpha);
@@ -155,13 +166,13 @@ void stage1::characterMovement() {
 			if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 			{
 				CAMERAMANAGER->cameraMove(false, 0);
-				currentRC->bottom -= 5;
-				currentRC->top -= 5;
+				currentRC->bottom -= 10;
+				currentRC->top -= 10;
 			}
 			else
 			{
-				currentRC->bottom -= 5;
-				currentRC->top -= 5;
+				currentRC->bottom -= 10;
+				currentRC->top -= 10;
 			}
 		}
 	}
@@ -173,12 +184,12 @@ void stage1::characterMovement() {
 			if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 			{
 				CAMERAMANAGER->cameraMove(false, 0);
-				currentRC->bottom += 5;
-				currentRC->top += 5;
+				currentRC->bottom += 10;
+				currentRC->top += 10;
 			}
 			else {
-				currentRC->bottom += 5;
-				currentRC->top += 5;
+				currentRC->bottom += 10;
+				currentRC->top += 10;
 			}
 		}
 	}
@@ -190,18 +201,18 @@ void stage1::characterMovement() {
 			if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 			{
 				CAMERAMANAGER->cameraMove(true, 0);
-				currentRC->left -= 5;
-				currentRC->right -= 5;
+				currentRC->left -= 10;
+				currentRC->right -= 10;
 			}
 			else
 			{
 				if (currentRC->left <= 0)
 				{
-					currentRC->left += 5;
-					currentRC->right += 5;
+					currentRC->left += 10;
+					currentRC->right += 10;
 				}
-				currentRC->left -= 5;
-				currentRC->right -= 5;
+				currentRC->left -= 10;
+				currentRC->right -= 10;
 			}
 		}
 	}
@@ -213,18 +224,18 @@ void stage1::characterMovement() {
 			if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 			{
 				CAMERAMANAGER->cameraMove(true, 0);
-				currentRC->left += 5;
-				currentRC->right += 5;
+				currentRC->left += 10;
+				currentRC->right += 10;
 			}
 			else
 			{
 				if (currentRC->right >= 3456)
 				{
-					currentRC->left -= 5;
-					currentRC->right -= 5;
+					currentRC->left -= 10;
+					currentRC->right -= 10;
 				}
-				currentRC->left += 5;
-				currentRC->right += 5;
+				currentRC->left += 10;
+				currentRC->right += 10;
 			}
 		}
 	}
@@ -249,6 +260,11 @@ void stage1::characterMovement() {
 	{
 		SCENEMANAGER->changeScene("스테이지01");
 	}*/
+}
+
+void stage1::doorCollision()
+{
+	/* 문충돌 */
 }
 
 void stage1::makeEnemy(){
