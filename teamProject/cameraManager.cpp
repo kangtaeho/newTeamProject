@@ -160,3 +160,14 @@ void cameraManager::cameraFollow()
 
 	cameraRevision();
 }
+
+void cameraManager::stage2CameraFollow(bool isX, float speed)
+{
+	if (_cameraCondition == CAMERA_STAGE2)
+	{
+		if (isX) _camera.x += speed;
+		else _camera.y += speed;
+	}
+	cameraRevision();
+
+}

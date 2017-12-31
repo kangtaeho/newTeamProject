@@ -1,10 +1,7 @@
 #pragma once
 #include "image.h"
 
-static int _alpha;
 static image* _backBuffer = IMAGEMANAGER->addImage("backBuffer", WINSIZEX, WINSIZEY);
-///
-static image* _backBuffer2 = IMAGEMANAGER->addImage("backBuffer", WINSIZEX, WINSIZEY);
 
 class character;
 
@@ -14,8 +11,10 @@ private:
 	HDC _hdc;
 	bool _managerInit;
 
+
 protected:
 	character* _mainPlayer;
+	POINT		_playerStartPoint;
 
 public:
 	virtual HRESULT init();		//초기화 함수
@@ -29,9 +28,6 @@ public:
 
 	//백버퍼 접근자
 	image* getBackBuffer() { return _backBuffer; }
-	///
-	image* getBackBuffer2() { return _backBuffer2; }
-
 	
 	//메모리DC 접근자
 	HDC getMemDC() { return _backBuffer->getMemDC(); }

@@ -1,9 +1,8 @@
 #pragma once
 #include "gameNode.h"
 
-#define CHARASPEED 8;
-#define CHARAJUMP 6;
-#define CHARAZMOVE 4;
+#define CHARASPEED 4;
+#define CHARAJUMP 8;
 
 enum CHARA {
 	CHARA_RIGHT_STOP,
@@ -47,7 +46,6 @@ enum CHARA {
 	CHARA_LEFT_JUMP_KICK,
 	CHARA_RIGHT_ATT,
 	CHARA_LEFT_ATT,
-
 };
 
 class character : public gameNode
@@ -80,7 +78,15 @@ public:
 
 	RECT getRect() { return _colliRect; }
 	float getX() { return _x; }
+	void setX(float X) { _x = X; }
 	float getY() { return _y; }
+	void setY(float Y) { _y = Y; }
+
+	//상태값 HIT로 바뀌고 데미지
+	void hurt(int damage);
+	//상태값 STRIKED로 바뀌고 데미지 입으며
+	//x값이 클때는 왼쪽 작을때는 오른쪽으로 쓰러짐
+	void strike(int damage, float x);
 
 	static void MakeRightStop(void* obj);
 	static void MakeLeftStop(void* obj);
@@ -90,6 +96,8 @@ public:
 	static void MakeLeftHold(void* obj);
 	static void MakeRightDrill(void* obj);
 	static void MakeLeftDrill(void* obj);
+	static void MakeRightLand(void* obj);
+	static void MakeLeftLand(void* obj);
 
 	//캐릭터 상태접근자,설정자
 	CHARA getState() { return _state; }
@@ -103,9 +111,12 @@ public:
 	void setJP(float J) { _JP = J; }
 
 	//상하이동가능
-	void ZmoveOn() { _Zmove = CHARAZMOVE; }
+	void ZmoveOn() { _Zmove = CHARASPEED; }
 
 	//상하이동불가능
 	void ZmoveOff() { _Zmove = 0; };
+
+	//렉트최신화
+	void UpdateRect();
 };
 

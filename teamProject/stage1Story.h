@@ -3,8 +3,12 @@
 class stage1Story :
 	public gameNode
 {
+private:
+	//스토리 이미지 인덱스
+	int		_index;
+
+	//스토리 이미지 배열
 	image* _storyImage[4];
-	int _index;
 public:
 	stage1Story();
 	~stage1Story();
@@ -13,5 +17,6 @@ public:
 	void release();
 	void update();
 	void render();
+
 };
 

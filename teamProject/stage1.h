@@ -5,7 +5,18 @@
 #include "enemy.h"
 #include "stone.h"
 #include "character.h"
+#include "inventory.h"
+#include "enemyManager.h"
 
+/*
+static enum stageState
+{
+READY,		//¾ËÆÄ°ªÀ» À§ÇÑ ÁØºñ¸ğµå(ÀçÈ£ Ãß°¡)
+MOVING,
+FIGHTING,
+CLEAR
+};
+*/
 
 class stage1 : public gameNode
 {
@@ -20,9 +31,17 @@ private:
 
 	item* _stone; // ¹Ì´Ïµ¹µ¢ÀÌ ¤·¤·
 
+	int _alpha;	//¾ËÆÄ·»´õ¸¦ À§ÇÑ º¯¼ö
 
-	stageState _ss;
-	int _alpha;
+	inventory* _inven;				//ÀÎº¥Åä¸® Å¬·¡½º »ı¼º
+
+	bool _stopCharacter;			//Ä³¸¯ÅÍ°¡ ¸Ø­Ÿ´Ï?(ÀÎº¥Åä¸® ¿­¶§ »ç¿ë)
+
+	stageState _ss;	//½ºÅ×ÀÌÁö »óÅÂ(stdafx.h¿¡ Á¤ÀÇµÇ¾îÀÖÀ½)
+
+	enemyManager* _em;
+	bool _firstWave;
+	bool _secondWave;
 public:
 	stage1();
 	~stage1();
@@ -34,5 +53,9 @@ public:
 
 	virtual void setMainPlayer(character* mainPlayer) { _mainPlayer = mainPlayer; }
 	virtual character* getMainPlayer(){ return _mainPlayer; }
+
+	void makeEnemy();	//¸ó½ºÅÍ »ı¼º ÇÔ¼ö
+
+	void characterMovement();							//Ä³¸¯ÅÍ Å°¸ÅÁöÀú¸¦ °ü¸®ÇÏ´Â ÇÔ¼ö
 };
 

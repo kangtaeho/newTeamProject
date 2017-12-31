@@ -40,7 +40,7 @@ public:
 	image*	getItemImage(){ return _itemImage; }
 
 	//물약 소지 갯수 변경 및 가져오기(사용시 인수값 = -1)
-	void setCount(int count) { _count += count; }
+	void setCount(int count) { _count = count; }
 	int getCount(){ return _count; }
 
 	//가격 가져오기

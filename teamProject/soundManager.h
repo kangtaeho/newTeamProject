@@ -21,6 +21,9 @@ private:
 	typedef map<string, Channel**>::iterator arrChannelsIter;
 	
 private:
+	map<string, int> _listSounds;
+	map<string, int>::iterator _listSoundsIter;
+
 	System*		_system;
 	Sound**		_sound;
 	Channel**	_channel;

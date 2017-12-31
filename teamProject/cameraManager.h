@@ -10,7 +10,7 @@
 #define CAMERA_AIMING 1 //카메라가 aim 으로 설정된 rc를 따라감
 #define CAMERA_EFFECT 2 //카메라 흔들림, 효과 처리
 #define CAMERA_MOVING 3 //카메라 이동처리
-
+#define CAMERA_STAGE2 4 //2스테이지 카메라 이동 제어 
 //이펙트
 
 //#define EFFECT_POWF 0
@@ -59,6 +59,8 @@ public:
 	void cameraMove(bool isX, float speed);
 
 	void cameraFollow();
+
+	void stage2CameraFollow(bool isX, float speed);
 
 
 	// CAMERA_FREE, CAMERA_AIMING, CAMERA_EFFEICTING, CAMERA_MOVING로 카메라 상태를 설정합니다.
