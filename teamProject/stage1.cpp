@@ -40,8 +40,12 @@ HRESULT stage1::init()
 	_knife->init(PointMake(1000, 350));
 
 	//ø°≥ πÃ √ﬂ∞°...¡ﬂ  //ºˆ∫Û
-	_enemy = new enemy;
-	_enemy->init(PointMake(1500,400));
+
+	for (int i = 0; i < 4; i++)
+	{
+		_enemy = new enemy;
+		_enemy->init(PointMake(300 + i * 25, 300 + i * 25));
+	}
 
 	//πÃ¥œµπµ¢¿Ã //∫¥√∂
 	_stone = new stone;

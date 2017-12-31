@@ -25,7 +25,7 @@ HRESULT enemy::init(POINT point)
 	_CollircEnemy = RectMakeCenter(_x, _y, 50, 50); //충돌렉트
 	_enemyDirection = ENEMYDIRECTION_RIGHT_STOP; //기본상태
 	_jump = 0; //점프력
-	_Gravity = 0.2f; //중력
+	_Gravity = 0.1f; //중력
 	_HP = 100; //체에력
 	_speed = 3; //스퓌드
 
@@ -222,9 +222,9 @@ void enemy::update()
 	default:
 		break;
 	}
-	_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight());
+	//_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight());
 
-
+	//KEYANIMANAGER->update();
 }
 
 void enemy::render()
@@ -234,11 +234,11 @@ void enemy::render()
 	
 	//되는지 실험중
 
-	//IMAGEMANAGER->findImage("enemy01")->frameRender(getMemDC(),
-	//	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight())).x,
-	//	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight())).y, 0, 0);
+	IMAGEMANAGER->findImage("enemy01")->frameRender(getMemDC(),
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight())).x,
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight())).y, 0, 0);
 
-	_imageEnemy->aniRender(getMemDC(), _rcEnemy.left, _rcEnemy.top, _enemyMotion);
+	//_imageEnemy->aniRender(getMemDC(), _rcEnemy.left, _rcEnemy.top, _enemyMotion);
 }
 
 
