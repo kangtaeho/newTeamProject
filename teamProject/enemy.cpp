@@ -270,3 +270,7 @@ void enemy::collision()
 {
 
 }
+
+
+
+//ENEMY01  ÀÌ¹ÌÁö
