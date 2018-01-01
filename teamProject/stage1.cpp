@@ -71,6 +71,10 @@ HRESULT stage1::init()
 	_em = new enemyManager;
 	_em->init();
 
+	//아이템 벡터에 돌, 칼 추가
+	_vItem.push_back(_stone);
+	_vItem.push_back(_knife);
+
 	SOUNDMANAGER->play("스테이지1",0.5f);
 
 	return S_OK;
@@ -92,10 +96,13 @@ void stage1::update()
 		else
 			_ss = MOVING;
 	}
+	//스테이지 상태가 다음맵으로 넘어가는경우
 	else if (_ss == CLEAR)
 	{
+		//알파값 감소시켜 검은화면 나타나면서
 		if (_alpha >0)
 			_alpha -= 5;
+		//알파값이 0이 되면 다음 스테이지
 		else
 			SCENEMANAGER->changeScene("스테이지01");
 	}
@@ -133,7 +140,22 @@ void stage1::update()
 			SOUNDMANAGER->stop("스테이지1");
 		}
 
+		if (KEYMANAGER->isOnceKeyDown('4')) //강제로 돈드랍
+		{
+			dropMoney(PointMake(200,200),10);
+		}
+		if (KEYMANAGER->isOnceKeyDown('5')) //오브젝트 강제로 날라가는 상태로 변경
+		{
+			for (int i = 0; i < _vItem.size(); i++)
+			{
+				_vItem[i]->setState(true);
+			}
+		}
 		_inven->update();
+		for (int i = 0; i < _vItem.size(); i++)
+		{
+			_vItem[i]->update();
+		}
 	}
 }
 
@@ -141,10 +163,10 @@ void stage1::render()
 {
 	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
-	_knife->render();
+	//_knife->render();
 	_enemy->render();
 	_boss00->render();
-	_stone->render();
+	//_stone->render();
 
 	_mainPlayer->render();
 	
@@ -156,6 +178,11 @@ void stage1::render()
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).y, 0, 0);
 	_inven->render();
+
+	for (int i = 0; i < _vItem.size(); i++)
+	{
+		_vItem[i]->render();
+	}
 
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255-_alpha);
 
@@ -313,4 +340,13 @@ void stage1::makeEnemy(){
 	}
 
 	*/
+}
+//돈 드랍 함수			어디에        얼마냐
+void stage1::dropMoney(POINT point, int won){
+
+	item* tempMoney = new money;
+	tempMoney->init(point, won);
+
+	_vItem.push_back(tempMoney);
+
 }

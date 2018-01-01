@@ -8,6 +8,8 @@
 #include "character.h"
 #include "inventory.h"
 #include "enemyManager.h"
+#include "money.h"
+#include <vector>
 
 /*
 static enum stageState
@@ -23,6 +25,9 @@ class stage1 : public gameNode
 {
 
 private:
+
+	vector<item*> _vItem;	//바닥에 있는 아이템과 몬스터가 떨구는 돈을 위한 아이템 벡터
+	vector<item*> _viItem;
 
 	RECT rc1;
 	RECT* currentRC;
@@ -59,6 +64,8 @@ public:
 
 	virtual void setMainPlayer(character* mainPlayer) { _mainPlayer = mainPlayer; }
 	virtual character* getMainPlayer(){ return _mainPlayer; }
+	
+	void dropMoney(POINT point, int won);	//돈 드랍 함수 몬스터가 죽었을경우 이것 호출하면 됩니다.
 
 	void makeEnemy();	//몬스터 생성 함수
 

@@ -7,7 +7,7 @@ public:
 	money();
 	~money();
 
-	HRESULT init(POINT point);
+	HRESULT init(POINT point, int money);
 	void render();
 };
 

@@ -6,16 +6,26 @@ enum tagItemType{
 	THROW,		//투척 소모품(맵 object)
 	MONEY,		//돈
 };
+enum tagItemState{
+	DROP,		//떨어져 있는 상태	
+	THROWING	//던져지고 있는 상태
+};
 class item :
 	public gameNode
 {
 protected:
-	image* _itemImage;		//아이템 이미지
-	float _x, _y;			//아이템 중점좌표
-	tagItemType	_itemType;	//아이템 종류
-	int _itemEffect;		//아이템 효과(투척 -> 데미지 & 물약 -> 회복 & 돈->획득량)
-	int _price;				//아이템 가격
-	int _count;				//들고있는 갯수
+	image* _itemImage;			//아이템 이미지
+	float _x, _y;				//아이템 중점좌표
+	tagItemType	_itemType;		//아이템 종류
+	tagItemState _itemState;	//아이템 상태
+	int _itemEffect;			//아이템 효과(투척 -> 데미지 & 물약 -> 회복 & 돈->획득량)
+	int _price;					//아이템 가격
+	int _count;					//들고있는 갯수
+
+	int _frameX;				//현재 프레임X
+	int _frameCount;			//프레임 카운트변수
+
+	
 
 public:
 	item();
@@ -23,8 +33,10 @@ public:
 
 	//좌표가 필요없는 상점아이템 초기화
 	virtual HRESULT init();
-	//좌표가 필요한 오브젝트, 돈 초기화
+	//좌표가 필요한 오브젝트 초기화
 	virtual HRESULT init(POINT point);
+	//좌표가 필요하고 몬스터마다 드랍하는 돈을 다르게 하기 위한 초기화
+	virtual HRESULT init(POINT point, int money);
 	virtual void release();
 	virtual void update();
 	virtual void render();
@@ -45,6 +57,9 @@ public:
 
 	//가격 가져오기
 	int getPrice(){ return _price; }
+
+	//던질때 상태 변경
+	void setState(bool isThrow){ _itemState = THROWING; }
 
 
 };
