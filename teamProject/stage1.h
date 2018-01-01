@@ -67,9 +67,9 @@ public:
 	
 	void dropMoney(POINT point, int won);	//돈 드랍 함수 몬스터가 죽었을경우 이것 호출하면 됩니다.
 
-	void makeEnemy();	//몬스터 생성 함수
+	void makeEnemy();									//몬스터 생성 함수
 
 	void characterMovement();							//캐릭터 키매지저를 관리하는 함수
-	void doorCollision();
+	void doorCollision();								//문충돌 함수
 };
 
