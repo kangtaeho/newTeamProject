@@ -23,6 +23,12 @@ HRESULT item::init(POINT point)
 
 	return S_OK;
 }
+HRESULT item::init(POINT point, int money)
+{
+
+	return S_OK;
+}
+
 
 void item::release()
 {

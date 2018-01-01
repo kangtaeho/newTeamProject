@@ -11,14 +11,14 @@ money::~money()
 {
 }
 
-HRESULT money::init(POINT point)
+HRESULT money::init(POINT point, int money)
 {
 	//¿ÃπÃ¡ˆ √ ±‚»≠
 	_itemImage = IMAGEMANAGER->addFrameImage("µ∑", "./images/money.bmp", 132, 30,4,1 ,true, RGB(255, 0, 255));
 	//≈∏¿‘ √ ±‚»≠
 	_itemType = MONEY;
 	//µ∑ »πµÊ∑Æ
-	_itemEffect = 10;
+	_itemEffect = money;
 	//¡¬«•
 	_x = point.x; _y = point.y;
 	

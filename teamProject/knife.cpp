@@ -21,14 +21,25 @@ HRESULT knife::init(POINT point)
 
 	_price = 0; _count = 0;
 
+	_itemState = DROP;
+
 	return S_OK;
 }
 
 void knife::render()
 {
-	IMAGEMANAGER->findImage("나이프")->frameRender(getMemDC(), 
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).x,
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).y, 0, 0);
+	//떨어진 상태
+	if (_itemState == DROP)
+	{
+		IMAGEMANAGER->findImage("나이프")->frameRender(getMemDC(),
+			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).x,
+			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).y, 0, 0);
+	}
+	//날라가는 상태
+	else
+	{
+
+	}
 
 	//_itemImage->frameRender(getMemDC(), 300, 300, 0, 0);
 }
