@@ -15,7 +15,7 @@ HRESULT character::init()
 	_image = IMAGEMANAGER->addFrameImage("JIMMY", "./images/JIMMY.bmp", 3072, 2100, 16, 14, true, RGB(255, 0, 255));
 
 	_state = CHARA_RIGHT_STOP;
-
+	_Zmove = CHARASPEED;
 	_x = _StartX= WINSIZEX / 2;
 	_y = _StartY= WINSIZEY / 2;
 	_isRight = true;
@@ -257,102 +257,26 @@ void character::update()
 	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	//{
 	//}
-	if (KEYMANAGER->isOnceKeyDown('Z'))//점프
-	{
-		if (_state == CHARA_RIGHT_STOP || _state == CHARA_LEFT_STOP)
-		{
-			_StartX = _y;
-			_JP = CHARASPEED;
-			if (_isRight)
-			{
-				_state = CHARA_RIGHT_JUMP;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYRightJump");
-				_motion->start();
-			}
-			else
-			{
-				_state = CHARA_LEFT_JUMP;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJump");
-				_motion->start();
-			}
-		}
-		if (_state == CHARA_RIGHT_MOVE)
-		{
-			_StartX = _y;
-			_JP = CHARASPEED;
-			_state = CHARA_RIGHT_MOVE_JUMP;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRIghtMoveJump");
-			_motion->start();
-		}
-		if (_state == CHARA_LEFT_MOVE)
-		{
-			_StartX = _y;
-			_JP = CHARASPEED;
-			_state = CHARA_LEFT_MOVE_JUMP;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMoveJump");
-			_motion->start();
-		}
-	}
-	if (KEYMANAGER->isOnceKeyDown('X'))//주먹
-	{
-		if (_state == CHARA_RIGHT_STOP || _state == CHARA_LEFT_STOP
-			|| _state == CHARA_RIGHT_MOVE|| _state == CHARA_LEFT_MOVE
-			|| _state == CHARA_RIGHT_LAND || _state == CHARA_LEFT_LAND)
-		{
-			if (_isRight)
-			{
-				_state = CHARA_RIGHT_PUNCH_ONE;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYRightPunchOne");
-				_motion->start();
-			}
-			else
-			{
-				_state = CHARA_LEFT_PUNCH_ONE;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftPunchOne");
-				_motion->start();
-			}
-		}
-	}
-	if (KEYMANAGER->isOnceKeyDown('C'))//킥
-	{
-		if (_state == CHARA_RIGHT_STOP || _state == CHARA_LEFT_STOP
-			|| _state == CHARA_RIGHT_MOVE || _state == CHARA_LEFT_MOVE
-			|| _state == CHARA_RIGHT_LAND || _state == CHARA_LEFT_LAND)
-		{
-			if (_isRight)
-			{
-				_state = CHARA_RIGHT_KICK;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYRightKick");
-				_motion->start();
-			}
-			else
-			{
-				_state = CHARA_LEFT_KICK;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftKick");
-				_motion->start();
-			}
-		}
-	}
 	switch (_state)
 	{
 		//멈춘상태
 	case CHARA_RIGHT_STOP:
 	case CHARA_LEFT_STOP:
-		if (KEYMANAGER->isOnceKeyDown(VK_UP)|| KEYMANAGER->isOnceKeyDown(VK_DOWN))
-		{
-			if (_isRight)
-			{
-				_state = CHARA_RIGHT_MOVE;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYRightMove");
-				_motion->start();
-			}
-			else
-			{
-				_state = CHARA_LEFT_MOVE;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMove");
-				_motion->start();
-			}
-		}
+		//if (KEYMANAGER->isOnceKeyDown(VK_UP)|| KEYMANAGER->isOnceKeyDown(VK_DOWN))
+		//{
+		//	if (_isRight)
+		//	{
+		//		_motion = KEYANIMANAGER->findAnimation("JIMMYRightMove");
+		//		_motion->start();
+		//		_state = CHARA_RIGHT_MOVE;
+		//	}
+		//	else
+		//	{
+		//		_state = CHARA_LEFT_MOVE;
+		//		_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMove");
+		//		_motion->start();
+		//	}
+		//}
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
 			_isRight = false;
@@ -363,24 +287,24 @@ void character::update()
 		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
 		{
 			_isRight = true;
-			_state = CHARA_RIGHT_MOVE;
 			_motion = KEYANIMANAGER->findAnimation("JIMMYRightMove");
 			_motion->start();
+			_state = CHARA_RIGHT_MOVE;
 		}
 		
 		break;
 	
 	case CHARA_RIGHT_MOVE://오른쪽으로 움직이는 중
 		//상하좌우키를 누른상태가 아니라면
-		if (!(KEYMANAGER->isStayKeyDown(VK_UP)
-			&& KEYMANAGER->isStayKeyDown(VK_DOWN)
-			&& KEYMANAGER->isStayKeyDown(VK_LEFT)
-			&&KEYMANAGER->isStayKeyDown(VK_RIGHT)))
-		{
-				_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-				_motion->start();
-		}
+		//if (!(KEYMANAGER->isStayKeyDown(VK_UP)
+		//	&& KEYMANAGER->isStayKeyDown(VK_DOWN)
+		//	&& KEYMANAGER->isStayKeyDown(VK_LEFT)
+		//	&&KEYMANAGER->isStayKeyDown(VK_RIGHT)))
+		//{
+		//		_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+		//		_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+		//		_motion->start();
+		//}
 		if (KEYMANAGER->isStayKeyDown(VK_UP))
 		{
 			//if(사다리를 탈 수 있게 되었다)
@@ -396,28 +320,29 @@ void character::update()
 		{
 			_y += _Zmove;
 		}
-		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))//방향전환
-		{
-			_isRight = false;
-			_state = CHARA_LEFT_MOVE;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMove");
-			_motion->start();
-		}
+		
 		if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 		{
 			_x += CHARASPEED;
 		}
-	case CHARA_LEFT_MOVE://왼쪽으로 움직이는 중
-		//상하좌우키를 누른상태가 아니라면
-		if (!(KEYMANAGER->isStayKeyDown(VK_UP)
-			&& KEYMANAGER->isStayKeyDown(VK_DOWN)
-			&& KEYMANAGER->isStayKeyDown(VK_LEFT)
-			&& KEYMANAGER->isStayKeyDown(VK_RIGHT)))
+		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
 		{
 			_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
 			_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
 			_motion->start();
 		}
+		break;
+	case CHARA_LEFT_MOVE://왼쪽으로 움직이는 중
+		//상하좌우키를 누른상태가 아니라면
+		//if (!(KEYMANAGER->isStayKeyDown(VK_UP)
+		//	&& KEYMANAGER->isStayKeyDown(VK_DOWN)
+		//	&& KEYMANAGER->isStayKeyDown(VK_LEFT)
+		//	&& KEYMANAGER->isStayKeyDown(VK_RIGHT)))
+		//{
+		//	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+		//	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+		//	_motion->start();
+		//}
 		if (KEYMANAGER->isStayKeyDown(VK_UP))
 		{
 			//if(사다리를 탈 수 있게 되었다)
@@ -437,11 +362,10 @@ void character::update()
 		{
 			_x -= CHARASPEED;
 		}
-		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))//방향전환
+		if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
 		{
-			_isRight = true;
-			_state = CHARA_RIGHT_MOVE;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightMove");
+			_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
+			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
 			_motion->start();
 		}
 		break;
@@ -514,17 +438,20 @@ void character::update()
 				_motion->start();
 			}
 		}
-		if (_isRight)
+		if (KEYMANAGER->isOnceKeyDown('X'))
 		{
-			_state = CHARA_RIGHT_PUNCH_TWO;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightPunchTwo");
-			_motion->start();
-		}
-		else
-		{
-			_state = CHARA_LEFT_PUNCH_TWO;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftPunchTwo");
-			_motion->start();
+			if (_isRight)
+			{
+				_state = CHARA_RIGHT_PUNCH_TWO;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightPunchTwo");
+				_motion->start();
+			}
+			else
+			{
+				_state = CHARA_LEFT_PUNCH_TWO;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftPunchTwo");
+				_motion->start();
+			}
 		}
 		break;
 	case CHARA_RIGHT_PUNCH_TWO:
@@ -929,6 +856,81 @@ void character::update()
 	default:
 		break;
 	}
+	if (KEYMANAGER->isOnceKeyDown('Z'))//점프
+	{
+		if (_state == CHARA_RIGHT_STOP || _state == CHARA_LEFT_STOP)
+		{
+			_StartX = _y;
+			_JP = CHARASPEED;
+			if (_isRight)
+			{
+				_state = CHARA_RIGHT_JUMP;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightJump");
+				_motion->start();
+			}
+			else
+			{
+				_state = CHARA_LEFT_JUMP;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJump");
+				_motion->start();
+			}
+		}
+		if (_state == CHARA_RIGHT_MOVE)
+		{
+			_StartX = _y;
+			_JP = CHARASPEED;
+			_state = CHARA_RIGHT_MOVE_JUMP;
+			_motion = KEYANIMANAGER->findAnimation("JIMMYRIghtMoveJump");
+			_motion->start();
+		}
+		if (_state == CHARA_LEFT_MOVE)
+		{
+			_StartX = _y;
+			_JP = CHARASPEED;
+			_state = CHARA_LEFT_MOVE_JUMP;
+			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMoveJump");
+			_motion->start();
+		}
+	}
+	if (KEYMANAGER->isOnceKeyDown('X'))//주먹
+	{
+		if (_state == CHARA_RIGHT_STOP || _state == CHARA_LEFT_STOP
+			|| _state == CHARA_RIGHT_MOVE || _state == CHARA_LEFT_MOVE)
+		{
+			if (_isRight)
+			{
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightPunchOne");
+				_motion->start();
+				_state = CHARA_RIGHT_PUNCH_ONE;
+			}
+			else
+			{
+				_state = CHARA_LEFT_PUNCH_ONE;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftPunchOne");
+				_motion->start();
+			}
+		}
+	}
+	if (KEYMANAGER->isOnceKeyDown('C'))//킥
+	{
+		if (_state == CHARA_RIGHT_STOP || _state == CHARA_LEFT_STOP
+			|| _state == CHARA_RIGHT_MOVE || _state == CHARA_LEFT_MOVE)
+		{
+			if (_isRight)
+			{
+				_state = CHARA_RIGHT_KICK;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightKick");
+				_motion->start();
+			}
+			else
+			{
+				_state = CHARA_LEFT_KICK;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftKick");
+				_motion->start();
+			}
+		}
+	}
+	KEYANIMANAGER->update();
 	UpdateRect();
 
 }
@@ -936,11 +938,13 @@ void character::render()
 {
 	//_image->frameRender(getMemDC(), 100, 100, 0, 0);
 	_image->aniRender(getMemDC(), _rc.left, _rc.top,_motion);
+
+	//char 
 }
 
 void character::MakeRightStop(void* obj)
 {
-	character* C;
+	character* C=(character*) obj;
 
 	C->setState(CHARA_RIGHT_STOP);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightStop"));
@@ -948,7 +952,7 @@ void character::MakeRightStop(void* obj)
 }
 void character::MakeLeftStop(void* obj)
 {
-	character* C;
+	character* C = (character*)obj;
 
 	C->setState(CHARA_LEFT_STOP);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftStop"));
@@ -956,7 +960,7 @@ void character::MakeLeftStop(void* obj)
 }
 void character::MakeRightFall(void* obj)
 {
-	character* C;
+	character* C = (character*)obj;
 	C->setJP(0);
 	C->setState(CHARA_RIGHT_JUMP);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightJump"));
@@ -965,7 +969,7 @@ void character::MakeRightFall(void* obj)
 }
 void character::MakeLeftFall(void* obj)
 {
-	character* C;
+	character* C = (character*)obj;
 	C->setJP(0);
 	C->setState(CHARA_LEFT_JUMP);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftJump"));
@@ -973,7 +977,7 @@ void character::MakeLeftFall(void* obj)
 }
 void character::MakeRightHold(void* obj)
 {
-	character* C;
+	character* C = (character*)obj;
 
 	C->setState(CHARA_RIGHT_HOLD);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightHold"));
@@ -981,7 +985,7 @@ void character::MakeRightHold(void* obj)
 }
 void character::MakeLeftHold(void* obj)
 {
-	character* C;
+	character* C = (character*)obj;
 
 	C->setState(CHARA_LEFT_HOLD);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftHold"));
@@ -990,7 +994,7 @@ void character::MakeLeftHold(void* obj)
 //쇤네는 억울하옵니다!!!
 void character::MakeRightDrill(void* obj)
 {
-	character* C;
+	character* C = (character*)obj;
 
 	C->setState(CHARA_RIGHT_DRILL);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightDrill"));
@@ -998,7 +1002,7 @@ void character::MakeRightDrill(void* obj)
 }
 void character::MakeLeftDrill(void* obj)
 {
-	character* C;
+	character* C = (character*)obj;
 
 	C->setState(CHARA_LEFT_DRILL);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftDrill"));
@@ -1007,7 +1011,7 @@ void character::MakeLeftDrill(void* obj)
 
 void character::MakeRightLand(void* obj)
 {
-	character* C;
+	character* C = (character*)obj;
 
 	C->setState(CHARA_RIGHT_LAND);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightLand"));
@@ -1015,7 +1019,7 @@ void character::MakeRightLand(void* obj)
 }
 void character::MakeLeftLand(void* obj)
 {
-	character* C;
+	character* C = (character*)obj;
 
 	C->setState(CHARA_LEFT_LAND);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftLand"));

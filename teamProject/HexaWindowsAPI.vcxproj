@@ -100,6 +100,7 @@
     <ClInclude Include="knife.h" />
     <ClInclude Include="mainGame.h" />
     <ClInclude Include="money.h" />
+    <ClInclude Include="option.h" />
     <ClInclude Include="orangePotion.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="redPotion.h" />
@@ -145,6 +146,7 @@
     <ClCompile Include="knife.cpp" />
     <ClCompile Include="mainGame.cpp" />
     <ClCompile Include="money.cpp" />
+    <ClCompile Include="option.cpp" />
     <ClCompile Include="orangePotion.cpp" />
     <ClCompile Include="redPotion.cpp" />
     <ClCompile Include="sceneManager.cpp" />
