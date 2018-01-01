@@ -4,6 +4,7 @@
 #include "knife.h"
 #include "enemy.h"
 #include "boss00.h"
+#include "minion00.h"
 #include "stone.h"
 #include "character.h"
 #include "inventory.h"
@@ -39,6 +40,7 @@ private:
 	item* _knife; // 칼 스테이지로 가져옴
 	//enemy* _minion00; //enemy로
 	enemy* _boss00;
+	enemy* _minion00;
 
 	item* _stone; // 미니돌덩이 ㅇㅇ
 

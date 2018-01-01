@@ -54,7 +54,10 @@ void enemyManager::setPick(void)
 //보스
 void enemyManager::setBoss(void)
 {
+	enemy* temp;
+	temp = new boss00;
 
+	_vEnemy.push_back(temp);
 }
 
 //적 사망시 제거

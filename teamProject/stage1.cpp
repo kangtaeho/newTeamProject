@@ -53,6 +53,9 @@ HRESULT stage1::init()
 	_boss00 = new boss00;
 	_boss00->init(PointMake(500,300));
 
+	_minion00 = new minion00;
+	_minion00->init(PointMake(800, 300));
+
 	//¹Ì´Ïµ¹µ¢ÀÌ //º´Ã¶
 	_stone = new stone;
 	_stone->init(PointMake(2000, 450));
@@ -164,6 +167,7 @@ void stage1::render()
 	//_knife->render();
 	//_minion00->render();
 	_boss00->render();
+	_minion00->render();
 	//_stone->render();
 
 	_mainPlayer->render();
@@ -284,6 +288,7 @@ void stage1::characterMovement() {
 
 	//_minion00->update();
 	_boss00->update();
+	_minion00->update();
 	_mainPlayer->update();
 
 	/*if (KEYMANAGER->isOnceKeyDown('P'))

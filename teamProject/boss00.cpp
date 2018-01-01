@@ -36,7 +36,7 @@ HRESULT boss00::init(POINT point)
 
 	_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight()); //기본렉트
 	_CollircEnemy = RectMakeCenter(_x, _y, 50, 50); //충돌렉트
-	_BossDirection = BOSSDIRECTION_RIGHT_STOP; //기본상태
+	//_BossDirection = BOSSDIRECTION_RIGHT_STOP; //기본상태
 	_jump = 0; //점프력
 	_Gravity = 0.1f; //중력
 	_HP = 250; //체에력
@@ -44,54 +44,54 @@ HRESULT boss00::init(POINT point)
 
 
 	int rightStop[] = { 0 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossRightStop", "boss00", rightStop, 1, 6, true);
-	int leftStop[] = { 16 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossleftStop", "boss00", leftStop, 1, 6, true);
+	KEYANIMANAGER->addArrayFrameAnimation("bossRightStop", "boss00", rightStop, 1, 2, true);
+	int leftStop[] = { 15 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossleftStop", "boss00", leftStop, 1, 2, true);
 	int rightMove[] = { 0,1,2,1 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossRightMove", "boss00", rightMove, 4, 10, true);
-	int leftMove[] = { 16,15,14,15 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossLeftMove", "boss00", leftMove, 4, 10, true);
-	int rightOneJab[] = { 21,22 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossRightOneJab", "boss00", rightOneJab, 2, 10, true);
-	int leftOneJab[] = { 28,27 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossLeftOneJab", "boss00", leftOneJab, 2, 10, true);
-	int rightTwoJab[] = { 50,51,52 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossRightTwoJab", "boss00", rightTwoJab, 3, 10, true);
-	int leftTwoJab[] = { 63,62,61 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossLeftTwoJab", "boss00", leftTwoJab, 3, 10, true);
+	KEYANIMANAGER->addArrayFrameAnimation("bossRightMove", "boss00", rightMove, 4, 2, true);
+	int leftMove[] = { 15,14,13,14 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossLeftMove", "boss00", leftMove, 4, 2, true);
+	int rightOneJab[] = { 20,21 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossRightOneJab", "boss00", rightOneJab, 2, 2, true);
+	int leftOneJab[] = { 27,26 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossLeftOneJab", "boss00", leftOneJab, 2, 2, true);
+	int rightTwoJab[] = { 49,50,51 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossRightTwoJab", "boss00", rightTwoJab, 3, 2, true);
+	int leftTwoJab[] = { 62,61,60 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossLeftTwoJab", "boss00", leftTwoJab, 3, 2, true);
 	int rightHit[] = { 4 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossrightHit", "boss00", rightHit, 1, 6, true);
-	int leftHit[] = { 13 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossleftHit", "boss00", leftHit, 1, 6, true);
+	KEYANIMANAGER->addArrayFrameAnimation("bossrightHit", "boss00", rightHit, 1, 2, true);
+	int leftHit[] = { 12 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossleftHit", "boss00", leftHit, 1, 2, true);
 	int rightHit2[] = { 5,6 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossrightHit2", "boss00", rightHit2, 2, 6, true);
-	int leftHit2[] = { 12,11 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossleftHit2", "boss00", leftHit2, 2, 6, true);
+	KEYANIMANAGER->addArrayFrameAnimation("bossrightHit2", "boss00", rightHit2, 2, 2, true);
+	int leftHit2[] = { 11,10 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossleftHit2", "boss00", leftHit2, 2, 2, true);
 
 	//쓰러진상태
-	int rightDown[] = { 18 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossrightDown", "boss00", rightDown, 1, 6, true);
-	int leftDown[] = { 31 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossleftDown", "boss00", leftDown, 1, 6, true);
+	int rightDown[] = { 7 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossrightDown", "boss00", rightDown, 1, 2, true);
+	int leftDown[] = { 8 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossleftDown", "boss00", leftDown, 1, 2, true);
 	//연타공격이든 피없든 공중상태
-	int rightComboDown[] = { 17 };
+	int rightComboDown[] = { 6 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossrightComboDown", "boss00", rightComboDown, 1, 6, true);
-	int leftComboDown[] = { 32 };
+	int leftComboDown[] = { 9 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossleftComboDown", "boss00", leftComboDown, 1, 6, true);
 	//다운 후 기상
-	int rightStandUp[] = { 19 };
+	int rightStandUp[] = { 16 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossrightStandUp", "boss00", rightStandUp, 1, 6, true);
-	int leftStandUp[] = { 30 };
+	int leftStandUp[] = { 31 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossleftStandUp", "boss00", leftStandUp, 1, 6, true);
 	//쥬금
-	int bossDead[] = { 23,24,33,34,35,36,37,38 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossDead", "boss00", bossDead, 8, 10, true);
+	int bossDead[] = { 22,23,32,33,34,35,36,37 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossDead", "boss00", bossDead, 8, 1, true);
 
-	int clime[] = { 4,5 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossClime", "boss00", clime, 2, 8, true);
+	int clime[] = { 54,55 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossClime", "boss00", clime, 2, 2, true);
 
 
-	_enemyMotion = KEYANIMANAGER->findAnimation("bossRightMove");
+	_enemyMotion = KEYANIMANAGER->findAnimation("bossLeftMove");
 
 	return S_OK;
 }
