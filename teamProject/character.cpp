@@ -15,7 +15,7 @@ HRESULT character::init()
 	_image = IMAGEMANAGER->addFrameImage("JIMMY", "./images/JIMMY.bmp", 3072, 2100, 16, 14, true, RGB(255, 0, 255));
 
 	_state = CHARA_RIGHT_STOP;
-
+	_Zmove = CHARASPEED;
 	_x = _StartX= WINSIZEX / 2;
 	_y = _StartY= WINSIZEY / 2;
 	_isRight = true;
@@ -372,15 +372,15 @@ void character::update()
 	
 	case CHARA_RIGHT_MOVE://오른쪽으로 움직이는 중
 		//상하좌우키를 누른상태가 아니라면
-		if (!(KEYMANAGER->isStayKeyDown(VK_UP)
-			&& KEYMANAGER->isStayKeyDown(VK_DOWN)
-			&& KEYMANAGER->isStayKeyDown(VK_LEFT)
-			&&KEYMANAGER->isStayKeyDown(VK_RIGHT)))
-		{
-				_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-				_motion->start();
-		}
+		//if (!(KEYMANAGER->isStayKeyDown(VK_UP)
+		//	&& KEYMANAGER->isStayKeyDown(VK_DOWN)
+		//	&& KEYMANAGER->isStayKeyDown(VK_LEFT)
+		//	&&KEYMANAGER->isStayKeyDown(VK_RIGHT)))
+		//{
+		//		_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+		//		_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+		//		_motion->start();
+		//}
 		if (KEYMANAGER->isStayKeyDown(VK_UP))
 		{
 			//if(사다리를 탈 수 있게 되었다)
@@ -396,28 +396,22 @@ void character::update()
 		{
 			_y += _Zmove;
 		}
-		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))//방향전환
-		{
-			_isRight = false;
-			_state = CHARA_LEFT_MOVE;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMove");
-			_motion->start();
-		}
+		
 		if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 		{
 			_x += CHARASPEED;
 		}
 	case CHARA_LEFT_MOVE://왼쪽으로 움직이는 중
 		//상하좌우키를 누른상태가 아니라면
-		if (!(KEYMANAGER->isStayKeyDown(VK_UP)
-			&& KEYMANAGER->isStayKeyDown(VK_DOWN)
-			&& KEYMANAGER->isStayKeyDown(VK_LEFT)
-			&& KEYMANAGER->isStayKeyDown(VK_RIGHT)))
-		{
-			_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-			_motion->start();
-		}
+		//if (!(KEYMANAGER->isStayKeyDown(VK_UP)
+		//	&& KEYMANAGER->isStayKeyDown(VK_DOWN)
+		//	&& KEYMANAGER->isStayKeyDown(VK_LEFT)
+		//	&& KEYMANAGER->isStayKeyDown(VK_RIGHT)))
+		//{
+		//	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+		//	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+		//	_motion->start();
+		//}
 		if (KEYMANAGER->isStayKeyDown(VK_UP))
 		{
 			//if(사다리를 탈 수 있게 되었다)
@@ -437,13 +431,7 @@ void character::update()
 		{
 			_x -= CHARASPEED;
 		}
-		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))//방향전환
-		{
-			_isRight = true;
-			_state = CHARA_RIGHT_MOVE;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightMove");
-			_motion->start();
-		}
+		
 		break;
 	case CHARA_RIGHT_LAND:
 	case CHARA_LEFT_LAND:
