@@ -67,8 +67,8 @@ HRESULT stage1::init()
 	_minion01 = new minion01;
 	_minion01->init(PointMake(500, 500));
 
-	_minion02 = new minion02;
-	_minion02->init(PointMake(800, 500));
+	//_minion02 = new minion02;
+	//_minion02->init(PointMake(800, 500));
 
 	//¹Ì´Ïµ¹µ¢ÀÌ //º´Ã¶
 	_stone = new stone;
@@ -202,7 +202,7 @@ void stage1::render()
 	_boss00->render();
 	_minion00->render();
 	_minion01->render();
-	_minion02->render();
+	//_minion02->render();
 	//_stone->render();
 
 	_mainPlayer->render();
@@ -328,7 +328,7 @@ void stage1::characterMovement() {
 	_boss00->update();
 	_minion00->update();
 	_minion01->update();
-	_minion02->render();
+	//_minion02->update();
 	_mainPlayer->update();
 
 	/*if (KEYMANAGER->isOnceKeyDown('P'))

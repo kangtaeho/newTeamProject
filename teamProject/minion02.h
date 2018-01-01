@@ -4,6 +4,14 @@
 
 class minion02 : public enemy
 {
+
+private:
+
+
+
+
+
+
 public:
 	minion02();
 	~minion02();
