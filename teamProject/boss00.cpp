@@ -13,7 +13,7 @@ boss00::~boss00()
 
 HRESULT boss00::init(POINT point)
 {
-	_imageBoss = IMAGEMANAGER->addFrameImage("boss00", "./images/boss00.bmp", 0, 0, 1024, 390, 16, 6, true, RGB(255, 0, 255));
+	_imageBoss = IMAGEMANAGER->addFrameImage("boss00", "./images/boss00.bmp", 0, 0, 3072, 1170, 16, 6, true, RGB(255, 0, 255));
 	_x = point.x;
 	_y = point.y;
 
@@ -36,21 +36,21 @@ HRESULT boss00::init(POINT point)
 	KEYANIMANAGER->addArrayFrameAnimation("bossRightMove", "boss00", rightMove, 4, 10, true);
 	int leftMove[] = { 16,15,14,15 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossLeftMove", "boss00", leftMove, 4, 10, true);
-	int rightOneJab[] = { 86,87 };
+	int rightOneJab[] = { 21,22 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossRightOneJab", "boss00", rightOneJab, 2, 10, true);
-	int leftOneJab[] = { 91,90 };
+	int leftOneJab[] = { 28,27 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossLeftOneJab", "boss00", leftOneJab, 2, 10, true);
-	int rightTwoJab[] = { 22,23 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossRightTwoJab", "boss00", rightTwoJab, 2, 10, true);
-	int leftTwoJab[] = { 27,26 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossLeftTwoJab", "boss00", leftTwoJab, 2, 10, true);
-	int rightHit[] = { 6 };
+	int rightTwoJab[] = { 50,51,52 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossRightTwoJab", "boss00", rightTwoJab, 3, 10, true);
+	int leftTwoJab[] = { 63,62,61 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossLeftTwoJab", "boss00", leftTwoJab, 3, 10, true);
+	int rightHit[] = { 4 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossrightHit", "boss00", rightHit, 1, 6, true);
-	int leftHit[] = { 11 };
+	int leftHit[] = { 13 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossleftHit", "boss00", leftHit, 1, 6, true);
-	int rightHit2[] = { 7,8 };
+	int rightHit2[] = { 5,6 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossrightHit2", "boss00", rightHit2, 2, 6, true);
-	int leftHit2[] = { 10,9 };
+	int leftHit2[] = { 12,11 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossleftHit2", "boss00", leftHit2, 2, 6, true);
 
 	//쓰러진상태

@@ -80,11 +80,11 @@ public:
 	~boss00();
 
 
-	HRESULT init(POINT point);
-	void release();
-	void update();
-	void render();
-	void collision();
+	virtual HRESULT init(POINT point);
+	virtual void release();
+	virtual void update();
+	virtual void render();
+	virtual void collision();
 
 
 	//콜백함수를 위함
