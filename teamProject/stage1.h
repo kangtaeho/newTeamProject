@@ -6,6 +6,7 @@
 #include "enemy.h"
 #include "boss00.h"
 #include "minion00.h"
+#include "minion01.h"
 #include "stone.h"
 #include "character.h"
 #include "inventory.h"
@@ -46,6 +47,7 @@ private:
 	//enemy* _minion00; //enemy·Î
 	enemy* _boss00;
 	enemy* _minion00;
+	enemy* _minion01;
 
 	
 

@@ -130,6 +130,9 @@
     <ClCompile Include="option.cpp">
       <Filter>MainGame\option</Filter>
     </ClCompile>
+    <ClCompile Include="minion01.cpp">
+      <Filter>MainGame\enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h">
@@ -272,6 +275,9 @@
     </ClInclude>
     <ClInclude Include="option.h">
       <Filter>MainGame\option</Filter>
+    </ClInclude>
+    <ClInclude Include="minion01.h">
+      <Filter>MainGame\enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
