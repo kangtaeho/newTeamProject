@@ -121,6 +121,9 @@
     <ClCompile Include="boss00.cpp">
       <Filter>MainGame\enemy</Filter>
     </ClCompile>
+    <ClCompile Include="minion00.cpp">
+      <Filter>MainGame\enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h">
@@ -253,6 +256,9 @@
       <Filter>MainGame\scene</Filter>
     </ClInclude>
     <ClInclude Include="boss00.h">
+      <Filter>MainGame\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="minion00.h">
       <Filter>MainGame\enemy</Filter>
     </ClInclude>
   </ItemGroup>

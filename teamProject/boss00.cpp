@@ -89,21 +89,6 @@ void boss00::release()
 
 void boss00::update()
 {
-	//카메라확인겸 움직이는지 확인중
-	//_x = (_rcEnemy.left + _rcEnemy.right) / 2;
-	//_y = (_rcEnemy.top + _rcEnemy.bottom) / 2;
-
-	//여기 모르겠음
-	//if (_x < _backgroundsizex-300) _speed = 3;
-	//if (_x > _backgroundsizex+300) _speed = -3;
-
-	//_x -= _speed;
-	//_rcEnemy = RectMakeCenter(_x, _y, 100, 100);
-
-	
-
-
-
 
 	//_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight());
 
