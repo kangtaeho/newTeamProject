@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "enemy.h"
 
 enum BOSSDIRECTION
 {
@@ -54,16 +55,17 @@ enum BOSSDIRECTION
 };
 
 
-class boss00 : public gameNode
+class boss00 : public enemy
 {
 private:
 	BOSSDIRECTION _BossDirection;
 
 
 	//이미지와 위치값과 렉트와 HP설정
-	image* _imageBoss;				//이미지
-	RECT _rcBoss;				//렉트
-	RECT _CollircBoss;			//충돌렉트
+	/*
+	image* _imageEnemy;				//이미지
+	RECT _rcEnemy;				//렉트
+	RECT _CollircEnemy;			//충돌렉트
 	int _HP;					//체력
 	int _maxHP;					//최대체력
 	int _speed;					//속도
@@ -71,7 +73,9 @@ private:
 	float _ZMove;				//z무브
 	float _jump, _Gravity;		//점프,중력
 
-	animation* _BossMotion;
+	animation* _enemyMotion;
+	*/
+	
 
 
 
@@ -81,9 +85,9 @@ public:
 
 
 	virtual HRESULT init(POINT point);
-	virtual void release();
-	virtual void update();
-	virtual void render();
+	//virtual void release();
+	//virtual void update();
+	//virtual void render();
 	virtual void collision();
 
 
@@ -94,12 +98,15 @@ public:
 	static void leftAttack(void* obj);
 	static void leftJumpAttack(void* obj);
 
-	//에네미 상태에 따른 접근자와 설정자겠지?
-	BOSSDIRECTION getEnemyDirection(void) { return _BossDirection; }
-	void setEnemyDirection(BOSSDIRECTION direction) { _BossDirection = direction; }
+	/*virtual ENEMYDIRECTION getEnemyDirection(void) { return _BossDirection; }
+	virtual void setEnemyDirection(ENEMYDIRECTION direction) { _BossDirection; }*/
 
-	//에네미의 모션에 따른 접근자와 설정자겠지?
-	animation* getBossMotion(void) { return _BossMotion; }
-	void getBossMotion(animation* ani) { _BossMotion = ani; }
+	////에네미 상태에 따른 접근자와 설정자겠지?
+	//BOSSDIRECTION getEnemyDirection(void) { return _BossDirection; }
+	//void setEnemyDirection(BOSSDIRECTION direction) { _BossDirection = direction; }
+
+	////에네미의 모션에 따른 접근자와 설정자겠지?
+	//animation* getBossMotion(void) { return _BossMotion; }
+	//void getBossMotion(animation* ani) { _BossMotion = ani; }
 };
 

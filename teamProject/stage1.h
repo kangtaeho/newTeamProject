@@ -37,8 +37,8 @@ private:
 	//float doorX, doorY;
 	
 	item* _knife; // 칼 스테이지로 가져옴
-	minion00* _minion00;
-	boss00* _boss00;
+	//enemy* _minion00; //enemy로
+	enemy* _boss00;
 
 	item* _stone; // 미니돌덩이 ㅇㅇ
 

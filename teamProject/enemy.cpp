@@ -13,7 +13,7 @@ enemy::~enemy()
 
 
 
-HRESULT enemy::init(const char* imageName,POINT point)
+HRESULT enemy::init(/*const char* imageName,*/POINT point)
 {
 	//  _imageEnemy = IMAGEMANAGER->addFrameImage("enemy01","./images/enemy01.bmp",0,0,3072,1344,16,7,true,RGB(255,0,255));
 	//  _x = point.x;
@@ -223,8 +223,8 @@ void enemy::update()
 	//          	break;
 	//          }
 	//_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight());
-
-	//KEYANIMANAGER->update();
+	_enemyMotion->start();
+	KEYANIMANAGER->update();
 }
 
 void enemy::render()

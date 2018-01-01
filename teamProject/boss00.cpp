@@ -13,14 +13,29 @@ boss00::~boss00()
 
 HRESULT boss00::init(POINT point)
 {
-	_imageBoss = IMAGEMANAGER->addFrameImage("boss00", "./images/boss00.bmp", 0, 0, 3072, 1170, 16, 6, true, RGB(255, 0, 255));
+
+	/*
+	image* _imageEnemy;				//이미지
+	RECT _rcEnemy;				//렉트
+	RECT _CollircEnemy;			//충돌렉트
+	int _HP;					//체력
+	int _maxHP;					//최대체력
+	int _speed;					//속도
+	int _x, _y;					//xy값
+	float _ZMove;				//z무브
+	float _jump, _Gravity;		//점프,중력
+
+	animation* _enemyMotion;
+	*/
+
+	_imageEnemy = IMAGEMANAGER->addFrameImage("boss00", "./images/boss00.bmp", 0, 0, 3072, 1170, 16, 6, true, RGB(255, 0, 255));
 	_x = point.x;
 	_y = point.y;
 
 	//디폴트
 
-	_rcBoss = RectMakeCenter(_x, _y, _imageBoss->getFrameWidth(), _imageBoss->getFrameHeight()); //기본렉트
-	_CollircBoss = RectMakeCenter(_x, _y, 50, 50); //충돌렉트
+	_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight()); //기본렉트
+	_CollircEnemy = RectMakeCenter(_x, _y, 50, 50); //충돌렉트
 	_BossDirection = BOSSDIRECTION_RIGHT_STOP; //기본상태
 	_jump = 0; //점프력
 	_Gravity = 0.1f; //중력
@@ -76,37 +91,37 @@ HRESULT boss00::init(POINT point)
 	KEYANIMANAGER->addArrayFrameAnimation("bossClime", "boss00", clime, 2, 8, true);
 
 
-	_BossMotion = KEYANIMANAGER->findAnimation("bossRightStop");
+	_enemyMotion = KEYANIMANAGER->findAnimation("bossRightMove");
 
 	return S_OK;
 }
 
-void boss00::release()
-{
+//void boss00::release()
+//{
+//
+//
+//}
 
+//void boss00::update()
+//{
+//
+//	//_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight());
+//
+//	//KEYANIMANAGER->update();
+//}
 
-}
-
-void boss00::update()
-{
-
-	//_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight());
-
-	//KEYANIMANAGER->update();
-}
-
-void boss00::render()
-{
-	//에네미rc
-	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x, CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y, 100, 100);
-
-
-	IMAGEMANAGER->findImage("boss00")->frameRender(getMemDC(),
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageBoss->getFrameWidth(), _imageBoss->getFrameHeight())).x,
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageBoss->getFrameWidth(), _imageBoss->getFrameHeight())).y, 0, 0);
-
-	//_imageEnemy->aniRender(getMemDC(), _rcEnemy.left, _rcEnemy.top, _enemyMotion);
-}
+//void boss00::render()
+//{
+//	//에네미rc
+//	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x, CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y, 100, 100);
+//
+//
+//	/*IMAGEMANAGER->findImage("boss00")->frameRender(getMemDC(),
+//		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageBoss->getFrameWidth(), _imageBoss->getFrameHeight())).x,
+//		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageBoss->getFrameWidth(), _imageBoss->getFrameHeight())).y, 0, 0);*/
+//
+//	//_imageEnemy->aniRender(getMemDC(), _rcEnemy.left, _rcEnemy.top, _enemyMotion);
+//}
 
 
 

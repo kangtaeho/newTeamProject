@@ -56,7 +56,8 @@
 
 class enemy : public gameNode
 {
-private:
+protected:
+	//
 	//ENEMYDIRECTION _enemyDirection;
 
 
@@ -80,7 +81,7 @@ public:
 	~enemy();
 
 
-	virtual HRESULT init(const char* imageName,POINT point);
+	virtual HRESULT init(/*const char* imageName,*/POINT point);
 	virtual void release();
 	virtual void update();
 	virtual void render();
@@ -95,12 +96,12 @@ public:
 	static void leftJumpAttack(void* obj);
 
 	//에네미 상태에 따른 접근자와 설정자겠지?
-	//ENEMYDIRECTION getEnemyDirection(void) { return _enemyDirection; }
-	//void setEnemyDirection(ENEMYDIRECTION direction) { _enemyDirection = direction; }
+	/*virtual ENEMYDIRECTION getEnemyDirection(void) {  }
+	virtual void setEnemyDirection(ENEMYDIRECTION direction) { }*/
 	//
 	////에네미의 모션에 따른 접근자와 설정자겠지?
-	//animation* getEnemyMotion(void) { return _enemyMotion; }
-	//void setEnemyMotion(animation* ani) { _enemyMotion = ani; }
+	animation* getEnemyMotion(void) { return _enemyMotion; }
+	void setEnemyMotion(animation* ani) { _enemyMotion = ani; }
 };
 
 //이제 콜백함수가 필요한 모션들이라던가 그런거 뭐해야될까영
