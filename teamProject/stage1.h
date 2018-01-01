@@ -5,6 +5,7 @@
 #include "bigStone.h"
 #include "enemy.h"
 #include "boss00.h"
+#include "minion00.h"
 #include "stone.h"
 #include "character.h"
 #include "inventory.h"
@@ -38,10 +39,16 @@ private:
 	//float doorX, doorY;
 	
 	item* _knife; // 칼 스테이지로 가져옴
+<<<<<<< HEAD
 	item* _stone; // 미니돌덩이 ㅇㅇ
 	item* _bigStone; //큰 돌덩이 
 	enemy* _enemy;
 	boss00* _boss00;
+=======
+	//enemy* _minion00; //enemy로
+	enemy* _boss00;
+	enemy* _minion00;
+>>>>>>> 595b5d05a777451a2901033805c88e8322ee1db4
 
 	
 
@@ -70,9 +77,13 @@ public:
 	
 	void dropMoney(POINT point, int won);	//돈 드랍 함수 몬스터가 죽었을경우 이것 호출하면 됩니다.
 
-	void makeEnemy();									//몬스터 생성 함수
+	void makeEnemy();	//몬스터 생성 함수
 
 	void characterMovement();							//캐릭터 키매지저를 관리하는 함수
+<<<<<<< HEAD
 
+=======
+	void doorCollision();
+>>>>>>> 595b5d05a777451a2901033805c88e8322ee1db4
 };
 

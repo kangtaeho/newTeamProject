@@ -2,7 +2,7 @@
 #include "gameNode.h"
 
 #define CHARASPEED 4;
-#define CHARAJUMP 5;
+#define CHARAJUMP 8;
 
 enum CHARA {
 	CHARA_RIGHT_STOP,
@@ -73,6 +73,8 @@ public:
 	void update();
 	void render();
 
+	//렉트최신화함수
+	void RectUpdate();
 
 	RECT getRect() { return _colliRect; }
 	float getX() { return _x; }

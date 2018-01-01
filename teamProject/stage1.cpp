@@ -25,11 +25,15 @@ HRESULT stage1::init()
 	DOOR = IMAGEMANAGER->addFrameImage("스테이지1_문", "./images/door.bmp", 460, 155, 3, 1, true, RGB(255, 0, 255));
 	DOOR->setX(3225);
 	DOOR->setY(258);
+<<<<<<< HEAD
 
 
 
 	DOOR->setFrameX(0);
 	DOORRC = RectMakeCenter(3225, 190, 10, 10);
+=======
+	//DOORRC = RectMakeCenter(1000, 300, 200, 200);
+>>>>>>> 595b5d05a777451a2901033805c88e8322ee1db4
 	
 	//알파값,웨이브정보 초기화
 	_alpha = _firstWave = _secondWave = 0;
@@ -51,14 +55,14 @@ HRESULT stage1::init()
 
 	//에너미 추가...중  //수빈
 
-	for (int i = 0; i < 4; i++)
-	{
-		_enemy = new enemy;
-		_enemy->init(PointMake(300 + i * 25, 300 + i * 25));
-	}
+	/*_minion00 = new minion00;
+	_minion00->init(PointMake(300 , 300 ));*/
 
-		_boss00 = new boss00;
-		_boss00->init(PointMake(500,300));
+	_boss00 = new boss00;
+	_boss00->init(PointMake(500,300));
+
+	_minion00 = new minion00;
+	_minion00->init(PointMake(800, 300));
 
 	//미니돌덩이 //병철
 	_stone = new stone;
@@ -179,6 +183,7 @@ void stage1::update()
 		{
 			_vItem[i]->update();
 		}
+		
 	}
 }
 
@@ -187,8 +192,9 @@ void stage1::render()
 	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	//_knife->render();
-	_enemy->render();
+	//_minion00->render();
 	_boss00->render();
+	_minion00->render();
 	//_stone->render();
 
 	_mainPlayer->render();
@@ -310,7 +316,9 @@ void stage1::characterMovement() {
 		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
-	_enemy->update();
+	//_minion00->update();
+	_boss00->update();
+	_minion00->update();
 	_mainPlayer->update();
 
 	/*if (KEYMANAGER->isOnceKeyDown('P'))
@@ -319,7 +327,14 @@ void stage1::characterMovement() {
 	}*/
 }
 
+<<<<<<< HEAD
 
+=======
+void stage1::doorCollision()
+{
+	/* 문충돌 */
+}
+>>>>>>> 595b5d05a777451a2901033805c88e8322ee1db4
 
 void stage1::makeEnemy(){
 

@@ -121,8 +121,8 @@
     <ClCompile Include="boss00.cpp">
       <Filter>MainGame\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="option.cpp">
-      <Filter>MainGame\option</Filter>
+    <ClCompile Include="minion00.cpp">
+      <Filter>MainGame\enemy</Filter>
     </ClCompile>
     <ClCompile Include="bigStone.cpp">
       <Filter>MainGame\inventory\item</Filter>
@@ -261,8 +261,8 @@
     <ClInclude Include="boss00.h">
       <Filter>MainGame\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="option.h">
-      <Filter>MainGame\option</Filter>
+    <ClInclude Include="minion00.h">
+      <Filter>MainGame\enemy</Filter>
     </ClInclude>
     <ClInclude Include="bigStone.h">
       <Filter>MainGame\inventory\item</Filter>
@@ -334,9 +334,6 @@
     </Filter>
     <Filter Include="MainGame\character">
       <UniqueIdentifier>{9effb95f-dcb9-469c-aed3-9819c0731e46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainGame\option">
-      <UniqueIdentifier>{daaf9f43-48db-4641-81d5-f035bb19e556}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
