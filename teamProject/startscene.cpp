@@ -18,6 +18,7 @@ HRESULT startscene::init()
 
 	_index = true;
 	SOUNDMANAGER->play("게임시작화면");
+	SOUNDMANAGER->setCurrentBgmKey("게임시작화면");
 	return S_OK;
 }
 void startscene::release()
@@ -29,12 +30,15 @@ void startscene::update()
 	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
 		//스타트를 가르키고 있다면
-		if (_index)
-		SCENEMANAGER->changeScene("1스테이지대화", false);
-		SOUNDMANAGER->stop("게임시작화면");
-		//옵션화면 미구현
-		/*else
-			SCENEMANAGER->changeScene("스테이지00", false);*/
+		if (_index) {
+			SCENEMANAGER->changeScene("1스테이지대화", false);
+			SOUNDMANAGER->stop("게임시작화면");
+		}
+		else {
+			
+
+		}
+
 	}
 	//화살표이동
 	if (KEYMANAGER->isOnceKeyDown(VK_DOWN))

@@ -21,6 +21,7 @@ private:
 	mapSceneList _mLoadingSceneList;
 
 	DWORD _loadingThreadID;
+
 	
 public:
 	HRESULT init(void);

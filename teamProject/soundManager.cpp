@@ -25,6 +25,8 @@ HRESULT soundManager::init(void)
 	memset(_sound, 0, sizeof(Sound*) * TOTALSOUNDBUFFER);
 	memset(_channel, 0, sizeof(Channel*) * TOTALSOUNDBUFFER);
 
+	_currentBgm = "keyName";
+
 	return S_OK;
 }
 

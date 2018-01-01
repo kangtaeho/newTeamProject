@@ -30,6 +30,8 @@ private:
 
 	arrSounds	_mTotalSounds;
 
+	string _currentBgm;
+
 public:
 	soundManager();
 	~soundManager();
@@ -49,5 +51,7 @@ public:
 	bool isPlaySound(string keyName);
 	bool isPauseSound(string keyName);
 
+	string getCurrentBgmKey() { return _currentBgm; }
+	void setCurrentBgmKey(string currentBgm) { _currentBgm = currentBgm; }
 };
 

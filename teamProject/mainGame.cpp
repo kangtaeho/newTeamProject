@@ -22,14 +22,13 @@ HRESULT mainGame::init()			//초기화 함수
 	SOUNDMANAGER->addSound("흣(때릴때)", "./sounds/흣(때릴때).wav", false, false);
 	SOUNDMANAGER->addSound("펀치맞을때", "./sounds/펀치맞을때.wav", false, false);
 
-
-
 	//병철 추가 // 스테이지 1 씬 //20171227 7:43
 	SCENEMANAGER->addScene("스테이지00", new stage1);
 	SCENEMANAGER->addScene("스테이지01", new stage2);
 
 	//재호 : 게임시작화면
 	SCENEMANAGER->addScene("스타트", new startscene);
+
 	//재호 : 1,3스테이지 대화화면
 	SCENEMANAGER->addScene("1스테이지대화", new stage1Story);
 	SCENEMANAGER->addScene("3스테이지대화", new stage3Story);
