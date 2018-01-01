@@ -25,15 +25,15 @@ HRESULT stage1::init()
 	DOOR = IMAGEMANAGER->addFrameImage("스테이지1_문", "./images/door.bmp", 460, 155, 3, 1, true, RGB(255, 0, 255));
 	DOOR->setX(3225);
 	DOOR->setY(258);
-<<<<<<< HEAD
+
 
 
 
 	DOOR->setFrameX(0);
 	DOORRC = RectMakeCenter(3225, 190, 10, 10);
-=======
+
 	//DOORRC = RectMakeCenter(1000, 300, 200, 200);
->>>>>>> 595b5d05a777451a2901033805c88e8322ee1db4
+
 	
 	//알파값,웨이브정보 초기화
 	_alpha = _firstWave = _secondWave = 0;
@@ -326,16 +326,6 @@ void stage1::characterMovement() {
 		SCENEMANAGER->changeScene("스테이지01");
 	}*/
 }
-
-<<<<<<< HEAD
-
-=======
-void stage1::doorCollision()
-{
-	/* 문충돌 */
-}
->>>>>>> 595b5d05a777451a2901033805c88e8322ee1db4
-
 void stage1::makeEnemy(){
 
 	/*

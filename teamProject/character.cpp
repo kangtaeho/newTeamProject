@@ -407,6 +407,7 @@ void character::update()
 		{
 			_x += CHARASPEED;
 		}
+		break;
 	case CHARA_LEFT_MOVE://왼쪽으로 움직이는 중
 		//상하좌우키를 누른상태가 아니라면
 		if (!(KEYMANAGER->isStayKeyDown(VK_UP)
@@ -514,17 +515,20 @@ void character::update()
 				_motion->start();
 			}
 		}
-		if (_isRight)
+		if (KEYMANAGER->isOnceKeyDown('X'))
 		{
-			_state = CHARA_RIGHT_PUNCH_TWO;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightPunchTwo");
-			_motion->start();
-		}
-		else
-		{
-			_state = CHARA_LEFT_PUNCH_TWO;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftPunchTwo");
-			_motion->start();
+			if (_isRight)
+			{
+				_state = CHARA_RIGHT_PUNCH_TWO;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightPunchTwo");
+				_motion->start();
+			}
+			else
+			{
+				_state = CHARA_LEFT_PUNCH_TWO;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftPunchTwo");
+				_motion->start();
+			}
 		}
 		break;
 	case CHARA_RIGHT_PUNCH_TWO:
@@ -930,6 +934,7 @@ void character::update()
 		break;
 	}
 	UpdateRect();
+	KEYANIMANAGER->update();
 
 }
 void character::render()
@@ -940,7 +945,7 @@ void character::render()
 
 void character::MakeRightStop(void* obj)
 {
-	character* C;
+	character* C = (character*) obj;
 
 	C->setState(CHARA_RIGHT_STOP);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightStop"));
@@ -948,7 +953,7 @@ void character::MakeRightStop(void* obj)
 }
 void character::MakeLeftStop(void* obj)
 {
-	character* C;
+	character* C = (character*)obj;
 
 	C->setState(CHARA_LEFT_STOP);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftStop"));
@@ -956,7 +961,7 @@ void character::MakeLeftStop(void* obj)
 }
 void character::MakeRightFall(void* obj)
 {
-	character* C;
+	character* C = (character*) obj;;
 	C->setJP(0);
 	C->setState(CHARA_RIGHT_JUMP);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightJump"));
@@ -965,7 +970,7 @@ void character::MakeRightFall(void* obj)
 }
 void character::MakeLeftFall(void* obj)
 {
-	character* C;
+	character* C = (character*) obj;;
 	C->setJP(0);
 	C->setState(CHARA_LEFT_JUMP);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftJump"));
@@ -973,7 +978,7 @@ void character::MakeLeftFall(void* obj)
 }
 void character::MakeRightHold(void* obj)
 {
-	character* C;
+	character* C = (character*) obj;;
 
 	C->setState(CHARA_RIGHT_HOLD);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightHold"));
@@ -981,7 +986,7 @@ void character::MakeRightHold(void* obj)
 }
 void character::MakeLeftHold(void* obj)
 {
-	character* C;
+	character* C = (character*) obj;;
 
 	C->setState(CHARA_LEFT_HOLD);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftHold"));
@@ -990,7 +995,7 @@ void character::MakeLeftHold(void* obj)
 //쇤네는 억울하옵니다!!!
 void character::MakeRightDrill(void* obj)
 {
-	character* C;
+	character* C = (character*) obj;;
 
 	C->setState(CHARA_RIGHT_DRILL);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightDrill"));
@@ -998,7 +1003,7 @@ void character::MakeRightDrill(void* obj)
 }
 void character::MakeLeftDrill(void* obj)
 {
-	character* C;
+	character* C = (character*) obj;;
 
 	C->setState(CHARA_LEFT_DRILL);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftDrill"));
@@ -1007,7 +1012,7 @@ void character::MakeLeftDrill(void* obj)
 
 void character::MakeRightLand(void* obj)
 {
-	character* C;
+	character* C = (character*) obj;;
 
 	C->setState(CHARA_RIGHT_LAND);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightLand"));
@@ -1015,7 +1020,7 @@ void character::MakeRightLand(void* obj)
 }
 void character::MakeLeftLand(void* obj)
 {
-	character* C;
+	character* C = (character*) obj;;
 
 	C->setState(CHARA_LEFT_LAND);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftLand"));
