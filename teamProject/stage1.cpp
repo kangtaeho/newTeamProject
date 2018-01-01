@@ -26,8 +26,10 @@ HRESULT stage1::init()
 	DOOR->setX(3225);
 	DOOR->setY(258);
 
+
+
 	DOOR->setFrameX(0);
-	//DOORRC = RectMakeCenter(1000, 300, 200, 200);
+	DOORRC = RectMakeCenter(3225, 190, 10, 10);
 	
 	//알파값,웨이브정보 초기화
 	_alpha = _firstWave = _secondWave = 0;
@@ -37,7 +39,7 @@ HRESULT stage1::init()
 	_ss = READY;
 
 	//카메라 렉트
-	rc1 = RectMakeCenter(500, 300 , 100, 100);
+	rc1 = RectMakeCenter(50, 300 , 100, 100);
 	currentRC = &rc1;
 
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
@@ -99,15 +101,17 @@ void stage1::update()
 			_ss = MOVING;
 	}
 	//스테이지 상태가 다음맵으로 넘어가는경우
-	else if (_ss == CLEAR)
-	{
-		//알파값 감소시켜 검은화면 나타나면서
-		if (_alpha >0)
-			_alpha -= 5;
-		//알파값이 0이 되면 다음 스테이지
-		else
-			SCENEMANAGER->changeScene("스테이지01");
-	}
+
+	//else if (_ss == CLEAR)
+	//{															
+	//	//알파값 감소시켜 검은화면 나타나면서						   
+	//	if (_alpha >0)											
+	//		_alpha -= 5;										
+	//	//알파값이 0이 되면 다음 스테이지							 
+	//	else													
+	//SCENEMANAGER->changeScene("스테이지01");
+	//}
+
 	//스테이지 상태가 레디나 클리어가 아닐때만 모든 행동 가능하도록
 	else if (_ss != READY || _ss != CLEAR)
 	{
@@ -136,9 +140,22 @@ void stage1::update()
 				_stopCharacter = true;
 			}
 		}
+
+		RECT temp;
 		if (KEYMANAGER->isOnceKeyDown('3')) //강제로 클리어상태로 전환
 		{
 			_ss = CLEAR; 
+			
+		}
+
+		if (IntersectRect(&temp, &rc1, &DOORRC) && _ss == CLEAR) //클리어 상태에서 문에 닿았을때 다음씬으로 넘겨라 //병철
+		{
+
+				if (_alpha >0)											
+					_alpha -= 5;										
+				//알파값이 0이 되면 다음 스테이지							 
+				else											
+			SCENEMANAGER->changeScene("스테이지01");
 			SOUNDMANAGER->stop("스테이지1");
 		}
 
@@ -173,12 +190,16 @@ void stage1::render()
 	_mainPlayer->render();
 	
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc1).x, CAMERAMANAGER->CameraRelativePoint(rc1).y, 100, 100);
+
 	
+
 	//문 렉트
 	//Rectangle(getMemDC(), DOORRC.left, DOORRC.top, DOORRC.right, DOORRC.bottom);
 	IMAGEMANAGER->findImage("스테이지1_문")->frameRender(getMemDC(), 
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).x,
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).y, 0, 0);
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).y, DOOR->getFrameX(), DOOR->getFrameY());
+
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(DOORRC).x, CAMERAMANAGER->CameraRelativePoint(DOORRC).y, 10, 10);
 	_inven->render();
 
 	for (int i = 0; i < _vItem.size(); i++)
@@ -297,7 +318,7 @@ void stage1::characterMovement() {
 
 void stage1::doorCollision()
 {
-	/// 문충돌 if(IntersectRect)
+	/// 문충돌 if(IntersectRect) //일때 clear 상태가 되면 문이 열리고 intersectrect 함수를 호출 
 }
 
 void stage1::makeEnemy(){

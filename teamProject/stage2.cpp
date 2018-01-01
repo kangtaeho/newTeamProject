@@ -23,7 +23,7 @@ HRESULT stage2::init()
 	_alpha = 0;
 	_ss = READY;
 
-	rc1 = RectMakeCenter(720, 2300, 100, 100);
+	rc1 = RectMakeCenter(760, 2300, 100, 100);
 	currentRC = &rc1;
 
 	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
