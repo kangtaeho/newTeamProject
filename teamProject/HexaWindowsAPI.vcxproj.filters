@@ -127,6 +127,9 @@
     <ClCompile Include="bigStone.cpp">
       <Filter>MainGame\inventory\item</Filter>
     </ClCompile>
+    <ClCompile Include="option.cpp">
+      <Filter>MainGame\option</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h">
@@ -267,6 +270,9 @@
     <ClInclude Include="bigStone.h">
       <Filter>MainGame\inventory\item</Filter>
     </ClInclude>
+    <ClInclude Include="option.h">
+      <Filter>MainGame\option</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -334,6 +340,9 @@
     </Filter>
     <Filter Include="MainGame\character">
       <UniqueIdentifier>{9effb95f-dcb9-469c-aed3-9819c0731e46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\option">
+      <UniqueIdentifier>{296246c7-e1c4-4b2f-be71-9883ff652a3c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

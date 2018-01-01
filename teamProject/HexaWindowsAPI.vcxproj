@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -102,6 +102,7 @@
     <ClInclude Include="mainGame.h" />
     <ClInclude Include="minion00.h" />
     <ClInclude Include="money.h" />
+    <ClInclude Include="option.h" />
     <ClInclude Include="orangePotion.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="redPotion.h" />
@@ -149,6 +150,7 @@
     <ClCompile Include="mainGame.cpp" />
     <ClCompile Include="minion00.cpp" />
     <ClCompile Include="money.cpp" />
+    <ClCompile Include="option.cpp" />
     <ClCompile Include="orangePotion.cpp" />
     <ClCompile Include="redPotion.cpp" />
     <ClCompile Include="sceneManager.cpp" />
