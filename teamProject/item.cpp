@@ -37,6 +37,12 @@ void item::release()
 void item::update()
 {
 
+	_frameCount++;
+	if (_frameCount %10 == 0)
+	{
+		_frameX++;
+		if (_frameX > _itemImage->getMaxFrameX()) _frameX = 0;
+	}
 }
 void item::render()
 {

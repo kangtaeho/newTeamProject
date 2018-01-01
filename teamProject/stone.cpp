@@ -21,12 +21,27 @@ HRESULT stone::init(POINT point)
 
 	_price = 0; _count = 0;
 
+	_itemState = DROP;
+
+	_frameX = _frameCount = 0;
+
 	return S_OK;
 }
 
 void stone::render()
 {
-	IMAGEMANAGER->findImage("미니돌덩이")->frameRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).x,
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).y, 0, 0);
+	if (_itemState == DROP)
+	{
+		IMAGEMANAGER->findImage("미니돌덩이")->frameRender(getMemDC(),
+			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).x,
+			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).y, 0, 0);
+	}
+	//날라가는 상태
+	else
+	{
+		IMAGEMANAGER->findImage("미니돌덩이")->frameRender(getMemDC(),
+			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).x,
+			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).y, _frameX, 0);
+	}
 	//_itemImage->frameRender(getMemDC(), 300, 350, 0, 0);
 }

@@ -26,10 +26,12 @@ HRESULT money::init(POINT point, int money)
 	//µ·Å¸ÀÔÀº °¡°Ý, °¹¼ö°¡ ÇÊ¿ä¾ø´Ù.
 	_price = 0; _count = 0;
 
+	_frameX = _frameCount = 0;
 
 	return S_OK;
 }
 
 void money::render(){
-
+	IMAGEMANAGER->findImage("µ·")->frameRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).x,
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).y, _frameX, 0);
 }

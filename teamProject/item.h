@@ -22,6 +22,9 @@ protected:
 	int _price;					//아이템 가격
 	int _count;					//들고있는 갯수
 
+	int _frameX;				//현재 프레임X
+	int _frameCount;			//프레임 카운트변수
+
 	
 
 public:

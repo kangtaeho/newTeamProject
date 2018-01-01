@@ -8,6 +8,7 @@
 #include "character.h"
 #include "inventory.h"
 #include "enemyManager.h"
+#include "money.h"
 #include <vector>
 
 /*
@@ -63,6 +64,8 @@ public:
 
 	virtual void setMainPlayer(character* mainPlayer) { _mainPlayer = mainPlayer; }
 	virtual character* getMainPlayer(){ return _mainPlayer; }
+	
+	void dropMoney(POINT point, int won);	//돈 드랍 함수 몬스터가 죽었을경우 이것 호출하면 됩니다.
 
 	void makeEnemy();	//몬스터 생성 함수
 

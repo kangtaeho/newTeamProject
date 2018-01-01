@@ -140,7 +140,22 @@ void stage1::update()
 			SOUNDMANAGER->stop("스테이지1");
 		}
 
+		if (KEYMANAGER->isOnceKeyDown('4')) //강제로 돈드랍
+		{
+			dropMoney(PointMake(200,200),10);
+		}
+		if (KEYMANAGER->isOnceKeyDown('5')) //오브젝트 강제로 날라가는 상태로 변경
+		{
+			for (int i = 0; i < _vItem.size(); i++)
+			{
+				_vItem[i]->setState(true);
+			}
+		}
 		_inven->update();
+		for (int i = 0; i < _vItem.size(); i++)
+		{
+			_vItem[i]->update();
+		}
 	}
 }
 
@@ -148,10 +163,10 @@ void stage1::render()
 {
 	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
-	_knife->render();
+	//_knife->render();
 	_enemy->render();
 	_boss00->render();
-	_stone->render();
+	//_stone->render();
 
 	_mainPlayer->render();
 	
@@ -163,6 +178,11 @@ void stage1::render()
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).y, 0, 0);
 	_inven->render();
+
+	for (int i = 0; i < _vItem.size(); i++)
+	{
+		_vItem[i]->render();
+	}
 
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255-_alpha);
 
@@ -320,4 +340,13 @@ void stage1::makeEnemy(){
 	}
 
 	*/
+}
+//돈 드랍 함수			어디에        얼마냐
+void stage1::dropMoney(POINT point, int won){
+
+	item* tempMoney = new money;
+	tempMoney->init(point, won);
+
+	_vItem.push_back(tempMoney);
+
 }

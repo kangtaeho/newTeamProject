@@ -23,6 +23,7 @@ HRESULT knife::init(POINT point)
 
 	_itemState = DROP;
 
+	_frameX = _frameCount = 0;
 	return S_OK;
 }
 
@@ -38,7 +39,9 @@ void knife::render()
 	//날라가는 상태
 	else
 	{
-
+		IMAGEMANAGER->findImage("나이프")->frameRender(getMemDC(),
+			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).x,
+			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).y, _frameX, 0);
 	}
 
 	//_itemImage->frameRender(getMemDC(), 300, 300, 0, 0);
