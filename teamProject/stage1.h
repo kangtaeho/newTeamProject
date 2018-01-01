@@ -60,9 +60,9 @@ public:
 	virtual void setMainPlayer(character* mainPlayer) { _mainPlayer = mainPlayer; }
 	virtual character* getMainPlayer(){ return _mainPlayer; }
 
-	void makeEnemy();	//몬스터 생성 함수
+	void makeEnemy();									//몬스터 생성 함수
 
 	void characterMovement();							//캐릭터 키매지저를 관리하는 함수
-	void doorCollision();
+	void doorCollision();								//문충돌 함수
 };
 
