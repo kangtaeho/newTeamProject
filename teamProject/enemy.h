@@ -50,13 +50,16 @@ enum ENEMYDIRECTION
 	ENEMYDIRECTION_LEFT_KNIFE_THROW,		//칼던짐
 
 	//공통
-	ENEMYDIRECTION_Clime					//사다리
+	ENEMYDIRECTION_Clime,					//사다리
+	BOSSDIRECTION_DEAD				//죽음씬
+
 };
 
 
 class enemy : public gameNode
 {
-private:
+protected:
+	//
 	ENEMYDIRECTION _enemyDirection;
 
 
@@ -80,7 +83,7 @@ public:
 	~enemy();
 
 
-	virtual HRESULT init(POINT point);
+	virtual HRESULT init(/*const char* imageName,*/POINT point);
 	virtual void release();
 	virtual void update();
 	virtual void render();
@@ -95,10 +98,10 @@ public:
 	static void leftJumpAttack(void* obj);
 
 	//에네미 상태에 따른 접근자와 설정자겠지?
-	ENEMYDIRECTION getEnemyDirection(void) { return _enemyDirection; }
-	void setEnemyDirection(ENEMYDIRECTION direction) { _enemyDirection = direction; }
-
-	//에네미의 모션에 따른 접근자와 설정자겠지?
+	/*virtual ENEMYDIRECTION getEnemyDirection(void) {  }
+	virtual void setEnemyDirection(ENEMYDIRECTION direction) { }*/
+	//
+	////에네미의 모션에 따른 접근자와 설정자겠지?
 	animation* getEnemyMotion(void) { return _enemyMotion; }
 	void setEnemyMotion(animation* ani) { _enemyMotion = ani; }
 };

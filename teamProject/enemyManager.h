@@ -5,6 +5,8 @@
 #include "money.h"
 #include "character.h"
 #include <vector>
+#include "minion00.h"
+#include "boss00.h"
 
 class enemyManager :
 	public gameNode
@@ -17,6 +19,7 @@ private:
 	//생성되는 적을 담을 벡터
 	vector<enemy*> _vEnemy;
 	vector<enemy*>::iterator _viEnemy;
+	
 
 	//적이 죽고 생성되는 돈을 담을 벡터
 	vector<item*> _vItem;
@@ -24,6 +27,8 @@ private:
 
 	//연결 할 플레이어 변수
 	character* _mainPlayer;
+
+
 
 public:
 	enemyManager();

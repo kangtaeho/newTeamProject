@@ -34,7 +34,7 @@ void stage3Story::update()
 
 		//이후 3스테이지 씬 호출
 		if (_index >= 3)
-			SCENEMANAGER->changeScene("스테이지00", false);
+			SCENEMANAGER->changeScene("스테이지02", false);
 	}
 }
 void stage3Story::render()

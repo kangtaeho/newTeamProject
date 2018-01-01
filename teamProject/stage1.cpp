@@ -26,8 +26,14 @@ HRESULT stage1::init()
 	DOOR->setX(3225);
 	DOOR->setY(258);
 
+
+
+
 	DOOR->setFrameX(0);
+	DOORRC = RectMakeCenter(3225, 190, 10, 10);
+
 	//DOORRC = RectMakeCenter(1000, 300, 200, 200);
+
 	
 	//알파값,웨이브정보 초기화
 	_alpha = _firstWave = _secondWave = 0;
@@ -37,7 +43,7 @@ HRESULT stage1::init()
 	_ss = READY;
 
 	//카메라 렉트
-	rc1 = RectMakeCenter(500, 300 , 100, 100);
+	rc1 = RectMakeCenter(50, 300 , 100, 100);
 	currentRC = &rc1;
 
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
@@ -49,18 +55,21 @@ HRESULT stage1::init()
 
 	//에너미 추가...중  //수빈
 
-	for (int i = 0; i < 4; i++)
-	{
-		_enemy = new enemy;
-		_enemy->init(PointMake(300 + i * 25, 300 + i * 25));
-	}
+	/*_minion00 = new minion00;
+	_minion00->init(PointMake(300 , 300 ));*/
 
-		_boss00 = new boss00;
-		_boss00->init(PointMake(500,300));
+	_boss00 = new boss00;
+	_boss00->init(PointMake(500,300));
+
+	_minion00 = new minion00;
+	_minion00->init(PointMake(800, 300));
 
 	//미니돌덩이 //병철
 	_stone = new stone;
 	_stone->init(PointMake(2000, 450));
+
+	_bigStone = new bigStone;
+	_bigStone->init(PointMake(2000, 380));
 
 	_mainPlayer = new character;
 	_mainPlayer->init();
@@ -76,6 +85,7 @@ HRESULT stage1::init()
 	//아이템 벡터에 돌, 칼 추가
 	_vItem.push_back(_stone);
 	_vItem.push_back(_knife);
+	_vItem.push_back(_bigStone);
 
 	SOUNDMANAGER->play("스테이지1",0.5f);
 
@@ -99,15 +109,17 @@ void stage1::update()
 			_ss = MOVING;
 	}
 	//스테이지 상태가 다음맵으로 넘어가는경우
-	else if (_ss == CLEAR)
-	{
-		//알파값 감소시켜 검은화면 나타나면서
-		if (_alpha >0)
-			_alpha -= 5;
-		//알파값이 0이 되면 다음 스테이지
-		else
-			SCENEMANAGER->changeScene("스테이지01");
-	}
+
+	//else if (_ss == CLEAR)
+	//{															
+	//	//알파값 감소시켜 검은화면 나타나면서						   
+	//	if (_alpha >0)											
+	//		_alpha -= 5;										
+	//	//알파값이 0이 되면 다음 스테이지							 
+	//	else													
+	//SCENEMANAGER->changeScene("스테이지01");
+	//}
+
 	//스테이지 상태가 레디나 클리어가 아닐때만 모든 행동 가능하도록
 	else if (_ss != READY || _ss != CLEAR)
 	{
@@ -136,9 +148,22 @@ void stage1::update()
 				_stopCharacter = true;
 			}
 		}
+
+		RECT temp;
 		if (KEYMANAGER->isOnceKeyDown('3')) //강제로 클리어상태로 전환
 		{
 			_ss = CLEAR; 
+			
+		}
+
+		if (IntersectRect(&temp, &rc1, &DOORRC) && _ss == CLEAR) //클리어 상태에서 문에 닿았을때 다음씬으로 넘겨라 //병철
+		{
+
+				if (_alpha >0)											
+					_alpha -= 5;										
+				//알파값이 0이 되면 다음 스테이지							 
+				else											
+			SCENEMANAGER->changeScene("스테이지01");
 			SOUNDMANAGER->stop("스테이지1");
 		}
 
@@ -158,6 +183,7 @@ void stage1::update()
 		{
 			_vItem[i]->update();
 		}
+		
 	}
 }
 
@@ -166,19 +192,23 @@ void stage1::render()
 	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	//_knife->render();
-	_enemy->render();
+	//_minion00->render();
 	_boss00->render();
+	_minion00->render();
 	//_stone->render();
 
 	_mainPlayer->render();
 	
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc1).x, CAMERAMANAGER->CameraRelativePoint(rc1).y, 100, 100);
+
 	
-	//문 렉트
-	//Rectangle(getMemDC(), DOORRC.left, DOORRC.top, DOORRC.right, DOORRC.bottom);
-	IMAGEMANAGER->findImage("스테이지1_문")->frameRender(getMemDC(), 
+
+
+		IMAGEMANAGER->findImage("스테이지1_문")->frameRender(getMemDC(), 
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).x,
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).y, 0, 0);
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).y, DOOR->getFrameX(), DOOR->getFrameY());
+
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(DOORRC).x, CAMERAMANAGER->CameraRelativePoint(DOORRC).y, 10, 10);
 	_inven->render();
 
 	for (int i = 0; i < _vItem.size(); i++)
@@ -286,7 +316,9 @@ void stage1::characterMovement() {
 		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
-	_enemy->update();
+	//_minion00->update();
+	_boss00->update();
+	_minion00->update();
 	_mainPlayer->update();
 
 	/*if (KEYMANAGER->isOnceKeyDown('P'))
@@ -294,12 +326,6 @@ void stage1::characterMovement() {
 		SCENEMANAGER->changeScene("스테이지01");
 	}*/
 }
-
-void stage1::doorCollision()
-{
-	/// 문충돌 if(IntersectRect)
-}
-
 void stage1::makeEnemy(){
 
 	/*

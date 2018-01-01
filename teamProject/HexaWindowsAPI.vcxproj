@@ -14,13 +14,13 @@
     <ProjectGuid>{1DFC11EA-FEF8-4657-8F70-D7904DFABE34}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>HexaWindowsAPI</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -80,6 +80,7 @@
   <ItemGroup>
     <ClInclude Include="action.h" />
     <ClInclude Include="animation.h" />
+    <ClInclude Include="bigStone.h" />
     <ClInclude Include="boss00.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="character.h" />
@@ -99,8 +100,8 @@
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="knife.h" />
     <ClInclude Include="mainGame.h" />
+    <ClInclude Include="minion00.h" />
     <ClInclude Include="money.h" />
-    <ClInclude Include="option.h" />
     <ClInclude Include="orangePotion.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="redPotion.h" />
@@ -127,6 +128,7 @@
   <ItemGroup>
     <ClCompile Include="action.cpp" />
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="bigStone.cpp" />
     <ClCompile Include="boss00.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="character.cpp" />
@@ -145,8 +147,8 @@
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="knife.cpp" />
     <ClCompile Include="mainGame.cpp" />
+    <ClCompile Include="minion00.cpp" />
     <ClCompile Include="money.cpp" />
-    <ClCompile Include="option.cpp" />
     <ClCompile Include="orangePotion.cpp" />
     <ClCompile Include="redPotion.cpp" />
     <ClCompile Include="sceneManager.cpp" />
