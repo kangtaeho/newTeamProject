@@ -71,6 +71,10 @@ HRESULT stage1::init()
 	_em = new enemyManager;
 	_em->init();
 
+	//아이템 벡터에 돌, 칼 추가
+	_vItem.push_back(_stone);
+	_vItem.push_back(_knife);
+
 	SOUNDMANAGER->play("스테이지1",0.5f);
 
 	return S_OK;
@@ -92,10 +96,13 @@ void stage1::update()
 		else
 			_ss = MOVING;
 	}
+	//스테이지 상태가 다음맵으로 넘어가는경우
 	else if (_ss == CLEAR)
 	{
+		//알파값 감소시켜 검은화면 나타나면서
 		if (_alpha >0)
 			_alpha -= 5;
+		//알파값이 0이 되면 다음 스테이지
 		else
 			SCENEMANAGER->changeScene("스테이지01");
 	}
