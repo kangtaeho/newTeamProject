@@ -124,6 +124,9 @@
     <ClCompile Include="option.cpp">
       <Filter>MainGame\option</Filter>
     </ClCompile>
+    <ClCompile Include="bigStone.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h">
@@ -260,6 +263,9 @@
     </ClInclude>
     <ClInclude Include="option.h">
       <Filter>MainGame\option</Filter>
+    </ClInclude>
+    <ClInclude Include="bigStone.h">
+      <Filter>MainGame\inventory\item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

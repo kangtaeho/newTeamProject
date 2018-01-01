@@ -64,6 +64,9 @@ HRESULT stage1::init()
 	_stone = new stone;
 	_stone->init(PointMake(2000, 450));
 
+	_bigStone = new bigStone;
+	_bigStone->init(PointMake(2000, 380));
+
 	_mainPlayer = new character;
 	_mainPlayer->init();
 
@@ -78,6 +81,7 @@ HRESULT stage1::init()
 	//아이템 벡터에 돌, 칼 추가
 	_vItem.push_back(_stone);
 	_vItem.push_back(_knife);
+	_vItem.push_back(_bigStone);
 
 	SOUNDMANAGER->play("스테이지1",0.5f);
 
@@ -193,9 +197,8 @@ void stage1::render()
 
 	
 
-	//문 렉트
-	//Rectangle(getMemDC(), DOORRC.left, DOORRC.top, DOORRC.right, DOORRC.bottom);
-	IMAGEMANAGER->findImage("스테이지1_문")->frameRender(getMemDC(), 
+
+		IMAGEMANAGER->findImage("스테이지1_문")->frameRender(getMemDC(), 
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(DOOR->getX(), DOOR->getY(), DOOR->getFrameWidth(), DOOR->getFrameHeight())).y, DOOR->getFrameX(), DOOR->getFrameY());
 
@@ -316,10 +319,7 @@ void stage1::characterMovement() {
 	}*/
 }
 
-void stage1::doorCollision()
-{
-	/// 문충돌 if(IntersectRect) //일때 clear 상태가 되면 문이 열리고 intersectrect 함수를 호출 
-}
+
 
 void stage1::makeEnemy(){
 

@@ -28,6 +28,8 @@ HRESULT mainGame::init()			//초기화 함수
 	SCENEMANAGER->addScene("스테이지00", new stage1);
 	SCENEMANAGER->addScene("스테이지01", new stage2);
 
+	SCENEMANAGER->addScene("스테이지02", new stage3);
+
 	//재호 : 게임시작화면
 	SCENEMANAGER->addScene("스타트", new startscene);
 	//재호 : 1,3스테이지 대화화면
@@ -38,7 +40,7 @@ HRESULT mainGame::init()			//초기화 함수
 
 	//재호 : 게임 시작신으로설정
 	SCENEMANAGER->changeScene("스타트", false);
-
+	//SCENEMANAGER->changeScene("스테이지02", false);
 
 	IMAGEMANAGER->addImage("유아이박스", "./images/ui_box.bmp", 1152, 144, true, RGB(255, 0, 255));
 

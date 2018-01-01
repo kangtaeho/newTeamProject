@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include "item.h"
 #include "knife.h"
+#include "bigStone.h"
 #include "enemy.h"
 #include "boss00.h"
 #include "stone.h"
@@ -37,10 +38,12 @@ private:
 	//float doorX, doorY;
 	
 	item* _knife; // 칼 스테이지로 가져옴
+	item* _stone; // 미니돌덩이 ㅇㅇ
+	item* _bigStone; //큰 돌덩이 
 	enemy* _enemy;
 	boss00* _boss00;
 
-	item* _stone; // 미니돌덩이 ㅇㅇ
+	
 
 	int _alpha;	//알파렌더를 위한 변수
 
@@ -70,6 +73,6 @@ public:
 	void makeEnemy();									//몬스터 생성 함수
 
 	void characterMovement();							//캐릭터 키매지저를 관리하는 함수
-	void doorCollision();								//문충돌 함수
+
 };
 
