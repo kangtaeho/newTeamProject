@@ -118,6 +118,9 @@
     <ClCompile Include="stage3Story.cpp">
       <Filter>MainGame\scene</Filter>
     </ClCompile>
+    <ClCompile Include="boss00.cpp">
+      <Filter>MainGame\enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h">
@@ -248,6 +251,9 @@
     </ClInclude>
     <ClInclude Include="stage3Story.h">
       <Filter>MainGame\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="boss00.h">
+      <Filter>MainGame\enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
