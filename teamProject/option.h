@@ -1,7 +1,9 @@
 #pragma once
-#include "gameNode.h"
+#include "singletonBase.h"
 
-class option:public gameNode
+class gameNode;
+
+class option:public singletonBase<option>
 {
 private:
 	image* _blackWindow;
@@ -15,7 +17,10 @@ private:
 	image* _optionSelectBmp;
 	image* _closeOptionBmp;
 
+
 	int _currentSelectY;
+
+	gameNode* _gameNode;
 
 	POINT _selectOption[3];
 

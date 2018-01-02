@@ -26,6 +26,7 @@
 #include "keyAniManager.h"
 #include "zOrderManager.h"
 #include "cameraManager.h"
+#include "option.h"
 
 
 using namespace std;
@@ -58,6 +59,7 @@ using namespace HEXA_UTIL;
 #define INIDATA iniDataManager::getSingleton()
 #define ZORDERMANAGER zOrderManager::getSingleton()
 #define CAMERAMANAGER  cameraManager::getSingleton()
+#define OPTION option::getSingleton()
 
 //=============================================================
 // ## 17.10.18 ## Macro ##

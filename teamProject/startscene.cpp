@@ -35,8 +35,7 @@ void startscene::update()
 			SOUNDMANAGER->stop("게임시작화면");
 		}
 		else {
-			
-
+			OPTION->openOption();
 		}
 
 	}
@@ -63,4 +62,6 @@ void startscene::render()
 	IMAGEMANAGER->findImage("selecttri")->render(getMemDC(), 417, 375);
 	else
 		IMAGEMANAGER->findImage("selecttri")->render(getMemDC(), 417, 445);
+
+	OPTION->render();
 }

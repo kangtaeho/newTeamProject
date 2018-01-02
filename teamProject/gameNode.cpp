@@ -48,6 +48,7 @@ HRESULT gameNode::init(bool managerInit)
 		INIDATA->init();
 		ZORDERMANAGER->init();
 		CAMERAMANAGER->init();
+		OPTION->init();
 		
 	}
 
@@ -71,6 +72,7 @@ void gameNode::release()
 		INIDATA->releaseSingleton();
 		ZORDERMANAGER->releaseSingleton();
 		CAMERAMANAGER->releaseSingleton();
+		OPTION->releaseSingleton();
 		
 	}
 
@@ -81,11 +83,11 @@ void gameNode::release()
 void gameNode::update()	
 {
 	CAMERAMANAGER->update();
+	OPTION->update();
 }
 	
 void gameNode::render()
 {
-
 }
 
 

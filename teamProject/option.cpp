@@ -65,18 +65,22 @@ void option::update(){
 				case 0:
 					if (_onBgm) {
 						_onBgm = false;
+						_bgmBmp = IMAGEMANAGER->findImage("브금off");
 					}
 					else {
 						_onBgm = true;
+						_bgmBmp = IMAGEMANAGER->findImage("브금on");
 					}
 				break;
 
 				case 1:
 					if (_onEffect) {
 						_onEffect = false;
+						_bgmBmp = IMAGEMANAGER->findImage("효과음off");
 					}
 					else {
 						_onEffect = true;
+						_bgmBmp = IMAGEMANAGER->findImage("효과음o");
 					}
 				break;
 
@@ -95,20 +99,20 @@ void option::render(){
 
 	if (!_isOpenOption) return;
 
-	_blackWindow->alphaRender(getMemDC(), 80);
+	_blackWindow->alphaRender(_gameNode->getMemDC(), 80);
 
-	_optionBmp->render(getMemDC(), WINSIZEX / 2 - _optionBmp->getWidth() / 2,
+	_optionBmp->render(_gameNode->getMemDC(), WINSIZEX / 2 - _optionBmp->getWidth() / 2,
 								   WINSIZEY / 2 - _optionBmp->getHeight() / 2);
 
-	_bgmBmp->render(getMemDC(), WINSIZEX / 2 - _optionBmp->getWidth() / 2 + 75, 
+	_bgmBmp->render(_gameNode->getMemDC(), WINSIZEX / 2 - _optionBmp->getWidth() / 2 + 75,
 								WINSIZEY / 2 - _optionBmp->getHeight() / 2 + 70);
 
-	_effectBmp->render(getMemDC(), WINSIZEX / 2 - _optionBmp->getWidth() / 2 + 75,
+	_effectBmp->render(_gameNode->getMemDC(), WINSIZEX / 2 - _optionBmp->getWidth() / 2 + 75,
 								   WINSIZEY / 2 - _optionBmp->getHeight() / 2 + 130);
 
-	_closeOptionBmp->render(getMemDC(), _selectOption[2].x, _selectOption[2].y);
+	_closeOptionBmp->render(_gameNode->getMemDC(), _selectOption[2].x, _selectOption[2].y);
 
-	_optionSelectBmp->render(getMemDC(), _selectOption[_currentSelectY].x, _selectOption[_currentSelectY].y);
+	_optionSelectBmp->render(_gameNode->getMemDC(), _selectOption[_currentSelectY].x, _selectOption[_currentSelectY].y);
 
 }
 

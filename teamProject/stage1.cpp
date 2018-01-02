@@ -65,6 +65,12 @@ HRESULT stage1::init()
 	_minion00 = new minion00;
 	_minion00->init(PointMake(800, 300));
 
+	_minion01 = new minion01;
+	_minion01->init(PointMake(500, 500));
+
+	//_minion02 = new minion02;
+	//_minion02->init(PointMake(800, 500));
+
 	//미니돌덩이 //병철
 	_stone = new stone;
 	_stone->init(PointMake(2000, 450));
@@ -89,6 +95,7 @@ HRESULT stage1::init()
 	_vItem.push_back(_bigStone);
 
 	SOUNDMANAGER->play("스테이지1",0.5f);
+	SOUNDMANAGER->setCurrentBgmKey("스테이지1");
 
 	return S_OK;
 }
@@ -177,6 +184,7 @@ void stage1::update()
 			_vItem[i]->update();
 		}
 		
+		
 	}
 
 	//RECT temp;
@@ -200,6 +208,8 @@ void stage1::render()
 	//_minion00->render();
 	_boss00->render();
 	_minion00->render();
+	_minion01->render();
+	//_minion02->render();
 	//_stone->render();
 
 	_mainPlayer->render();
@@ -324,6 +334,8 @@ void stage1::characterMovement() {
 	//_minion00->update();
 	_boss00->update();
 	_minion00->update();
+	_minion01->update();
+	//_minion02->update();
 	_mainPlayer->update();
 
 	/*if (KEYMANAGER->isOnceKeyDown('P'))
