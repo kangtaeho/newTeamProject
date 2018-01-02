@@ -219,11 +219,12 @@ void enemy::update()
 	          	break;
 	          case ENEMYDIRECTION_Clime:
 	          	break;
-			  case BOSSDIRECTION_DEAD:
-				  break;
+
 	          default:
 	          	break;
 	          }
+
+
 	//_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight());
 
 	_enemyMotion->start();

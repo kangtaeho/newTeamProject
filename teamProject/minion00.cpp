@@ -32,41 +32,41 @@ HRESULT minion00::init(POINT point)
 	  
 	  
 	  int rightStop[] = { 0 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightStop", "enemy01", rightStop, 1,6,true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightStop", "enemy01", rightStop, 1,2,true);
 	  int leftStop[] = { 15 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftStop", "enemy01", leftStop, 1, 6, true);
 	  int rightMove[] = { 0,1,2,1 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightMove", "enemy01", rightMove, 4, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightMove", "enemy01", rightMove, 4, 2, true);
 	  int leftMove[] = { 15,14,13,14 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyLeftMove", "enemy01", leftMove, 4, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyLeftMove", "enemy01", leftMove, 4, 2, true);
 	  int rightOneJab[] = { 85,86 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightOneJab", "enemy01", rightOneJab, 2, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightOneJab", "enemy01", rightOneJab, 2, 2, true);
 	  int leftOneJab[] = { 90,89 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyLeftOneJab", "enemy01", leftOneJab, 2, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyLeftOneJab", "enemy01", leftOneJab, 2, 2, true);
 	  int rightTwoJab[] = { 21,22 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightTwoJab", "enemy01", rightTwoJab, 2, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightTwoJab", "enemy01", rightTwoJab, 2, 2, true);
 	  int leftTwoJab[] = { 26,25 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyLeftTwoJab", "enemy01", leftTwoJab, 2, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyLeftTwoJab", "enemy01", leftTwoJab, 2, 2, true);
 	  int rightJumpAttack[] = { 19,20 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightJumpAttack", "enemy01", rightJumpAttack, 2, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightJumpAttack", "enemy01", rightJumpAttack, 2, 2, true);
 	  int leftJumpAttack[] = { 28,27 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyLeftJumpAttack", "enemy01", leftJumpAttack, 2, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyLeftJumpAttack", "enemy01", leftJumpAttack, 2, 2, true);
 	  int rightHit[] = { 5 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightHit", "enemy01", rightHit, 1, 6, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightHit", "enemy01", rightHit, 1, 2, true);
 	  int leftHit[] = { 10 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftHit", "enemy01", leftHit, 1, 6, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftHit", "enemy01", leftHit, 1, 2, true);
 	  int rightHit2[] = { 6,7 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightHit2", "enemy01", rightHit2, 2, 6, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightHit2", "enemy01", rightHit2, 2, 2, true);
 	  int leftHit2[] = { 9,8 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftHit2", "enemy01", leftHit2, 2, 6, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftHit2", "enemy01", leftHit2, 2, 2, true);
 	  int rightCrouch[] = { 23 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightCrouch", "enemy01", rightCrouch, 1, 6, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightCrouch", "enemy01", rightCrouch, 1, 2, true);
 	  int leftCrouch[] = { 24 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftCrouch", "enemy01", leftCrouch, 1, 6, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftCrouch", "enemy01", leftCrouch, 1, 2, true);
 	  int rightCrouchThrow[] = { 35,36,37 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightCrouchThrow", "enemy01", rightCrouchThrow, 3, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightCrouchThrow", "enemy01", rightCrouchThrow, 3, 4, true);
 	  int leftCrouchThrow[] = { 44,43,42 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftCrouchThrow", "enemy01", leftCrouchThrow, 3, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftCrouchThrow", "enemy01", leftCrouchThrow, 3, 4, true);
 	  //쓰러진상태
 	  int rightDown[] = { 17 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightDown", "enemy01", rightDown, 1, 6, true);
@@ -84,32 +84,32 @@ HRESULT minion00::init(POINT point)
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftStandUp", "enemy01", leftStandUp, 1, 6, true);
 	  //다운 후 쥬금
 	  int rightDownForever[] = { 17,82 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightDownForever", "enemy01", rightDownForever, 2, 6, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightDownForever", "enemy01", rightDownForever, 2, 4, true);
 	  int leftDownForever[] = { 30,82 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftDownForever", "enemy01", leftDownForever, 2, 6, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftDownForever", "enemy01", leftDownForever, 2, 4, true);
 	  //돌들때 상태변화
 	  int rightStoneUp[] = { 67 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightStoneUp", "enemy01", rightStoneUp, 1, 6, true);
 	  int leftStoneUp[] = { 76 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftStoneUp", "enemy01", leftStoneUp, 1, 6, true);
 	  int rightStoneUpMove[] = { 66,67,68,67 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightStoneUpMove", "enemy01", rightStoneUpMove, 4, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightStoneUpMove", "enemy01", rightStoneUpMove, 4, 2, true);
 	  int leftStoneUpMove[] = { 77,76,75,76 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftStoneUpMove", "enemy01", leftStoneUpMove, 4, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftStoneUpMove", "enemy01", leftStoneUpMove, 4, 2, true);
 	  int rightStoneThrow[] = { 53,54 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightStoneThrow", "enemy01", rightStoneThrow, 2, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightStoneThrow", "enemy01", rightStoneThrow, 2, 3, true);
 	  int leftStoneThrow[] = { 58,57 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftStoneThrow", "enemy01", leftStoneThrow, 2, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftStoneThrow", "enemy01", leftStoneThrow, 2, 3, true);
 	  //칼들때 상태변화
 	  int rightKnifeThrow[] = { 51,52 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightKnifeThrow", "enemy01", rightKnifeThrow, 2, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightKnifeThrow", "enemy01", rightKnifeThrow, 2, 2, true);
 	  int leftKnifeThrow[] = { 60,59 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftKnifeThrow", "enemy01", leftKnifeThrow, 2, 10, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftKnifeThrow", "enemy01", leftKnifeThrow, 2, 2, true);
 	  
 	  
 	  
 	  int clime[] = {4,5};
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyClime", "enemy01", clime, 2,8,true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyClime", "enemy01", clime, 2,2,true);
 	  
 	  
 	  _enemyMotion = KEYANIMANAGER->findAnimation("enemyLeftMove");

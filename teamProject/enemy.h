@@ -50,9 +50,37 @@ enum ENEMYDIRECTION
 	ENEMYDIRECTION_LEFT_KNIFE_THROW,		//칼던짐
 
 	//공통
-	ENEMYDIRECTION_Clime,					//사다리
-	BOSSDIRECTION_DEAD				//죽음씬
+	ENEMYDIRECTION_Clime				//사다리
 
+};
+
+enum BOSSDIRECTION
+{
+	//오른쪽
+	BOSSDIRECTION_RIGHT_STOP,				//멈춤
+	BOSSDIRECTION_RIGHT_MOVE,				//걸어감
+	BOSSDIRECTION_RIGHT_ONE_JAB,			//원쨉공격
+	BOSSDIRECTION_RIGHT_TWO_JAB,			//투쨉공격
+	BOSSDIRECTION_RIGHT_HIT,				//공격당함
+	BOSSDIRECTION_RIGHT_HIT2,				//경직걸리는공격당함
+	BOSSDIRECTION_RIGHT_DOWN,				//쓰러짐
+	BOSSDIRECTION_RIGHT_COMBO_DOWN,			//연속공격맞고쓰러짐
+	BOSSDIRECTION_RIGHT_DOWN_STAND,			//쓰러지고 일어남
+
+											
+	//왼쪽									  //
+	BOSSDIRECTION_LEFT_STOP,				//멈춤
+	BOSSDIRECTION_LEFT_MOVE,				//걸어감
+	BOSSDIRECTION_LEFT_ONE_JAB,				//원쨉공격
+	BOSSDIRECTION_LEFT_TWO_JAB,				//투쨉공격
+	BOSSDIRECTION_LEFT_HIT,					//공격당함
+	BOSSDIRECTION_LEFT_HIT2,				//경직걸리는공격당함
+	BOSSDIRECTION_LEFT_DOWN,				//쓰러짐
+	BOSSDIRECTION_LEFT_COMBO_DOWN,			//연속공격맞고쓰러짐
+	BOSSDIRECTION_LEFT_DOWN_STAND,			//쓰러지고 일어남
+
+	//공통
+	BOSSDIRECTION_DEAD						//죽음씬
 };
 
 
@@ -61,7 +89,7 @@ class enemy : public gameNode
 protected:
 	//
 	ENEMYDIRECTION _enemyDirection;
-
+	//BOSSDIRECTION _bossDirection;
 
 	//이미지와 위치값과 렉트와 HP설정
 	image* _imageEnemy;				//이미지
@@ -75,7 +103,7 @@ protected:
 	float _jump, _Gravity;		//점프,중력
 
 	animation* _enemyMotion;
-
+	//animation* _bossMotion;
 
 
 public:
@@ -104,6 +132,9 @@ public:
 	////에네미의 모션에 따른 접근자와 설정자겠지?
 	animation* getEnemyMotion(void) { return _enemyMotion; }
 	void setEnemyMotion(animation* ani) { _enemyMotion = ani; }
+
+	//animation* getBossMotion(void) { return _bossMotion; }
+	//void setBossMotion(animation* ani) { _bossMotion = ani; }
 };
 
 //이제 콜백함수가 필요한 모션들이라던가 그런거 뭐해야될까영
