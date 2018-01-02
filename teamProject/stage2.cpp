@@ -39,8 +39,9 @@ HRESULT stage2::init()
 	_elevatorX = 5520;
 	_elevatorY = 2186;
 
-	_elevatorRC = RectMakeCenter(_elevator->getX(), _elevator->getY(), 10, 10);
+	_elevatorRC = RectMakeCenter(_elevatorX, _elevatorY, 10, 10);
 
+	_elevatorSwitchOn = false;
 	return S_OK;
 }
 
@@ -200,11 +201,13 @@ void stage2::update()
 			CAMERAMANAGER->setCameraAim(_currentRC);
 			CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
 		}
+		//호로록
 		if (KEYMANAGER->isOnceKeyDown('G'))
 		{
 			CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 			_currentRC = &_rc1;
 			CAMERAMANAGER->setCameraAim(_currentRC);
+			
 		}
 
 		if (KEYMANAGER->isOnceKeyDown('F'))
@@ -218,8 +221,29 @@ void stage2::update()
 		}
 	}
 
-	boatMove();
-	elevatorMove();
+	//엘베무브 보트 무브
+	RECT temp;
+	if (IntersectRect(&temp, &_rc1, &_elevatorRC)) 
+	{
+		_elevatorSwitchOn = true;
+	}
+
+	if (_elevatorSwitchOn && _elevatorRC.top > 140)
+	{
+		elevatorMove();
+		_elevatorRC.top -= 5;
+		_elevatorRC.bottom -= 5;
+
+		_currentRC->top -= 5;
+		_currentRC->bottom -= 5;
+
+		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+		_currentRC = &_rc1;
+		CAMERAMANAGER->setCameraAim(_currentRC);
+	}
+	
+	boatMove(); 
+	
 	_mainPlayer->update();
 }
 

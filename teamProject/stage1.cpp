@@ -72,7 +72,7 @@ void stage1::update()
 	else if (IntersectRect(&temp, &_rc1, &_DOORRC) && _ss == CLEAR) //클리어 상태에서 문에 닿았을때 다음씬으로 넘겨라 //병철
 	{
 
-		if (_alpha >0)
+		if (_alpha >0) 
 			_alpha -= 5;
 		//알파값이 0이 되면 다음 스테이지							 
 		else

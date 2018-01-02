@@ -34,6 +34,8 @@ private:
 
 	float _boatX, _boatY; //쪽배 x,y좌표
 
+	bool _elevatorSwitchOn; //엘레베이터 렉트 건드렸냐??
+
 
 
 	
@@ -55,7 +57,7 @@ public:
 	void update();
 	void render();
 
-	void boatMove();	// 보트 무브 함수 
+	void boatMove();	 //보트 무브 함수 
 	void elevatorMove(); //엘베 무브 함수
 
 	virtual void setMainPlayer(character* mainPlayer) { _mainPlayer = mainPlayer; }
