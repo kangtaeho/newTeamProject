@@ -108,7 +108,7 @@ void stage2::update()
 		//3키 입력시 강제 클리어전환
 		if (KEYMANAGER->isOnceKeyDown('3'))
 		{
-			_ss = CLEAR;
+			_ss = CLEAR; //보스 디지면 클리어로 전환 
 		}
 		if (KEYMANAGER->isStayKeyDown(VK_UP))
 		{
@@ -261,4 +261,9 @@ void stage2::render()
 	
 	//이 검은화면이 제밀 밑에 있도록 코드쳐주세요~~
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
+}
+
+void stage2::boatMove()
+{
+	
 }

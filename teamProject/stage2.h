@@ -45,6 +45,8 @@ public:
 	void update();
 	void render();
 
+	void boatMove(); // 보트 무브 함수 
+
 	virtual void setMainPlayer(character* mainPlayer) { _mainPlayer = mainPlayer; }
 	virtual character* getMainPlayer(){ return _mainPlayer; }
 
