@@ -3,6 +3,10 @@
 
 
 stage1::stage1()
+	:_alpha(0),						//알파 초기화
+	_firstWave(false),				//처음 웨이브
+	_secondWave(false),				//두번째 웨이브
+	_stopCharacter(false)			//캐릭터가 멈췄니? (인벤토리 킬때 사용)
 {
 
 }
@@ -26,17 +30,8 @@ HRESULT stage1::init()
 	DOOR->setX(3225);
 	DOOR->setY(258);
 
-
-
-
 	DOOR->setFrameX(0);
-	DOORRC = RectMakeCenter(3225, 190, 10, 10);
-
-	//DOORRC = RectMakeCenter(1000, 300, 200, 200);
-
-	
-	//알파값,웨이브정보 초기화
-	_alpha = _firstWave = _secondWave = 0;
+	DOORRC = RectMakeCenter(3225, 190, 10, 10);	
 
 	// 스테이지상태
 	// 기존 moving 에서 ready로 수정
@@ -80,8 +75,6 @@ HRESULT stage1::init()
 
 	_inven = new inventory;
 	_inven->init();
-
-	_stopCharacter = false;
 
 	_em = new enemyManager;
 	_em->init();

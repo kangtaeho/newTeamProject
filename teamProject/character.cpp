@@ -373,6 +373,7 @@ void character::update()
 	case CHARA_LEFT_LAND:
 		if (KEYMANAGER->isOnceKeyDown('X'))//ÁÖ¸Ô
 		{
+			SOUNDMANAGER->play("Èî(¶§¸±¶§)", 1.0);
 			if (_isRight)
 			{
 				_state = CHARA_RIGHT_UPPER;
@@ -385,6 +386,7 @@ void character::update()
 				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftUpper");
 				_motion->start();
 			}
+
 		}
 		if (KEYMANAGER->isOnceKeyDown('C'))//Å±
 		{
@@ -440,6 +442,7 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('X'))
 		{
+			SOUNDMANAGER->play("Èî(¶§¸±¶§)", 1.0);
 			if (_isRight)
 			{
 				_state = CHARA_RIGHT_PUNCH_TWO;
@@ -562,6 +565,7 @@ void character::update()
 	case CHARA_LEFT_HEAD:
 		if (KEYMANAGER->isOnceKeyDown('X'))//ÁÖ¸Ô
 		{
+			SOUNDMANAGER->play("Èî(¶§¸±¶§)", 1.0);
 			if (_isRight)
 			{
 				_state = CHARA_RIGHT_DRILL;
@@ -632,6 +636,7 @@ void character::update()
 			}
 			if (KEYMANAGER->isOnceKeyDown('X'))
 			{
+				SOUNDMANAGER->play("Èî(¶§¸±¶§)", 1.0);
 				if (_isRight)
 				{
 					_state = CHARA_RIGHT_JUMP_KICK;
@@ -894,6 +899,7 @@ void character::update()
 	}
 	if (KEYMANAGER->isOnceKeyDown('X'))//ÁÖ¸Ô
 	{
+		SOUNDMANAGER->play("Èî(¶§¸±¶§)", 1.0);
 		if (_state == CHARA_RIGHT_STOP || _state == CHARA_LEFT_STOP
 			|| _state == CHARA_RIGHT_MOVE || _state == CHARA_LEFT_MOVE)
 		{
@@ -913,6 +919,9 @@ void character::update()
 	}
 	if (KEYMANAGER->isOnceKeyDown('C'))//Å±
 	{
+		SOUNDMANAGER->play("Èå¾Ñ(¹ßÂ÷±âÇÒ¶§)", 1.0);
+		
+
 		if (_state == CHARA_RIGHT_STOP || _state == CHARA_LEFT_STOP
 			|| _state == CHARA_RIGHT_MOVE || _state == CHARA_LEFT_MOVE)
 		{
