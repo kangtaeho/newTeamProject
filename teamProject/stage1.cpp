@@ -63,10 +63,10 @@ HRESULT stage1::init()
 	_minion00->init(PointMake(800, 300));
 
 	_minion01 = new minion01;
-	_minion01->init(PointMake(500, 500));
+	_minion01->init(PointMake(650, 300));
 
 	_minion02 = new minion02;
-	_minion02->init(PointMake(800, 500));
+	_minion02->init(PointMake(350, 300));
 
 	//πÃ¥œµπµ¢¿Ã //∫¥√∂
 	_stone = new stone;
