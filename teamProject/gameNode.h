@@ -1,9 +1,11 @@
 #pragma once
 #include "image.h"
 
+
 static image* _backBuffer = IMAGEMANAGER->addImage("backBuffer", WINSIZEX, WINSIZEY);
 
 class character;
+class inventory;
 
 class gameNode
 {
@@ -14,6 +16,8 @@ private:
 
 protected:
 	character* _mainPlayer;
+	inventory* _inven;
+
 	POINT		_playerStartPoint;
 
 public:
@@ -25,6 +29,9 @@ public:
 
 	virtual void setMainPlayer(character* mainPlayer) {}
 	virtual character* getMainPlayer(){ return _mainPlayer; }
+
+	virtual void setInventory(inventory* inven){}
+	virtual inventory* getInventory(){ return _inven; }
 
 	//백버퍼 접근자
 	image* getBackBuffer() { return _backBuffer; }

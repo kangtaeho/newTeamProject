@@ -56,7 +56,7 @@ private:
 
 	int _alpha;	//알파렌더를 위한 변수
 
-	inventory* _inven;				//인벤토리 클래스 생성
+	//inventory* _inven;				//인벤토리 클래스 생성
 
 	bool _stopCharacter;			//캐릭터가 멈췄니?(인벤토리 열때 사용)
 
@@ -76,7 +76,14 @@ public:
 
 	virtual void setMainPlayer(character* mainPlayer) { _mainPlayer = mainPlayer; }
 	virtual character* getMainPlayer(){ return _mainPlayer; }
+
+	virtual void setInventory(inventory* inven) { _inven = inven; }
+	virtual inventory* getInventory(){ return _inven; }
 	
+	/*
+	virtual void setInventory(inventory* inven){}
+	virtual inventory* getInventory(){ return _inven; }
+	*/
 	void dropMoney(POINT point, int won);	//돈 드랍 함수 몬스터가 죽었을경우 이것 호출하면 됩니다.
 
 	void makeEnemy();	//몬스터 생성 함수

@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "inventory.h"
 #include "character.h" //카메라 해주세요 기성씨~
 
 /*
@@ -25,6 +26,8 @@ private:
 	int _alpha;
 
 	stageState _ss;	//스테이지 상태(stdafx.h에 정의되어있음)
+	bool _stopCharacter;			//캐릭터가 멈췄니?(인벤토리 열때 사용)
+	//inventory* _inven;
 public:
 	stage2();
 	~stage2();
@@ -36,5 +39,8 @@ public:
 
 	virtual void setMainPlayer(character* mainPlayer) { _mainPlayer = mainPlayer; }
 	virtual character* getMainPlayer(){ return _mainPlayer; }
+
+	virtual void setInventory(inventory* inven) { _inven = inven; }
+	virtual inventory* getInventory(){ return _inven; }
 }; 
 

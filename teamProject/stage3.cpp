@@ -20,6 +20,10 @@ HRESULT stage3::init()
 	//카메라 렉트
 	rc1 = RectMakeCenter(50, 300, 100, 100);
 	currentRC = &rc1;
+
+	_inven = new inventory;
+	_inven->init();
+
 	//
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	CAMERAMANAGER->setCameraAim(&rc1);
@@ -144,6 +148,7 @@ void stage3::render()
 	IMAGEMANAGER->findImage("스테이지_02")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_02_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc1).x, CAMERAMANAGER->CameraRelativePoint(rc1).y, 100, 100);
+	_inven->render();
 	//이거 지우고
 //IMAGEMANAGER->findImage("스테이지_02")->render(getMemDC(), 0, 0);
 //IMAGEMANAGER->findImage("스테이지_02_red")->render(getMemDC(), 0, 0);

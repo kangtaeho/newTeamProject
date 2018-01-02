@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "gameNode.h"
 #include "character.h"
+#include "inventory.h"
 
 gameNode::gameNode()
 {

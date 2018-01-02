@@ -118,6 +118,7 @@ HRESULT sceneManager::changeScene(string sceneName)
 		{
 
 			find->second->setMainPlayer(_currentScene->getMainPlayer());
+			find->second->setInventory(_currentScene->getInventory());
 			_currentScene->release();
 		}
 		//바꾸려는 씬으로 씬을 바꿔준다
