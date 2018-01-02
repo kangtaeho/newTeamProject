@@ -155,36 +155,8 @@ void stage1::update()
 
 void stage1::render()
 {
-	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
-	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
-	//_knife->render();
-	_boss00->render();
-	_minion00->render();
-	_minion01->render();
-	_minion02->render();
-	//_stone->render();
-
-	_mainPlayer->render();
+	draw();
 	
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
-
-	
-
-
-		IMAGEMANAGER->findImage("스테이지1_문")->frameRender(getMemDC(), 
-			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_DOOR->getX(), _DOOR->getY(), _DOOR->getFrameWidth(), _DOOR->getFrameHeight())).x,
-			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_DOOR->getX(), _DOOR->getY(), _DOOR->getFrameWidth(), _DOOR->getFrameHeight())).y,
-			_DOOR->getFrameX(), _DOOR->getFrameY());
-
-		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_DOORRC).x, CAMERAMANAGER->CameraRelativePoint(_DOORRC).y, 10, 10);
-	_inven->render();
-
-	for (int i = 0; i < _vItem.size(); i++)
-	{
-		_vItem[i]->render();
-	}
-
-	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255-_alpha);
 
 }
 
@@ -405,4 +377,37 @@ void stage1::singletonInit(){
 
 	SOUNDMANAGER->play("스테이지1", 0.5f);
 	SOUNDMANAGER->setCurrentBgmKey("스테이지1");
+}
+
+void stage1::draw(){
+	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
+	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
+
+	_boss00->render();
+	_minion00->render();
+	_minion01->render();
+	_minion02->render();
+
+	_mainPlayer->render();
+
+	//카메라 렉트(이후 주석처리를 통해 지우도록!)
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
+	
+	IMAGEMANAGER->findImage("스테이지1_문")->frameRender(getMemDC(),
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_DOOR->getX(), _DOOR->getY(), _DOOR->getFrameWidth(), _DOOR->getFrameHeight())).x,
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_DOOR->getX(), _DOOR->getY(), _DOOR->getFrameWidth(), _DOOR->getFrameHeight())).y,
+		_DOOR->getFrameX(), _DOOR->getFrameY());
+
+	//문 렉트(이후 삭제하도록)
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_DOORRC).x, CAMERAMANAGER->CameraRelativePoint(_DOORRC).y, 10, 10);
+	_inven->render();
+
+	//아이템 렌더
+	for (int i = 0; i < _vItem.size(); i++)
+	{
+		_vItem[i]->render();
+	}
+
+	//알파렌더를 위한 검은화면 렌더
+	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
 }
