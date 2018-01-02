@@ -344,14 +344,8 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	//플레이어가 배에 닿았을때 모든키 제어 불가능하게 해주고
 	//배가 플레이어랑 같이 움직여야되는데 //기성씨 8~~ //배아직 안움직임
 	IMAGEMANAGER->findImage("쪽배")->render(getMemDC(),
-<<<<<<< HEAD
-
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
-=======
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).x,
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).y);
->>>>>>> 4e2d47036cc4753cafdeb23d393e353d7ea2f937
 
 	IMAGEMANAGER->findImage("쪽배_red")->render(getMemDC(),
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,

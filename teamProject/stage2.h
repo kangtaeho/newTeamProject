@@ -37,6 +37,8 @@ private:
 
 	stageState _ss;	//스테이지 상태(stdafx.h에 정의되어있음)
 	bool _stopCharacter;			//캐릭터가 멈췄니?(인벤토리 열때 사용)
+	
+	bool _firstWave, _secondWave, _thirdWave;
 	//inventory* _inven;
 public:
 	stage2();
