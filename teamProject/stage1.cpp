@@ -48,6 +48,8 @@ HRESULT stage1::init()
 
 	singletonInit();
 
+	_em->setBoss(PointMake(3000,300));
+
 	return S_OK;
 }
 

@@ -27,7 +27,7 @@ private:
 	//연결 할 플레이어 변수
 	character* _mainPlayer;
 
-	minion01* _mini;
+	//minion01* _mini;
 
 public:
 	enemyManager();
@@ -39,11 +39,11 @@ public:
 	void render();
 
 	//쫄따구
-	void setMinion(void);
+	void setMinion(POINT point);
 	//정예
-	void setPick(void);
+	void setPick(POINT point);
 	//보스
-	void setBoss(void);
+	void setBoss(POINT point);
 
 	//적 사망시 제거
 	void removeEnemy(int arrNum);
