@@ -351,8 +351,8 @@ void stage1::makeEnemy(){
 	쫄따구 1마리 생성
 	_em -> setMinion()
 
-	카메라 고정 추가(기성아 부탁한다)
-
+	카메라 고정 추가(기성아 부탁한다) 추가 
+	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 
 	}
 
@@ -360,8 +360,10 @@ void stage1::makeEnemy(){
 	else if(firstWave && _em.size() == 0)
 	{
 
-	카메라 다시 이동(기성아 부탁한다)
-
+	카메라 다시 이동(기성아 부탁한다) 추가
+	currentRC = &rc1;
+	CAMERAMANAGER->setCameraAim(currentRC);
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	}
 
 	두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
@@ -370,15 +372,18 @@ void stage1::makeEnemy(){
 	정예몹 1마리 생성
 	_em -> setPick()
 
-	카메라 고정 추가(이것도 부탁해)
+	카메라 고정 추가(이것도 부탁해) 추가
+	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
 	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
 	else if(secondWave && _em.size() == 0)
 	{
 
-	카메라 다시 이동(기성아 부탁한다)
-
+	카메라 다시 이동(기성아 부탁한다) 추가 
+	currentRC = &rc1;
+	CAMERAMANAGER->setCameraAim(currentRC);
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	}
 
 	*/
