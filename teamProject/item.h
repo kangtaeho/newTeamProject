@@ -59,7 +59,7 @@ public:
 	int getPrice(){ return _price; }
 
 	//던질때 상태 변경
-	void setState(bool isThrow){ _itemState = THROWING; }
+	void setState(bool isThrow){ if (isThrow)_itemState = THROWING; else _itemState = DROP; }
 
 
 };

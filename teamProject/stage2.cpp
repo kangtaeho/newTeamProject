@@ -2,11 +2,10 @@
 #include "stage2.h"
 
 
-stage2::stage2()
+stage2::stage2() //절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
 : _alpha(0),
 _ss(READY),
-//_rc1(RectMakeCenter(560, 2286, 100, 100)), //카메라의 렉트 좌표
-_rc1(RectMakeCenter(5520, 2286, 100, 100)), //임시좌표
+_rc1(RectMakeCenter(560, 2286, 100, 100)), //카메라의 렉트 좌표
 _playerStartPoint(PointMake(760, 2310)), //스테이지 2 플레이어 시작좌표
 _currentRC(&_rc1),
 _firstWave(false),
@@ -25,9 +24,8 @@ HRESULT stage2::init()
 	initialization();	//변수 new 및 init
 	singletonInit();	//싱글톤 init
 
-	_boatX = 1420; //쪽배의 첫 좌표 1420, 끝좌표 4970
+	_boatX = 1450;
 	_boatY = 2400;
-	
 
 	//_boat->setX(1450);
 	//_boat->setY(2400);
@@ -253,7 +251,10 @@ void stage2::render()
 }
 void stage2::dropMoney(POINT point, int won)				//돈 드랍 함수 몬스터가 죽었을경우 이것 호출하면 됩니다.
 {
+	item* tempMoney = new money;
+	tempMoney->init(point, won);
 
+	_vItem.push_back(tempMoney);
 }
 
 void stage2::makeEnemy()									//몬스터 생성 함수
@@ -394,7 +395,8 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 void stage2::boatMove()
 {
-	if(_boatX < 4970) _boatX += 10;
+	
+	_boatX += 5;
 
 }
 
