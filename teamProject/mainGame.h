@@ -41,6 +41,8 @@ private:
 	오브젝트, 돈 렌더는 잠시 보류
 	*/
 
+	
+
 
 public:
 	virtual HRESULT init();			

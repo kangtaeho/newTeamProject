@@ -42,5 +42,8 @@ public:
 
 	void openOption() { _isOpenOption = true; }
 	void closeOption() { _isOpenOption = false; }
+
+	bool getIsOpenOption() { return _isOpenOption; }
+
 };
 
