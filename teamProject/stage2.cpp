@@ -39,6 +39,9 @@ HRESULT stage2::init()
 	_mainPlayer = new character;
 	_mainPlayer->init();
 
+	_inven = new inventory;
+	_inven->init();
+
 	SOUNDMANAGER->play("스테이지2",0.5f);
 
 	return S_OK;
@@ -70,6 +73,27 @@ void stage2::update()
 	//스테이지가 준비 or 클리어 상태가 아닐때만 조작 가능
 	else if (_ss != READY || _ss != CLEAR)
 	{
+		if (KEYMANAGER->isOnceKeyDown('1') && !_inven->getOpenShop()) { //인벤토리 오픈
+			if (_inven->getOpenInventory()) {
+				_inven->closeInventory();
+				_stopCharacter = false;
+			}
+			else {
+				_inven->openInventory();
+				_stopCharacter = true;
+			}
+		}
+
+		if (KEYMANAGER->isOnceKeyDown('2') && !_inven->getOpenInventory()) { //상점 오픈
+			if (_inven->getOpenShop()) {
+				_inven->closeShop();
+				_stopCharacter = false;
+			}
+			else {
+				_inven->openShop();
+				_stopCharacter = true;
+			}
+		}
 		//3키 입력시 강제 클리어전환
 		if (KEYMANAGER->isOnceKeyDown('3'))
 		{
@@ -202,7 +226,7 @@ void stage2::render()
 	IMAGEMANAGER->findImage("스테이지_01_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc1).x, CAMERAMANAGER->CameraRelativePoint(rc1).y, 100, 100);
-
+	_inven->render();
 	//플레이어가 배에 닿았을때 모든키 제어 불가능하게 해주고
 	//배가 플레이어랑 같이 움직여야되는데 //기성씨 부탁해요~~
 	IMAGEMANAGER->findImage("쪽배")->render(getMemDC(), 
