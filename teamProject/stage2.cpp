@@ -284,13 +284,9 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 	//이 검은화면이 제밀 밑에 있도록 코드쳐주세요~~
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
-<<<<<<< HEAD
 }
 
 void stage2::boatMove()
 {
 	
 }
-=======
-}
->>>>>>> d5a6ef3d822957eef9c7fa4641b1fe9e19df7436
