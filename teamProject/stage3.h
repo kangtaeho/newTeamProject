@@ -3,6 +3,8 @@
 #include "character.h"
 #include "inventory.h"
 #include "money.h"
+#include "stone.h"
+#include <vector>
 /*
 static enum stageState
 {
@@ -24,6 +26,8 @@ private:
 
 	vector<item*> _vItem;	//바닥에 있는 아이템과 몬스터가 떨구는 돈을 위한 아이템 벡터
 	vector<item*> _viItem;
+
+	item* _stone; //미니돌덩이 
 
 	bool _firstWave, _secondWave, _thirdWave;
 public:

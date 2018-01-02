@@ -35,16 +35,16 @@ private:
 
 	float _boatX, _boatY; //쪽배 x,y좌표
 
-<<<<<<< HEAD
+
 	bool _elevatorSwitchOn; //엘레베이터 렉트 건드렸냐??
 
 
 
 	
-=======
+
 	vector<item*> _vItem;	//바닥에 있는 아이템과 몬스터가 떨구는 돈을 위한 아이템 벡터
 	vector<item*> _viItem;	
->>>>>>> 1745fbc2003ef14fc2ee84b89bf56cb714efdf53
+
 
 	//스테이지 1과 마찬가지로 알파렌더를 위한 변수
 	int _alpha;

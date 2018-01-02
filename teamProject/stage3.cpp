@@ -3,7 +3,7 @@
 
 
 stage3::stage3()
-:_rc1(RectMakeCenter(50, 300, 100, 100)),	//절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
+:_rc1(RectMakeCenter(100, 900, 100, 100)),	//절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
 _currentRC(&_rc1),
 _firstWave(false),
 _secondWave(false),
@@ -22,6 +22,8 @@ HRESULT stage3::init()
 	initialization();	//멤버변수 초기화(ex. 아이템 등)
 	singletonInit();	//싱글톤 초기화(ex. 카메라 or 스테이지 사운드)
 
+
+	_vItem.push_back(_stone);
 	return S_OK;
 }
 
@@ -136,6 +138,11 @@ void stage3::update()
 		}*/
 	
 
+
+		for (int i = 0; i < _vItem.size(); i++)
+		{
+			_vItem[i]->update();
+		}
 }
 
 void stage3::render()
@@ -171,6 +178,8 @@ void stage3::addImage()		//이미기 추가해주는 함수 이후 이미지는 여기서 add하는걸
 }
 void stage3::initialization()	//변수들 new선언 및 init 해주는 함수 이후 new 및 init은 여기서 하는걸로
 {
+	_stone = new stone;
+	_stone->init(PointMake(100, 900));
 	_inven = new inventory;
 	_inven->init();
 }
@@ -188,4 +197,9 @@ void stage3::draw()			//그려주는 함수 이후 렌더는 여기서 하는걸로
 	IMAGEMANAGER->findImage("스테이지_02_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
 	_inven->render();
+
+	for (int i = 0; i < _vItem.size(); i++)
+	{
+		_vItem[i]->render();
+	}
 }
