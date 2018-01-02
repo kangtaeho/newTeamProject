@@ -19,8 +19,9 @@ HRESULT stage2::init()
 	IMAGEMANAGER->addImage("스테이지_01_red", "./images/02_stage00_red.bmp", 5795, 2593, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addImage("검은화면", "./images/backWindow.bmp", 1152, 648, true, RGB(255, 0, 255));
-
+	IMAGEMANAGER->addImage("쪽배_red", "./images/boat_red.bmp", 527, 75, true, RGB(255, 0, 255));
 	_boat = IMAGEMANAGER->addImage("쪽배", "./images/boat.bmp", 527, 75, true, RGB(255, 0, 255));
+
 	
 	_boat->setX(1450);
 	_boat->setY(2400);
@@ -190,7 +191,7 @@ void stage2::update()
 
 		if (KEYMANAGER->isOnceKeyDown('P'))
 		{
-			SCENEMANAGER->changeScene("스테이지00"); //02 로 바꿔줘야되고
+			SCENEMANAGER->changeScene("스테이지00"); 
 		}
 	}
 }
@@ -204,10 +205,17 @@ void stage2::render()
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc1).x, CAMERAMANAGER->CameraRelativePoint(rc1).y, 100, 100);
 
 	//플레이어가 배에 닿았을때 모든키 제어 불가능하게 해주고
-	//배가 플레이어랑 같이 움직여야되는데 //기성씨 부탁해요~~
+	//배가 플레이어랑 같이 움직여야되는데 //기성씨 8~~ //배아직 안움직임
 	IMAGEMANAGER->findImage("쪽배")->render(getMemDC(), 
+
 			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).x,
 			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).y);
+
+
+	IMAGEMANAGER->findImage("쪽배_red")->render(getMemDC(), 
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).x,
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).y);
+	
 	//이 검은화면이 제밀 밑에 있도록 코드쳐주세요~~
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
 }
