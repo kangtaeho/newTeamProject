@@ -100,6 +100,9 @@ public:
 	static void MakeLeftDrill(void* obj);
 	static void MakeRightLand(void* obj);
 	static void MakeLeftLand(void* obj);
+	static void MakeRightBK(void* obj);
+	static void MakeLeftBK(void* obj);
+
 
 	//캐릭터 상태접근자,설정자
 	CHARA getState() { return _state; }

@@ -171,12 +171,20 @@ HRESULT character::init()
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftJump", "JIMMY", LeftJump, 1, 6, true);
 
 	//¿À¸¥ÂÊ 2´Ü µÞÂ÷±â
-	int RightBackKick[] = { 28, 29, 30 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightBackKick", "JIMMY", RightBackKick, 3, 2, false);
+	int RightBackKick[] = { 28, 29 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightBackKick", "JIMMY", RightBackKick, 2, 2, false, MakeRightBK,this);
 
 	//¿ÞÂÊ 2´Ü µÞÂ÷±â
-	int LeftBackKick[] = { 131, 130, 129 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftBackKick", "JIMMY", LeftBackKick, 3, 2, false);
+	int LeftBackKick[] = { 131, 130 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftBackKick", "JIMMY", LeftBackKick, 2, 2, false, MakeLeftBK, this);
+
+	//¿À¸¥ÂÊ 2´Ü µÞÂ÷±âÀ¯Áö
+	int RightBackKickKeep[] = { 29 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightBackKickKeep", "JIMMY", RightBackKickKeep, 1,6,true);
+
+	//¿ÞÂÊ 2´Ü µÞÂ÷±âÀ¯Áö
+	int LeftBackKickKeep[] = { 130 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftBackKickKeep", "JIMMY", LeftBackKickKeep, 1, 6, true);
 
 	//¿À¸¥ÂÊ ºØºØÀÌ ÁØºñ
 	int RightReadyDrill[] = { 32 };
@@ -184,7 +192,7 @@ HRESULT character::init()
 
 	//¿À¸¥ÂÊ ºØºØÀÌ
 	int RightDrill[] = { 33, 34, 35 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightDrill", "JIMMY", RightDrill, 3, 2, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightDrill", "JIMMY", RightDrill, 3, 1, true);
 	//¿À¸¥ÂÊ °øÁß´ÏÅ±
 	int RightKneeKick[] = { 51 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightKneeKick", "JIMMY", RightKneeKick, 1, 6, true);
@@ -261,24 +269,24 @@ void character::update()
 		//¸ØÃá»óÅÂ
 	case CHARA_RIGHT_STOP:
 	case CHARA_LEFT_STOP:
-		//if (KEYMANAGER->isOnceKeyDown(VK_UP)|| KEYMANAGER->isOnceKeyDown(VK_DOWN))
-		//{
-		//	if (_isRight)
-		//	{
-		//		_motion = KEYANIMANAGER->findAnimation("JIMMYRightMove");
-		//		_motion->start();
-		//		_state = CHARA_RIGHT_MOVE;
-		//	}
-		//	else
-		//	{
-		//		_state = CHARA_LEFT_MOVE;
-		//		_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMove");
-		//		_motion->start();
-		//	}
-		//}
+		if (KEYMANAGER->isOnceKeyDown(VK_UP)|| KEYMANAGER->isOnceKeyDown(VK_DOWN))
+		{
+			if (_isRight)
+			{
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightMove");
+				_motion->start();
+				_state = CHARA_RIGHT_MOVE;
+			}
+			else
+			{
+				_state = CHARA_LEFT_MOVE;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMove");
+				_motion->start();
+			}
+		}
 		if (KEYMANAGER->isOnceKeyDown('Z'))//Á¡ÇÁ
 		{
-			_StartX = _y;
+			_StartY = _y;
 			_JP = CHARASPEED;
 			if (_isRight)
 			{
@@ -307,7 +315,38 @@ void character::update()
 			_motion->start();
 			_state = CHARA_RIGHT_MOVE;
 		}
-
+		if (KEYMANAGER->isOnceKeyDown('X'))//ÁÖ¸Ô
+		{
+			if (_isRight)
+			{
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightPunchOne");
+				_motion->start();
+				_state = CHARA_RIGHT_PUNCH_ONE;
+			}
+			else
+			{
+				_state = CHARA_LEFT_PUNCH_ONE;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftPunchOne");
+				_motion->start();
+			}
+			SOUNDMANAGER->play("Èî(¶§¸±¶§)", 1.0);
+		}
+		if (KEYMANAGER->isOnceKeyDown('C'))//Å±
+		{
+			SOUNDMANAGER->play("Èå¾Ñ(¹ßÂ÷±âÇÒ¶§)", 1.0);
+			if (_isRight)
+			{
+				_state = CHARA_RIGHT_KICK;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightKick");
+				_motion->start();
+			}
+			else
+			{
+				_state = CHARA_LEFT_KICK;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftKick");
+				_motion->start();
+			}
+		}
 		break;
 
 	case CHARA_RIGHT_MOVE://¿À¸¥ÂÊÀ¸·Î ¿òÁ÷ÀÌ´Â Áß
@@ -321,6 +360,15 @@ void character::update()
 		//		_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
 		//		_motion->start();
 		//}
+		if (KEYMANAGER->isOnceKeyDown('Z'))//Á¡ÇÁ
+		{
+			//SOUNDMANAGER->play("Èå¾Ñ(¹ßÂ÷±âÇÒ¶§)", 1.0);
+			_StartY = _y;
+			_JP = CHARASPEED;
+			_state = CHARA_RIGHT_MOVE_JUMP;
+			_motion = KEYANIMANAGER->findAnimation("JIMMYRightJump");
+			_motion->start();
+		}
 		if (KEYMANAGER->isStayKeyDown(VK_UP))
 		{
 			//if(»ç´Ù¸®¸¦ Å» ¼ö ÀÖ°Ô µÇ¾ú´Ù)
@@ -341,20 +389,14 @@ void character::update()
 		{
 			_x += CHARASPEED;
 		}
-		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) || KEYMANAGER->isOnceKeyUp(VK_DOWN) || KEYMANAGER->isOnceKeyUp(VK_UP))
 		{
 			_state = CHARA_RIGHT_STOP;//¸ØÃã»óÅÂ·Î µ¹·Á¶ó
 			_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
 			_motion->start();
 		}
-		if (KEYMANAGER->isOnceKeyDown('Z'))//Á¡ÇÁ
-		{
-			_StartX = _y;
-			_JP = CHARASPEED;
-			_state = CHARA_RIGHT_MOVE_JUMP;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRIghtJump");
-			_motion->start();
-		}
+
+		
 		break;
 	case CHARA_LEFT_MOVE://¿ÞÂÊÀ¸·Î ¿òÁ÷ÀÌ´Â Áß
 		//»óÇÏÁÂ¿ìÅ°¸¦ ´©¸¥»óÅÂ°¡ ¾Æ´Ï¶ó¸é
@@ -386,7 +428,7 @@ void character::update()
 		{
 			_x -= CHARASPEED;
 		}
-		if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
+		if (KEYMANAGER->isOnceKeyUp(VK_LEFT) || KEYMANAGER->isOnceKeyUp(VK_DOWN) || KEYMANAGER->isOnceKeyUp(VK_UP))
 		{
 			_state = CHARA_LEFT_STOP;//¸ØÃã»óÅÂ·Î µ¹·Á¶ó
 			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
@@ -394,7 +436,7 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('Z'))//Á¡ÇÁ
 		{
-			_StartX = _y;
+			_StartY = _y;
 			_JP = CHARASPEED;
 			_state = CHARA_LEFT_MOVE_JUMP;
 			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJump");
@@ -599,7 +641,8 @@ void character::update()
 	case CHARA_LEFT_HEAD:
 		if (KEYMANAGER->isOnceKeyDown('X'))//ÁÖ¸Ô
 		{
-			SOUNDMANAGER->play("Èî(¶§¸±¶§)", 1.0);
+			_StartY = _y;
+			_JP = CHARAJUMP;
 			if (_isRight)
 			{
 				_state = CHARA_RIGHT_DRILL;
@@ -640,7 +683,7 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('C')|| KEYMANAGER->isOnceKeyDown('X'))//¹ßÂ÷±â
 		{
-			if (_JP*_JP < 1)
+			if (_JP*_JP <= 1)
 			{
 				_JP = 0;
 				if (_isRight)
@@ -656,19 +699,21 @@ void character::update()
 					_motion->start();
 				}
 			}
-			if (_isRight)
-			{
-				_state = CHARA_RIGHT_JUMP_KICK;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYRightJumpKick");
-				_motion->start();
-			}
 			else
 			{
-				_state = CHARA_LEFT_JUMP_KICK;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJumpKick");
-				_motion->start();
+				if (_isRight)
+				{
+					_state = CHARA_RIGHT_JUMP_KICK;
+					_motion = KEYANIMANAGER->findAnimation("JIMMYRightJumpKick");
+					_motion->start();
+				}
+				else
+				{
+					_state = CHARA_LEFT_JUMP_KICK;
+					_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJumpKick");
+					_motion->start();
+				}
 			}
-		
 		}
 		break;
 	case CHARA_RIGHT_MOVE_JUMP:
@@ -700,6 +745,21 @@ void character::update()
 				_motion->start();
 			}
 		}
+		if (KEYMANAGER->isOnceKeyDown('C') || KEYMANAGER->isOnceKeyDown('X'))//¹ßÂ÷±â
+		{
+			if (_isRight)
+			{
+				_state = CHARA_RIGHT_MOVE_JUMP_KICK;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightJumpKick");
+				_motion->start();
+			}
+			else
+			{
+				_state = CHARA_LEFT_MOVE_JUMP_KICK;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJumpKick");
+				_motion->start();
+			}
+		}
 		break;
 	case CHARA_RIGHT_BACKKICK:
 	case CHARA_LEFT_BACKKICK:
@@ -713,10 +773,8 @@ void character::update()
 		{
 			_x -= 2;
 		}
-		if (_StartY <= _y)
+		if (_StartY < _y)
 		{
-			_JP = 0;
-			_y = _StartY;
 			if (_isRight)
 			{
 				_state = CHARA_RIGHT_STOP;
@@ -847,6 +905,28 @@ void character::update()
 	case CHARA_LEFT_JUMP_KICK:
 		_y -= _JP;
 		_JP -= _gravity;
+		if (_StartY <= _y)
+		{
+			_JP = 0;
+			_y = _StartY;
+			if (_isRight)
+			{
+				_state = CHARA_RIGHT_LAND;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightLand");
+				_motion->start();
+			}
+			else
+			{
+				_state = CHARA_LEFT_LAND;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftLand");
+				_motion->start();
+			}
+		}
+		break;
+	case CHARA_RIGHT_MOVE_JUMP_KICK:
+	case CHARA_LEFT_MOVE_JUMP_KICK:
+		_y -= _JP;
+		_JP -= _gravity;
 		if (_isRight)
 		{
 			_x += CHARASPEED;
@@ -873,6 +953,7 @@ void character::update()
 			}
 		}
 		break;
+		break;
 	case CHARA_RIGHT_ATT:
 	case CHARA_LEFT_ATT:
 		//JP°ª 0ÁØ»óÅÂ
@@ -881,48 +962,8 @@ void character::update()
 		break;
 	}
 	
-	if (KEYMANAGER->isOnceKeyDown('X'))//ÁÖ¸Ô
-	{
-		SOUNDMANAGER->play("Èî(¶§¸±¶§)", 1.0);
-		if (_state == CHARA_RIGHT_STOP || _state == CHARA_LEFT_STOP
-			|| _state == CHARA_RIGHT_MOVE || _state == CHARA_LEFT_MOVE)
-		{
-			if (_isRight)
-			{
-				_motion = KEYANIMANAGER->findAnimation("JIMMYRightPunchOne");
-				_motion->start();
-				_state = CHARA_RIGHT_PUNCH_ONE;
-			}
-			else
-			{
-				_state = CHARA_LEFT_PUNCH_ONE;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftPunchOne");
-				_motion->start();
-			}
-		}
-	}
-	if (KEYMANAGER->isOnceKeyDown('C'))//Å±
-	{
-		SOUNDMANAGER->play("Èå¾Ñ(¹ßÂ÷±âÇÒ¶§)", 1.0);
-		
-
-		if (_state == CHARA_RIGHT_STOP || _state == CHARA_LEFT_STOP
-			|| _state == CHARA_RIGHT_MOVE || _state == CHARA_LEFT_MOVE)
-		{
-			if (_isRight)
-			{
-				_state = CHARA_RIGHT_KICK;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYRightKick");
-				_motion->start();
-			}
-			else
-			{
-				_state = CHARA_LEFT_KICK;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftKick");
-				_motion->start();
-			}
-		}
-	}
+	
+	
 	KEYANIMANAGER->update();
 	UpdateRect();
 
@@ -1016,6 +1057,21 @@ void character::MakeLeftLand(void* obj)
 
 	C->setState(CHARA_LEFT_LAND);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftLand"));
+	C->getMotion()->start();
+}
+
+void character::MakeRightBK(void* obj)
+{
+	character* C = (character*)obj;
+
+	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightBackKickKeep"));
+	C->getMotion()->start();
+}
+void character::MakeLeftBK(void* obj)
+{
+	character* C = (character*)obj;
+
+	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftBackKickKeep"));
 	C->getMotion()->start();
 }
 
