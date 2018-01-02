@@ -94,6 +94,7 @@ HRESULT stage1::init()
 	_vItem.push_back(_bigStone);
 
 	SOUNDMANAGER->play("스테이지1",0.5f);
+	SOUNDMANAGER->setCurrentBgmKey("스테이지1");
 
 	return S_OK;
 }
@@ -189,6 +190,7 @@ void stage1::update()
 		{
 			_vItem[i]->update();
 		}
+		
 		
 	}
 }
