@@ -5,7 +5,8 @@
 stage2::stage2()
 : _alpha(0),
 _ss(READY),
-_rc1(RectMakeCenter(5520, 2186, 100, 100)),
+_rc1(RectMakeCenter(560, 2286, 100, 100)), //카메라의 렉트 좌표
+_playerStartPoint(PointMake(760, 2310)), //스테이지 2 플레이어 시작좌표
 _currentRC(&_rc1),
 _firstWave(false),
 _secondWave(false),
@@ -30,8 +31,12 @@ HRESULT stage2::init()
 	//_boat->setY(2400);
 	_boatRC = RectMakeCenter(_boatX, _boatY, 527, 75);
 	
-	_elevator->setX(5520);
-	_elevator->setY(2186);
+	//_elevator->setX(5520);
+	//_elevator->setY(2186);
+
+	_elevatorX = 5520;
+	_elevatorY = 2186;
+
 	_elevatorRC = RectMakeCenter(_elevator->getX(), _elevator->getY(), 10, 10);
 
 	return S_OK;
@@ -210,6 +215,9 @@ void stage2::update()
 			SCENEMANAGER->changeScene("스테이지00"); 
 		}
 	}
+
+	boatMove();
+	elevatorMove();
 }
 
 void stage2::render()
@@ -330,8 +338,8 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 {
 
 	IMAGEMANAGER->findImage("엘레베이터")->render(getMemDC(),
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevator->getX(), _elevator->getY(), _elevator->getWidth(), _elevator->getHeight())).x,
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevator->getX(), _elevator->getY(), _elevator->getWidth(), _elevator->getHeight())).y);
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevatorX, _elevatorY, _elevator->getWidth(), _elevator->getHeight())).x,
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevatorX, _elevatorY, _elevator->getWidth(), _elevator->getHeight())).y);
 
 	IMAGEMANAGER->findImage("스테이지_01")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_01_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
@@ -357,5 +365,12 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 void stage2::boatMove()
 {
+	
+	_boatX += 5;
 
+}
+
+void stage2::elevatorMove() 
+{
+	_elevatorY -= 5;
 }

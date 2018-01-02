@@ -24,11 +24,17 @@ private:
 	image* _elevator;
 	RECT _elevatorRC;
 
+	float _elevatorX, _elevatorY; //엘레베이터 x,y좌표
+
+	POINT _playerStartPoint; //플레이어의 시작 좌표
+
 	//쪽배 렉트
 	image* _boat;
 	RECT _boatRC;
 
-	float _boatX, _boatY; //보트 x,y좌표
+	float _boatX, _boatY; //쪽배 x,y좌표
+
+
 
 	
 
@@ -49,7 +55,8 @@ public:
 	void update();
 	void render();
 
-	void boatMove(); // 보트 무브 함수 
+	void boatMove();	// 보트 무브 함수 
+	void elevatorMove(); //엘베 무브 함수
 
 	virtual void setMainPlayer(character* mainPlayer) { _mainPlayer = mainPlayer; }
 	virtual character* getMainPlayer(){ return _mainPlayer; }
@@ -66,6 +73,6 @@ public:
 	void addImage();		//이미기 추가해주는 함수 이후 이미지는 여기서 add하는걸로
 	void initialization();	//변수들 new선언 및 init 해주는 함수 이후 new 및 init은 여기서 하는걸로
 	void singletonInit();	//init에서 싱글톤들 세팅해주는 함수 이후 세팅은 여기서 하는걸로
-	void draw();	//그려주는 함수 이후 렌더는 여기서 하는걸로
+	void draw();			//그려주는 함수 이후 렌더는 여기서 하는걸로
 }; 
 
