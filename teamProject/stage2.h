@@ -16,11 +16,19 @@ CLEAR
 class stage2 : public gameNode
 {
 private:
+	//카메라 렉트
 	RECT rc1;
 	RECT* currentRC;
 
+	//엘레베이터 렉트
+	image* _elevator;
+	RECT _elevatorRC;
+
+	//쪽배 렉트
 	image* _boat;
 	RECT _boatRC;
+
+	
 
 	//스테이지 1과 마찬가지로 알파렌더를 위한 변수
 	int _alpha;

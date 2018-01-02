@@ -20,18 +20,30 @@ HRESULT stage2::init()
 
 	IMAGEMANAGER->addImage("검은화면", "./images/backWindow.bmp", 1152, 648, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("쪽배_red", "./images/boat_red.bmp", 527, 75, true, RGB(255, 0, 255));
+	
 	_boat = IMAGEMANAGER->addImage("쪽배", "./images/boat.bmp", 527, 75, true, RGB(255, 0, 255));
 
-	
 	_boat->setX(1450);
 	_boat->setY(2400);
-
 	_boatRC = RectMakeCenter(_boat->getX(), _boat->getY(), 527, 75);
+
+
+	_elevator = IMAGEMANAGER->addImage("엘레베이터", "./images/elevator.bmp", 210, 260, true, RGB(255, 0, 255));
+	
+	_elevator->setX(5520);
+	_elevator->setY(2186);
+
+	_elevatorRC = RectMakeCenter(_elevator->getX(), _elevator->getY(), 10, 10);
+
+		
+
+
+
 	//알파값 초기화
 	_alpha = 0;
 	_ss = READY;
 
-	rc1 = RectMakeCenter(760, 2300, 100, 100);
+	rc1 = RectMakeCenter(5520, 2186, 100, 100);
 	currentRC = &rc1;
 
 	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
@@ -224,10 +236,19 @@ void stage2::update()
 
 void stage2::render()
 {
+	//
+	IMAGEMANAGER->findImage("엘레베이터")->render(getMemDC(),
+		
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevator->getX(), _elevator->getY(), _elevator->getWidth(), _elevator->getHeight())).x,
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevator->getX(), _elevator ->getY(), _elevator->getWidth(), _elevator->getHeight())).y);
 
+	         
 	IMAGEMANAGER->findImage("스테이지_01")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_01_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 
+	//엘레베이터 rc 작은거 충돌용
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_elevatorRC).x, CAMERAMANAGER->CameraRelativePoint(_elevatorRC).y, 10, 10);
+	
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc1).x, CAMERAMANAGER->CameraRelativePoint(rc1).y, 100, 100);
 	_inven->render();
 	//플레이어가 배에 닿았을때 모든키 제어 불가능하게 해주고
