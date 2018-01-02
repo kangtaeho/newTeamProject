@@ -123,5 +123,8 @@ public:
 
 	//렉트최신화
 	void UpdateRect();
+
+	//키 애니메이션 초기화 함수
+	void addImage();
 };
 

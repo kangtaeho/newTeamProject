@@ -48,6 +48,7 @@ HRESULT stage1::init()
 
 	singletonInit();
 
+	//몬스터 생성은 이런식으로(이후에 makeEnemy 함수에서 생성)
 	_em->setBoss(PointMake(3000,300));
 
 	return S_OK;
