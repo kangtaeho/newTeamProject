@@ -90,7 +90,9 @@ public:
 
 	void characterMovement();							//캐릭터 키매지저를 관리하는 함수
 
-	void addImage();		//이미기 추가해주는 함수
-	void initialization();	//변수들 new선언 및 init 해주는 함수
+	void addImage();		//이미기 추가해주는 함수 이후 이미지는 여기서 add하는걸로
+	void initialization();	//변수들 new선언 및 init 해주는 함수 이후 new 및 init은 여기서 하는걸로
+	void singletonInit();	//init에서 싱글톤들 세팅해주는 함수 이후 세팅은 여기서 하는걸로
+	void draw();	//그려주는 함수 이후 렌더는 여기서 하는걸로
 };
 

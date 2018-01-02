@@ -68,17 +68,19 @@ void stage1::update()
 		else
 			_ss = MOVING;
 	}
-	//스테이지 상태가 다음맵으로 넘어가는경우
 
-	//else if (_ss == CLEAR)
-	//{															
-	//	//알파값 감소시켜 검은화면 나타나면서						   
-	//	if (_alpha >0)											
-	//		_alpha -= 5;										
-	//	//알파값이 0이 되면 다음 스테이지							 
-	//	else													
-	//SCENEMANAGER->changeScene("스테이지01");
-	//}
+	else if (IntersectRect(&temp, &_rc1, &_DOORRC) && _ss == CLEAR) //클리어 상태에서 문에 닿았을때 다음씬으로 넘겨라 //병철
+	{
+
+		if (_alpha >0)
+			_alpha -= 5;
+		//알파값이 0이 되면 다음 스테이지							 
+		else
+		{
+			SCENEMANAGER->changeScene("스테이지01");
+			SOUNDMANAGER->stop("스테이지1");
+		}
+	}
 
 	//스테이지 상태가 레디나 클리어가 아닐때만 모든 행동 가능하도록 // 문에 닿지 않았을때 추가 
 	else if (_ss == MOVING || (_ss == CLEAR && !IntersectRect(&temp, &_rc1, &_DOORRC)))
@@ -112,9 +114,7 @@ void stage1::update()
 		
 		if (KEYMANAGER->isOnceKeyDown('3')) //강제로 클리어상태로 전환
 		{
-			_ss = CLEAR; 
-			
-			
+			_ss = CLEAR; 		
 		}
 		
 
@@ -122,6 +122,7 @@ void stage1::update()
 		{
 			dropMoney(PointMake(200,200),10);
 		}
+
 		if (KEYMANAGER->isOnceKeyDown('5')) //오브젝트 강제로 날라가는 상태로 변경
 		{
 			for (int i = 0; i < _vItem.size(); i++)
@@ -129,35 +130,18 @@ void stage1::update()
 				_vItem[i]->setState(true);
 			}
 		}
+
 		_inven->update();
 		for (int i = 0; i < _vItem.size(); i++)
 		{
 			_vItem[i]->update();
-		}
-		
-		
-	}
-
-	//RECT temp;
-	if (IntersectRect(&temp, &_rc1, &_DOORRC) && _ss == CLEAR) //클리어 상태에서 문에 닿았을때 다음씬으로 넘겨라 //병철
-	{
-
-		if (_alpha >0)
-			_alpha -= 5;
-		//알파값이 0이 되면 다음 스테이지							 
-		else
-		{
-			SCENEMANAGER->changeScene("스테이지01");
-			SOUNDMANAGER->stop("스테이지1");
-		}
-	}
+		}		
+	}	
 }
 
 void stage1::render()
 {
 	draw();
-	
-
 }
 
 void stage1::characterMovement() {

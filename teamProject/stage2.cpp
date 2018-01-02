@@ -35,10 +35,6 @@ HRESULT stage2::init()
 
 	_elevatorRC = RectMakeCenter(_elevator->getX(), _elevator->getY(), 10, 10);
 
-		
-
-
-
 	//알파값 초기화
 	_alpha = 0;
 	_ss = READY;
