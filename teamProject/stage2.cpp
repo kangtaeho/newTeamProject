@@ -3,7 +3,10 @@
 
 
 stage2::stage2()
-
+: _alpha(0),
+_ss(READY),
+_rc1(RectMakeCenter(5520, 2186, 100, 100)),
+_currentRC(&_rc1)
 {
 }
 
@@ -13,51 +16,24 @@ stage2::~stage2()
 
 HRESULT stage2::init()
 {
-	CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
-
-	IMAGEMANAGER->addImage("스테이지_01", "./images/02_stage00.bmp", 5795, 2593, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("스테이지_01_red", "./images/02_stage00_red.bmp", 5795, 2593, true, RGB(255, 0, 255));
-
-	IMAGEMANAGER->addImage("검은화면", "./images/backWindow.bmp", 1152, 648, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("쪽배_red", "./images/boat_red.bmp", 527, 75, true, RGB(255, 0, 255));
-	
-	_boat = IMAGEMANAGER->addImage("쪽배", "./images/boat.bmp", 527, 75, true, RGB(255, 0, 255));
+	addImage();			//이미지 add
+	initialization();	//변수 new 및 init
+	singletonInit();	//싱글톤 init
 
 	_boat->setX(1450);
 	_boat->setY(2400);
-	_boatRC = RectMakeCenter(_boat->getX(), _boat->getY(), 527, 75);
-
-
-	_elevator = IMAGEMANAGER->addImage("엘레베이터", "./images/elevator.bmp", 210, 260, true, RGB(255, 0, 255));
+	_boatRC = RectMakeCenter(_boat->getX(), _boat->getY(), 527, 75);	
 	
 	_elevator->setX(5520);
 	_elevator->setY(2186);
-
 	_elevatorRC = RectMakeCenter(_elevator->getX(), _elevator->getY(), 10, 10);
-
-	//알파값 초기화
-	_alpha = 0;
-	_ss = READY;
-
-	rc1 = RectMakeCenter(5520, 2186, 100, 100);
-	currentRC = &rc1;
-
-	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
-	CAMERAMANAGER->setCameraAim(&rc1);
-
-	_mainPlayer = new character;
-	_mainPlayer->init();
-
-	_inven = new inventory;
-	_inven->init();
-
-	SOUNDMANAGER->play("스테이지2",0.5f);
 
 	return S_OK;
 }
 
 void stage2::release()
 {
+
 }
 
 void stage2::update()
@@ -117,13 +93,13 @@ void stage2::update()
 				if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 				{
 					CAMERAMANAGER->cameraMove(false, 0);
-					currentRC->bottom -= 5;
-					currentRC->top -= 5;
+					_currentRC->bottom -= 5;
+					_currentRC->top -= 5;
 				}
 				else
 				{
-					currentRC->bottom -= 5;
-					currentRC->top -= 5;
+					_currentRC->bottom -= 5;
+					_currentRC->top -= 5;
 				}
 			}
 		}
@@ -135,12 +111,12 @@ void stage2::update()
 				if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 				{
 					CAMERAMANAGER->cameraMove(false, 0);
-					currentRC->bottom += 5;
-					currentRC->top += 5;
+					_currentRC->bottom += 5;
+					_currentRC->top += 5;
 				}
 				else {
-					currentRC->bottom += 5;
-					currentRC->top += 5;
+					_currentRC->bottom += 5;
+					_currentRC->top += 5;
 				}
 			}
 		}
@@ -152,24 +128,24 @@ void stage2::update()
 				if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 				{
 					CAMERAMANAGER->cameraMove(true, 0);
-					currentRC->left -= 5;
-					currentRC->right -= 5;
+					_currentRC->left -= 5;
+					_currentRC->right -= 5;
 				}
 				else if (CAMERAMANAGER->getCameraCondition() == CAMERA_STAGE2)
 				{
 					CAMERAMANAGER->stage2CameraFollow(true, -5);
-					currentRC->left -= 5;
-					currentRC->right -= 5;
+					_currentRC->left -= 5;
+					_currentRC->right -= 5;
 				}
 				else
 				{
-					if (currentRC->left <= 0)
+					if (_currentRC->left <= 0)
 					{
-						currentRC->left += 5;
-						currentRC->right += 5;
+						_currentRC->left += 5;
+						_currentRC->right += 5;
 					}
-					currentRC->left -= 5;
-					currentRC->right -= 5;
+					_currentRC->left -= 5;
+					_currentRC->right -= 5;
 				}
 			}
 		}
@@ -181,24 +157,24 @@ void stage2::update()
 				if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 				{
 					CAMERAMANAGER->cameraMove(true, 0);
-					currentRC->left += 5;
-					currentRC->right += 5;
+					_currentRC->left += 5;
+					_currentRC->right += 5;
 				}
 				else if (CAMERAMANAGER->getCameraCondition() == CAMERA_STAGE2)
 				{
 					CAMERAMANAGER->stage2CameraFollow(true, 5);
-					currentRC->left += 5;
-					currentRC->right += 5;
+					_currentRC->left += 5;
+					_currentRC->right += 5;
 				}
 				else
 				{
-					if (currentRC->right >= 5795)
+					if (_currentRC->right >= 5795)
 					{
-						currentRC->left -= 5;
-						currentRC->right -= 5;
+						_currentRC->left -= 5;
+						_currentRC->right -= 5;
 					}
-					currentRC->left += 5;
-					currentRC->right += 5;
+					_currentRC->left += 5;
+					_currentRC->right += 5;
 				}
 			}
 		}
@@ -207,15 +183,15 @@ void stage2::update()
 		if (KEYMANAGER->isOnceKeyDown('W'))
 		{
 			CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-			currentRC = &rc1;
-			CAMERAMANAGER->setCameraAim(currentRC);
+			_currentRC = &_rc1;
+			CAMERAMANAGER->setCameraAim(_currentRC);
 			CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
 		}
 		if (KEYMANAGER->isOnceKeyDown('G'))
 		{
 			CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-			currentRC = &rc1;
-			CAMERAMANAGER->setCameraAim(currentRC);
+			_currentRC = &_rc1;
+			CAMERAMANAGER->setCameraAim(_currentRC);
 		}
 
 		if (KEYMANAGER->isOnceKeyDown('F'))
@@ -232,33 +208,80 @@ void stage2::update()
 
 void stage2::render()
 {
+	draw();
+}
+void stage2::dropMoney(POINT point, int won)				//돈 드랍 함수 몬스터가 죽었을경우 이것 호출하면 됩니다.
+{
+
+}
+
+void stage2::makeEnemy()									//몬스터 생성 함수
+{
+
+}
+
+void stage2::characterMovement()							//캐릭터 키매지저를 관리하는 함수
+{
+
+}
+
+void stage2::addImage()									//이미기 추가해주는 함수 이후 이미지는 여기서 add하는걸로
+{
+	IMAGEMANAGER->addImage("스테이지_01", "./images/02_stage00.bmp", 5795, 2593, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("스테이지_01_red", "./images/02_stage00_red.bmp", 5795, 2593, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("검은화면", "./images/backWindow.bmp", 1152, 648, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("쪽배_red", "./images/boat_red.bmp", 527, 75, true, RGB(255, 0, 255));
+
+	_boat = IMAGEMANAGER->addImage("쪽배", "./images/boat.bmp", 527, 75, true, RGB(255, 0, 255));
+	_elevator = IMAGEMANAGER->addImage("엘레베이터", "./images/elevator.bmp", 210, 260, true, RGB(255, 0, 255));
+}
+void stage2::initialization()								//변수들 new선언 및 init 해주는 함수 이후 new 및 init은 여기서 하는걸로
+{
+	_mainPlayer = new character;
+	_mainPlayer->init();
+
+	_inven = new inventory;
+	_inven->init();
+}
+void stage2::singletonInit()								//init에서 싱글톤들 세팅해주는 함수 이후 세팅은 여기서 하는걸로		  
+{
+	CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
+	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+	CAMERAMANAGER->setCameraAim(&_rc1);
+
+	SOUNDMANAGER->play("스테이지2", 0.5f);
+}
+void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로								
+{
+
 	//
 	IMAGEMANAGER->findImage("엘레베이터")->render(getMemDC(),
-		
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevator->getX(), _elevator->getY(), _elevator->getWidth(), _elevator->getHeight())).x,
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevator->getX(), _elevator ->getY(), _elevator->getWidth(), _elevator->getHeight())).y);
 
-	         
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevator->getX(), _elevator->getY(), _elevator->getWidth(), _elevator->getHeight())).x,
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevator->getX(), _elevator->getY(), _elevator->getWidth(), _elevator->getHeight())).y);
+
+
 	IMAGEMANAGER->findImage("스테이지_01")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_01_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 
 	//엘레베이터 rc 작은거 충돌용
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_elevatorRC).x, CAMERAMANAGER->CameraRelativePoint(_elevatorRC).y, 10, 10);
-	
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(rc1).x, CAMERAMANAGER->CameraRelativePoint(rc1).y, 100, 100);
+
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
 	_inven->render();
 	//플레이어가 배에 닿았을때 모든키 제어 불가능하게 해주고
 	//배가 플레이어랑 같이 움직여야되는데 //기성씨 8~~ //배아직 안움직임
-	IMAGEMANAGER->findImage("쪽배")->render(getMemDC(), 
+	IMAGEMANAGER->findImage("쪽배")->render(getMemDC(),
 
-			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).x,
-			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).y);
-
-
-	IMAGEMANAGER->findImage("쪽배_red")->render(getMemDC(), 
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).y);
-	
+
+
+	IMAGEMANAGER->findImage("쪽배_red")->render(getMemDC(),
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).x,
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).y);
+
 	//이 검은화면이 제밀 밑에 있도록 코드쳐주세요~~
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
 }
