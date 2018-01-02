@@ -220,6 +220,7 @@ void stage2::update()
 
 	boatMove();
 	elevatorMove();
+	_mainPlayer->update();
 }
 
 void stage2::render()
@@ -360,6 +361,8 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	IMAGEMANAGER->findImage("쪽배_red")->render(getMemDC(),
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
+
+	_mainPlayer->render();
 
 	//이 검은화면이 제밀 밑에 있도록 코드쳐주세요~~
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
