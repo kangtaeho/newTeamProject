@@ -80,10 +80,6 @@ public:
 	virtual void setInventory(inventory* inven) { _inven = inven; }
 	virtual inventory* getInventory(){ return _inven; }
 	
-	/*
-	virtual void setInventory(inventory* inven){}
-	virtual inventory* getInventory(){ return _inven; }
-	*/
 	void dropMoney(POINT point, int won);	//돈 드랍 함수 몬스터가 죽었을경우 이것 호출하면 됩니다.
 
 	void makeEnemy();	//몬스터 생성 함수
