@@ -3,8 +3,12 @@
 
 
 //에네미 상태설정 (더 추가 될수도 있음)
+
+
+//잡몹
 enum ENEMYDIRECTION
 {
+	
 	//오른쪽
 	ENEMYDIRECTION_RIGHT_STOP,				//멈춤
 	ENEMYDIRECTION_RIGHT_MOVE,				//걸어감
@@ -54,6 +58,8 @@ enum ENEMYDIRECTION
 
 };
 
+
+//보스
 enum BOSSDIRECTION
 {
 	//오른쪽
@@ -89,7 +95,7 @@ class enemy : public gameNode
 protected:
 	//
 	ENEMYDIRECTION _enemyDirection;
-	//BOSSDIRECTION _bossDirection;
+	BOSSDIRECTION _bossDirection;
 
 	//이미지와 위치값과 렉트와 HP설정
 	image* _imageEnemy;				//이미지
@@ -103,7 +109,7 @@ protected:
 	float _jump, _Gravity;		//점프,중력
 
 	animation* _enemyMotion;
-	//animation* _bossMotion;
+	animation* _bossMotion;
 
 
 public:
@@ -133,8 +139,8 @@ public:
 	animation* getEnemyMotion(void) { return _enemyMotion; }
 	void setEnemyMotion(animation* ani) { _enemyMotion = ani; }
 
-	//animation* getBossMotion(void) { return _bossMotion; }
-	//void setBossMotion(animation* ani) { _bossMotion = ani; }
+	animation* getBossMotion(void) { return _bossMotion; }
+	void setBossMotion(animation* ani) { _bossMotion = ani; }
 };
 
 //이제 콜백함수가 필요한 모션들이라던가 그런거 뭐해야될까영
