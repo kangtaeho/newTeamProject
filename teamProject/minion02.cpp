@@ -88,7 +88,7 @@ HRESULT minion02::init(POINT point)
 
 
 
-	_enemyMotion = KEYANIMANAGER->findAnimation("leftCrouchThrow");
+	_enemyMotion = KEYANIMANAGER->findAnimation("enemyLeftTwoJab");
 
 	return S_OK;
 }
