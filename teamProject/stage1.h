@@ -33,10 +33,10 @@ private:
 	vector<item*> _vItem;	//바닥에 있는 아이템과 몬스터가 떨구는 돈을 위한 아이템 벡터
 	vector<item*> _viItem;
 
-	RECT rc1;
-	RECT* currentRC;
-	image* DOOR; // 문추가(병철)
-	RECT DOORRC; // 문추가(병철)
+	RECT _rc1;
+	RECT* _currentRC;
+	image* _DOOR; // 문추가(병철)
+	RECT _DOORRC; // 문추가(병철)
 
 	//float doorX, doorY;
 	
@@ -90,5 +90,7 @@ public:
 
 	void characterMovement();							//캐릭터 키매지저를 관리하는 함수
 
+	void addImage();		//이미기 추가해주는 함수
+	void initialization();	//변수들 new선언 및 init 해주는 함수
 };
 
