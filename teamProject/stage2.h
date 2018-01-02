@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include "inventory.h"
 #include "character.h" //카메라 해주세요 기성씨~
+#include "money.h"
 
 /*
 static enum stageState
@@ -34,9 +35,8 @@ private:
 
 	float _boatX, _boatY; //쪽배 x,y좌표
 
-
-
-	
+	vector<item*> _vItem;	//바닥에 있는 아이템과 몬스터가 떨구는 돈을 위한 아이템 벡터
+	vector<item*> _viItem;	
 
 	//스테이지 1과 마찬가지로 알파렌더를 위한 변수
 	int _alpha;

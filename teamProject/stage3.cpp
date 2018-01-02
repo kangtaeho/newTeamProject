@@ -147,7 +147,10 @@ void stage3::render()
 }
 void stage3::dropMoney(POINT point, int won)	//돈 드랍 함수 몬스터가 죽었을경우 이것 호출하면 됩니다.
 {
+	item* tempMoney = new money;
+	tempMoney->init(point, won);
 
+	_vItem.push_back(tempMoney);
 }
 
 void stage3::makeEnemy()	//몬스터 생성 함수

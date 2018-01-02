@@ -3,7 +3,7 @@
 
 
 //변수값 초기화는 여기서
-stage1::stage1()
+stage1::stage1()	//절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
 :_alpha(0),							//알파 초기화
 _firstWave(false),					//처음 웨이브
 _secondWave(false),					//두번째 웨이브
