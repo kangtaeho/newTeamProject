@@ -62,6 +62,4 @@ void startscene::render()
 	IMAGEMANAGER->findImage("selecttri")->render(getMemDC(), 417, 375);
 	else
 		IMAGEMANAGER->findImage("selecttri")->render(getMemDC(), 417, 445);
-
-	OPTION->render();
 }

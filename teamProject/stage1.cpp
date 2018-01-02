@@ -56,9 +56,6 @@ HRESULT stage1::init()
 
 	//에너미 추가...중  //수빈
 
-	/*_minion00 = new minion00;
-	_minion00->init(PointMake(300 , 300 ));*/
-
 	_boss00 = new boss00;
 	_boss00->init(PointMake(500,300));
 
@@ -68,8 +65,8 @@ HRESULT stage1::init()
 	_minion01 = new minion01;
 	_minion01->init(PointMake(500, 500));
 
-	//_minion02 = new minion02;
-	//_minion02->init(PointMake(800, 500));
+	_minion02 = new minion02;
+	_minion02->init(PointMake(800, 500));
 
 	//미니돌덩이 //병철
 	_stone = new stone;
@@ -195,8 +192,10 @@ void stage1::update()
 			_alpha -= 5;
 		//알파값이 0이 되면 다음 스테이지							 
 		else
+		{
 			SCENEMANAGER->changeScene("스테이지01");
 			SOUNDMANAGER->stop("스테이지1");
+		}
 	}
 }
 
@@ -205,11 +204,10 @@ void stage1::render()
 	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	//_knife->render();
-	//_minion00->render();
 	_boss00->render();
 	_minion00->render();
 	_minion01->render();
-	//_minion02->render();
+	_minion02->render();
 	//_stone->render();
 
 	_mainPlayer->render();
@@ -331,11 +329,10 @@ void stage1::characterMovement() {
 		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
-	//_minion00->update();
 	_boss00->update();
 	_minion00->update();
 	_minion01->update();
-	//_minion02->update();
+	_minion02->update();
 	_mainPlayer->update();
 
 	/*if (KEYMANAGER->isOnceKeyDown('P'))
@@ -354,8 +351,8 @@ void stage1::makeEnemy(){
 	쫄따구 1마리 생성
 	_em -> setMinion()
 
-	카메라 고정 추가(기성아 부탁한다)
-
+	카메라 고정 추가(기성아 부탁한다) 추가 
+	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 
 	}
 
@@ -363,8 +360,10 @@ void stage1::makeEnemy(){
 	else if(firstWave && _em.size() == 0)
 	{
 
-	카메라 다시 이동(기성아 부탁한다)
-
+	카메라 다시 이동(기성아 부탁한다) 추가
+	currentRC = &rc1;
+	CAMERAMANAGER->setCameraAim(currentRC);
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	}
 
 	두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
@@ -373,15 +372,18 @@ void stage1::makeEnemy(){
 	정예몹 1마리 생성
 	_em -> setPick()
 
-	카메라 고정 추가(이것도 부탁해)
+	카메라 고정 추가(이것도 부탁해) 추가
+	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
 	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
 	else if(secondWave && _em.size() == 0)
 	{
 
-	카메라 다시 이동(기성아 부탁한다)
-
+	카메라 다시 이동(기성아 부탁한다) 추가 
+	currentRC = &rc1;
+	CAMERAMANAGER->setCameraAim(currentRC);
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	}
 
 	*/

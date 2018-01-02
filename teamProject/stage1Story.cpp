@@ -34,7 +34,7 @@ void stage1Story::update()
 		_index++;
 		//이미지 인덱스 넘길때 씬 전환
 		if (_index >= 4)
-			SCENEMANAGER->changeScene("스테이지00",false);
+			SCENEMANAGER->changeScene("스테이지00", false);
 	}
 }
 void stage1Story::render()
