@@ -254,6 +254,7 @@ void character::update()
 			_motion->start();
 		}
 		break;
+
 	case CHARA_RIGHT_LAND:
 	case CHARA_LEFT_LAND:
 		if (KEYMANAGER->isOnceKeyDown('X'))//ÁÖ¸Ô
@@ -273,6 +274,8 @@ void character::update()
 			}
 
 		}
+
+		//´ÏÅ± ÇÏ°í³ª¼­ yÃà º¸Á¤ÀÛ¾÷ µé¾î°¡¾ßµÈ´Ù.
 		if (KEYMANAGER->isOnceKeyDown('C'))//Å±
 		{
 			_StartY = _y;
@@ -291,6 +294,7 @@ void character::update()
 			}
 		}
 		break;
+
 	case CHARA_RIGHT_PUNCH_ONE:
 	case CHARA_LEFT_PUNCH_ONE:
 		//ÆİÄ¡Áß °ø°İÀüÈ¯
@@ -299,44 +303,50 @@ void character::update()
 			if (_isRight)
 			{
 				_state = CHARA_RIGHT_BACKBLOW;
+				_motion->stop();
 				_motion = KEYANIMANAGER->findAnimation("JIMMYRightBackBlow");
 				_motion->start();
 			}
 			else
 			{
 				_state = CHARA_LEFT_HEAD;
+				_motion->stop();
 				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftHead");
 				_motion->start();
 			}
 		}
 		//ÆİÄ¡Áß °ø°İÀüÈ¯
-		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+		else if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
 		{
 			if (_isRight)
 			{
 				_state = CHARA_RIGHT_HEAD;
+				_motion->stop();
 				_motion = KEYANIMANAGER->findAnimation("JIMMYRightHead");
 				_motion->start();
 			}
 			else
 			{
 				_state = CHARA_LEFT_BACKBLOW;
+				_motion->stop();
 				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftBackBlow");
 				_motion->start();
 			}
 		}
-		if (KEYMANAGER->isOnceKeyDown('X'))
+		else if (KEYMANAGER->isOnceKeyDown('X'))
 		{
 			SOUNDMANAGER->play("Èî(¶§¸±¶§)", 1.0);
 			if (_isRight)
 			{
 				_state = CHARA_RIGHT_PUNCH_TWO;
+				_motion->stop();
 				_motion = KEYANIMANAGER->findAnimation("JIMMYRightPunchTwo");
 				_motion->start();
 			}
 			else
 			{
 				_state = CHARA_LEFT_PUNCH_TWO;
+				_motion->stop();
 				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftPunchTwo");
 				_motion->start();
 			}
