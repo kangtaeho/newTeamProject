@@ -28,6 +28,8 @@ private:
 	image* _boat;
 	RECT _boatRC;
 
+	float _boatX, _boatY; //보트 x,y좌표
+
 	
 
 	//스테이지 1과 마찬가지로 알파렌더를 위한 변수

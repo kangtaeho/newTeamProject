@@ -20,9 +20,12 @@ HRESULT stage2::init()
 	initialization();	//변수 new 및 init
 	singletonInit();	//싱글톤 init
 
-	_boat->setX(1450);
-	_boat->setY(2400);
-	_boatRC = RectMakeCenter(_boat->getX(), _boat->getY(), 527, 75);	
+	_boatX = 1450;
+	_boatY = 2400;
+
+	//_boat->setX(1450);
+	//_boat->setY(2400);
+	_boatRC = RectMakeCenter(_boatX, _boatY, 527, 75);
 	
 	_elevator->setX(5520);
 	_elevator->setY(2186);
@@ -274,13 +277,13 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	//배가 플레이어랑 같이 움직여야되는데 //기성씨 8~~ //배아직 안움직임
 	IMAGEMANAGER->findImage("쪽배")->render(getMemDC(),
 
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).x,
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).y);
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
 
 
 	IMAGEMANAGER->findImage("쪽배_red")->render(getMemDC(),
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).x,
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).y);
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
 
 	//이 검은화면이 제밀 밑에 있도록 코드쳐주세요~~
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
@@ -288,5 +291,5 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 void stage2::boatMove()
 {
-	
+
 }
