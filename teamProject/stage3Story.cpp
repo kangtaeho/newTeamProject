@@ -19,6 +19,9 @@ HRESULT stage3Story::init()
 	_storyImage[1] = IMAGEMANAGER->addImage("스테이지3-2", "./images/stage3-2.bmp", 1152, 648, true, RGB(255, 0, 255));
 	_storyImage[2] = IMAGEMANAGER->addImage("스테이지3-3", "./images/stage3-3.bmp", 1152, 648, true, RGB(255, 0, 255));
 
+	_inven = new inventory;
+	_inven->init();
+
 	return S_OK;
 }
 void stage3Story::release()
@@ -34,7 +37,7 @@ void stage3Story::update()
 
 		//이후 3스테이지 씬 호출
 		if (_index >= 3)
-			SCENEMANAGER->changeScene("스테이지02", false);
+			SCENEMANAGER->changeScene("스테이지02");
 	}
 }
 void stage3Story::render()

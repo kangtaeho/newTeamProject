@@ -195,8 +195,10 @@ void stage1::update()
 			_alpha -= 5;
 		//알파값이 0이 되면 다음 스테이지							 
 		else
+		{
 			SCENEMANAGER->changeScene("스테이지01");
 			SOUNDMANAGER->stop("스테이지1");
+		}
 	}
 }
 

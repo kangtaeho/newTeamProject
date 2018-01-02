@@ -68,8 +68,10 @@ void stage2::update()
 		if (_alpha >0)
 			_alpha -= 5;
 		else
+		{
 			SCENEMANAGER->changeScene("3스테이지대화");
 			SOUNDMANAGER->stop("스테이지2");
+		}
 	}
 	//스테이지가 준비 or 클리어 상태가 아닐때만 조작 가능
 	else if (_ss != READY || _ss != CLEAR)
