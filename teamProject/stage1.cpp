@@ -136,7 +136,9 @@ void stage1::update()
 		{
 			_vItem[i]->update();
 		}		
-	}	
+	}
+
+	_em->update();
 }
 
 void stage1::render()
@@ -240,10 +242,10 @@ void stage1::characterMovement() {
 		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
-	_boss00->update();
-	_minion00->update();
-	_minion01->update();
-	_minion02->update();
+	//_boss00->update();
+	//_minion00->update();
+	//_minion01->update();
+	//_minion02->update();
 	_mainPlayer->update();
 
 	/*if (KEYMANAGER->isOnceKeyDown('P'))
@@ -324,17 +326,17 @@ void stage1::initialization(){
 
 	//에너미 추가...중  //수빈
 
-	_boss00 = new boss00;
-	_boss00->init(PointMake(500, 300));
-
-	_minion00 = new minion00;
-	_minion00->init(PointMake(800, 300));
-
-	_minion01 = new minion01;
-	_minion01->init(PointMake(650, 300));
-
-	_minion02 = new minion02;
-	_minion02->init(PointMake(350, 300));
+	//_boss00 = new boss00;
+	//_boss00->init(PointMake(500, 300));
+	
+	//_minion00 = new minion00;
+	//_minion00->init(PointMake(800, 300));
+	//
+	//_minion01 = new minion01;
+	//_minion01->init(PointMake(650, 300));
+	//
+	//_minion02 = new minion02;
+	//_minion02->init(PointMake(350, 300));
 
 	//미니돌덩이 //병철
 	_stone = new stone;
@@ -367,11 +369,13 @@ void stage1::draw(){
 	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 
-	_boss00->render();
-	_minion00->render();
-	_minion01->render();
-	_minion02->render();
+	//_boss00->render();
+	//_minion00->render();
+	//_minion01->render();
+	//_minion02->render();
 
+
+	_em->render();
 	_mainPlayer->render();
 
 	//카메라 렉트(이후 주석처리를 통해 지우도록!)

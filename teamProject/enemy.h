@@ -4,6 +4,7 @@
 
 //에네미 상태설정 (더 추가 될수도 있음)
 
+class stage01;
 
 //잡몹
 enum ENEMYDIRECTION
@@ -99,25 +100,37 @@ protected:
 
 	//이미지와 위치값과 렉트와 HP설정
 	image* _imageEnemy;				//이미지
-	RECT _rcEnemy;				//렉트
-	RECT _CollircEnemy;			//충돌렉트
-	int _HP;					//체력
-	int _maxHP;					//최대체력
-	int _speed;					//속도
-	int _x, _y;					//xy값
-	float _ZMove;				//z무브
-	float _jump, _Gravity;		//점프,중력
+	RECT _rcEnemy;					//렉트
+	RECT _CollircEnemy;				//충돌렉트
+	int _HP;						//체력
+	int _maxHP;						//최대체력
+	int _speed;						//속도
+	float _x, _y;						//xy값 (절대 좌표)
+	float _ZMove;					//z무브
+	float _jump, _Gravity;			//점프,중력
 
+	int _countMove=0;					//카운트 무브 (AI 상태 시간)
+
+	int _rndDirX;					//X방향설정
+	int _rndDirY;					//Y방향설정
+	int _currentStage;				//현재 스테이지 (굉장히 중요! 스테이 1은 xy다 움직이지만
+									//스테이지 2부터는 안움직이니깐 그때마다 예외처리가 달라야함
+									//굉장히 중요하다.
 	animation* _enemyMotion;
 	animation* _bossMotion;
 
+
+	string _enemyKeyName[10];
+
+	bool _isBoss;					//보스입니까?
+
+	stage01* _stage01;
 
 public:
 	enemy();
 	~enemy();
 
-
-	virtual HRESULT init(/*const char* imageName,*/POINT point);
+	virtual HRESULT init(POINT point);
 	virtual void release();
 	virtual void update();
 	virtual void render();
@@ -141,6 +154,16 @@ public:
 
 	animation* getBossMotion(void) { return _bossMotion; }
 	void setBossMotion(animation* ani) { _bossMotion = ani; }
+
+
+	void enemyMove();
+	int rndDirection(int value);
+
+	float getX() { return CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x; }
+	int getCountMove() { return _countMove; }
+
+	void getItem();
+
 };
 
 //이제 콜백함수가 필요한 모션들이라던가 그런거 뭐해야될까영

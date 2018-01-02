@@ -1,19 +1,18 @@
 #pragma once
 #include "gameNode.h"
-#include "enemy.h"
 #include "item.h"
 #include "money.h"
 #include "character.h"
-#include <vector>
 #include "minion00.h"
 #include "boss00.h"
+#include "minion01.h"
+#include <vector>
 
-class enemyManager :
-	public gameNode
+
+
+
+class enemyManager :public gameNode
 {
-
-
-
 
 private:
 	//생성되는 적을 담을 벡터
@@ -28,7 +27,7 @@ private:
 	//연결 할 플레이어 변수
 	character* _mainPlayer;
 
-
+	minion01* _mini;
 
 public:
 	enemyManager();

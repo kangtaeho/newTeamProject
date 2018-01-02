@@ -61,6 +61,10 @@ public:
 	//던질때 상태 변경
 	void setState(bool isThrow){ if (isThrow)_itemState = THROWING; else _itemState = DROP; }
 
+	float getX() { return _x; }
+	float getY() { return _y; }
+	void setX(float x) { _x = x; }
+	void setY(float y) { _y = y; }
 
 };
 

@@ -7,16 +7,12 @@ class minion01 : public enemy
 private:
 
 
-
-
-
-
 public:
 	minion01();
 	~minion01();
 
 
-	virtual HRESULT init(POINT point);
+	virtual HRESULT init(POINT point, int currentStage=1);
 	virtual void collision();
 
 

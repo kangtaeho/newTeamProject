@@ -11,27 +11,38 @@ minion01::~minion01()
 {
 }
 
-HRESULT minion01::init(POINT point)
+HRESULT minion01::init(POINT point, int currentStage)
 {
 	_imageEnemy = IMAGEMANAGER->addFrameImage("enemy07", "./images/enemy07.bmp", 0, 0, 3072, 1365, 16, 7, true, RGB(255, 0, 255));
 	_x = point.x;
 	_y = point.y;
 
+	_currentStage = currentStage;
 	//디폴트
 
 	_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight()); //기본렉트
-	_CollircEnemy = RectMakeCenter(_x, _y, 50, 50); //충돌렉트
+	_CollircEnemy = RectMakeCenter(CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x+ _imageEnemy->getFrameWidth()/2, 
+									CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y+ _imageEnemy->getFrameHeight()/2, 75, 75); //충돌렉트
 													//_EnemyDirection = ENEMYDIRECTION_RIGHT_STOP; //기본상태
 	_jump = 0; //점프력
 	_Gravity = 0.1f; //중력
 	_HP = 100; //체에력
 	_speed = 3; //스퓌드
 
+	_rndDirX = rndDirection(RND->getInt(3));
+	_rndDirY = rndDirection(RND->getInt(3));
+
+	_enemyKeyName[0] = "enemyRightStop";
+	_enemyKeyName[1] = "enemyLeftStop";
+	_enemyKeyName[2] = "enemyRightMove";
+	_enemyKeyName[3] = "enemyLeftMove";
+	_enemyKeyName[4] = "enemyRightRun";
+	_enemyKeyName[5] = "enemyLeftRun";
 
 	int rightStop[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemyRightStop", "enemy07", rightStop, 1, 2, true);
 	int leftStop[] = { 15 };
-	KEYANIMANAGER->addArrayFrameAnimation("enemyleftStop", "enemy07", leftStop, 1, 2, true);
+	KEYANIMANAGER->addArrayFrameAnimation("enemyLeftStop", "enemy07", leftStop, 1, 2, true);
 	int rightMove[] = { 0,1,2,1 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemyRightMove", "enemy07", rightMove, 4, 2, true);
 	int leftMove[] = { 15,14,13,14 };
@@ -39,7 +50,7 @@ HRESULT minion01::init(POINT point)
 	int rightRun[] = { 3,4,5,6 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemyRightRun", "enemy07", rightRun, 4, 2, true);
 	int leftRun[] = { 12,11,10,9 };
-	KEYANIMANAGER->addArrayFrameAnimation("enemyleftRun", "enemy07", leftRun, 4, 2, true);
+	KEYANIMANAGER->addArrayFrameAnimation("enemyLeftRun", "enemy07", leftRun, 4, 2, true);
 	int rightOneJab[] = { 33,34 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemyRightOneJab", "enemy07", rightOneJab, 2, 2, true);
 	int leftOneJab[] = { 46,45 };
@@ -98,4 +109,5 @@ HRESULT minion01::init(POINT point)
 
 void minion01::collision()
 {
+
 }

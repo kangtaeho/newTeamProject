@@ -14,12 +14,20 @@ enemyManager::~enemyManager()
 HRESULT enemyManager::init()
 {
 
+	POINT value;
+	value.x = 2400;
+	value.y = 400;
+	_mini = new minion01;
+	_mini->init(value);
+
 	return S_OK;
 }
+
 void enemyManager::release()
 {
 
 }
+
 void enemyManager::update()
 {
 	for (_viEnemy = _vEnemy.begin(); _viEnemy != _vEnemy.end(); ++_viEnemy)
@@ -28,6 +36,7 @@ void enemyManager::update()
 	}
 
 
+	_mini->update();
 
 
 
@@ -38,6 +47,12 @@ void enemyManager::render()
 	{
 		(*_viEnemy)->render();
 	}
+
+	showFloatData(getMemDC(), "x 좌표 : %0.2f", _mini->getX(), 800, 20);
+	
+	showIntData(getMemDC(), "카운트 증가하고는 있냐? : %d", _mini->getCountMove(), 800, 40);
+	
+	_mini->render();
 }
 
 //쫄따구
@@ -51,6 +66,7 @@ void enemyManager::setPick(void)
 {
 
 }
+
 //보스
 void enemyManager::setBoss(void)
 {
@@ -66,6 +82,7 @@ void enemyManager::removeEnemy(int arrNum)
 	SAFE_DELETE(_vEnemy[arrNum]);
 	_vEnemy.erase(_vEnemy.begin() + arrNum);
 }
+
 //돈 습득시 제거
 void enemyManager::removeItem(int arrNum)
 {

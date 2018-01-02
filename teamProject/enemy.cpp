@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "enemy.h"
-
+#include "stage1.h"
 
 enemy::enemy()
 {
@@ -13,14 +13,13 @@ enemy::~enemy()
 
 
 
-HRESULT enemy::init(/*const char* imageName,*/POINT point)
+HRESULT enemy::init(POINT point)
 {
-
-
-
-
+	_x = point.x;
+	_y = point.y;
 
 	return S_OK;
+
 }
 
 void enemy::release()
@@ -31,6 +30,7 @@ void enemy::release()
 
 void enemy::update()
 {
+
 	//카메라확인겸 움직이는지 확인중
 	//_x = (_rcEnemy.left + _rcEnemy.right) / 2;
 	//_y = (_rcEnemy.top + _rcEnemy.bottom) / 2;
@@ -179,15 +179,20 @@ void enemy::update()
 				  break;
 			  }
 
+	enemyMove();
 
-	//_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight());
+	_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight());
+	_CollircEnemy = RectMakeCenter(CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x + _imageEnemy->getFrameWidth() / 2,
+		CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y + _imageEnemy->getFrameHeight() / 2 -50, 75, 75); //충돌렉트
 
-	_enemyMotion->start();
+
 	KEYANIMANAGER->update();
+
 }
 
 void enemy::render()
 {
+
 	//에네미rc
 	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x, CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y, 100, 100);
 	
@@ -197,10 +202,15 @@ void enemy::render()
 	//	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight())).x,
 	//	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight())).y, 0, 0);
 	
-	_imageEnemy->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x, CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y , _enemyMotion);
+
+	setColorRect(getMemDC(), _CollircEnemy, 200, 20, 20);
+
+	_imageEnemy->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x, 
+									   CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y-50, 
+									   _enemyMotion);
+
+
 }
-
-
 
 
 //여기서부터 콜백함수
@@ -224,12 +234,114 @@ void enemy::leftJumpAttack(void * obj)
 
 }
 
-
 void enemy::collision()
 {
 
 }
 
+void enemy::enemyMove() {
+	_countMove++;
+
+	switch (_currentStage) {
+		case 1:
+
+			//적 패트롤~
+			if (_countMove < 100) { //랜덤으로 움직인다
+				if (_countMove == 1) _enemyMotion->start();
+				_x += _rndDirX;
+				_y += _rndDirY;;
+			}
+			else if (_countMove >= 100 && _countMove<150) {
+
+				if (_countMove == 100) {
+					_rndDirX = rndDirection(RND->getInt(3));
+					_rndDirY = rndDirection(RND->getInt(3));
+					if (_rndDirX == 1) {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[0]);
+					}
+					else {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[1]);
+					}
+				}
+			
+				if (_countMove == 149) {
+
+					if (_rndDirX == 1) {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
+						_enemyMotion->start();
+					}
+					else {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[5]);
+						_enemyMotion->start();
+					}
+				}
+			}
+			else if (_countMove >= 150 && _countMove<250) {
+
+				_x += _rndDirX;
+				_y += _rndDirY;
+
+			}
+			else if (_countMove >= 250 && _countMove<300) {
+
+				if (_countMove == 250) {
+					_rndDirX = rndDirection(RND->getInt(3));
+					_rndDirY = rndDirection(RND->getInt(3));
+
+					if (_rndDirX == 1) {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[0]);
+					}
+					else {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[1]);
+					}
+				}
 
 
-//ENEMY01  이미지
+				if (_countMove == 299) {
+
+					if (_rndDirX == 1) {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
+						_enemyMotion->start();
+					}
+					else {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[5]);
+						_enemyMotion->start();
+					}
+
+				}
+			}
+			else {
+				_countMove = 0;
+			}
+
+			if (_y > 482) {
+				_rndDirY = -1;
+			}
+			else if (_y<337) {
+				_rndDirY = 1;
+			}
+
+		break;
+	
+		case 2:
+	
+		break;
+	}
+}
+
+int enemy::rndDirection(int value) {
+	switch (value) {
+	case 0:
+		return -1;
+		break;
+
+	case 1:
+		return 0;
+		break;
+
+	case 2:
+		return 1;
+		break;
+	}
+}
+
