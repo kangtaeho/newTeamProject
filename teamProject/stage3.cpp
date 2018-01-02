@@ -176,6 +176,8 @@ void stage3::initialization()	//변수들 new선언 및 init 해주는 함수 이후 new 및 i
 }
 void stage3::singletonInit()	//init에서 싱글톤들 세팅해주는 함수 이후 세팅은 여기서 하는걸로		  
 {
+	CAMERAMANAGER->backGroundSizeSetting(5809, 1251);
+
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	CAMERAMANAGER->setCameraAim(&_rc1);
 }
