@@ -91,7 +91,7 @@ HRESULT boss00::init(POINT point)
 	KEYANIMANAGER->addArrayFrameAnimation("bossClime", "boss00", clime, 2, 2, true);
 
 
-	_enemyMotion = KEYANIMANAGER->findAnimation("bossLeftMove");
+	_enemyMotion = KEYANIMANAGER->findAnimation("bossDead");
 
 	return S_OK;
 }

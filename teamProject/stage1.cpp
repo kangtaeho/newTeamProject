@@ -56,9 +56,6 @@ HRESULT stage1::init()
 
 	//에너미 추가...중  //수빈
 
-	/*_minion00 = new minion00;
-	_minion00->init(PointMake(300 , 300 ));*/
-
 	_boss00 = new boss00;
 	_boss00->init(PointMake(500,300));
 
@@ -68,8 +65,8 @@ HRESULT stage1::init()
 	_minion01 = new minion01;
 	_minion01->init(PointMake(500, 500));
 
-	//_minion02 = new minion02;
-	//_minion02->init(PointMake(800, 500));
+	_minion02 = new minion02;
+	_minion02->init(PointMake(800, 500));
 
 	//미니돌덩이 //병철
 	_stone = new stone;
@@ -207,11 +204,10 @@ void stage1::render()
 	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	//_knife->render();
-	//_minion00->render();
 	_boss00->render();
 	_minion00->render();
 	_minion01->render();
-	//_minion02->render();
+	_minion02->render();
 	//_stone->render();
 
 	_mainPlayer->render();
@@ -333,11 +329,10 @@ void stage1::characterMovement() {
 		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
-	//_minion00->update();
 	_boss00->update();
 	_minion00->update();
 	_minion01->update();
-	//_minion02->update();
+	_minion02->update();
 	_mainPlayer->update();
 
 	/*if (KEYMANAGER->isOnceKeyDown('P'))
