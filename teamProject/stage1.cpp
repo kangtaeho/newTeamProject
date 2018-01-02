@@ -43,7 +43,8 @@ HRESULT stage1::init()
 	_ss = READY;
 
 	//카메라 렉트
-	rc1 = RectMakeCenter(50, 300 , 100, 100);
+	//rc1 = RectMakeCenter(50, 300 , 100, 100);
+	rc1 = RectMakeCenter(3225, 300, 100, 100); //렉트 문앞에다 놨음
 	currentRC = &rc1;
 
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
@@ -105,6 +106,7 @@ void stage1::release()
 
 void stage1::update()
 {
+	RECT temp;
 	//스테이지 상태가 체인지 되어 레디상태일경우 알파값 증가
 	if (_ss == READY)
 	{
@@ -127,8 +129,8 @@ void stage1::update()
 	//SCENEMANAGER->changeScene("스테이지01");
 	//}
 
-	//스테이지 상태가 레디나 클리어가 아닐때만 모든 행동 가능하도록
-	else if (_ss != READY || _ss != CLEAR)
+	//스테이지 상태가 레디나 클리어가 아닐때만 모든 행동 가능하도록 // 문에 닿지 않았을때 추가 
+	else if (_ss ==  MOVING || (_ss == CLEAR && !IntersectRect(&temp, &rc1, &DOORRC)))
 	{
 		if (!_stopCharacter) {
 			characterMovement();
@@ -156,23 +158,14 @@ void stage1::update()
 			}
 		}
 
-		RECT temp;
+		
 		if (KEYMANAGER->isOnceKeyDown('3')) //강제로 클리어상태로 전환
 		{
 			_ss = CLEAR; 
 			
+			
 		}
-
-		if (IntersectRect(&temp, &rc1, &DOORRC) && _ss == CLEAR) //클리어 상태에서 문에 닿았을때 다음씬으로 넘겨라 //병철
-		{
-
-				if (_alpha >0)											
-					_alpha -= 5;										
-				//알파값이 0이 되면 다음 스테이지							 
-				else											
-			SCENEMANAGER->changeScene("스테이지01");
-			SOUNDMANAGER->stop("스테이지1");
-		}
+		
 
 		if (KEYMANAGER->isOnceKeyDown('4')) //강제로 돈드랍
 		{
@@ -192,6 +185,18 @@ void stage1::update()
 		}
 		
 		
+	}
+
+	//RECT temp;
+	if (IntersectRect(&temp, &rc1, &DOORRC) && _ss == CLEAR) //클리어 상태에서 문에 닿았을때 다음씬으로 넘겨라 //병철
+	{
+
+		if (_alpha >0)
+			_alpha -= 5;
+		//알파값이 0이 되면 다음 스테이지							 
+		else
+			SCENEMANAGER->changeScene("스테이지01");
+			SOUNDMANAGER->stop("스테이지1");
 	}
 }
 
