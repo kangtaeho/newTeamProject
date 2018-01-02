@@ -6,7 +6,10 @@ stage2::stage2()
 : _alpha(0),
 _ss(READY),
 _rc1(RectMakeCenter(5520, 2186, 100, 100)),
-_currentRC(&_rc1)
+_currentRC(&_rc1),
+_firstWave(false),
+_secondWave(false),
+_thirdWave(false)
 {
 }
 
@@ -217,7 +220,75 @@ void stage2::dropMoney(POINT point, int won)				//돈 드랍 함수 몬스터가 죽었을경
 
 void stage2::makeEnemy()									//몬스터 생성 함수
 {
+	/*
+	카메라 특정 지점일때 몬스터 생성
+	첫 웨이브가 나왔냐 && 카메라가 특정 지점에 왔냐
+	if (!_firstWave && 카메라가 특정지점이냐)
+	{
 
+	쫄따구 2마리 생성
+	_em -> setMinion()
+	_em -> setMinion2()
+
+	카메라 고정 추가(기성아 부탁한다) 추가
+	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+
+	}
+
+	첫 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	else if(_firstWave && _em.size() == 0)
+	{
+
+	카메라 다시 이동(기성아 부탁한다) 추가
+	currentRC = &rc1;
+	CAMERAMANAGER->setCameraAim(currentRC);
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	}
+
+	두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
+	if(!_secondWave && 카메라가 특정지점이냐)
+	{
+	쫄따구1 정예몹 1마리 생성
+	_em -> setMinion2()
+	_em -> setPick()
+	
+
+	카메라 고정 추가(이것도 부탁해) 추가
+	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+	}
+
+	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	else if(_secondWave && _em.size() == 0)
+	{
+
+	카메라 다시 이동(기성아 부탁한다) 추가
+	currentRC = &rc1;
+	CAMERAMANAGER->setCameraAim(currentRC);
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	}
+
+	if(!_thirdWave && 카메라가 특정지점이냐)
+	{
+	쫄따구1 정예몹 1마리 생성
+	_em -> setMinion2()
+	_em -> setPick()
+
+
+	카메라 고정 추가(이것도 부탁해) 추가
+	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+	}
+
+	//세번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	else if(_thirdWave && _em.size() == 0)
+	{
+
+	카메라 다시 이동(기성아 부탁한다) 추가
+	currentRC = &rc1;
+	CAMERAMANAGER->setCameraAim(currentRC);
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	}
+
+	*/
 }
 
 void stage2::characterMovement()							//캐릭터 키매지저를 관리하는 함수
@@ -255,12 +326,9 @@ void stage2::singletonInit()								//init에서 싱글톤들 세팅해주는 함수 이후 세�
 void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로								
 {
 
-	//
 	IMAGEMANAGER->findImage("엘레베이터")->render(getMemDC(),
-
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevator->getX(), _elevator->getY(), _elevator->getWidth(), _elevator->getHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevator->getX(), _elevator->getY(), _elevator->getWidth(), _elevator->getHeight())).y);
-
 
 	IMAGEMANAGER->findImage("스테이지_01")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_01_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
@@ -273,10 +341,8 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	//플레이어가 배에 닿았을때 모든키 제어 불가능하게 해주고
 	//배가 플레이어랑 같이 움직여야되는데 //기성씨 8~~ //배아직 안움직임
 	IMAGEMANAGER->findImage("쪽배")->render(getMemDC(),
-
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).y);
-
 
 	IMAGEMANAGER->findImage("쪽배_red")->render(getMemDC(),
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boat->getX(), _boat->getY(), _boat->getWidth(), _boat->getHeight())).x,
