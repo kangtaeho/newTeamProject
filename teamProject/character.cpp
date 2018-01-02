@@ -10,6 +10,7 @@ character::character()
 character::~character()
 {
 }
+
 HRESULT character::init()
 {
 	_image = IMAGEMANAGER->addFrameImage("JIMMY", "./images/JIMMY.bmp", 3072, 2100, 16, 14, true, RGB(255, 0, 255));
@@ -21,8 +22,6 @@ HRESULT character::init()
 	_isRight = true;
 	_JP = 0;
 	_gravity = 0.1f;
-
-	_state = CHARA_RIGHT_STOP;
 
 	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 	_colliRect = RectMakeCenter(_x, _y, 54, 120);
@@ -37,43 +36,43 @@ HRESULT character::init()
 
 	//오른쪽 움직임
 	int RightMove[] = { 0, 1, 2, 1 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightMove", "JIMMY", RightMove, 4, 10, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightMove", "JIMMY", RightMove, 4, 3, true);
 
 	//왼쪽 움직임
 	int LeftMove[] = { 127, 126, 125, 126 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftMove", "JIMMY", LeftMove, 4, 10, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftMove", "JIMMY", LeftMove, 4, 3, true);
 
 	//오른쪽 착지+일어섬
 	int RightLand[] = { 4 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightLand", "JIMMY", RightLand, 1, 6, false, MakeRightStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightLand", "JIMMY", RightLand, 1, 1, false, MakeRightStop, this);
 
 	//왼쪽 착지+일어섬
 	int LeftLand[] = { 123 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftLand", "JIMMY", LeftStop, 1, 6, false, MakeLeftStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftLand", "JIMMY", LeftStop, 1, 1, false, MakeLeftStop, this);
 
 	//오른쪽 펀치 1타
-	int RightPunchOne[] = { 5, 6, 5 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightPunchOne", "JIMMY", RightPunchOne, 3, 10, false, MakeRightStop, this);
+	int RightPunchOne[] = { 7, 8, 7 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightPunchOne", "JIMMY", RightPunchOne, 3, 3, false, MakeRightStop, this);
 
 	//왼쪽 펀치 1타
-	int LeftPunchOne[] = { 122, 121, 122 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftPunchOne", "JIMMY", LeftPunchOne, 3, 10, false, MakeLeftStop, this);
+	int LeftPunchOne[] = { 120, 119, 120 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftPunchOne", "JIMMY", LeftPunchOne, 3, 3, false, MakeLeftStop, this);
 
 	//오른쪽 펀치 2타
-	int RightPunchTwo[] = { 7, 8, 7 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightPunchTwo", "JIMMY", RightPunchTwo, 3, 10, false, MakeRightStop, this);
+	int RightPunchTwo[] = { 5, 6, 5 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightPunchTwo", "JIMMY", RightPunchTwo, 3, 3, false, MakeRightStop, this);
 
 	//왼쪽 펀치 2타
-	int LeftPunchTwo[] = { 120, 119, 120 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftPunchTwo", "JIMMY", LeftPunchTwo, 3, 10, false, MakeLeftStop, this);
+	int LeftPunchTwo[] = { 122, 121, 122 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftPunchTwo", "JIMMY", LeftPunchTwo, 3, 3, false, MakeLeftStop, this);
 
 	//오른쪽 발차기
 	int RightKick[] = { 9, 10, 9 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightKick", "JIMMY", RightKick, 3, 10, false, MakeRightStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightKick", "JIMMY", RightKick, 3, 2, false, MakeRightStop, this);
 
 	//왼쪽 발차기
 	int LeftKick[] = { 118, 117, 118 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftKick", "JIMMY", LeftKick, 3, 10, false, MakeLeftStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftKick", "JIMMY", LeftKick, 3, 2, false, MakeLeftStop, this);
 
 	//오른쪽 점프 발차기
 	int RightJumpKick[] = { 19 };
@@ -85,83 +84,83 @@ HRESULT character::init()
 
 	//오른쪽 공중회전차기
 	int RightATT[] = { 48, 47, 46, 45, 48, 47, 46 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightATT", "JIMMY", RightATT, 7, 10, false, MakeRightFall, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightATT", "JIMMY", RightATT, 7, 2, false, MakeRightFall, this);
 
 	//왼쪽 공중회전차기
 	int LeftATT[] = { 45, 46, 48, 47, 45, 46, 48 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftATT", "JIMMY", LeftATT, 7, 10, false, MakeLeftFall, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftATT", "JIMMY", LeftATT, 7, 2, false, MakeLeftFall, this);
 
 	//오른쪽 박치기
 	int RightHead[] = { 11, 12, 11 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHead", "JIMMY", RightHead, 3, 10, false, MakeRightStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHead", "JIMMY", RightHead, 3, 1, false, MakeRightStop, this);
 
 	//왼쪽 박치기
 	int LeftHead[] = { 116, 115, 116 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHead", "JIMMY", LeftHead, 3, 10, false, MakeLeftStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHead", "JIMMY", LeftHead, 3, 1, false, MakeLeftStop, this);
 
 	//오른쪽 어퍼컷
 	int RightUpper[] = { 13, 14, 15 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightUpper", "JIMMY", RightUpper, 3, 10, false, MakeRightStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightUpper", "JIMMY", RightUpper, 3, 2, false, MakeRightStop, this);
 
 	//왼쪽 어퍼컷
 	int LeftUpper[] = { 114, 113, 112 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftUpper", "JIMMY", LeftUpper, 3, 10, false, MakeLeftStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftUpper", "JIMMY", LeftUpper, 3, 2, false, MakeLeftStop, this);
 
 	//오른쪽 하이킥
 	int RightHighKick[] = { 16, 17, 18 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHighKick", "JIMMY", RightHighKick, 3, 10, false, MakeRightStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHighKick", "JIMMY", RightHighKick, 3, 2, false, MakeRightStop, this);
 
 	//왼쪽 하이킥
 	int LeftHighKick[] = { 143, 142, 141 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHighKick", "JIMMY", LeftHighKick, 3, 10, false, MakeLeftStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHighKick", "JIMMY", LeftHighKick, 3, 2, false, MakeLeftStop, this);
 
 	//오른쪽 뒤치키(방향은 오른쪽이고 왼쪽때림)
 	int RightBackBlow[] = { 25 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightBackBlow", "JIMMY", RightBackBlow, 1, 6, false, MakeRightStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightBackBlow", "JIMMY", RightBackBlow, 1, 1, false, MakeRightStop, this);
 
 	//왼쪽 뒤치키(방향은 왼쪽이고 오른쪽때림)
 	int LeftBackBlow[] = { 134 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftBackBlow", "JIMMY", LeftBackBlow, 1, 6, false, MakeLeftStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftBackBlow", "JIMMY", LeftBackBlow, 1, 1, false, MakeLeftStop, this);
 
 	//오른쪽 잡는 자세
 	int RightGrab[] = { 20 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightgrab", "JIMMY", RightGrab, 1, 6, false, MakeRightHold, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightgrab", "JIMMY", RightGrab, 1, 2, false, MakeRightHold, this);
 
 	//오른쪽 붙잡은 자세
 	int RightHold[] = { 21 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHold", "JIMMY", RightHold, 1, 6, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHold", "JIMMY", RightHold, 1, 2, true);
 
 	//왼쪽 잡는 자세
 	int LeftGrab[] = { 140 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftgrab", "JIMMY", LeftGrab, 1, 6, false, MakeLeftHold, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftgrab", "JIMMY", LeftGrab, 1, 2, false, MakeLeftHold, this);
 
 	//왼쪽 붙잡은 자세
 	int LeftHold[] = { 139 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHold", "JIMMY", LeftHold, 1, 6, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHold", "JIMMY", LeftHold, 1, 2, true);
 
 	//오른쪽 잡고 등찍기
 	int RightBackSting[] = { 54, 55 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightBackSting", "JIMMY", RightBackSting, 2, 10, false, MakeRightHold, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightBackSting", "JIMMY", RightBackSting, 2, 2, false, MakeRightHold, this);
 
 	//왼쪽 잡고 등찍기
 	int LeftBackSting[] = { 170, 169 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftBackSting", "JIMMY", LeftBackSting, 2, 10, false, MakeLeftHold, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftBackSting", "JIMMY", LeftBackSting, 2, 2, false, MakeLeftHold, this);
 
 	//오른쪽 잡고 차기
 	int RightTigerKick[] = { 26 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightTigerKick", "JIMMY", RightTigerKick, 1, 10, false, MakeRightHold, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightTigerKick", "JIMMY", RightTigerKick, 1, 2, false, MakeRightHold, this);
 
 	//왼쪽 잡고 차기
 	int LeftTigerKick[] = { 133 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftTigerKick", "JIMMY", LeftTigerKick, 1, 10, false, MakeLeftHold, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftTigerKick", "JIMMY", LeftTigerKick, 1, 2, false, MakeLeftHold, this);
 
 	//오른쪽 던지기
 	int RightSwing[] = { 22, 23, 24 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightSwing", "JIMMY", RightSwing, 3, 10, false, MakeRightStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightSwing", "JIMMY", RightSwing, 3, 2, false, MakeRightStop, this);
 
 	//왼쪽 던지기
 	int LeftSwing[] = { 138, 137, 136 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftSwing", "JIMMY", LeftSwing, 3, 10, false, MakeLeftStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftSwing", "JIMMY", LeftSwing, 3, 2, false, MakeLeftStop, this);
 
 	//오른쪽 점프
 	int RightJump[] = { 3 };
@@ -173,37 +172,37 @@ HRESULT character::init()
 
 	//오른쪽 2단 뒷차기
 	int RightBackKick[] = { 28, 29, 30 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightBackKick", "JIMMY", RightBackKick, 3, 10, false, MakeRightStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightBackKick", "JIMMY", RightBackKick, 3, 2, false);
 
 	//왼쪽 2단 뒷차기
 	int LeftBackKick[] = { 131, 130, 129 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftBackKick", "JIMMY", LeftBackKick, 3, 10, false, MakeLeftStop, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftBackKick", "JIMMY", LeftBackKick, 3, 2, false);
 
 	//오른쪽 붕붕이 준비
 	int RightReadyDrill[] = { 32 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightReadyDrill", "JIMMY", RightReadyDrill, 1, 10, false, MakeRightDrill, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightReadyDrill", "JIMMY", RightReadyDrill, 1, 2, false, MakeRightDrill, this);
 
 	//오른쪽 붕붕이
 	int RightDrill[] = { 33, 34, 35 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightDrill", "JIMMY", RightDrill, 3, 10, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightDrill", "JIMMY", RightDrill, 3, 2, true);
 	//오른쪽 공중니킥
 	int RightKneeKick[] = { 51 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightKneeKick", "JIMMY", RightKneeKick, 1, 6, true);
 
 	//왼쪽 붕붕이 준비
 	int LeftReadyDrill[] = { 159 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftReadyDrill", "JIMMY", LeftReadyDrill, 1, 10, false, MakeLeftDrill, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftReadyDrill", "JIMMY", LeftReadyDrill, 1, 2, false, MakeLeftDrill, this);
 
 	//왼쪽 붕붕이
 	int LeftDrill[] = { 158, 157, 156 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftDrill", "JIMMY", LeftDrill, 3, 10, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftDrill", "JIMMY", LeftDrill, 3, 2, true);
 	//왼쪽 공중니킥
 	int LeftKneeKick[] = { 172 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftKneeKick", "JIMMY", LeftKneeKick, 1, 10, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftKneeKick", "JIMMY", LeftKneeKick, 1, 2, true);
 
 	//사다리 이동
 	int StairMove[] = { 62, 63 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYStairMove", "JIMMY", StairMove, 2, 10, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYStairMove", "JIMMY", StairMove, 2, 2, true);
 
 	//사다리 멈춤
 	int StairStop[] = { 62 };
@@ -211,11 +210,11 @@ HRESULT character::init()
 
 	//오른쪽 피격
 	int RightHit[] = { 74 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHit", "JIMMY", RightHit, 1, 10, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHit", "JIMMY", RightHit, 1, 2, true);
 
 	//왼쪽 피격
 	int LeftHit[] = { 181 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHit", "JIMMY", LeftHit, 1, 10, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHit", "JIMMY", LeftHit, 1, 2, true);
 
 	//오른쪽 쓰러짐
 	int RightStriked[] = { 77 };
@@ -227,11 +226,11 @@ HRESULT character::init()
 
 	//오른쪽 누움
 	int RightDown[] = { 78 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightDown", "JIMMY", RightDown, 1, 2, false, MakeRightLand, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightDown", "JIMMY", RightDown, 1, 1, false, MakeRightLand, this);
 
 	//왼쪽누움
 	int LeftDown[] = { 177 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftDown", "JIMMY", LeftDown, 1, 2, false, MakeLeftLand, this);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftDown", "JIMMY", LeftDown, 1, 1, false, MakeLeftLand, this);
 
 	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
 
@@ -277,6 +276,23 @@ void character::update()
 		//		_motion->start();
 		//	}
 		//}
+		if (KEYMANAGER->isOnceKeyDown('Z'))//점프
+		{
+			_StartX = _y;
+			_JP = CHARASPEED;
+			if (_isRight)
+			{
+				_state = CHARA_RIGHT_JUMP;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightJump");
+				_motion->start();
+			}
+			else
+			{
+				_state = CHARA_LEFT_JUMP;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJump");
+				_motion->start();
+			}
+		}
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
 			_isRight = false;
@@ -331,6 +347,14 @@ void character::update()
 			_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
 			_motion->start();
 		}
+		if (KEYMANAGER->isOnceKeyDown('Z'))//점프
+		{
+			_StartX = _y;
+			_JP = CHARASPEED;
+			_state = CHARA_RIGHT_MOVE_JUMP;
+			_motion = KEYANIMANAGER->findAnimation("JIMMYRIghtJump");
+			_motion->start();
+		}
 		break;
 	case CHARA_LEFT_MOVE://왼쪽으로 움직이는 중
 		//상하좌우키를 누른상태가 아니라면
@@ -366,6 +390,14 @@ void character::update()
 		{
 			_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
 			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+			_motion->start();
+		}
+		if (KEYMANAGER->isOnceKeyDown('Z'))//점프
+		{
+			_StartX = _y;
+			_JP = CHARASPEED;
+			_state = CHARA_LEFT_MOVE_JUMP;
+			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJump");
 			_motion->start();
 		}
 		break;
@@ -520,6 +552,7 @@ void character::update()
 			}
 			else
 			{
+				_StartY = _y;
 				_JP = CHARAJUMP;
 				_JP = _JP / 2;
 				_state = CHARA_LEFT_BACKKICK;
@@ -532,6 +565,7 @@ void character::update()
 		{
 			if (_isRight)
 			{
+				_StartY = _y;
 				_JP = CHARAJUMP;
 				_JP = _JP / 2;
 				_state = CHARA_RIGHT_BACKKICK;
@@ -604,7 +638,7 @@ void character::update()
 				_motion->start();
 			}
 		}
-		if (KEYMANAGER->isOnceKeyDown('C'))//발차기
+		if (KEYMANAGER->isOnceKeyDown('C')|| KEYMANAGER->isOnceKeyDown('X'))//발차기
 		{
 			if (_JP*_JP < 1)
 			{
@@ -634,22 +668,7 @@ void character::update()
 				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJumpKick");
 				_motion->start();
 			}
-			if (KEYMANAGER->isOnceKeyDown('X'))
-			{
-				SOUNDMANAGER->play("흣(때릴때)", 1.0);
-				if (_isRight)
-				{
-					_state = CHARA_RIGHT_JUMP_KICK;
-					_motion = KEYANIMANAGER->findAnimation("JIMMYRightJumpKick");
-					_motion->start();
-				}
-				else
-				{
-					_state = CHARA_LEFT_JUMP_KICK;
-					_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJumpKick");
-					_motion->start();
-				}
-			}
+		
 		}
 		break;
 	case CHARA_RIGHT_MOVE_JUMP:
@@ -861,42 +880,7 @@ void character::update()
 	default:
 		break;
 	}
-	if (KEYMANAGER->isOnceKeyDown('Z'))//점프
-	{
-		if (_state == CHARA_RIGHT_STOP || _state == CHARA_LEFT_STOP)
-		{
-			_StartX = _y;
-			_JP = CHARASPEED;
-			if (_isRight)
-			{
-				_state = CHARA_RIGHT_JUMP;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYRightJump");
-				_motion->start();
-			}
-			else
-			{
-				_state = CHARA_LEFT_JUMP;
-				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJump");
-				_motion->start();
-			}
-		}
-		if (_state == CHARA_RIGHT_MOVE)
-		{
-			_StartX = _y;
-			_JP = CHARASPEED;
-			_state = CHARA_RIGHT_MOVE_JUMP;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRIghtMoveJump");
-			_motion->start();
-		}
-		if (_state == CHARA_LEFT_MOVE)
-		{
-			_StartX = _y;
-			_JP = CHARASPEED;
-			_state = CHARA_LEFT_MOVE_JUMP;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMoveJump");
-			_motion->start();
-		}
-	}
+	
 	if (KEYMANAGER->isOnceKeyDown('X'))//주먹
 	{
 		SOUNDMANAGER->play("흣(때릴때)", 1.0);
