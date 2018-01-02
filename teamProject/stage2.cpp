@@ -5,7 +5,8 @@
 stage2::stage2()
 : _alpha(0),
 _ss(READY),
-_rc1(RectMakeCenter(560, 2286, 100, 100)), //카메라의 렉트 좌표
+//_rc1(RectMakeCenter(560, 2286, 100, 100)), //카메라의 렉트 좌표
+_rc1(RectMakeCenter(5520, 2286, 100, 100)), //임시좌표
 _playerStartPoint(PointMake(760, 2310)), //스테이지 2 플레이어 시작좌표
 _currentRC(&_rc1),
 _firstWave(false),
@@ -24,8 +25,9 @@ HRESULT stage2::init()
 	initialization();	//변수 new 및 init
 	singletonInit();	//싱글톤 init
 
-	_boatX = 1450;
+	_boatX = 1420; //쪽배의 첫 좌표 1420, 끝좌표 4970
 	_boatY = 2400;
+	
 
 	//_boat->setX(1450);
 	//_boat->setY(2400);
@@ -365,8 +367,7 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 void stage2::boatMove()
 {
-	
-	_boatX += 5;
+	if(_boatX < 4970) _boatX += 10;
 
 }
 
