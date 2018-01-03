@@ -304,7 +304,7 @@ void stage1::makeEnemy(){
 	////두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
 	else if(_secondWave && _em->getVMinion().size() == 0)
 	{
-
+		CAMERAMANAGER->backGroundSizeSetting(3456, 648);
 	//카메라 다시 이동(기성아 부탁한다) 추가 
 	_currentRC = &_rc1;
 	CAMERAMANAGER->setCameraAim(_currentRC);
