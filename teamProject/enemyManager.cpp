@@ -76,6 +76,14 @@ void enemyManager::setMinion1(POINT point)
 
 	_vEnemy.push_back(temp);
 }
+void enemyManager::setMinion2(POINT point)
+{
+	enemy* temp;
+	temp = new minion02;
+	temp->init(point);
+
+	_vEnemy.push_back(temp);
+}
 //Á¤¿¹
 void enemyManager::setPick(POINT point)
 {

@@ -43,6 +43,7 @@ public:
 	//쫄따구
 	void setMinion(POINT point);
 	void setMinion1(POINT point);
+	void setMinion2(POINT point);
 	//정예
 	void setPick(POINT point);
 	//보스

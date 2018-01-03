@@ -93,5 +93,6 @@ public:
 
 
 	vector<item*> getVItem() { return _vItem; }
+
 };
 
