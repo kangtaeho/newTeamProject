@@ -298,8 +298,8 @@ void stage1::makeEnemy() {
 	{
 		_firstWave = true;
 		CAMERAMANAGER->backGroundSizeSetting(2070, 648);
-		//쫄따구 1마리 생성
-		_em->setMinion1(PointMake(1500, 400));
+	//쫄따구 1마리 생성
+		_em->setMinion1(PointMake(1500, 400),1);
 		//_em->setMinion(PointMake(1000, 400));
 		//_em->setMinion2(PointMake(1200, 400));
 	//_em->getVMinion()[0]->setStageMemoryLink(this);
@@ -324,7 +324,10 @@ void stage1::makeEnemy() {
 	{
 		////정예몹 1마리 생성
 		_secondWave = true;
-		_em->setPick(PointMake(3000, 400));
+		_em->setPick(PointMake(3000, 400),1);
+	//_em->getVMinion()[0]->setStageMemoryLink(this);
+	////카메라 고정 추가(이것도 부탁해) 추가
+	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 		//_em->getVMinion()[0]->setStageMemoryLink(this);
 		////카메라 고정 추가(이것도 부탁해) 추가
 		//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
@@ -455,11 +458,11 @@ void stage1::draw(){
 	//알파렌더를 위한 검은화면 렌더
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
 
-	for (int i = 0; i < _em->getVMinion().size(); ++i) {
-		if (_em->getVMinion().size() == 0)return;
-
-		setColorRect(getMemDC(), _em->getVMinion()[i]->getCollircEnemy(), 30, 50, 80);
-	}
+	//for (int i = 0; i < _em->getVMinion().size(); ++i) {
+	//	if (_em->getVMinion().size() == 0)return;
+	//
+	//	setColorRect(getMemDC(), _em->getVMinion()[i]->getCollircEnemy(), 30, 50, 80);
+	//}
 }
 void stage1::enemyItemCollision(){
 

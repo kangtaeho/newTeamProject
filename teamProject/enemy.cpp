@@ -185,6 +185,8 @@ void enemy::update()
 	_CollircEnemy = RectMakeCenter(CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x + _imageEnemy->getFrameWidth() / 2,
 		CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y + _imageEnemy->getFrameHeight() / 2 -50, 75, 75); //충돌렉트
 
+	_enemyCenterX = CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x + _imageEnemy->getFrameWidth() / 2;
+	_enemyCenterY = CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y + _imageEnemy->getFrameHeight() / 2;
 
 	KEYANIMANAGER->update();
 
@@ -245,8 +247,10 @@ void enemy::enemyMove() {
 	switch (_currentStage) {
 		case 1:
 
-			if (!_isItemCollion) {
-				//적 패트롤~
+			
+			switch (_isTracePlayer) {
+			case 0: // 패트롤 상태
+
 				if (_countMove < 100) { //랜덤으로 움직인다
 					if (_countMove == 1) _enemyMotion->start();
 					_x += _rndDirX;
@@ -326,12 +330,53 @@ void enemy::enemyMove() {
 				else if (_y<337) {
 					_rndDirY = 1;
 				}
+
+				break;
+
+			case 1: // 플레이어 발견
+
+				_x += cosf(_traceAngle) * 1.2f;
+				_y += -sinf(_traceAngle) * 1.2f;
+
+				if (cosf(_traceAngle) * 1.2f > 0) {
+					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
+					if(_isRight) _enemyMotion->start();
+					_isRight = false;
+					_isLeft = true;
+				}
+				else {
+					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[5]);
+					if (_isLeft) _enemyMotion->start();
+					_isRight = true;
+					_isLeft = false;	
+				}
+
+				break;
+
+			case 2: // 플레이어 공격
+
+				_countAttack++;
+
+				if (!_isRight&&_isLeft) {
+					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[6]);
+				}
+				else {
+					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[7]);
+				}
+
+				if (!_attackAniStart) _enemyMotion->start();
+				_attackAniStart = true;
+
+				if (_countAttack % 20 == 0) {
+					_attackAniStart = false;
+					_isAttack = false;
+					_countAttack = 0;
+				}
+
+				break;
 			}
-			else {
-
-			}
-
-
+						
+			
 		break;
 	
 		case 2:

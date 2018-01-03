@@ -32,14 +32,29 @@ HRESULT minion02::init(POINT point, int currentStage)
 	_enemyKeyName[3] = "--값 없음--";
 	_enemyKeyName[4] = "enemyRightMove";
 	_enemyKeyName[5] = "enemyLeftMove";
+	_enemyKeyName[6] = "enemyRightOneJab";
+	_enemyKeyName[7] = "enemyLeftOneJab";
 
 	_isItemCollion = false;
 	_isGetItemEnemy = false;
+	_isTracePlayer = 0;
+
+	_isAttack = false;					//적이 공격상태이니?
+	_attackAniStart = false;			//어택 애니 시작중
+
+
+
+	_traceAngle = 0;
 
 	_jump = 0; //점프력
 	_Gravity = 0.1f; //중력
 	_HP = 100; //체에력
 	_speed = 3; //스퓌드
+
+	_enemyCenterX = 0;
+	_enemyCenterY = 0;
+	_playerCenterX = 0;
+	_playerCenterY = 0;
 
 	_rndDirX = rndDirection(RND->getInt(3));
 	_rndDirY = rndDirection(RND->getInt(3));

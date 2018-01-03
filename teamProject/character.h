@@ -90,6 +90,14 @@ public:
 	float getY() { return _y; }
 	void setY(float Y) { _y = Y; }
 
+	float getCenterX() {
+		return CAMERAMANAGER->CameraRelativePoint(_rc).x + _image->getFrameWidth() / 2+25;
+	}
+
+	float getCenterY() {
+		return CAMERAMANAGER->CameraRelativePoint(_rc).y + _image->getFrameHeight() / 2+75;
+	}
+
 	//상태값 HIT로 바뀌고 데미지
 	void hurt(int damage);
 	//상태값 STRIKED로 바뀌고 데미지 입으며

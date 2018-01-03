@@ -41,13 +41,13 @@ public:
 	void render();
 
 	//쫄따구
-	void setMinion(POINT point);
-	void setMinion1(POINT point);
-	void setMinion2(POINT point);
+	void setMinion(POINT point,int stageCount);
+	void setMinion1(POINT point, int stageCount);
+	void setMinion2(POINT point, int stageCount);
 	//정예
-	void setPick(POINT point);
+	void setPick(POINT point, int stageCount);
 	//보스
-	void setBoss(POINT point);
+	void setBoss(POINT point, int stageCount);
 
 	//적 사망시 제거
 	void removeEnemy(int arrNum);
@@ -61,6 +61,8 @@ public:
 
 	//플레이어와 적들의 통신을 위한 접근자
 	vector<enemy*> getVMinion() { return _vEnemy; }
+
+	void traceCharacter();
 
 };
 

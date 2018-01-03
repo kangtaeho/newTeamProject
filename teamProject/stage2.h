@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include "inventory.h"
 #include "character.h" //카메라 해주세요 기성씨~
+#include "enemyManager.h"
 #include "money.h"
 
 /*
@@ -43,7 +44,7 @@ private:
 	image* _liver;
 	animation* _liverAni;
 
-
+	enemyManager* _em;
 
 
 	
