@@ -3,14 +3,16 @@
 
 
 stage2::stage2() //절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
-: _alpha(0),
-_ss(READY),
-_rc1(RectMakeCenter(560, 2286, 100, 100)), //카메라의 렉트 좌표
-_playerStartPoint(PointMake(760, 2310)), //스테이지 2 플레이어 시작좌표
-_currentRC(&_rc1),
-_firstWave(false),
-_secondWave(false),
-_thirdWave(false)
+	: _alpha(0),
+	_ss(READY),
+	_rc1(RectMakeCenter(760, 2290, 100, 100)), //카메라의 렉트 좌표
+	_playerStartPoint(PointMake(760, 2310)), //스테이지 2 플레이어 시작좌표
+	_currentRC(&_rc1),
+	_firstWave(false),
+	_secondWave(false),
+	_thirdWave(false),
+	_boatSwitchOn(false),	//배랑 충돌했냐 ??
+	_elevatorSwitchOn(false)//엘베랑 충돌했냐??
 {
 }
 
@@ -25,12 +27,12 @@ HRESULT stage2::init()
 	initialization();	//변수 new 및 init
 	singletonInit();	//싱글톤 init
 
-	_boatX = 1450;
+	_boatX = 1420;
 	_boatY = 2400;
 
 	//_boat->setX(1450);
 	//_boat->setY(2400);
-	_boatRC = RectMakeCenter(_boatX, _boatY, 527, 75);
+	_boatRC = RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight());
 	
 	//_elevator->setX(5520);
 	//_elevator->setY(2186);
@@ -40,7 +42,7 @@ HRESULT stage2::init()
 
 	_elevatorRC = RectMakeCenter(_elevatorX, _elevatorY, 10, 10);
 
-	_elevatorSwitchOn = false;
+
 
 	_liver->setX(2900);
 	_liver->setY(2450);
@@ -64,6 +66,9 @@ void stage2::update()
 	//스테이지가 호출되어 레디상태일경우 알파값 덧셈
 	if (_ss == READY)
 	{
+		_mainPlayer->setX(760);
+		_mainPlayer->setY(2290);
+		_mainPlayer->setStage(IMAGEMANAGER->findImage("스테이지_01_red"), 2);
 		if (_alpha < 255)
 			_alpha += 5;
 		//알파값 최대면 움직이기 가능
@@ -224,40 +229,47 @@ void stage2::update()
 			CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 		}
 
-		if (KEYMANAGER->isOnceKeyDown('P'))
+		//if (KEYMANAGER->isOnceKeyDown('P'))
+		//{
+		//	SCENEMANAGER->changeScene("스테이지00"); 
+		//}
+		RECT temp;
+		//보트 무브
+		if (IntersectRect(&temp, &_rc1, &_boatRC))
 		{
-			SCENEMANAGER->changeScene("스테이지00"); 
+			_boatSwitchOn = true;
 		}
+
+		if (_boatSwitchOn && _boatRC.right < 5230)
+		{
+			boatMove();
+		}
+
+
+
+		//엘베무브 
+		if (IntersectRect(&temp, &_rc1, &_elevatorRC))
+		{
+			_elevatorSwitchOn = true;
+		}
+
+		if (_elevatorSwitchOn && _elevatorRC.top > 140)
+		{
+			elevatorMove();
+		}
+
+		//강 프레임 도는 시간
+		_liverAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 10);
+
+		
+		_em->update();
+		
+
 	}
-	
-
-	//엘베무브 보트 무브
-	RECT temp;
-	if (IntersectRect(&temp, &_rc1, &_elevatorRC)) 
-	{
-		_elevatorSwitchOn = true;
-	}
-
-	if (_elevatorSwitchOn && _elevatorRC.top > 140)
-	{
-		elevatorMove();
-		_elevatorRC.top -= 5;
-		_elevatorRC.bottom -= 5;
-
-		_currentRC->top -= 5;
-		_currentRC->bottom -= 5;
-
-		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-		_currentRC = &_rc1;
-		CAMERAMANAGER->setCameraAim(_currentRC);
-	}
-	_liverAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 10);
-	//_liverAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 1);
-	
-	//boatMove(); 
-	
-	
+	makeEnemy();
+	_rc1 = RectMake(_mainPlayer->getX() - 30, _mainPlayer->getY() - 30, 100, 100);
 	_mainPlayer->update();
+	
 }
 
 void stage2::render()
@@ -274,31 +286,38 @@ void stage2::dropMoney(POINT point, int won)				//돈 드랍 함수 몬스터가 죽었을경
 
 void stage2::makeEnemy()									//몬스터 생성 함수
 {
+	
+	/*카메라 특정 지점일때 몬스터 생성
+	첫 웨이브가 나왔냐 && 카메라가 특정 지점에 왔냐*/
+	if (!_firstWave )
+	{
+		_firstWave = true;
+	//쫄따구 2마리 생성
+		_em->setMinion(PointMake(700, 2360),2);
+		_em->setMinion1(PointMake(550, 2360),2);
+
+	//카메라 고정 추가(기성아 부탁한다) 추가
+	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+
+	}
+
+	//첫 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	else if(_firstWave &&/* _em.size() == 0*/KEYMANAGER->isOnceKeyDown('P'))
+	{
+
+	//카메라 다시 이동(기성아 부탁한다) 추가
+		CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
+		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+		//_currentRC = &_rc1;
+		CAMERAMANAGER->setCameraAim(_currentRC);
+		CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
+		
+
+	//_currentRC = &_rc1;
+	//CAMERAMANAGER->setCameraAim(currentRC);
+	//CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	}
 	/*
-	카메라 특정 지점일때 몬스터 생성
-	첫 웨이브가 나왔냐 && 카메라가 특정 지점에 왔냐
-	if (!_firstWave && 카메라가 특정지점이냐)
-	{
-
-	쫄따구 2마리 생성
-	_em -> setMinion()
-	_em -> setMinion2()
-
-	카메라 고정 추가(기성아 부탁한다) 추가
-	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
-
-	}
-
-	첫 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	else if(_firstWave && _em.size() == 0)
-	{
-
-	카메라 다시 이동(기성아 부탁한다) 추가
-	currentRC = &rc1;
-	CAMERAMANAGER->setCameraAim(currentRC);
-	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-	}
-
 	두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
 	if(!_secondWave && 카메라가 특정지점이냐)
 	{
@@ -311,7 +330,7 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
-	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
 	else if(_secondWave && _em.size() == 0)
 	{
 
@@ -332,7 +351,7 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
-	//세번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	세번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
 	else if(_thirdWave && _em.size() == 0)
 	{
 
@@ -340,9 +359,9 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	currentRC = &rc1;
 	CAMERAMANAGER->setCameraAim(currentRC);
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-	}
+	}*/
 
-	*/
+	
 }
 
 void stage2::characterMovement()							//캐릭터 키매지저를 관리하는 함수
@@ -382,11 +401,14 @@ void stage2::initialization()								//변수들 new선언 및 init 해주는 함수 이후 n
 
 	_inven = new inventory;
 	_inven->init();
+
+	_em = new enemyManager;
+	_em->init();
 }
 void stage2::singletonInit()								//init에서 싱글톤들 세팅해주는 함수 이후 세팅은 여기서 하는걸로		  
 {
-	CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
-	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+	CAMERAMANAGER->backGroundSizeSetting(1152, 2593);
+	CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
 	CAMERAMANAGER->setCameraAim(&_rc1);
 
 	SOUNDMANAGER->play("스테이지2", 0.5f);
@@ -407,7 +429,6 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 	//엘레베이터 rc 작은거 충돌용
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_elevatorRC).x, CAMERAMANAGER->CameraRelativePoint(_elevatorRC).y, 10, 10);
-
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
 
 
@@ -423,6 +444,9 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
 	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
 
+	//쪽배 렉트 충돌용
+	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_boatRC).x, CAMERAMANAGER->CameraRelativePoint(_boatRC).y, _boat->getWidth(), _boat->getHeight());
+
 
 	_liver->aniRender(getMemDC(), 
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).x,
@@ -430,7 +454,7 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	
 
 	_mainPlayer->render();
-
+	_em->render();
 
 	//이 검은화면이 제밀 밑에 있도록 코드쳐주세요~~
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
@@ -440,10 +464,31 @@ void stage2::boatMove()
 {
 	
 	_boatX += 5;
+	_boatRC.left += 5;
+	_boatRC.right += 5;
+
+	_currentRC->left += 5;
+	_currentRC->right += 5;
+	
+	
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	_currentRC = &_rc1;
+	CAMERAMANAGER->setCameraAim(_currentRC);
+	
 
 }
 
 void stage2::elevatorMove() 
 {
 	_elevatorY -= 5;
+
+	_elevatorRC.top -= 5;
+	_elevatorRC.bottom -= 5;
+
+	_currentRC->top -= 5;
+	_currentRC->bottom -= 5;
+
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	_currentRC = &_rc1;
+	CAMERAMANAGER->setCameraAim(_currentRC);
 }

@@ -35,8 +35,10 @@ private:
 
 	RECT _rc1;
 	RECT* _currentRC;
-	image* _DOOR; // ¹®Ãß°¡(º´Ã¶)
-	RECT _DOORRC; // ¹®Ãß°¡(º´Ã¶)
+	image* _door;		 // ¹®Ãß°¡(º´Ã¶)
+	animation* _doorAni;
+	RECT _DOORRC;		 // ¹®Ãß°¡(º´Ã¶)
+
 
 	//float doorX, doorY;
 	

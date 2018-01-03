@@ -7,10 +7,15 @@ stage1::stage1()	//절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 �
 :_alpha(0),							//알파 초기화
 _firstWave(false),					//처음 웨이브
 _secondWave(false),					//두번째 웨이브
-_stopCharacter(false),				//캐릭터가 멈췄니? (인벤토리 킬때 사용)
-//_rc1(RectMakeCenter(WINSIZEX/2, WINSIZEY/2, 100, 100)),	// 병철아!!!!! 여기꺼 수정하면된다 시작위치
-_DOORRC(RectMakeCenter(3225, 190, 10, 10)),
-//_currentRC(&_rc1),
+_stopCharacter(false),	//캐릭터가 멈췄니? (인벤토리 킬때 사용)
+_rc1(RectMakeCenter(WINSIZEX/2, WINSIZEY/2, 100, 100)),	// 병철아!!!!! 여기꺼 수정하면된다 시작위치
+_DOORRC(RectMakeCenter(3225, 210, 10, 10)),
+_currentRC(&_rc1),
+
+
+
+
+
 _ss(READY)
 {
 
@@ -25,11 +30,11 @@ HRESULT stage1::init()
 {
 	addImage();	//사용할 이미지들 추가
 	
-	_DOOR->setX(3225);
-	_DOOR->setY(258);
-	_DOOR->setFrameX(0);
+	_door->setX(3225);
+	_door->setY(258);
 	
-
+	
+	
 	// 스테이지상태
 	// 기존 moving 에서 ready로 수정
 	//_ss = READY;
@@ -65,6 +70,9 @@ void stage1::release()
 
 void stage1::update()
 {
+
+	
+
 	RECT temp;
 	//스테이지 상태가 체인지 되어 레디상태일경우 알파값 증가
 	if (_ss == READY)
@@ -85,8 +93,9 @@ void stage1::update()
 		//알파값이 0이 되면 다음 스테이지							 
 		else
 		{
-			_mainPlayer->setX(760);
+			/*_mainPlayer->setX(760);
 			_mainPlayer->setY(2310);
+			_mainPlayer->UpdateRect();*/
 			SCENEMANAGER->changeScene("스테이지01");
 			SOUNDMANAGER->stop("스테이지1");
 		}
@@ -150,7 +159,17 @@ void stage1::update()
 		enemyItemCollision();
 	}
 
+	///_doorAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 10);
+
+///if (_ss = CLEAR)
+///{
+///	_doorAni->start();
+///}
+
+
+
 	_em->update();
+	
 }
 
 void stage1::render()
@@ -266,17 +285,17 @@ void stage1::characterMovement() {
 		SCENEMANAGER->changeScene("스테이지01");
 	}*/
 }
-void stage1::makeEnemy(){
+void stage1::makeEnemy() {
 
-	
+
 	//카메라 특정 지점일때 몬스터 생성
 	//첫 웨이브가 나왔냐 && 카메라가 특정 지점에 왔냐
-	if (!_firstWave /*&& CAMERAMANAGER->getCameraPoint().x >=2070*/ )
+	if (!_firstWave /*&& CAMERAMANAGER->getCameraPoint().x >=2070*/)
 	{
 		_firstWave = true;
 		CAMERAMANAGER->backGroundSizeSetting(2070, 648);
 	//쫄따구 1마리 생성
-		_em->setMinion1(PointMake(1500, 400));
+		_em->setMinion1(PointMake(1500, 400),1);
 		//_em->setMinion(PointMake(1000, 400));
 		//_em->setMinion2(PointMake(1200, 400));
 	//_em->getVMinion()[0]->setStageMemoryLink(this);
@@ -284,39 +303,44 @@ void stage1::makeEnemy(){
 	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 
 	}
-	
 
-	else if(_firstWave && _em->getVMinion().size() == 0)
+
+	else if (_firstWave && _em->getVMinion().size() == 0)
 	{
 		CAMERAMANAGER->backGroundSizeSetting(3456, 648);
 		//_em->setMinion1(PointMake(1500, 300));
 	////카메라 다시 이동(기성아 부탁한다) 추가
-	_currentRC = &_rc1;
-	CAMERAMANAGER->setCameraAim(_currentRC);
-	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+		_currentRC = &_rc1;
+		CAMERAMANAGER->setCameraAim(_currentRC);
+		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	}
 
 	////두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
 	if (!_secondWave && _firstWave &&_em->getVMinion().size() == 0 /*&& 카메라가 특정지점이냐*/)
 	{
-	////정예몹 1마리 생성
+		////정예몹 1마리 생성
 		_secondWave = true;
-		_em->setPick(PointMake(3000, 400));
+		_em->setPick(PointMake(3000, 400),1);
 	//_em->getVMinion()[0]->setStageMemoryLink(this);
 	////카메라 고정 추가(이것도 부탁해) 추가
 	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+		//_em->getVMinion()[0]->setStageMemoryLink(this);
+		////카메라 고정 추가(이것도 부탁해) 추가
+		//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
 	////두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	else if(_secondWave && _em->getVMinion().size() == 0)
+	else if (_secondWave && _em->getVMinion().size() == 0)
 	{
 		CAMERAMANAGER->backGroundSizeSetting(3456, 648);
-	//카메라 다시 이동(기성아 부탁한다) 추가 
-	_currentRC = &_rc1;
-	CAMERAMANAGER->setCameraAim(_currentRC);
-	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-	_ss = CLEAR;
+		//카메라 다시 이동(기성아 부탁한다) 추가 
+		_currentRC = &_rc1;
+		CAMERAMANAGER->setCameraAim(_currentRC);
+		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+		_ss = CLEAR;
 	}
+
+	
 
 	
 }
@@ -335,14 +359,23 @@ void stage1::addImage(){
 	//레드칠한거 
 	IMAGEMANAGER->addImage("검은화면", "./images/backWindow.bmp", 1152, 648, true, RGB(255, 0, 255));
 
-	_DOOR = IMAGEMANAGER->addFrameImage("스테이지1_문", "./images/door.bmp", 460, 155, 3, 1, true, RGB(255, 0, 255));
+	_door = IMAGEMANAGER->addFrameImage("스테이지1_문", "./images/door.bmp", 460, 155, 3, 1, false, RGB(255, 0, 255));
+	
+	
 }
 
-void stage1::initialization(){
+void stage1::initialization()
+{
+
 	//칼추가 //병철
 	_knife = new knife;
 	_knife->init(PointMake(1000, 350));
 
+
+///_doorAni = new animation;
+///_doorAni->init(_door->getWidth(), _door->getHeight(), _door->getFrameWidth(), _door->getFrameHeight());
+///_doorAni->setPlayFrame(10, 1, false, true);
+///_doorAni->setFPS(1);
 	//에너미 추가...중  //수빈
 
 	//_boss00 = new boss00;
@@ -395,11 +428,8 @@ void stage1::draw(){
 	//_minion00->render();
 	//_minion01->render();
 	//_minion02->render();
-
-	IMAGEMANAGER->findImage("스테이지1_문")->frameRender(getMemDC(),
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_DOOR->getX(), _DOOR->getY(), _DOOR->getFrameWidth(), _DOOR->getFrameHeight())).x,
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_DOOR->getX(), _DOOR->getY(), _DOOR->getFrameWidth(), _DOOR->getFrameHeight())).y,
-		_DOOR->getFrameX(), _DOOR->getFrameY());
+	
+	///_door->aniRender(getMemDC(), _door->getX(), _door->getY(), _doorAni);
 
 	//문 렉트(이후 삭제하도록)
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_DOORRC).x, CAMERAMANAGER->CameraRelativePoint(_DOORRC).y, 10, 10);

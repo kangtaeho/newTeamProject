@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include "inventory.h"
 #include "character.h" //카메라 해주세요 기성씨~
+#include "enemyManager.h"
 #include "money.h"
 
 /*
@@ -35,7 +36,7 @@ private:
 
 	float _boatX, _boatY; //쪽배 x,y좌표
 
-
+	bool _boatSwitchOn;		//보트랑 충돌했냐 ??
 	bool _elevatorSwitchOn; //엘레베이터 렉트 건드렸냐??
 
 	//강물
@@ -43,7 +44,7 @@ private:
 	image* _liver;
 	animation* _liverAni;
 
-
+	enemyManager* _em;
 
 
 	
