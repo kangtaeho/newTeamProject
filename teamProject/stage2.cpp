@@ -302,7 +302,7 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	}
 
 	//첫 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	else if(_firstWave &&/* _em.size() == 0*/KEYMANAGER->isOnceKeyDown('P'))
+	else if(_firstWave && _em->getVMinion().size() == 0/*KEYMANAGER->isOnceKeyDown('P')*/)
 	{
 
 	//카메라 다시 이동(기성아 부탁한다) 추가
@@ -404,6 +404,8 @@ void stage2::initialization()								//변수들 new선언 및 init 해주는 함수 이후 n
 
 	_em = new enemyManager;
 	_em->init();
+
+	_em->setCharacterMemoryAddressLink(_mainPlayer);
 }
 void stage2::singletonInit()								//init에서 싱글톤들 세팅해주는 함수 이후 세팅은 여기서 하는걸로		  
 {
