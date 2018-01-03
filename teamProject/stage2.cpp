@@ -229,10 +229,10 @@ void stage2::update()
 			CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 		}
 
-		if (KEYMANAGER->isOnceKeyDown('P'))
-		{
-			SCENEMANAGER->changeScene("스테이지00"); 
-		}
+		//if (KEYMANAGER->isOnceKeyDown('P'))
+		//{
+		//	SCENEMANAGER->changeScene("스테이지00"); 
+		//}
 		RECT temp;
 		//보트 무브
 		if (IntersectRect(&temp, &_rc1, &_boatRC))
@@ -267,6 +267,7 @@ void stage2::update()
 
 	}
 	makeEnemy();
+	_rc1 = RectMake(_mainPlayer->getX() - 30, _mainPlayer->getY() - 30, 100, 100);
 	_mainPlayer->update();
 	
 }
@@ -306,12 +307,10 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 
 	//카메라 다시 이동(기성아 부탁한다) 추가
 		CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
-		//??
-		//_rc1 = RectMake(_mainPlayer->getX() - 30, _mainPlayer->getY() - 30, 100, 100);
-		//CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 		//_currentRC = &_rc1;
-		//CAMERAMANAGER->setCameraAim(_currentRC);
-		//CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
+		CAMERAMANAGER->setCameraAim(_currentRC);
+		CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
 		
 
 	//_currentRC = &_rc1;
