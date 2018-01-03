@@ -411,6 +411,12 @@ void stage1::draw(){
 
 	//알파렌더를 위한 검은화면 렌더
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
+
+	for (int i = 0; i < _em->getVMinion().size(); ++i) {
+		if (_em->getVMinion().size() == 0)return;
+
+		setColorRect(getMemDC(), _em->getVMinion()[i]->getCollircEnemy(), 30, 50, 80);
+	}
 }
 void stage1::enemyItemCollision(){
 

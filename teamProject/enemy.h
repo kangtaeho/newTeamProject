@@ -166,8 +166,6 @@ public:
 	float getX() { return CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x; }
 	int getCountMove() { return _countMove; }
 
-	void getItem();
-
 	RECT getCollircEnemy(){ return _CollircEnemy; }
 	void setIsItemCollion(bool isItemCollion){ _isItemCollion = isItemCollion; }
 

@@ -245,86 +245,92 @@ void enemy::enemyMove() {
 	switch (_currentStage) {
 		case 1:
 
-			//적 패트롤~
-			if (_countMove < 100) { //랜덤으로 움직인다
-				if (_countMove == 1) _enemyMotion->start();
-				_x += _rndDirX;
-				_y += _rndDirY;;
-			}
-			else if (_countMove >= 100 && _countMove<150) {
+			if (!_isItemCollion) {
+				//적 패트롤~
+				if (_countMove < 100) { //랜덤으로 움직인다
+					if (_countMove == 1) _enemyMotion->start();
+					_x += _rndDirX;
+					_y += _rndDirY;;
+				}
+				else if (_countMove >= 100 && _countMove<150) {
 
-				if (_countMove == 100) {
-					_rndDirX = rndDirection(RND->getInt(3));
-					_rndDirY = rndDirection(RND->getInt(3));
+					if (_countMove == 100) {
+						_rndDirX = rndDirection(RND->getInt(3));
+						_rndDirY = rndDirection(RND->getInt(3));
+						_rndTum = RND->getFromIntTo(50, 120);
+						_rndTum2 = RND->getFromIntTo(280, 320);
+
+						if (_rndDirX == 1) {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[0]);
+						}
+						else {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[1]);
+						}
+					}
+
+					if (_countMove == 149) {
+
+						if (_rndDirX == 1) {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
+							_enemyMotion->start();
+						}
+						else {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[5]);
+							_enemyMotion->start();
+						}
+					}
+				}
+				else if (_countMove >= 150 && _countMove<150 + _rndTum) {
+
+					_x += _rndDirX;
+					_y += _rndDirY;
+
+				}
+				else if (_countMove >= 150 + _rndTum && _countMove<_rndTum2) {
+
+					if (_countMove == 250) {
+						_rndDirX = rndDirection(RND->getInt(3));
+						_rndDirY = rndDirection(RND->getInt(3));
+
+						if (_rndDirX == 1) {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[0]);
+						}
+						else {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[1]);
+						}
+					}
+
+
+					if (_countMove == _rndTum2 - 1) {
+
+						if (_rndDirX == 1) {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
+							_enemyMotion->start();
+						}
+						else {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[5]);
+							_enemyMotion->start();
+						}
+
+					}
+				}
+				else {
+					_countMove = 0;
 					_rndTum = RND->getFromIntTo(50, 120);
 					_rndTum2 = RND->getFromIntTo(280, 320);
-
-					if (_rndDirX == 1) {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[0]);
-					}
-					else {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[1]);
-					}
-				}
-			
-				if (_countMove == 149) {
-
-					if (_rndDirX == 1) {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
-						_enemyMotion->start();
-					}
-					else {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[5]);
-						_enemyMotion->start();
-					}
-				}
-			}
-			else if (_countMove >= 150 && _countMove<150+ _rndTum) {
-
-				_x += _rndDirX;
-				_y += _rndDirY;
-
-			}
-			else if (_countMove >= 150+ _rndTum && _countMove<_rndTum2) {
-
-				if (_countMove == 250) {
-					_rndDirX = rndDirection(RND->getInt(3));
-					_rndDirY = rndDirection(RND->getInt(3));
-
-					if (_rndDirX == 1) {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[0]);
-					}
-					else {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[1]);
-					}
 				}
 
-
-				if (_countMove == _rndTum2-1) {
-
-					if (_rndDirX == 1) {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
-						_enemyMotion->start();
-					}
-					else {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[5]);
-						_enemyMotion->start();
-					}
-
+				if (_y > 482) {
+					_rndDirY = -1;
+				}
+				else if (_y<337) {
+					_rndDirY = 1;
 				}
 			}
 			else {
-				_countMove = 0;
-				_rndTum = RND->getFromIntTo(50, 120);
-				_rndTum2 = RND->getFromIntTo(280, 320);
+
 			}
 
-			if (_y > 482) {
-				_rndDirY = -1;
-			}
-			else if (_y<337) {
-				_rndDirY = 1;
-			}
 
 		break;
 	
