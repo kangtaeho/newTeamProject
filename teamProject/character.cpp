@@ -51,25 +51,18 @@ void character::update()
 	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	//{
 	//}
-	if (_stageCount == 2)
-	{
-		COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom);
-
-		int r = GetRValue(color);
-		int g = GetGValue(color);
-		int b = GetBValue(color);
-
-		if ((r == 255 && g == 0 && b == 0))
-		{
-			_StartY = _y;
-		}
-	}
+	
 
 	switch (_state)
 	{
 		//멈춘상태
 	case CHARA_RIGHT_STOP:
 	case CHARA_LEFT_STOP:
+		if (_stageCount == 2)
+		{
+			_y -= _JP;
+			_JP -= _gravity;
+		}
 		if (KEYMANAGER->isOnceKeyDown(VK_UP)|| KEYMANAGER->isOnceKeyDown(VK_DOWN))
 		{
 			//_isRight라는 변수가 필요없다
@@ -167,6 +160,11 @@ void character::update()
 
 	case CHARA_RIGHT_MOVE://오른쪽으로 움직이는 중
 	{
+		if (_stageCount == 2)
+		{
+			_y -= _JP;
+			_JP -= _gravity;
+		}
 		 //상하좌우키를 누른상태가 아니라면
 		 if (!KEYMANAGER->isStayKeyDown(VK_UP))
 		 if (!KEYMANAGER->isStayKeyDown(VK_DOWN))
@@ -633,7 +631,7 @@ void character::update()
 	case CHARA_LEFT_JUMP:
 		_y -= _JP;
 		_JP -= _gravity;
-		if (_StartY <= _y)
+		if (_StartY <= _y&&_stageCount != 2)
 		{
 			_y = _StartY;
 			if (_isRight)
@@ -703,7 +701,7 @@ void character::update()
 		{
 			_x -= CHARASPEED;
 		}
-		if (_StartY <= _y)
+		if (_StartY <= _y&&_stageCount != 2)
 		{
 			_JP = 0;
 			_y = _StartY;
@@ -725,19 +723,40 @@ void character::update()
 		if (KEYMANAGER->isOnceKeyDown('C') || KEYMANAGER->isOnceKeyDown('X'))//발차기
 		{
 			SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
-			if (_isRight)
+			if (_JP*_JP <= 1)
 			{
-				_state = CHARA_RIGHT_MOVE_JUMP_KICK;
-				_motion->stop();
-				_motion = KEYANIMANAGER->findAnimation("JIMMYRightJumpKick");
-				_motion->start();
+				_JP = 0;
+				if (_isRight)
+				{
+					_state = CHARA_RIGHT_ATT;
+					_motion->stop();
+					_motion = KEYANIMANAGER->findAnimation("JIMMYRightATT");
+					_motion->start();
+				}
+				else
+				{
+					_state = CHARA_LEFT_ATT;
+					_motion->stop();
+					_motion = KEYANIMANAGER->findAnimation("JIMMYLeftATT");
+					_motion->start();
+				}
 			}
 			else
 			{
-				_state = CHARA_LEFT_MOVE_JUMP_KICK;
-				_motion->stop();
-				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJumpKick");
-				_motion->start();
+				if (_isRight)
+				{
+					_state = CHARA_RIGHT_MOVE_JUMP_KICK;
+					_motion->stop();
+					_motion = KEYANIMANAGER->findAnimation("JIMMYRightJumpKick");
+					_motion->start();
+				}
+				else
+				{
+					_state = CHARA_LEFT_MOVE_JUMP_KICK;
+					_motion->stop();
+					_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJumpKick");
+					_motion->start();
+				}
 			}
 		}
 		break;
@@ -753,22 +772,12 @@ void character::update()
 		{
 			_x -= 2;
 		}
-		if (_StartY < _y)
+		if (_StartY < _y&&_stageCount != 2)
 		{
-			if (_isRight)
-			{
-				_state = CHARA_RIGHT_STOP;
-				_motion->stop();
-				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-				_motion->start();
-			}
-			else
-			{
-				_state = CHARA_LEFT_STOP;
-				_motion->stop();
-				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-				_motion->start();
-			}
+			_state = CHARA_LEFT_STOP;
+			_motion->stop();
+			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+			_motion->start();
 		}
 		break;
 	case CHARA_RIGHT_DRILL:
@@ -874,6 +883,8 @@ void character::update()
 	case CHARA_RIGHT_STRIKED:
 	case CHARA_LEFT_STRIKED:
 		//쓰러지는 함수있음
+		_y -= _JP;
+		_JP -= _gravity;
 		if (_isRight)
 		{
 			_x -= CHARASPEED;
@@ -881,6 +892,23 @@ void character::update()
 		else
 		{
 			_x += CHARASPEED;
+		}
+		if (_StartY < _y&&_stageCount != 2)
+		{
+			if (_isRight)
+			{
+				_state = CHARA_RIGHT_DOWN;
+				_motion->stop();
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightDown");
+				_motion->start();
+			}
+			else
+			{
+				_state = CHARA_LEFT_DOWN;
+				_motion->stop();
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftDown");
+				_motion->start();
+			}
 		}
 		break;
 	case CHARA_RIGHT_DOWN:
@@ -892,7 +920,7 @@ void character::update()
 	case CHARA_LEFT_JUMP_KICK:
 		_y -= _JP;
 		_JP -= _gravity;
-		if (_StartY <= _y)
+		if (_StartY <= _y&&_stageCount != 2)
 		{
 			_JP = 0;
 			_y = _StartY;
@@ -924,7 +952,7 @@ void character::update()
 		{
 			_x -= CHARASPEED;
 		}
-		if (_StartY <= _y)
+		if (_StartY <= _y&&_stageCount != 2)
 		{
 			_JP = 0;
 			_y = _StartY;
@@ -952,7 +980,73 @@ void character::update()
 		break;
 	}
 	
-	
+	if (_stageCount == 2)
+	{
+		for (int i = _x - 27;i < _x + 27; i++)
+		{
+			COLORREF color = GetPixel(_stage->getMemDC(), i, _rc.bottom);
+														//위에를 i+2스테이지 카메라 X
+														//_rc.bottom+2스테이지 카메라 Y
+														//로 바꿔야 맵내에서 위치를 파악할 수 있음
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
+
+			if ((r == 255 && g == 0 && b == 0))
+			{
+				_JP = 0;
+				_y = _rc.bottom - 60;
+				if (_state == CHARA_RIGHT_JUMP ||
+					_state == CHARA_RIGHT_MOVE_JUMP ||
+					_state == CHARA_RIGHT_JUMP_KICK ||
+					_state == CHARA_RIGHT_MOVE_JUMP_KICK)
+				{
+					_state = CHARA_RIGHT_LAND;
+					_motion->stop();
+					_motion = KEYANIMANAGER->findAnimation("JIMMYRightLand");
+					_motion->start();
+				}
+				else if (_state == CHARA_LEFT_MOVE_JUMP_KICK ||
+					_state == CHARA_LEFT_JUMP_KICK ||
+					_state == CHARA_LEFT_JUMP ||
+					_state == CHARA_LEFT_MOVE_JUMP)
+				{
+					_state = CHARA_LEFT_LAND;
+					_motion->stop();
+					_motion = KEYANIMANAGER->findAnimation("JIMMYLeftLand");
+					_motion->start();
+				}
+				else if (_state == CHARA_RIGHT_BACKKICK)
+				{
+					_state = CHARA_RIGHT_STOP;
+					_motion->stop();
+					_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+					_motion->start();
+				}
+				else if (_state == CHARA_LEFT_BACKKICK)
+				{
+					_state = CHARA_LEFT_STOP;
+					_motion->stop();
+					_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+					_motion->start();
+				}
+				else if (_state == CHARA_RIGHT_STRIKED)
+				{
+					_state = CHARA_RIGHT_DOWN;
+					_motion->stop();
+					_motion = KEYANIMANAGER->findAnimation("JIMMYRightDown");
+					_motion->start();
+				}
+				else if (_state == CHARA_LEFT_STRIKED)
+				{
+					_state = CHARA_LEFT_DOWN;
+					_motion->stop();
+					_motion = KEYANIMANAGER->findAnimation("JIMMYLeftDown");
+					_motion->start();
+				}
+			}
+		}
+	}
 	
 	KEYANIMANAGER->update();
 	UpdateRect();
@@ -1107,6 +1201,7 @@ void character::strike(int damage, float x)
 	_HP -= damage;
 	_JP = CHARAJUMP;
 	_JP = _JP / 2;
+	_StartY = _y;
 	//상대의 위치가 나보다 작다면(적이 왼쪽)
 	if (x<_x)
 	{
