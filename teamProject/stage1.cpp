@@ -93,8 +93,9 @@ void stage1::update()
 		//알파값이 0이 되면 다음 스테이지							 
 		else
 		{
-			_mainPlayer->setX(760);
+			/*_mainPlayer->setX(760);
 			_mainPlayer->setY(2310);
+			_mainPlayer->UpdateRect();*/
 			SCENEMANAGER->changeScene("스테이지01");
 			SOUNDMANAGER->stop("스테이지1");
 		}

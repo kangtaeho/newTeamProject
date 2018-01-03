@@ -66,6 +66,8 @@ void stage2::update()
 	//스테이지가 호출되어 레디상태일경우 알파값 덧셈
 	if (_ss == READY)
 	{
+		_mainPlayer->setX(760);
+		_mainPlayer->setY(2290);
 		if (_alpha < 255)
 			_alpha += 5;
 		//알파값 최대면 움직이기 가능
@@ -386,7 +388,7 @@ void stage2::initialization()								//변수들 new선언 및 init 해주는 함수 이후 n
 
 
 	_mainPlayer = new character;
-	_mainPlayer->init();
+	//_mainPlayer->init();
 
 	_inven = new inventory;
 	_inven->init();
