@@ -68,11 +68,11 @@ HRESULT minion02::init(POINT point, int currentStage)
 	int rightStop[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemy06RightStop", "enemy06", rightStop, 1, 6, true);
 	int leftStop[] = { 15 };
-	KEYANIMANAGER->addArrayFrameAnimation("enemy06leftStop", "enemy06", leftStop, 1, 6, true);
+	KEYANIMANAGER->addArrayFrameAnimation("enemy06LeftStop", "enemy06", leftStop, 1, 6, true);
 	int rightMove[] = { 0,1,2,1 };
-	KEYANIMANAGER->addArrayFrameAnimation("enemy06RightMove", "enemy06", rightMove, 4, 10, true);
+	KEYANIMANAGER->addArrayFrameAnimation("enemy06RightMove", "enemy06", rightMove, 4, 2, true);
 	int leftMove[] = { 15,14,13,14 };
-	KEYANIMANAGER->addArrayFrameAnimation("enemy06LeftMove", "enemy06", leftMove, 4, 10, true);
+	KEYANIMANAGER->addArrayFrameAnimation("enemy06LeftMove", "enemy06", leftMove, 4, 2, true);
 	int rightOneJab[] = { 20,21 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemy06RightOneJab", "enemy06", rightOneJab, 2, 10, true);
 	int leftOneJab[] = { 27,26 };

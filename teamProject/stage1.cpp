@@ -298,7 +298,9 @@ void stage1::makeEnemy() {
 	{
 		_firstWave = true;
 		CAMERAMANAGER->backGroundSizeSetting(2070, 648);
-	//绿蝶备 1付府 积己
+	//绿蝶备 1付府 积己\
+
+
 		_em->setMinion1(PointMake(1500, 400),1);
 		//_em->setMinion(PointMake(1000, 400));
 		//_em->setMinion2(PointMake(1200, 400));
