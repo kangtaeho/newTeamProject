@@ -4,6 +4,7 @@
 #include "inventory.h"
 #include "money.h"
 #include "stone.h"
+#include "tire.h"
 #include <vector>
 /*
 static enum stageState
@@ -28,7 +29,7 @@ private:
 	vector<item*> _viItem;
 
 	item* _stone; //πÃ¥œµπµ¢¿Ã 
-
+	item* _tire;
 	bool _firstWave, _secondWave, _thirdWave;
 public:
 	stage3();

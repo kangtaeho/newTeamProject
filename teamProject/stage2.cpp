@@ -218,6 +218,7 @@ void stage2::update()
 			SCENEMANAGER->changeScene("스테이지00"); 
 		}
 	}
+	
 
 	//엘베무브 보트 무브
 	RECT temp;

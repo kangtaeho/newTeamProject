@@ -24,6 +24,7 @@ HRESULT stage3::init()
 
 
 	_vItem.push_back(_stone);
+	_vItem.push_back(_tire);
 	return S_OK;
 }
 
@@ -178,8 +179,14 @@ void stage3::addImage()		//이미기 추가해주는 함수 이후 이미지는 여기서 add하는걸
 }
 void stage3::initialization()	//변수들 new선언 및 init 해주는 함수 이후 new 및 init은 여기서 하는걸로
 {
+
+
+	_tire = new tire;
+	_tire->init(PointMake(300, 1000));
+
 	_stone = new stone;
-	_stone->init(PointMake(100, 900));
+	_stone->init(PointMake(300, 1000));
+
 	_inven = new inventory;
 	_inven->init();
 }
