@@ -1001,6 +1001,7 @@ void character::update()
 						 _isOn = true;
 						/* _gravity = 0;*/
 						// _y = _rc.bottom - 60;
+
 						 if (_state == CHARA_RIGHT_JUMP ||
 							 _state == CHARA_RIGHT_MOVE_JUMP ||
 							 _state == CHARA_RIGHT_JUMP_KICK ||
@@ -1055,6 +1056,7 @@ void character::update()
 							 _motion = KEYANIMANAGER->findAnimation("JIMMYLeftDown");
 							 _motion->start();
 						 }
+
 					 }
 					 else
 					 {
@@ -1068,6 +1070,7 @@ void character::update()
 	KEYANIMANAGER->update();
 	UpdateRect();
 
+	sprintf(test, "%d", _isOn);
 }
 void character::render()
 {
@@ -1085,7 +1088,7 @@ void character::render()
 	char str[256];
 	wsprintf(str, "camX : %d, camY : %d", CAMERAMANAGER->CameraRelativePoint(_rc).x, CAMERAMANAGER->CameraRelativePoint(_rc).y);
 	TextOut(getMemDC(), WINSIZEX/2, 10, str, strlen(str));
-
+	TextOut(getMemDC(), 100, 100, test, strlen(test));
 }
 
 void character::MakeRightStop(void* obj)

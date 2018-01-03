@@ -270,7 +270,7 @@ void stage2::update()
 
 	}
 	makeEnemy();
-	_rc1 = RectMake(_mainPlayer->getX() - 30, _mainPlayer->getY() - 30, 100, 100);
+	_rc1 = RectMakeCenter(_mainPlayer->getX() /*- 30*/, _mainPlayer->getY()+25/* - 30*/, 100, 100);
 	if (!_boatSwitchOn)
 	{
 		_mainPlayer->update();
@@ -452,7 +452,7 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
 
 	//쪽배 렉트 충돌용
-	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_boatRC).x, CAMERAMANAGER->CameraRelativePoint(_boatRC).y, _boat->getWidth(), _boat->getHeight());
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_boatRC).x, CAMERAMANAGER->CameraRelativePoint(_boatRC).y, _boat->getWidth(), _boat->getHeight());
 
 
 	_liver->aniRender(getMemDC(), 
@@ -463,8 +463,11 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	_mainPlayer->render();
 	_em->render();
 
-	Rectangle(getMemDC(), _mainPlayer->getUnderBarRect().left, _mainPlayer->getUnderBarRect().top, 
-		_mainPlayer->getUnderBarRect().right, _mainPlayer->getUnderBarRect().bottom);
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getRect()).x,
+		CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getRect()).y, 100, 100);
+
+	/*Rectangle(getMemDC(), _mainPlayer->getUnderBarRect().left, _mainPlayer->getUnderBarRect().top, 
+		_mainPlayer->getUnderBarRect().right, _mainPlayer->getUnderBarRect().bottom);*/
 	
 	//이 검은화면이 제밀 밑에 있도록 코드쳐주세요~~
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
@@ -482,6 +485,7 @@ void stage2::boatMove()
 	
 	_mainPlayer->MakeRightStop(_mainPlayer);
 	_mainPlayer->setX(_mainPlayer->getX() + 5);
+	_mainPlayer->setY(_boatRC.top-90);
 	_mainPlayer->UpdateRect();
 	
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);

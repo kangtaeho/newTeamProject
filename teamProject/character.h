@@ -74,6 +74,8 @@ private:
 	animation * _motion;//¸ð¼Ç
 	image * _image;
 
+	char test[128];
+
 public:
 	character();
 	~character();
