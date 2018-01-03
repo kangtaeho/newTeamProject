@@ -24,7 +24,7 @@ HRESULT stage3::init()
 
 
 	_vItem.push_back(_stone);
-	_vItem.push_back(_tire);
+	//_vItem.push_back(_tire);
 	return S_OK;
 }
 
@@ -181,8 +181,8 @@ void stage3::initialization()	//변수들 new선언 및 init 해주는 함수 이후 new 및 i
 {
 
 
-	_tire = new tire;
-	_tire->init(PointMake(300, 1000));
+//_tire = new tire;
+//_tire->init(PointMake(300, 1000));
 
 	_stone = new stone;
 	_stone->init(PointMake(300, 1000));
