@@ -380,6 +380,125 @@ void enemy::enemyMove() {
 		break;
 	
 		case 2:
+
+			switch (_isTracePlayer) {
+			case 0: // 패트롤 상태
+
+				if (_countMove < 100) { //랜덤으로 움직인다
+					if (_countMove == 1) _enemyMotion->start();
+					if (_rndDirX == 0) _rndDirX = -1;
+					_x += _rndDirX;
+				}
+				else if (_countMove >= 100 && _countMove<150) {
+
+					if (_countMove == 100) {
+						_rndDirX = rndDirection(RND->getInt(3));
+						_rndDirY = rndDirection(RND->getInt(3));
+						_rndTum = RND->getFromIntTo(50, 120);
+						_rndTum2 = RND->getFromIntTo(280, 320);
+
+						if (_rndDirX == 1) {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[0]);
+						}
+						else {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[1]);
+						}
+					}
+
+					if (_countMove == 149) {
+
+						if (_rndDirX == 1) {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
+							_enemyMotion->start();
+						}
+						else {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[5]);
+							_enemyMotion->start();
+						}
+					}
+				}
+				else if (_countMove >= 150 && _countMove<150 + _rndTum) {
+					if (_rndDirX == 0) _rndDirX = 1;
+					_x += _rndDirX;
+
+				}
+				else if (_countMove >= 150 + _rndTum && _countMove<_rndTum2) {
+
+					if (_countMove == 150 + _rndTum) {
+						_rndDirX = rndDirection(RND->getInt(3));
+						_rndDirY = rndDirection(RND->getInt(3));
+
+						if (_rndDirX == 1) {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[0]);
+						}
+						else {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[1]);
+						}
+					}
+
+
+					if (_countMove == _rndTum2 - 1) {
+
+						if (_rndDirX == 1) {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
+							_enemyMotion->start();
+						}
+						else {
+							_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[5]);
+							_enemyMotion->start();
+						}
+
+					}
+				}
+				else {
+					_countMove = 0;
+					_rndTum = RND->getFromIntTo(50, 120);
+					_rndTum2 = RND->getFromIntTo(280, 320);
+				}
+
+				break;
+
+			case 1: // 플레이어 발견
+
+				_x += cosf(_traceAngle) * 1.2f;
+
+				if (cosf(_traceAngle) * 1.2f > 0) {
+					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
+					if (_isRight) _enemyMotion->start();
+					_isRight = false;
+					_isLeft = true;
+				}
+				else {
+					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[5]);
+					if (_isLeft) _enemyMotion->start();
+					_isRight = true;
+					_isLeft = false;
+				}
+
+				break;
+
+			case 2: // 플레이어 공격
+
+				_countAttack++;
+
+				if (!_isRight&&_isLeft) {
+					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[6]);
+				}
+				else {
+					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[7]);
+				}
+
+				if (!_attackAniStart) _enemyMotion->start();
+				_attackAniStart = true;
+
+				if (_countAttack % 20 == 0) {
+					_attackAniStart = false;
+					_isAttack = false;
+					_countAttack = 0;
+				}
+
+				break;
+			}
 	
 		break;
 
