@@ -5,7 +5,7 @@
 stage2::stage2() //절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
 	: _alpha(0),
 	_ss(READY),
-	_rc1(RectMakeCenter(760, 2290, 100, 100)), //카메라의 렉트 좌표
+	_rc1(RectMakeCenter(760, 2280, 100, 100)), //카메라의 렉트 좌표
 	_playerStartPoint(PointMake(760, 2310)), //스테이지 2 플레이어 시작좌표
 	_currentRC(&_rc1),
 	_firstWave(false),
@@ -244,7 +244,10 @@ void stage2::update()
 		{
 			boatMove();
 		}
-
+		else if (_boatSwitchOn && _boatRC.right >= 5200)
+		{
+			_boatSwitchOn = false;
+		}
 
 
 		//엘베무브 
@@ -268,8 +271,10 @@ void stage2::update()
 	}
 	makeEnemy();
 	_rc1 = RectMake(_mainPlayer->getX() - 30, _mainPlayer->getY() - 30, 100, 100);
-	_mainPlayer->update();
-	
+	if (!_boatSwitchOn)
+	{
+		_mainPlayer->update();
+	}
 }
 
 void stage2::render()
@@ -431,7 +436,7 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 	//엘레베이터 rc 작은거 충돌용
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_elevatorRC).x, CAMERAMANAGER->CameraRelativePoint(_elevatorRC).y, 10, 10);
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
+	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
 
 
 	
@@ -458,6 +463,9 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	_mainPlayer->render();
 	_em->render();
 
+	Rectangle(getMemDC(), _mainPlayer->getUnderBarRect().left, _mainPlayer->getUnderBarRect().top, 
+		_mainPlayer->getUnderBarRect().right, _mainPlayer->getUnderBarRect().bottom);
+	
 	//이 검은화면이 제밀 밑에 있도록 코드쳐주세요~~
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
 }
@@ -472,6 +480,9 @@ void stage2::boatMove()
 	_currentRC->left += 5;
 	_currentRC->right += 5;
 	
+	_mainPlayer->MakeRightStop(_mainPlayer);
+	_mainPlayer->setX(_mainPlayer->getX() + 5);
+	_mainPlayer->UpdateRect();
 	
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	_currentRC = &_rc1;

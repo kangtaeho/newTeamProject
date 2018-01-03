@@ -59,6 +59,7 @@ private:
 	float _JP, _gravity;//점프, 중력
 	int _HP, _maxHP;//현피, 맥피
 	bool _isRight;//오른쪽?
+	bool _isOn;		//2스테이지 땅위?
 
 	RECT _rc;//렌더용 렉트
 	RECT _colliRect;//통신용 렉트
@@ -85,6 +86,9 @@ public:
 	void RectUpdate();
 
 	RECT getRect() { return _colliRect; }
+
+	RECT getUnderBarRect(){ return _rc; }
+
 	float getX() { return _x; }
 	void setX(float X) { _x = X; }
 	float getY() { return _y; }

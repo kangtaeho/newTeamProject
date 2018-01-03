@@ -20,6 +20,7 @@ HRESULT character::init()
 	_x = _StartX = WINSIZEX / 2;
 	_y = _StartY = WINSIZEY / 2;
 	_isRight = true;
+	_isOn = true;
 	_JP = 0;
 	_gravity = 0.1f;
 	_HP = _maxHP = 10;
@@ -58,11 +59,6 @@ void character::update()
 		//멈춘상태
 	case CHARA_RIGHT_STOP:
 	case CHARA_LEFT_STOP:
-		if (_stageCount == 2)
-		{
-			_y -= _JP;
-			_JP -= _gravity;
-		}
 		if (KEYMANAGER->isOnceKeyDown(VK_UP)|| KEYMANAGER->isOnceKeyDown(VK_DOWN))
 		{
 			//_isRight라는 변수가 필요없다
@@ -103,6 +99,12 @@ void character::update()
 				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJump");
 				_motion->start();
 			}
+		}
+
+		if (_stageCount == 2 && !_isOn )
+		{
+		_y -= _JP;
+		_JP -= _gravity;
 		}
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
@@ -160,7 +162,7 @@ void character::update()
 
 	case CHARA_RIGHT_MOVE://오른쪽으로 움직이는 중
 	{
-		if (_stageCount == 2)
+		if (_stageCount == 2 && !_isOn)
 		{
 			_y -= _JP;
 			_JP -= _gravity;
@@ -248,7 +250,8 @@ void character::update()
 		 //else
 		 if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 		 {
-		  //내일 카메라 단위로 바꾸자
+			
+			// else
 		  _x += CHARASPEED;
 		 }
 
@@ -980,73 +983,87 @@ void character::update()
 		break;
 	}
 	
-	if (_stageCount == 2)
-	{
-		for (int i = _x - 27;i < _x + 27; i++)
-		{
-			COLORREF color = GetPixel(_stage->getMemDC(), i, _rc.bottom);
-														//위에를 i+2스테이지 카메라 X
-														//_rc.bottom+2스테이지 카메라 Y
-														//로 바꿔야 맵내에서 위치를 파악할 수 있음
-			int r = GetRValue(color);
-			int g = GetGValue(color);
-			int b = GetBValue(color);
+	 if (_stageCount == 2)
+			 {
+				 for (int i = _x; i < _x + 27; i++)
+				 {
+					 COLORREF color = GetPixel(_stage->getMemDC(), i, _rc.bottom);
+					 //위에를 i+2스테이지 카메라 X
+					 //_rc.bottom+2스테이지 카메라 Y
+					 //로 바꿔야 맵내에서 위치를 파악할 수 있음
+					 int r = GetRValue(color);
+					 int g = GetGValue(color);
+					 int b = GetBValue(color);
 
-			if ((r == 255 && g == 0 && b == 0))
-			{
-				_JP = 0;
-				_y = _rc.bottom - 60;
-				if (_state == CHARA_RIGHT_JUMP ||
-					_state == CHARA_RIGHT_MOVE_JUMP ||
-					_state == CHARA_RIGHT_JUMP_KICK ||
-					_state == CHARA_RIGHT_MOVE_JUMP_KICK)
-				{
-					_state = CHARA_RIGHT_LAND;
-					_motion->stop();
-					_motion = KEYANIMANAGER->findAnimation("JIMMYRightLand");
-					_motion->start();
-				}
-				else if (_state == CHARA_LEFT_MOVE_JUMP_KICK ||
-					_state == CHARA_LEFT_JUMP_KICK ||
-					_state == CHARA_LEFT_JUMP ||
-					_state == CHARA_LEFT_MOVE_JUMP)
-				{
-					_state = CHARA_LEFT_LAND;
-					_motion->stop();
-					_motion = KEYANIMANAGER->findAnimation("JIMMYLeftLand");
-					_motion->start();
-				}
-				else if (_state == CHARA_RIGHT_BACKKICK)
-				{
-					_state = CHARA_RIGHT_STOP;
-					_motion->stop();
-					_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-					_motion->start();
-				}
-				else if (_state == CHARA_LEFT_BACKKICK)
-				{
-					_state = CHARA_LEFT_STOP;
-					_motion->stop();
-					_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-					_motion->start();
-				}
-				else if (_state == CHARA_RIGHT_STRIKED)
-				{
-					_state = CHARA_RIGHT_DOWN;
-					_motion->stop();
-					_motion = KEYANIMANAGER->findAnimation("JIMMYRightDown");
-					_motion->start();
-				}
-				else if (_state == CHARA_LEFT_STRIKED)
-				{
-					_state = CHARA_LEFT_DOWN;
-					_motion->stop();
-					_motion = KEYANIMANAGER->findAnimation("JIMMYLeftDown");
-					_motion->start();
-				}
-			}
-		}
-	}
+					 if ((r == 255 && g == 0 && b == 0))
+					 {
+						 //_JP = 0;
+						 _isOn = true;
+						/* _gravity = 0;*/
+						// _y = _rc.bottom - 60;
+						 if (_state == CHARA_RIGHT_JUMP ||
+							 _state == CHARA_RIGHT_MOVE_JUMP ||
+							 _state == CHARA_RIGHT_JUMP_KICK ||
+							 _state == CHARA_RIGHT_MOVE_JUMP_KICK)
+						 {
+							 if (_JP < 0)
+							 {
+								 _state = CHARA_RIGHT_LAND;
+								 _motion->stop();
+								 _motion = KEYANIMANAGER->findAnimation("JIMMYRightLand");
+								 _motion->start();
+							 }
+						 }
+						 else if (_state == CHARA_LEFT_MOVE_JUMP_KICK ||
+							 _state == CHARA_LEFT_JUMP_KICK ||
+							 _state == CHARA_LEFT_JUMP ||
+							 _state == CHARA_LEFT_MOVE_JUMP)
+						 {
+							 if (_JP < 0)
+							 {
+								 _state = CHARA_LEFT_LAND;
+								 _motion->stop();
+								 _motion = KEYANIMANAGER->findAnimation("JIMMYLeftLand");
+								 _motion->start();
+							 }
+						 }
+						 else if (_state == CHARA_RIGHT_BACKKICK)
+						 {
+							 _state = CHARA_RIGHT_STOP;
+							 _motion->stop();
+							 _motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+							 _motion->start();
+						 }
+						 else if (_state == CHARA_LEFT_BACKKICK)
+						 {
+							 _state = CHARA_LEFT_STOP;
+							 _motion->stop();
+							 _motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+							 _motion->start();
+						 }
+						 else if (_state == CHARA_RIGHT_STRIKED)
+						 {
+							 _state = CHARA_RIGHT_DOWN;
+							 _motion->stop();
+							 _motion = KEYANIMANAGER->findAnimation("JIMMYRightDown");
+							 _motion->start();
+						 }
+						 else if (_state == CHARA_LEFT_STRIKED)
+						 {
+							 _state = CHARA_LEFT_DOWN;
+							 _motion->stop();
+							 _motion = KEYANIMANAGER->findAnimation("JIMMYLeftDown");
+							 _motion->start();
+						 }
+					 }
+					 else
+					 {
+						 _isOn = false;
+						 //_gravity = 0.1f;
+					 }
+				 }
+			 }
+	
 	
 	KEYANIMANAGER->update();
 	UpdateRect();
