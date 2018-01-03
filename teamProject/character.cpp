@@ -552,6 +552,7 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('C')|| KEYMANAGER->isOnceKeyDown('X'))//발차기
 		{
+			SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
 			if (_JP*_JP <= 1)
 			{
 				_JP = 0;
@@ -622,6 +623,7 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('C') || KEYMANAGER->isOnceKeyDown('X'))//발차기
 		{
+			SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
 			if (_isRight)
 			{
 				_state = CHARA_RIGHT_MOVE_JUMP_KICK;
