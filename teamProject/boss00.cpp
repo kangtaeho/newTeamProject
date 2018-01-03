@@ -46,7 +46,7 @@ HRESULT boss00::init(POINT point, int currentStage)
 	//_BossDirection = BOSSDIRECTION_RIGHT_STOP; //기본상태
 	_jump = 0; //점프력
 	_Gravity = 0.1f; //중력
-	_HP = 250; //체에력
+	_HP = 25; //체에력
 	_speed = 3; //스퓌드
 
 	_rndDirX = rndDirection(RND->getInt(3));

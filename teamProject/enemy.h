@@ -130,12 +130,13 @@ protected:
 	animation* _bossMotion;
 
 
-	string _enemyKeyName[10];
+	string _enemyKeyName[12];
 
 	bool _isItemCollion;			//아이템이랑 부딪혔냐
 	bool _isGetItemEnemy;			//아이탬을 잡을수 있는 에너미니?
 	bool _isAttack;					//플레이어를 공격중이니?
 	bool _attackAniStart;			//어택 애니메이션 시작중
+	bool _dieAniStart;
 	
 	int _isTracePlayer;				//플레이어를 만났니?
 									// 0 이 패트롤 상태 // 1번 : 플레이 발견 // 3번 : 플레이어 공격
@@ -200,6 +201,9 @@ public:
 
 	void setIsAttack(bool isAttack) { _isAttack = isAttack; }
 	bool getIsAttack() { return _isAttack; }
+
+	void setHP(int HP) { _HP = HP; }
+	int getHP() { return _HP; }
 };
 
 //이제 콜백함수가 필요한 모션들이라던가 그런거 뭐해야될까영

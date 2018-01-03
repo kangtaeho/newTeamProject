@@ -374,6 +374,21 @@ void enemy::enemyMove() {
 				}
 
 				break;
+
+			case 3: // ¸÷ Á×À½
+
+				if (_HP == 0)
+				{
+					if (!_isRight&&_isLeft) {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[10]);
+					}
+					else {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[11]);
+					}
+
+					if (!_dieAniStart) _enemyMotion->start();
+					_dieAniStart = true;
+				}
 			}
 						
 			

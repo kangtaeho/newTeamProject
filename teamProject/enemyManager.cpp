@@ -44,6 +44,11 @@ void enemyManager::update()
 
 	traceCharacter();
 
+	if (KEYMANAGER->isOnceKeyDown('M'))
+	{
+		_vEnemy[0]->setHP(_vEnemy[0]->getHP() - 1);
+	}
+
 }
 void enemyManager::render()
 {
@@ -128,6 +133,8 @@ void enemyManager::traceCharacter() {
 	for (int i = 0; i < _vEnemy.size(); ++i) {
 		if (_vEnemy.size() == 0) return;
 
+		if (_vEnemy[i]->getHP()<0) _vEnemy[i]->setIsTracePlayer(3);
+
 		if (getDistance(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()) < 300) {
 			
 			if (_vEnemy[i]->getIsAttack()) return;			//적이 공격상태이면 추적 금지
@@ -150,6 +157,7 @@ void enemyManager::traceCharacter() {
 		else {
 			_vEnemy[i]->setIsTracePlayer(0);
 		}
+
 		
 	}
 
