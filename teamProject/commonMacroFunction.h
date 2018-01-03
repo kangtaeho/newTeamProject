@@ -50,3 +50,13 @@ inline void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height)
 {
 	Ellipse(hdc, x - width / 2, y - height / 2, x + width / 2, y + height / 2);
 }
+
+inline void setColorRect(HDC hdc, RECT rc, int R, int G, int B) {
+	HBRUSH hBrush, oldBrush;
+	hBrush = CreateSolidBrush(RGB(R, G, B));
+	oldBrush = (HBRUSH)SelectObject(hdc, hBrush);
+	Rectangle(hdc, rc.left, rc.top, rc.right, rc.bottom);
+
+	SelectObject(hdc, oldBrush);
+	DeleteObject(hBrush);
+}
