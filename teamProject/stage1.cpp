@@ -394,7 +394,7 @@ void stage1::draw(){
 	_mainPlayer->render();
 
 	//카메라 렉트(이후 주석처리를 통해 지우도록!)
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
+//	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
 	
 	IMAGEMANAGER->findImage("스테이지1_문")->frameRender(getMemDC(),
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_DOOR->getX(), _DOOR->getY(), _DOOR->getFrameWidth(), _DOOR->getFrameHeight())).x,
