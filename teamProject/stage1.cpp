@@ -142,6 +142,7 @@ void stage1::update()
 			_vItem[i]->update();
 		}		
 		makeEnemy();
+		enemyItemCollision();
 	}
 
 	_em->update();
