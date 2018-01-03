@@ -35,7 +35,10 @@ void enemyManager::update()
 		(*_viEnemy)->update();
 	}
 
-
+	if (KEYMANAGER->isOnceKeyDown(VK_F1))
+	{
+		_vEnemy.clear();
+	}
 	//_mini->update();
 
 
@@ -58,13 +61,29 @@ void enemyManager::render()
 //쫄따구
 void enemyManager::setMinion(POINT point)
 {
+	enemy* temp;
+	temp = new minion00;
+	temp->init(point);
 
+	_vEnemy.push_back(temp);
 
+}
+void enemyManager::setMinion1(POINT point)
+{
+	enemy* temp;
+	temp = new minion01;
+	temp->init(point);
+
+	_vEnemy.push_back(temp);
 }
 //정예
 void enemyManager::setPick(POINT point)
 {
+	enemy* temp;
+	temp = new minion02;
+	temp->init(point);
 
+	_vEnemy.push_back(temp);
 }
 
 //보스

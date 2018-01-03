@@ -22,6 +22,7 @@ HRESULT character::init()
 	_isRight = true;
 	_JP = 0;
 	_gravity = 0.1f;
+	_HP = _maxHP = 10;
 
 	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 	_colliRect = RectMakeCenter(_x, _y, 54, 120);
@@ -552,6 +553,7 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('C')|| KEYMANAGER->isOnceKeyDown('X'))//발차기
 		{
+			SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
 			if (_JP*_JP <= 1)
 			{
 				_JP = 0;
@@ -622,6 +624,7 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('C') || KEYMANAGER->isOnceKeyDown('X'))//발차기
 		{
+			SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
 			if (_isRight)
 			{
 				_state = CHARA_RIGHT_MOVE_JUMP_KICK;

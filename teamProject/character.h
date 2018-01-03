@@ -126,5 +126,8 @@ public:
 
 	//키 애니메이션 초기화 함수
 	void addImage();
+
+	//HP반환
+	int getHP(){ return _HP; }
 };
 

@@ -13,11 +13,11 @@ enemy::~enemy()
 
 
 
-HRESULT enemy::init(POINT point)
+HRESULT enemy::init(POINT point, int currentStage  )
 {
 	_x = point.x;
 	_y = point.y;
-
+	_countMove = 0;
 	return S_OK;
 
 }

@@ -18,7 +18,7 @@ public:
 
 
 
-	virtual HRESULT init(POINT point);
+	virtual HRESULT init(POINT point, int currentStage = 1);
 	virtual void collision();
 
 
