@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "stage3.h"
 
-
+//_rc1(RectMakeCenter(100, 900, 100, 100)),
 stage3::stage3()
 :_rc1(RectMakeCenter(100, 900, 100, 100)),	//절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
 _currentRC(&_rc1),
@@ -22,9 +22,10 @@ HRESULT stage3::init()
 	initialization();	//멤버변수 초기화(ex. 아이템 등)
 	singletonInit();	//싱글톤 초기화(ex. 카메라 or 스테이지 사운드)
 
-
+	_HeliCopterX = 5200;
+	_HeliCopterY = 100;
 	_vItem.push_back(_stone);
-	//_vItem.push_back(_tire);
+	_vItem.push_back(_tire);
 	return S_OK;
 }
 
@@ -171,6 +172,10 @@ void stage3::render()
 //IMAGEMANAGER->findImage("스테이지_02")->render(getMemDC(), 0, 0);
 //IMAGEMANAGER->findImage("스테이지_02_red")->render(getMemDC(), 0, 0);
 }
+void stage3::HeliCopterMove()
+{
+	//헬리콥터 움직일거
+}
 void stage3::dropMoney(POINT point, int won)	//돈 드랍 함수 몬스터가 죽었을경우 이것 호출하면 됩니다.
 {
 	item* tempMoney = new money;
@@ -193,14 +198,14 @@ void stage3::addImage()		//이미기 추가해주는 함수 이후 이미지는 여기서 add하는걸
 {
 	IMAGEMANAGER->addImage("스테이지_02", "./images/03_stage00.bmp", 5809, 1251, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("스테이지_02_red", "./images/03_stage00_red.bmp", 5809, 1251, true, RGB(255, 0, 255));
-
+	_HeliCopter = IMAGEMANAGER->addImage("헬리콥터", "./images/helicopter.bmp", 708, 258, true, RGB(255, 0, 255));
 }
 void stage3::initialization()	//변수들 new선언 및 init 해주는 함수 이후 new 및 init은 여기서 하는걸로
 {
 
 
-//_tire = new tire;
-//_tire->init(PointMake(300, 1000));
+	_tire = new tire;
+	_tire->init(PointMake(300, 1000));
 
 	_stone = new stone;
 	_stone->init(PointMake(300, 1000));
@@ -220,6 +225,11 @@ void stage3::draw()			//그려주는 함수 이후 렌더는 여기서 하는걸로
 	//이걸로 카메라처리 해주센
 	IMAGEMANAGER->findImage("스테이지_02")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_02_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
+	
+	
+	//헬리콥터 위치지 
+	_HeliCopter->render(getMemDC(), CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_HeliCopterX, _HeliCopterY, _HeliCopter->getWidth(), _HeliCopter->getHeight())).x, 
+									CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_HeliCopterX, _HeliCopterY, _HeliCopter->getWidth(), _HeliCopter->getHeight())).y);
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
 	_inven->render();
 

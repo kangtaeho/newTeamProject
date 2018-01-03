@@ -139,6 +139,7 @@
     <ClCompile Include="tire.cpp">
       <Filter>MainGame\inventory\item</Filter>
     </ClCompile>
+    <ClCompile Include="ㅓㅓㅓ.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h">
@@ -291,6 +292,7 @@
     <ClInclude Include="tire.h">
       <Filter>MainGame\inventory\item</Filter>
     </ClInclude>
+    <ClInclude Include="ㅓㅓㅓ.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
