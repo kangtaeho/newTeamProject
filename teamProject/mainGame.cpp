@@ -59,7 +59,7 @@ void mainGame::update()				//연산 함수
 void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 {
 	//흰색 도화지 한장~
-	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
+	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, BLACKNESS);
 	//==================== 건들지마라 ======================
 	
 	

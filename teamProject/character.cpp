@@ -149,166 +149,209 @@ void character::update()
 		break;
 
 	case CHARA_RIGHT_MOVE://오른쪽으로 움직이는 중
-		//상하좌우키를 누른상태가 아니라면
-		if (!KEYMANAGER->isStayKeyDown(VK_UP))
-			if (!KEYMANAGER->isStayKeyDown(VK_DOWN))
-				if (!KEYMANAGER->isStayKeyDown(VK_RIGHT))
-				{
-					_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-					_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-					_motion->start();
-				}
-		if (KEYMANAGER->isOnceKeyDown('Z'))//점프
-		{
-			//SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
-			_StartY = _y;
-			_JP = CHARASPEED;
-			_state = CHARA_RIGHT_MOVE_JUMP;
-			_motion->stop();
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightJump");
-			_motion->start();
-		}
+	{
+							  //상하좌우키를 누른상태가 아니라면
+							  if (!KEYMANAGER->isStayKeyDown(VK_UP))
+							  if (!KEYMANAGER->isStayKeyDown(VK_DOWN))
+							  if (!KEYMANAGER->isStayKeyDown(VK_RIGHT))
+							  {
+								  _state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+								  _motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+								  _motion->start();
+							  }
+							  if (KEYMANAGER->isOnceKeyDown('Z'))//점프
+							  {
+								  //SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
+								  _StartY = _y;
+								  _JP = CHARASPEED;
+								  _state = CHARA_RIGHT_MOVE_JUMP;
+								  _motion->stop();
+								  _motion = KEYANIMANAGER->findAnimation("JIMMYRightJump");
+								  _motion->start();
+							  }
 
 
-		//if (KEYMANAGER->isOnceKeyUp(VK_UP))
-		//{
-		//	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-		//	_motion->stop();
-		//	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-		//	_motion->start();
-		//}
-		//else 
-		if (KEYMANAGER->isStayKeyDown(VK_UP))
-		{
-			//if(사다리를 탈 수 있게 되었다)
-			//{
-			//_state = CHARA_STAIR;
-			//_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
-			//_motion->start();
-			//}
-			//else
-			_y -= _Zmove;
-		}
+							  //if (KEYMANAGER->isOnceKeyUp(VK_UP))
+							  //{
+							  //	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+							  //	_motion->stop();
+							  //	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+							  //	_motion->start();
+							  //}
+							  //else 
+							  if (KEYMANAGER->isStayKeyDown(VK_UP))
+							  {
+								  COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom - 3);
 
-		//if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
-		//{
-		//	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-		//	_motion->stop();
-		//	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-		//	_motion->start();
-		//}
-		//else
-		if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-		{
-			_y += _Zmove;
-		}
-		
-		//if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
-		//{
-		//	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-		//	_motion->stop();
-		//	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-		//	_motion->start();
-		//}
-		//else
-		if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
-		{
-			//내일 카메라 단위로 바꾸자
-			_x += CHARASPEED;
-		}
-		
-		//if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) || KEYMANAGER->isOnceKeyUp(VK_DOWN) || KEYMANAGER->isOnceKeyUp(VK_UP))
-		//{
-		//	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-		//	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-		//	_motion->start();
-		//}
+								  int r = GetRValue(color);
+								  int g = GetGValue(color);
+								  int b = GetBValue(color);
 
-		
-		break;
+								  if ((r == 255 && g == 0 && b == 0))
+								  {
+									  //if(사다리를 탈 수 있게 되었다)
+									  //{
+									  //_state = CHARA_STAIR;
+									  //_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
+									  //_motion->start();
+									  //}
+									  //else
+									  _y -= _Zmove;
+								  }
+							  }
+							  if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+							  {
+								  COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom + 3);
+
+								  int r = GetRValue(color);
+								  int g = GetGValue(color);
+								  int b = GetBValue(color);
+
+								  if ((r == 255 && g == 0 && b == 0))
+								  {
+									  //if(사다리를 탈 수 있게 되었다)
+									  //{
+									  //_state = CHARA_STAIR;
+									  //_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
+									  //_motion->start();
+									  //}
+									  //else
+									  _y += _Zmove;
+								  }
+							  }
+
+							  //if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+							  //{
+							  //	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+							  //	_motion->stop();
+							  //	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+							  //	_motion->start();
+							  //}
+							  //else
+							  if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+							  {
+								  //내일 카메라 단위로 바꾸자
+								  _x += CHARASPEED;
+							  }
+
+							  //if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) || KEYMANAGER->isOnceKeyUp(VK_DOWN) || KEYMANAGER->isOnceKeyUp(VK_UP))
+							  //{
+							  //	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+							  //	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+							  //	_motion->start();
+							  //}
+
+
+							  break;
+	}
 	case CHARA_LEFT_MOVE://왼쪽으로 움직이는 중
-		//상하좌우키를 누른상태가 아니라면
-		if (!KEYMANAGER->isStayKeyDown(VK_UP))
-			if (!KEYMANAGER->isStayKeyDown(VK_DOWN))
-				if (!KEYMANAGER->isStayKeyDown(VK_LEFT))
-		{
-			_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-			_motion->start();
-		}
-		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
-		{
-			_x -= CHARASPEED;
-		}
+	{
+		 //상하좌우키를 누른상태가 아니라면
+		 if (!KEYMANAGER->isStayKeyDown(VK_UP))
+		 if (!KEYMANAGER->isStayKeyDown(VK_DOWN))
+		 if (!KEYMANAGER->isStayKeyDown(VK_LEFT))
+		 {
+			 _state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
+			 _motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+			 _motion->start();
+		 }
+		 if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+		 {
+			 _x -= CHARASPEED;
+		 }
 
-		if (KEYMANAGER->isOnceKeyDown('Z'))//점프
-		{
-			_StartY = _y;
-			_JP = CHARASPEED;
-			_state = CHARA_LEFT_MOVE_JUMP;
-			_motion->stop();
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJump");
-			_motion->start();
-		}
-		for (int i = _rc.bottom-5; i < _rc.bottom + 5; ++i)
-		{
-			COLORREF color = GetPixel(IMAGEMANAGER->findImage("스테이지_00_red")->getMemDC(), _x, i);
+		 if (KEYMANAGER->isOnceKeyDown('Z'))//점프
+		 {
+			 _StartY = _y;
+			 _JP = CHARASPEED;
+			 _state = CHARA_LEFT_MOVE_JUMP;
+			 _motion->stop();
+			 _motion = KEYANIMANAGER->findAnimation("JIMMYLeftJump");
+			 _motion->start();
+		 }
+		 /*for (int i = _rc.bottom-5; i < _rc.bottom + 5; ++i)
+		 {*/
 
-			int r = GetRValue(color);
-			int g = GetGValue(color);
-			int b = GetBValue(color);
-			if (!(r == 255 && g == 0 && b == 0))
-			{
-				break;
-			}
-			else
-			{
-				if (KEYMANAGER->isStayKeyDown(VK_UP))
-				{
-					//if(사다리를 탈 수 있게 되었다)
-					//{
-					//_state = CHARA_STAIR;
-					//_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
-					//_motion->start();
-					//}
-					//else
-					_y -= _Zmove;
-				}
-				//if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
-				//{
-				//	_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
-				//	_motion->stop();
-				//	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-				//	_motion->start();
-				//}
-				//else
-				if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-				{
-					_y += _Zmove;
-				}
-				break;
-			}
-		}
-		//if (KEYMANAGER->isOnceKeyUp(VK_UP))
-		//{
-		//	_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
-		//	_motion->stop();
-		//	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-		//	_motion->start();
-		//}
-		//else
 		
-		//if (KEYMANAGER->isOnceKeyUp(VK_LEFT) )
-		//{
-		//	_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
-		//	_motion->stop();
-		//	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-		//	_motion->start();
-		//}
-		//else 
-		
-		break;
+			 /*break;
+		 }
+		 else
+		 {*/
+		 if (KEYMANAGER->isStayKeyDown(VK_UP))
+		 {
+			 COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom - 3);
 
+			 int r = GetRValue(color);
+			 int g = GetGValue(color);
+			 int b = GetBValue(color);
+
+			 if ((r == 255 && g == 0 && b == 0))
+			 {
+				 //if(사다리를 탈 수 있게 되었다)
+				 //{
+				 //_state = CHARA_STAIR;
+				 //_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
+				 //_motion->start();
+				 //}
+				 //else
+				 _y -= _Zmove;
+			 }
+		 }
+		 if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+		 {
+			 COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom + 3);
+
+			 int r = GetRValue(color);
+			 int g = GetGValue(color);
+			 int b = GetBValue(color);
+
+			 if ((r == 255 && g == 0 && b == 0))
+			 {
+				 //if(사다리를 탈 수 있게 되었다)
+				 //{
+				 //_state = CHARA_STAIR;
+				 //_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
+				 //_motion->start();
+				 //}
+				 //else
+				 _y += _Zmove;
+			 }
+		 }
+			 //if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
+			 //{
+			 //	_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
+			 //	_motion->stop();
+			 //	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+			 //	_motion->start();
+			 //}
+			 //else
+			 //if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+			 //{
+				// _y += _Zmove;
+			 //}
+			 ////break;
+		 
+		 //}
+		 //if (KEYMANAGER->isOnceKeyUp(VK_UP))
+		 //{
+		 //	_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
+		 //	_motion->stop();
+		 //	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+		 //	_motion->start();
+		 //}
+		 //else
+
+		 //if (KEYMANAGER->isOnceKeyUp(VK_LEFT) )
+		 //{
+		 //	_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
+		 //	_motion->stop();
+		 //	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+		 //	_motion->start();
+		 //}
+		 //else 
+
+		 break;
+	}
 	case CHARA_RIGHT_LAND:
 	case CHARA_LEFT_LAND:
 		if (KEYMANAGER->isOnceKeyDown('X'))//주먹
@@ -885,7 +928,14 @@ void character::render()
 	//_image->frameRender(getMemDC(), 100, 100, 0, 0);
 	//_image->aniRender(getMemDC(), _rc.left, _rc.top, _motion);
 	_image->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc).x, CAMERAMANAGER->CameraRelativePoint(_rc).y, _motion);
-	
+
+	/*
+	RECT _rc;//렌더용 렉트
+	RECT _colliRect;//통신용 렉트
+	*/
+	//Rectangle(getMemDC(), _rc.left,  _rc.top,  _rc.right, _rc.bottom);
+
+
 	char str[256];
 	wsprintf(str, "camX : %d, camY : %d", CAMERAMANAGER->CameraRelativePoint(_rc).x, CAMERAMANAGER->CameraRelativePoint(_rc).y);
 	TextOut(getMemDC(), WINSIZEX/2, 10, str, strlen(str));

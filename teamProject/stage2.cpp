@@ -412,21 +412,17 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 
 	
-	//플레이어가 배에 닿았을때 모든키 제어 불가능하게 해주고
-	//배가 플레이어랑 같이 움직여야되는데 //기성씨 8~~ //배아직 안움직임
-	IMAGEMANAGER->findImage("쪽배")->render(getMemDC(),
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
-
 	
-
-	IMAGEMANAGER->findImage("쪽배_red")->render(getMemDC(),
+	//쪽배
+	_boat->render(getMemDC(),
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
+	
+	//쪽배 픽셀충돌 컬러
+	IMAGEMANAGER->findImage("쪽배_red")->render(getMemDC(),
+	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
+	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
 
-//IMAGEMANAGER->findImage("강물")->aniRender(getMemDC(),
-//	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).x,
-//	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).y, _liverAni);
 
 	_liver->aniRender(getMemDC(), 
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).x,

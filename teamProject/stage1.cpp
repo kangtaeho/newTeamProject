@@ -8,9 +8,9 @@ stage1::stage1()	//절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 �
 _firstWave(false),					//처음 웨이브
 _secondWave(false),					//두번째 웨이브
 _stopCharacter(false),				//캐릭터가 멈췄니? (인벤토리 킬때 사용)
-_rc1(RectMakeCenter(WINSIZEX/2, WINSIZEY/2, 100, 100)),	// 병철아!!!!! 여기꺼 수정하면된다 시작위치
+//_rc1(RectMakeCenter(WINSIZEX/2, WINSIZEY/2, 100, 100)),	// 병철아!!!!! 여기꺼 수정하면된다 시작위치
 _DOORRC(RectMakeCenter(3225, 190, 10, 10)),
-_currentRC(&_rc1),
+//_currentRC(&_rc1),
 _ss(READY)
 {
 
@@ -45,6 +45,9 @@ HRESULT stage1::init()
 	_vItem.push_back(_stone);
 	_vItem.push_back(_knife);
 	_vItem.push_back(_bigStone);
+
+	_rc1 = RectMake(_mainPlayer->getRect().left, _mainPlayer->getRect().top, 100, 100);
+	_currentRC = &_rc1;
 
 	singletonInit();
 
@@ -253,6 +256,7 @@ void stage1::characterMovement() {
 	//_minion00->update();
 	//_minion01->update();
 	//_minion02->update();
+	_rc1 = RectMake(_mainPlayer->getX() - 30, _mainPlayer->getY() - 30, 100, 100);
 	_mainPlayer->update();
 
 	/*if (KEYMANAGER->isOnceKeyDown('P'))

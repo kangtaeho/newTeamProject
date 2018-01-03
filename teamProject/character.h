@@ -63,6 +63,11 @@ private:
 	RECT _rc;//렌더용 렉트
 	RECT _colliRect;//통신용 렉트
 
+	//스테이지 담을 변수(설정자)
+	//스테이지당 픽셀충돌 검사할 이미지 변수(설정자)
+
+	image * _stage;
+
 	CHARA _state;//상태값
 	animation * _motion;//모션
 	image * _image;
@@ -127,6 +132,9 @@ public:
 	//키 애니메이션 초기화 함수
 	void addImage();
 
+	//돌입할 스테이지(충돌할 이미지)
+	void setStage(image* stage) { _stage = stage; }
+		
 	//HP반환
 	int getHP(){ return _HP; }
 };
