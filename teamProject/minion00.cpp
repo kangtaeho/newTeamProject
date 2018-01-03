@@ -34,9 +34,24 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  _speed = 3; //스퓌드
 	  _isItemCollion = false;
 	  _isGetItemEnemy = true;
+
+	  _isTracePlayer = 0;
+
+	  _isAttack = false;				//적이 공격상태이니?
+	  _attackAniStart = false;			//어택 애니 시작중
 	  
 	  _rndDirX = rndDirection(RND->getInt(3));
 	  _rndDirY = rndDirection(RND->getInt(3));
+
+
+
+
+	  _enemyCenterX = 0;
+	  _enemyCenterY = 0;
+	  _playerCenterX = 0;
+	  _playerCenterY = 0;
+
+	  _traceAngle = 0;
 
 	  _enemyKeyName[0] = "enemyRightStop";
 	  _enemyKeyName[1] = "enemyLeftStop";
@@ -44,6 +59,10 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  _enemyKeyName[3] = "--아직 값없음--";
 	  _enemyKeyName[4] = "enemyRightMove";
 	  _enemyKeyName[5] = "enemyLeftMove";
+	  _enemyKeyName[6] = "enemyRightOneJab";
+	  _enemyKeyName[7] = "enemyLeftOneJab";
+	  _enemyKeyName[8] = "enemyRightTwoJab";
+	  _enemyKeyName[9] = "enemyLeftTwoJab";
 	  
 	  int rightStop[] = { 0 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightStop", "enemy01", rightStop, 1,2,true);
@@ -66,9 +85,9 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  int leftJumpAttack[] = { 28,27 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyLeftJumpAttack", "enemy01", leftJumpAttack, 2, 2, true);
 	  int rightHit[] = { 5 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightHit", "enemy01", rightHit, 1, 2, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightHit", "enemy01", rightHit, 1, 2, true);
 	  int leftHit[] = { 10 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftHit", "enemy01", leftHit, 1, 2, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyLeftHit", "enemy01", leftHit, 1, 2, true);
 	  int rightHit2[] = { 6,7 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightHit2", "enemy01", rightHit2, 2, 2, true);
 	  int leftHit2[] = { 9,8 };

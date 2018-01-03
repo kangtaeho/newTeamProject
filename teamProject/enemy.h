@@ -120,6 +120,12 @@ protected:
 	int _rndTum;					//랜덤 텀
 	int _rndTum2;					//랜덤 텀2
 
+	float _traceAngle;
+
+
+	float _enemyCenterX, _enemyCenterY;
+	float _playerCenterX, _playerCenterY;
+
 	animation* _enemyMotion;
 	animation* _bossMotion;
 
@@ -128,7 +134,16 @@ protected:
 
 	bool _isItemCollion;			//아이템이랑 부딪혔냐
 	bool _isGetItemEnemy;			//아이탬을 잡을수 있는 에너미니?
+	bool _isAttack;					//플레이어를 공격중이니?
+	bool _attackAniStart;			//어택 애니메이션 시작중
+	
+	int _isTracePlayer;				//플레이어를 만났니?
+									// 0 이 패트롤 상태 // 1번 : 플레이 발견 // 3번 : 플레이어 공격
 
+	bool _isLeft = true;					//왼쪽입니까?
+	bool _isRight = true;
+
+	int _countAttack=0;				//어택카운트
 	stage1* _stage1;
 
 public:
@@ -164,7 +179,18 @@ public:
 	void enemyMove();
 	int rndDirection(int value);
 
-	float getX() { return CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x; }
+
+	bool getIsGetItemEemey() { return _isGetItemEnemy; }
+
+	void setIsTracePlayer(int isTracePlayer) { _isTracePlayer = isTracePlayer; }
+	void setTraceAngle(float traceAngle) { _traceAngle= traceAngle; } //각도 구하기
+
+
+	float getCenterX() { return  CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x + _imageEnemy->getFrameWidth() / 2; }
+	float getCenterY() { return  CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y + _imageEnemy->getFrameHeight() / 2; }
+	void setPlayerCenterX(float playerCenterX) { _playerCenterX = playerCenterX; }
+	void setPlayerCenterY(float playerCenterY) { _playerCenterY = playerCenterY; }
+
 	int getCountMove() { return _countMove; }
 
 	RECT getCollircEnemy(){ return _CollircEnemy; }
@@ -172,7 +198,8 @@ public:
 
 	void setStageMemoryLink(stage1* stage1){ _stage1 = stage1; }
 
-	bool getIsGetItemEemey() { return _isGetItemEnemy; }
+	void setIsAttack(bool isAttack) { _isAttack = isAttack; }
+	bool getIsAttack() { return _isAttack; }
 };
 
 //이제 콜백함수가 필요한 모션들이라던가 그런거 뭐해야될까영

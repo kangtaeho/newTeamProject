@@ -30,10 +30,23 @@ HRESULT minion01::init(POINT point, int currentStage)
 	_HP = 100; //체에력
 	_speed = 3; //스퓌드
 
+	_traceAngle = 0;
+	_isTracePlayer = 0;
+
+	_isAttack = false;					//적이 공격상태이니?
+	_attackAniStart = false;			//어택 애니 시작중
+
 	_rndDirX = rndDirection(RND->getInt(3));
 	_rndDirY = rndDirection(RND->getInt(3));
 	_isItemCollion = false;
 	_isGetItemEnemy = false;
+
+
+
+	_enemyCenterX = 0;
+	_enemyCenterY = 0;
+	_playerCenterX = 0;
+	_playerCenterY = 0;
 
 	_enemyKeyName[0] = "enemyRightStop";
 	_enemyKeyName[1] = "enemyLeftStop";
@@ -41,6 +54,8 @@ HRESULT minion01::init(POINT point, int currentStage)
 	_enemyKeyName[3] = "enemyLeftMove";
 	_enemyKeyName[4] = "enemyRightRun";
 	_enemyKeyName[5] = "enemyLeftRun";
+	_enemyKeyName[6] = "enemyRightOneJab";
+	_enemyKeyName[7] = "enemyLeftOneJab";
 
 	int rightStop[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemyRightStop", "enemy07", rightStop, 1, 2, true);

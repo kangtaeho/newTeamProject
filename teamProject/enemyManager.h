@@ -62,5 +62,7 @@ public:
 	//플레이어와 적들의 통신을 위한 접근자
 	vector<enemy*> getVMinion() { return _vEnemy; }
 
+	void traceCharacter();
+
 };
 
