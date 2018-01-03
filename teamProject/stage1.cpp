@@ -361,6 +361,8 @@ void stage1::initialization(){
 
 	_em = new enemyManager;
 	_em->init();
+
+	_em->setCharacterMemoryAddressLink(_mainPlayer);
 }
 
 void stage1::singletonInit(){
