@@ -87,6 +87,7 @@ void stage1::update()
 		{
 			_mainPlayer->setX(760);
 			_mainPlayer->setY(2310);
+			_mainPlayer->UpdateRect();
 			SCENEMANAGER->changeScene("스테이지01");
 			SOUNDMANAGER->stop("스테이지1");
 		}

@@ -5,7 +5,7 @@
 stage2::stage2() //절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
 : _alpha(0),
 _ss(READY),
-_rc1(RectMakeCenter(560, 2286, 100, 100)), //카메라의 렉트 좌표
+_rc1(RectMakeCenter(760, 2310, 100, 100)), //카메라의 렉트 좌표
 _playerStartPoint(PointMake(760, 2310)), //스테이지 2 플레이어 시작좌표
 _currentRC(&_rc1),
 _firstWave(false),
