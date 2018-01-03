@@ -51,6 +51,20 @@ void character::update()
 	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	//{
 	//}
+	if (_stageCount == 2)
+	{
+		COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom - 3);
+
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if ((r == 255 && g == 0 && b == 0))
+		{
+			_StartY = _y;
+		}
+	}
+
 	switch (_state)
 	{
 		//멈춘상태
@@ -150,99 +164,99 @@ void character::update()
 
 	case CHARA_RIGHT_MOVE://오른쪽으로 움직이는 중
 	{
-							  //상하좌우키를 누른상태가 아니라면
-							  if (!KEYMANAGER->isStayKeyDown(VK_UP))
-							  if (!KEYMANAGER->isStayKeyDown(VK_DOWN))
-							  if (!KEYMANAGER->isStayKeyDown(VK_RIGHT))
-							  {
-								  _state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-								  _motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-								  _motion->start();
-							  }
-							  if (KEYMANAGER->isOnceKeyDown('Z'))//점프
-							  {
-								  //SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
-								  _StartY = _y;
-								  _JP = CHARASPEED;
-								  _state = CHARA_RIGHT_MOVE_JUMP;
-								  _motion->stop();
-								  _motion = KEYANIMANAGER->findAnimation("JIMMYRightJump");
-								  _motion->start();
-							  }
+		 //상하좌우키를 누른상태가 아니라면
+		 if (!KEYMANAGER->isStayKeyDown(VK_UP))
+		 if (!KEYMANAGER->isStayKeyDown(VK_DOWN))
+		 if (!KEYMANAGER->isStayKeyDown(VK_RIGHT))
+		 {
+		  _state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+		  _motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+		  _motion->start();
+		 }
+		 if (KEYMANAGER->isOnceKeyDown('Z'))//점프
+		 {
+		  //SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
+		  _StartY = _y;
+		  _JP = CHARASPEED;
+		  _state = CHARA_RIGHT_MOVE_JUMP;
+		  _motion->stop();
+		  _motion = KEYANIMANAGER->findAnimation("JIMMYRightJump");
+		  _motion->start();
+		 }
 
 
-							  //if (KEYMANAGER->isOnceKeyUp(VK_UP))
-							  //{
-							  //	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-							  //	_motion->stop();
-							  //	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-							  //	_motion->start();
-							  //}
-							  //else 
-							  if (KEYMANAGER->isStayKeyDown(VK_UP))
-							  {
-								  COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom - 3);
+		 //if (KEYMANAGER->isOnceKeyUp(VK_UP))
+		 //{
+		 //	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+		 //	_motion->stop();
+		 //	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+		 //	_motion->start();
+		 //}
+		 //else 
+		 if (KEYMANAGER->isStayKeyDown(VK_UP)&&_stageCount!=2)
+		 {
+		  COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom - 3);
 
-								  int r = GetRValue(color);
-								  int g = GetGValue(color);
-								  int b = GetBValue(color);
+		  int r = GetRValue(color);
+		  int g = GetGValue(color);
+		  int b = GetBValue(color);
 
-								  if ((r == 255 && g == 0 && b == 0))
-								  {
-									  //if(사다리를 탈 수 있게 되었다)
-									  //{
-									  //_state = CHARA_STAIR;
-									  //_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
-									  //_motion->start();
-									  //}
-									  //else
-									  _y -= _Zmove;
-								  }
-							  }
-							  if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-							  {
-								  COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom + 3);
+		  if ((r == 255 && g == 0 && b == 0))
+		  {
+			  //if(사다리를 탈 수 있게 되었다)
+			  //{
+			  //_state = CHARA_STAIR;
+			  //_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
+			  //_motion->start();
+			  //}
+			  //else
+			  _y -= _Zmove;
+		  }
+		 }
+		 if (KEYMANAGER->isStayKeyDown(VK_DOWN) && _stageCount != 2)
+		 {
+		  COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom + 3);
 
-								  int r = GetRValue(color);
-								  int g = GetGValue(color);
-								  int b = GetBValue(color);
+		  int r = GetRValue(color);
+		  int g = GetGValue(color);
+		  int b = GetBValue(color);
 
-								  if ((r == 255 && g == 0 && b == 0))
-								  {
-									  //if(사다리를 탈 수 있게 되었다)
-									  //{
-									  //_state = CHARA_STAIR;
-									  //_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
-									  //_motion->start();
-									  //}
-									  //else
-									  _y += _Zmove;
-								  }
-							  }
+		  if ((r == 255 && g == 0 && b == 0))
+		  {
+			  //if(사다리를 탈 수 있게 되었다)
+			  //{
+			  //_state = CHARA_STAIR;
+			  //_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
+			  //_motion->start();
+			  //}
+			  //else
+			  _y += _Zmove;
+		  }
+		 }
 
-							  //if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
-							  //{
-							  //	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-							  //	_motion->stop();
-							  //	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-							  //	_motion->start();
-							  //}
-							  //else
-							  if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
-							  {
-								  //내일 카메라 단위로 바꾸자
-								  _x += CHARASPEED;
-							  }
+		 //if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+		 //{
+		 //	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+		 //	_motion->stop();
+		 //	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+		 //	_motion->start();
+		 //}
+		 //else
+		 if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+		 {
+		  //내일 카메라 단위로 바꾸자
+		  _x += CHARASPEED;
+		 }
 
-							  //if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) || KEYMANAGER->isOnceKeyUp(VK_DOWN) || KEYMANAGER->isOnceKeyUp(VK_UP))
-							  //{
-							  //	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-							  //	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-							  //	_motion->start();
-							  //}
+		 //if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) || KEYMANAGER->isOnceKeyUp(VK_DOWN) || KEYMANAGER->isOnceKeyUp(VK_UP))
+		 //{
+		 //	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+		 //	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+		 //	_motion->start();
+		 //}
 
 
-							  break;
+		 break;
 	}
 	case CHARA_LEFT_MOVE://왼쪽으로 움직이는 중
 	{
@@ -257,6 +271,7 @@ void character::update()
 		 }
 		 if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 		 {
+			 if(_stageCount == 2)
 			 _x -= CHARASPEED;
 		 }
 
@@ -277,7 +292,7 @@ void character::update()
 		 }
 		 else
 		 {*/
-		 if (KEYMANAGER->isStayKeyDown(VK_UP))
+		 if (KEYMANAGER->isStayKeyDown(VK_UP) && _stageCount != 2)
 		 {
 			 COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom - 3);
 
@@ -297,7 +312,7 @@ void character::update()
 				 _y -= _Zmove;
 			 }
 		 }
-		 if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+		 if (KEYMANAGER->isStayKeyDown(VK_DOWN) && _stageCount != 2)
 		 {
 			 COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom + 3);
 
