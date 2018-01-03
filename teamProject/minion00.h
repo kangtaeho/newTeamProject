@@ -81,7 +81,7 @@ public:
 	~minion00();
 
 
-	virtual HRESULT init(POINT point, int currentStage = 1);
+	virtual HRESULT init(POINT point);
 	//virtual void release();
 	//virtual void update();
 	//virtual void render();

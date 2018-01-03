@@ -48,10 +48,8 @@ HRESULT stage1::init()
 
 	singletonInit();
 
-
-	
 	//몬스터 생성은 이런식으로(이후에 makeEnemy 함수에서 생성)
-	//_em->setBoss(PointMake(3000,300));
+	_em->setBoss(PointMake(3000,300));
 
 	return S_OK;
 }
@@ -141,7 +139,6 @@ void stage1::update()
 		{
 			_vItem[i]->update();
 		}		
-		makeEnemy();
 	}
 
 	_em->update();
@@ -261,53 +258,51 @@ void stage1::characterMovement() {
 }
 void stage1::makeEnemy(){
 
-	
-	//카메라 특정 지점일때 몬스터 생성
-	//첫 웨이브가 나왔냐 && 카메라가 특정 지점에 왔냐
-	if (!_firstWave /*&& CAMERAMANAGER->getCameraPoint().x >=2070*/ )
+	/*
+	카메라 특정 지점일때 몬스터 생성
+	첫 웨이브가 나왔냐 && 카메라가 특정 지점에 왔냐
+	if (!firstWave && 카메라가 특정지점이냐)
 	{
-		_firstWave = true;
-		CAMERAMANAGER->backGroundSizeSetting(2070, 648);
-	//쫄따구 1마리 생성
-		_em->setMinion1(PointMake(1500, 300));
-	//_em->getVMinion()[0]->setStageMemoryLink(this);
-	//카메라 고정 추가(기성아 부탁한다) 추가 
-	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+
+	쫄따구 1마리 생성
+	_em -> setMinion()
+
+	카메라 고정 추가(기성아 부탁한다) 추가 
+	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 
 	}
-	
 
-	else if(_firstWave && _em->getVMinion().size() == 0)
+	첫 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	else if(firstWave && _em.size() == 0)
 	{
-		CAMERAMANAGER->backGroundSizeSetting(3456, 648);
-		//_em->setMinion1(PointMake(1500, 300));
-	////카메라 다시 이동(기성아 부탁한다) 추가
-	_currentRC = &_rc1;
-	CAMERAMANAGER->setCameraAim(_currentRC);
+
+	카메라 다시 이동(기성아 부탁한다) 추가
+	currentRC = &rc1;
+	CAMERAMANAGER->setCameraAim(currentRC);
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	}
 
-	////두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
-	if(!_secondWave && _firstWave/*&& 카메라가 특정지점이냐*/)
+	두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
+	if(!secondWave && 카메라가 특정지점이냐)
 	{
-	////정예몹 1마리 생성
-	//_em -> setPick()
-	//_em->getVMinion()[0]->setStageMemoryLink(this);
-	////카메라 고정 추가(이것도 부탁해) 추가
-	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+	정예몹 1마리 생성
+	_em -> setPick()
+
+	카메라 고정 추가(이것도 부탁해) 추가
+	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
-	////두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	//else if(secondWave && _em.size() == 0)
-	//{
+	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	else if(secondWave && _em.size() == 0)
+	{
 
-	////카메라 다시 이동(기성아 부탁한다) 추가 
-	//currentRC = &rc1;
-	//CAMERAMANAGER->setCameraAim(currentRC);
-	//CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-	//}
+	카메라 다시 이동(기성아 부탁한다) 추가 
+	currentRC = &rc1;
+	CAMERAMANAGER->setCameraAim(currentRC);
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	}
 
-	
+	*/
 }
 //돈 드랍 함수			어디에        얼마냐
 void stage1::dropMoney(POINT point, int won){

@@ -13,11 +13,11 @@ enemy::~enemy()
 
 
 
-HRESULT enemy::init(POINT point, int currentStage  )
+HRESULT enemy::init(POINT point)
 {
 	_x = point.x;
 	_y = point.y;
-	_countMove = 0;
+
 	return S_OK;
 
 }
@@ -257,21 +257,21 @@ void enemy::enemyMove() {
 					_rndDirX = rndDirection(RND->getInt(3));
 					_rndDirY = rndDirection(RND->getInt(3));
 					if (_rndDirX == 1) {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[0]);
+						_enemyMotion = KEYANIMANAGER->findAnimation("enemyRightStop");
 					}
 					else {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[1]);
+						_enemyMotion = KEYANIMANAGER->findAnimation("enemyLeftStop");
 					}
 				}
 			
 				if (_countMove == 149) {
 
 					if (_rndDirX == 1) {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
+						_enemyMotion = KEYANIMANAGER->findAnimation("enemyRightRun");
 						_enemyMotion->start();
 					}
 					else {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[5]);
+						_enemyMotion = KEYANIMANAGER->findAnimation("enemyLeftRun");
 						_enemyMotion->start();
 					}
 				}
@@ -289,10 +289,10 @@ void enemy::enemyMove() {
 					_rndDirY = rndDirection(RND->getInt(3));
 
 					if (_rndDirX == 1) {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[0]);
+						_enemyMotion = KEYANIMANAGER->findAnimation("enemyRightStop");
 					}
 					else {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[1]);
+						_enemyMotion = KEYANIMANAGER->findAnimation("enemyLeftStop");
 					}
 				}
 
@@ -300,11 +300,11 @@ void enemy::enemyMove() {
 				if (_countMove == 299) {
 
 					if (_rndDirX == 1) {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
+						_enemyMotion = KEYANIMANAGER->findAnimation("enemyRightRun");
 						_enemyMotion->start();
 					}
 					else {
-						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[5]);
+						_enemyMotion = KEYANIMANAGER->findAnimation("enemyLeftRun");
 						_enemyMotion->start();
 					}
 

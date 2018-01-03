@@ -4,8 +4,6 @@
 #include "money.h"
 #include "character.h"
 #include "minion00.h"
-#include "minion01.h"
-#include "minion02.h"
 #include "boss00.h"
 #include "minion01.h"
 #include <vector>
@@ -42,7 +40,6 @@ public:
 
 	//쫄따구
 	void setMinion(POINT point);
-	void setMinion1(POINT point);
 	//정예
 	void setPick(POINT point);
 	//보스
