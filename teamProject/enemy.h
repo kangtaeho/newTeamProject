@@ -126,8 +126,9 @@ protected:
 
 	string _enemyKeyName[10];
 
-	bool _isBoss;					//보스입니까?
 	bool _isItemCollion;			//아이템이랑 부딪혔냐
+	bool _isGetItemEnemy;			//아이탬을 잡을수 있는 에너미니?
+
 	stage1* _stage1;
 
 public:
@@ -170,6 +171,8 @@ public:
 	void setIsItemCollion(bool isItemCollion){ _isItemCollion = isItemCollion; }
 
 	void setStageMemoryLink(stage1* stage1){ _stage1 = stage1; }
+
+	bool getIsGetItemEemey() { return _isGetItemEnemy; }
 };
 
 //이제 콜백함수가 필요한 모션들이라던가 그런거 뭐해야될까영

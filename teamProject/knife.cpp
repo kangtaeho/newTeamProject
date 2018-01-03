@@ -19,6 +19,10 @@ HRESULT knife::init(POINT point)
 	_itemEffect = 30; // µ¥¹ÌÁö
 	_x = point.x; _y = point.y;
 
+	_rcItem = RectMakeCenter(CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).x+ _itemImage->getFrameWidth()/2
+						   , CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).y+ _itemImage->getFrameHeight() / 2,
+						     30, 30);
+
 	_price = 0; _count = 0;
 
 	_itemState = DROP;
