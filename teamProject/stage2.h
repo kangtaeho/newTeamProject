@@ -38,6 +38,11 @@ private:
 
 	bool _elevatorSwitchOn; //엘레베이터 렉트 건드렸냐??
 
+	//강물
+
+	image* _liver;
+	int _frameX, _frameCount;
+
 
 
 	

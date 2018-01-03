@@ -20,6 +20,7 @@ stage2::~stage2()
 
 HRESULT stage2::init()
 {
+	
 	addImage();			//이미지 add
 	initialization();	//변수 new 및 init
 	singletonInit();	//싱글톤 init
@@ -40,6 +41,11 @@ HRESULT stage2::init()
 	_elevatorRC = RectMakeCenter(_elevatorX, _elevatorY, 10, 10);
 
 	_elevatorSwitchOn = false;
+
+	_liver->setX(0);
+	_liver->setY(2450);
+
+	_frameX = _frameCount = 0;
 	return S_OK;
 }
 
@@ -50,6 +56,8 @@ void stage2::release()
 
 void stage2::update()
 {
+
+
 	//스테이지가 호출되어 레디상태일경우 알파값 덧셈
 	if (_ss == READY)
 	{
@@ -241,7 +249,13 @@ void stage2::update()
 		CAMERAMANAGER->setCameraAim(_currentRC);
 	}
 	
-	boatMove(); 
+	//boatMove(); 
+	_frameCount++;
+	if (_frameCount % 10 == 0)
+	{
+		_frameX++;
+		if (_frameX > _liver->getMaxFrameX()) _frameX = 0;
+	}
 	
 	_mainPlayer->update();
 }
@@ -338,6 +352,8 @@ void stage2::characterMovement()							//캐릭터 키매지저를 관리하는 함수
 
 void stage2::addImage()									//이미기 추가해주는 함수 이후 이미지는 여기서 add하는걸로
 {
+	_liver = IMAGEMANAGER->addFrameImage("강물", "./images/liver_2frame.bmp", 11590, 128, 2, 1, true, RGB(255, 0, 255));
+
 	IMAGEMANAGER->addImage("스테이지_01", "./images/02_stage00.bmp", 5795, 2593, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("스테이지_01_red", "./images/02_stage00_red.bmp", 5795, 2593, true, RGB(255, 0, 255));
 
@@ -346,6 +362,10 @@ void stage2::addImage()									//이미기 추가해주는 함수 이후 이미지는 여기서 ad
 
 	_boat = IMAGEMANAGER->addImage("쪽배", "./images/boat.bmp", 527, 75, true, RGB(255, 0, 255));
 	_elevator = IMAGEMANAGER->addImage("엘레베이터", "./images/elevator.bmp", 210, 260, true, RGB(255, 0, 255));
+
+
+
+	
 }
 void stage2::initialization()								//변수들 new선언 및 init 해주는 함수 이후 new 및 init은 여기서 하는걸로
 {
@@ -370,25 +390,40 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevatorX, _elevatorY, _elevator->getWidth(), _elevator->getHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_elevatorX, _elevatorY, _elevator->getWidth(), _elevator->getHeight())).y);
 
+
+
 	IMAGEMANAGER->findImage("스테이지_01")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_01_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
+
+
 
 	//엘레베이터 rc 작은거 충돌용
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_elevatorRC).x, CAMERAMANAGER->CameraRelativePoint(_elevatorRC).y, 10, 10);
 
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
-	_inven->render();
+
+
+	
 	//플레이어가 배에 닿았을때 모든키 제어 불가능하게 해주고
 	//배가 플레이어랑 같이 움직여야되는데 //기성씨 8~~ //배아직 안움직임
 	IMAGEMANAGER->findImage("쪽배")->render(getMemDC(),
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
 
+	
+
 	IMAGEMANAGER->findImage("쪽배_red")->render(getMemDC(),
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
 
+	IMAGEMANAGER->findImage("강물")->frameRender(getMemDC(),
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).x,
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).y, _frameX, 0);
+
+	
+
 	_mainPlayer->render();
+
 
 	//이 검은화면이 제밀 밑에 있도록 코드쳐주세요~~
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);

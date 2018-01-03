@@ -150,15 +150,14 @@ void character::update()
 
 	case CHARA_RIGHT_MOVE://오른쪽으로 움직이는 중
 		//상하좌우키를 누른상태가 아니라면
-		//if (!(KEYMANAGER->isStayKeyDown(VK_UP)
-		//	&& KEYMANAGER->isStayKeyDown(VK_DOWN)
-		//	&& KEYMANAGER->isStayKeyDown(VK_LEFT)
-		//	&&KEYMANAGER->isStayKeyDown(VK_RIGHT)))
-		//{
-		//		_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-		//		_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-		//		_motion->start();
-		//}
+		if (!KEYMANAGER->isStayKeyDown(VK_UP))
+			if (!KEYMANAGER->isStayKeyDown(VK_DOWN))
+				if (!KEYMANAGER->isStayKeyDown(VK_RIGHT))
+				{
+					_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+					_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+					_motion->start();
+				}
 		if (KEYMANAGER->isOnceKeyDown('Z'))//점프
 		{
 			//SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
@@ -171,14 +170,15 @@ void character::update()
 		}
 
 
-		if (KEYMANAGER->isOnceKeyUp(VK_UP))
-		{
-			_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-			_motion->stop();
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-			_motion->start();
-		}
-		else if (KEYMANAGER->isStayKeyDown(VK_UP))
+		//if (KEYMANAGER->isOnceKeyUp(VK_UP))
+		//{
+		//	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+		//	_motion->stop();
+		//	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+		//	_motion->start();
+		//}
+		//else 
+		if (KEYMANAGER->isStayKeyDown(VK_UP))
 		{
 			//if(사다리를 탈 수 있게 되었다)
 			//{
@@ -190,26 +190,28 @@ void character::update()
 			_y -= _Zmove;
 		}
 
-		if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
-		{
-			_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-			_motion->stop();
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-			_motion->start();
-		}
-		else if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+		//if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
+		//{
+		//	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+		//	_motion->stop();
+		//	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+		//	_motion->start();
+		//}
+		//else
+		if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 		{
 			_y += _Zmove;
 		}
 		
-		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
-		{
-			_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-			_motion->stop();
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-			_motion->start();
-		}
-		else if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+		//if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+		//{
+		//	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+		//	_motion->stop();
+		//	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+		//	_motion->start();
+		//}
+		//else
+		if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 		{
 			//내일 카메라 단위로 바꾸자
 			_x += CHARASPEED;
@@ -226,23 +228,23 @@ void character::update()
 		break;
 	case CHARA_LEFT_MOVE://왼쪽으로 움직이는 중
 		//상하좌우키를 누른상태가 아니라면
-		//if (!(KEYMANAGER->isStayKeyDown(VK_UP)
-		//	&& KEYMANAGER->isStayKeyDown(VK_DOWN)
-		//	&& KEYMANAGER->isStayKeyDown(VK_LEFT)
-		//	&& KEYMANAGER->isStayKeyDown(VK_RIGHT)))
-		//{
-		//	_state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-		//	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-		//	_motion->start();
-		//}
-		if (KEYMANAGER->isOnceKeyUp(VK_UP))
+		if (!KEYMANAGER->isStayKeyDown(VK_UP))
+			if (!KEYMANAGER->isStayKeyDown(VK_DOWN))
+				if (!KEYMANAGER->isStayKeyDown(VK_LEFT))
 		{
 			_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
-			_motion->stop();
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+			_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
 			_motion->start();
 		}
-		else if (KEYMANAGER->isStayKeyDown(VK_UP))
+		//if (KEYMANAGER->isOnceKeyUp(VK_UP))
+		//{
+		//	_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
+		//	_motion->stop();
+		//	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+		//	_motion->start();
+		//}
+		//else
+		if (KEYMANAGER->isStayKeyDown(VK_UP))
 		{
 			//if(사다리를 탈 수 있게 되었다)
 			//{
@@ -253,25 +255,27 @@ void character::update()
 			//else
 			_y -= _Zmove;
 		}
-		if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
-		{
-			_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
-			_motion->stop();
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-			_motion->start();
-		}
-		else if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+		//if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
+		//{
+		//	_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
+		//	_motion->stop();
+		//	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+		//	_motion->start();
+		//}
+		//else
+		if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 		{
 			_y += _Zmove;
 		}
-		if (KEYMANAGER->isOnceKeyUp(VK_LEFT) )
-		{
-			_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
-			_motion->stop();
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-			_motion->start();
-		}
-		else if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+		//if (KEYMANAGER->isOnceKeyUp(VK_LEFT) )
+		//{
+		//	_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
+		//	_motion->stop();
+		//	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+		//	_motion->start();
+		//}
+		//else 
+		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 		{
 			_x -= CHARASPEED;
 		}
