@@ -117,10 +117,10 @@ void stage1::update()
 		}
 
 		
-		if (KEYMANAGER->isOnceKeyDown('3')) //강제로 클리어상태로 전환
-		{
-			_ss = CLEAR; 		
-		}
+		//if (KEYMANAGER->isOnceKeyDown('3')) //강제로 클리어상태로 전환
+		//{
+		//	_ss = CLEAR; 		
+		//}
 		
 
 		if (KEYMANAGER->isOnceKeyDown('4')) //강제로 돈드랍
@@ -271,8 +271,8 @@ void stage1::makeEnemy(){
 		CAMERAMANAGER->backGroundSizeSetting(2070, 648);
 	//쫄따구 1마리 생성
 		_em->setMinion1(PointMake(1500, 400));
-		_em->setMinion(PointMake(1000, 400));
-		_em->setMinion2(PointMake(1200, 400));
+		//_em->setMinion(PointMake(1000, 400));
+		//_em->setMinion2(PointMake(1200, 400));
 	//_em->getVMinion()[0]->setStageMemoryLink(this);
 	//카메라 고정 추가(기성아 부탁한다) 추가 
 	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
@@ -291,24 +291,26 @@ void stage1::makeEnemy(){
 	}
 
 	////두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
-	if(!_secondWave && _firstWave/*&& 카메라가 특정지점이냐*/)
+	if (!_secondWave && _firstWave &&_em->getVMinion().size() == 0 /*&& 카메라가 특정지점이냐*/)
 	{
 	////정예몹 1마리 생성
-	//_em -> setPick()
+		_secondWave = true;
+		_em->setPick(PointMake(3000, 400));
 	//_em->getVMinion()[0]->setStageMemoryLink(this);
 	////카메라 고정 추가(이것도 부탁해) 추가
 	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
 	////두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	//else if(secondWave && _em.size() == 0)
-	//{
-
-	////카메라 다시 이동(기성아 부탁한다) 추가 
-	//currentRC = &rc1;
-	//CAMERAMANAGER->setCameraAim(currentRC);
-	//CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-	//}
+	else if(_secondWave && _em->getVMinion().size() == 0)
+	{
+		CAMERAMANAGER->backGroundSizeSetting(3456, 648);
+	//카메라 다시 이동(기성아 부탁한다) 추가 
+	_currentRC = &_rc1;
+	CAMERAMANAGER->setCameraAim(_currentRC);
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	_ss = CLEAR;
+	}
 
 	
 }
@@ -422,6 +424,8 @@ void stage1::enemyItemCollision(){
 
 	//몬스터가 없으면 확인할 필요없다.
 	if (_em->getVMinion().size() == 0) return;
+	//아이템이 없으면 확인할 필요없다.
+	if (_vItem.size() == 0) return;
 
 	for (int i = 0; i < _em->getVMinion().size(); i++)
 	{
