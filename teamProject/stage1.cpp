@@ -269,7 +269,9 @@ void stage1::makeEnemy(){
 		_firstWave = true;
 		CAMERAMANAGER->backGroundSizeSetting(2070, 648);
 	//쫄따구 1마리 생성
-		_em->setMinion1(PointMake(1500, 300));
+		_em->setMinion1(PointMake(1500, 400));
+		_em->setMinion(PointMake(1000, 400));
+		_em->setMinion2(PointMake(1200, 400));
 	//_em->getVMinion()[0]->setStageMemoryLink(this);
 	//카메라 고정 추가(기성아 부탁한다) 추가 
 	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);

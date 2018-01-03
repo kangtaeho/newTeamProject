@@ -256,6 +256,9 @@ void enemy::enemyMove() {
 				if (_countMove == 100) {
 					_rndDirX = rndDirection(RND->getInt(3));
 					_rndDirY = rndDirection(RND->getInt(3));
+					_rndTum = RND->getFromIntTo(50, 120);
+					_rndTum2 = RND->getFromIntTo(280, 320);
+
 					if (_rndDirX == 1) {
 						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[0]);
 					}
@@ -276,13 +279,13 @@ void enemy::enemyMove() {
 					}
 				}
 			}
-			else if (_countMove >= 150 && _countMove<250) {
+			else if (_countMove >= 150 && _countMove<150+ _rndTum) {
 
 				_x += _rndDirX;
 				_y += _rndDirY;
 
 			}
-			else if (_countMove >= 250 && _countMove<300) {
+			else if (_countMove >= 150+ _rndTum && _countMove<_rndTum2) {
 
 				if (_countMove == 250) {
 					_rndDirX = rndDirection(RND->getInt(3));
@@ -297,7 +300,7 @@ void enemy::enemyMove() {
 				}
 
 
-				if (_countMove == 299) {
+				if (_countMove == _rndTum2-1) {
 
 					if (_rndDirX == 1) {
 						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
@@ -312,6 +315,8 @@ void enemy::enemyMove() {
 			}
 			else {
 				_countMove = 0;
+				_rndTum = RND->getFromIntTo(50, 120);
+				_rndTum2 = RND->getFromIntTo(280, 320);
 			}
 
 			if (_y > 482) {
@@ -326,6 +331,7 @@ void enemy::enemyMove() {
 		case 2:
 	
 		break;
+
 	}
 }
 
