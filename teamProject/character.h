@@ -66,6 +66,7 @@ private:
 	//스테이지 담을 변수(설정자)
 	//스테이지당 픽셀충돌 검사할 이미지 변수(설정자)
 
+	int _stageCount;
 	image * _stage;
 
 	CHARA _state;//상태값
@@ -133,7 +134,7 @@ public:
 	void addImage();
 
 	//돌입할 스테이지(충돌할 이미지)
-	void setStage(image* stage) { _stage = stage; }
+	void setStage(image* stage, int stageCount) { _stage = stage; _stageCount = stageCount; }
 		
 	//HP반환
 	int getHP(){ return _HP; }
