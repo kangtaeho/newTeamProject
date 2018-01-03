@@ -33,6 +33,7 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  _HP = 100; //체에력
 	  _speed = 3; //스퓌드
 	  _isItemCollion = false;
+	  _isGetItemEnemy = true;
 	  
 	  _rndDirX = rndDirection(RND->getInt(3));
 	  _rndDirY = rndDirection(RND->getInt(3));

@@ -15,6 +15,7 @@ class item :
 {
 protected:
 	image* _itemImage;			//아이템 이미지
+	RECT _rcItem;
 	float _x, _y;				//아이템 중점좌표
 	tagItemType	_itemType;		//아이템 종류
 	tagItemState _itemState;	//아이템 상태
@@ -43,7 +44,7 @@ public:
 
 	//아이템 좌표 설정 (투척시 사용)
 	void setPoint(POINT point){ _x = point.x; _y = point.y; }		
-	RECT getItemRC() { return RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight()); }
+	RECT getItemRC() { return _rcItem; }
 
 	//아이템 효과 가져오기(투척아이템 : 데미지, 물약 : 회복량)
 	int getItemEffect(){return _itemEffect;}

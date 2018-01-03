@@ -34,6 +34,7 @@ HRESULT minion02::init(POINT point, int currentStage)
 	_enemyKeyName[5] = "enemyLeftMove";
 
 	_isItemCollion = false;
+	_isGetItemEnemy = false;
 
 	_jump = 0; //점프력
 	_Gravity = 0.1f; //중력

@@ -271,8 +271,8 @@ void stage1::makeEnemy(){
 		CAMERAMANAGER->backGroundSizeSetting(2070, 648);
 	//쫄따구 1마리 생성
 		_em->setMinion1(PointMake(1500, 400));
-		//_em->setMinion(PointMake(1000, 400));
-		//_em->setMinion2(PointMake(1200, 400));
+		_em->setMinion(PointMake(1000, 400));
+		_em->setMinion2(PointMake(1200, 400));
 	//_em->getVMinion()[0]->setStageMemoryLink(this);
 	//카메라 고정 추가(기성아 부탁한다) 추가 
 	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
@@ -414,11 +414,18 @@ void stage1::draw(){
 	//알파렌더를 위한 검은화면 렌더
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
 
-	for (int i = 0; i < _em->getVMinion().size(); ++i) {
-		if (_em->getVMinion().size() == 0)return;
 
-		setColorRect(getMemDC(), _em->getVMinion()[i]->getCollircEnemy(), 30, 50, 80);
-	}
+	//for (int i = 0; i < _vItem.size(); ++i) {
+	//	if (_vItem.size() == 0)return;
+	//
+	//	setColorRect(getMemDC(), _vItem[i]->getItemRC(), 20, 20, 140);
+	//}
+	//
+	//for (int i = 0; i < _em->getVMinion().size(); ++i) {
+	//	if (_em->getVMinion().size() == 0)return;
+	//
+	//	setColorRect(getMemDC(), _em->getVMinion()[i]->getCollircEnemy(), 30, 50, 80);
+	//}
 }
 void stage1::enemyItemCollision(){
 
@@ -439,6 +446,7 @@ void stage1::enemyItemCollision(){
 			if (IntersectRect(&temp, &_vItem[j]->getItemRC(), &_em->getVMinion()[i]->getCollircEnemy()))
 			{
 				//아이템 상태가 스로잉이면 피격 (continue 대신 데미지 감소)
+				if (!_em->getVMinion()[i]->getIsGetItemEemey()) continue;
 				if (_vItem[j]->getState() == 1) continue;
 
 				//드롭상태
@@ -449,10 +457,10 @@ void stage1::enemyItemCollision(){
 				}
 			}
 			//노 충돌시 기본 false
-			else
-			{
-				_em->getVMinion()[i]->setIsItemCollion(false);
-			}
+			//else
+			//{
+			//	_em->getVMinion()[i]->setIsItemCollion(false);
+			//}
 		}
 	}
 }
