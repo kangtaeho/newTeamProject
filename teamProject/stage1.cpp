@@ -4,19 +4,15 @@
 
 //변수값 초기화는 여기서
 stage1::stage1()	//절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
-:_alpha(0),							//알파 초기화
-_firstWave(false),					//처음 웨이브
-_secondWave(false),					//두번째 웨이브
-_stopCharacter(false),	//캐릭터가 멈췄니? (인벤토리 킬때 사용)
-_rc1(RectMakeCenter(WINSIZEX/2, WINSIZEY/2, 100, 100)),	// 병철아!!!!! 여기꺼 수정하면된다 시작위치
-_DOORRC(RectMakeCenter(3225, 210, 10, 10)),
-_currentRC(&_rc1),
-
-
-
-
-
-_ss(READY)
+	:_alpha(0),							//알파 초기화
+	_firstWave(false),					//처음 웨이브
+	_secondWave(false),					//두번째 웨이브
+	_stopCharacter(false),	//캐릭터가 멈췄니? (인벤토리 킬때 사용)
+	_rc1(RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 100, 100)),	// 병철아!!!!! 여기꺼 수정하면된다 시작위치
+	_DOORRC(RectMakeCenter(3225, 210, 10, 10)),
+	_currentRC(&_rc1),
+	_ss(READY),
+	_isOpenDoor(false)
 {
 
 }
@@ -34,7 +30,7 @@ HRESULT stage1::init()
 	_door->setY(258);
 	
 	
-	
+
 	// 스테이지상태
 	// 기존 moving 에서 ready로 수정
 	//_ss = READY;
@@ -55,6 +51,9 @@ HRESULT stage1::init()
 	_currentRC = &_rc1;
 
 	singletonInit();
+
+	
+	
 
 
 	
@@ -159,12 +158,17 @@ void stage1::update()
 		enemyItemCollision();
 	}
 
-	///_doorAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 10);
+	_doorAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 10);
 
-///if (_ss = CLEAR)
-///{
-///	_doorAni->start();
-///}
+	if (_ss == CLEAR)
+	{
+		if (!_isOpenDoor)
+		{
+			_doorAni->start();
+			_isOpenDoor = true;
+		}
+	
+	}
 
 
 
@@ -372,10 +376,10 @@ void stage1::initialization()
 	_knife->init(PointMake(1000, 350));
 
 
-///_doorAni = new animation;
-///_doorAni->init(_door->getWidth(), _door->getHeight(), _door->getFrameWidth(), _door->getFrameHeight());
-///_doorAni->setPlayFrame(10, 1, false, true);
-///_doorAni->setFPS(1);
+	_doorAni = new animation;
+	_doorAni->init(_door->getWidth(), _door->getHeight(), _door->getFrameWidth(), _door->getFrameHeight());
+	_doorAni->setDefPlayFrame(false, false);
+	_doorAni->setFPS(1);
 	//에너미 추가...중  //수빈
 
 	//_boss00 = new boss00;
@@ -429,7 +433,9 @@ void stage1::draw(){
 	//_minion01->render();
 	//_minion02->render();
 	
-	///_door->aniRender(getMemDC(), _door->getX(), _door->getY(), _doorAni);
+	_door->aniRender(getMemDC(),
+								CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_door->getX(), _door->getY(), _door->getFrameWidth(), _door->getFrameHeight())).x,
+								CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_door->getX(), _door->getY(), _door->getFrameWidth(), _door->getFrameWidth())).y, _doorAni);
 
 	//문 렉트(이후 삭제하도록)
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_DOORRC).x, CAMERAMANAGER->CameraRelativePoint(_DOORRC).y, 10, 10);

@@ -59,17 +59,17 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  _enemyKeyName[3] = "--아직 값없음--";
 	  _enemyKeyName[4] = "enemyRightMove";
 	  _enemyKeyName[5] = "enemyLeftMove";
-<<<<<<< HEAD
+
 	  _enemyKeyName[6] = "enemyRightOneJab";
 	  _enemyKeyName[7] = "enemyLeftOneJab";
 	  _enemyKeyName[8] = "enemyRightTwoJab";
 	  _enemyKeyName[9] = "enemyLeftTwoJab";
 	  
-=======
+
 
 
 	  //오른쪽 멈춤
->>>>>>> b7674c3939e5969515677315e960212ac0fa322e
+
 	  int rightStop[] = { 0 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightStop", "enemy01", rightStop, 1,2,true);
 	  //왼쪽 멈춤
@@ -101,17 +101,17 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyLeftJumpAttack", "enemy01", leftJumpAttack, 2, 2, true);
 	  //오른쪽 1히트
 	  int rightHit[] = { 5 };
-<<<<<<< HEAD
+
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightHit", "enemy01", rightHit, 1, 2, true);
+	  //왼쪽 1히트
+
 	  int leftHit[] = { 10 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyLeftHit", "enemy01", leftHit, 1, 2, true);
-=======
+
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightHit", "enemy01", rightHit, 1, 2, true);
-	  //왼쪽 1히트
-	  int leftHit[] = { 10 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftHit", "enemy01", leftHit, 1, 2, true);
+
 	  //오른쪽 경직당함
->>>>>>> b7674c3939e5969515677315e960212ac0fa322e
+
 	  int rightHit2[] = { 6,7 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyrightHit2", "enemy01", rightHit2, 2, 2, true);
 	  //왼쪽 경직당함
