@@ -5,7 +5,7 @@
 stage2::stage2() //절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
 	: _alpha(0),
 	_ss(READY),
-	_rc1(RectMakeCenter(560, 2286, 100, 100)), //카메라의 렉트 좌표
+	_rc1(RectMakeCenter(760, 2290, 100, 100)), //카메라의 렉트 좌표
 	_playerStartPoint(PointMake(760, 2310)), //스테이지 2 플레이어 시작좌표
 	_currentRC(&_rc1),
 	_firstWave(false),
@@ -68,6 +68,7 @@ void stage2::update()
 	{
 		_mainPlayer->setX(760);
 		_mainPlayer->setY(2290);
+		_mainPlayer->setStage(IMAGEMANAGER->findImage("스테이지_01_red"), 2);
 		if (_alpha < 255)
 			_alpha += 5;
 		//알파값 최대면 움직이기 가능
@@ -232,42 +233,42 @@ void stage2::update()
 		{
 			SCENEMANAGER->changeScene("스테이지00"); 
 		}
+		RECT temp;
+		//보트 무브
+		if (IntersectRect(&temp, &_rc1, &_boatRC))
+		{
+			_boatSwitchOn = true;
+		}
+
+		if (_boatSwitchOn && _boatRC.right < 5230)
+		{
+			boatMove();
+		}
+
+
+
+		//엘베무브 
+		if (IntersectRect(&temp, &_rc1, &_elevatorRC))
+		{
+			_elevatorSwitchOn = true;
+		}
+
+		if (_elevatorSwitchOn && _elevatorRC.top > 140)
+		{
+			elevatorMove();
+		}
+
+		//강 프레임 도는 시간
+		_liverAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 10);
+
+		
+		_em->update();
+		
+
 	}
-	
-
-	RECT temp;
-	//보트 무브
-	if (IntersectRect(&temp, &_rc1, &_boatRC)) 
-	{
-		_boatSwitchOn = true;
-	}
-
-	if(_boatSwitchOn && _boatRC.right < 5230)
-	{
-		boatMove();
-	}
-
-
-
-	//엘베무브 
-	if (IntersectRect(&temp, &_rc1, &_elevatorRC)) 
-	{
-		_elevatorSwitchOn = true;
-	}
-
-	if (_elevatorSwitchOn && _elevatorRC.top > 140)
-	{
-		elevatorMove();	
-	}
-
-	//강 프레임 도는 시간
-	_liverAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 10);
-
-
-
-	
-	
+	makeEnemy();
 	_mainPlayer->update();
+	
 }
 
 void stage2::render()
@@ -284,22 +285,22 @@ void stage2::dropMoney(POINT point, int won)				//돈 드랍 함수 몬스터가 죽었을경
 
 void stage2::makeEnemy()									//몬스터 생성 함수
 {
-	/*
-	카메라 특정 지점일때 몬스터 생성
-	첫 웨이브가 나왔냐 && 카메라가 특정 지점에 왔냐
-	if (!_firstWave && 카메라가 특정지점이냐)
+	
+	/*카메라 특정 지점일때 몬스터 생성
+	첫 웨이브가 나왔냐 && 카메라가 특정 지점에 왔냐*/
+	if (!_firstWave )
 	{
+		_firstWave = true;
+	//쫄따구 2마리 생성
+		_em->setMinion(PointMake(700, 2290),2);
+		_em->setMinion2(PointMake(650, 2290),2);
 
-	쫄따구 2마리 생성
-	_em -> setMinion()
-	_em -> setMinion2()
-
-	카메라 고정 추가(기성아 부탁한다) 추가
+	//카메라 고정 추가(기성아 부탁한다) 추가
 	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 
 	}
 
-	첫 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	/*첫 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
 	else if(_firstWave && _em.size() == 0)
 	{
 
@@ -321,7 +322,7 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
-	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
 	else if(_secondWave && _em.size() == 0)
 	{
 
@@ -342,7 +343,7 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
-	//세번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	세번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
 	else if(_thirdWave && _em.size() == 0)
 	{
 
@@ -350,9 +351,9 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	currentRC = &rc1;
 	CAMERAMANAGER->setCameraAim(currentRC);
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-	}
+	}*/
 
-	*/
+	
 }
 
 void stage2::characterMovement()							//캐릭터 키매지저를 관리하는 함수
@@ -392,6 +393,9 @@ void stage2::initialization()								//변수들 new선언 및 init 해주는 함수 이후 n
 
 	_inven = new inventory;
 	_inven->init();
+
+	_em = new enemyManager;
+	_em->init();
 }
 void stage2::singletonInit()								//init에서 싱글톤들 세팅해주는 함수 이후 세팅은 여기서 하는걸로		  
 {
@@ -442,7 +446,7 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	
 
 	_mainPlayer->render();
-
+	_em->render();
 
 	//이 검은화면이 제밀 밑에 있도록 코드쳐주세요~~
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);

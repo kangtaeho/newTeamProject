@@ -59,43 +59,43 @@ void enemyManager::render()
 }
 
 //쫄따구
-void enemyManager::setMinion(POINT point)
+void enemyManager::setMinion(POINT point,int stageCout)
 {
 	enemy* temp;
 	temp = new minion00;
-	temp->init(point);
+	temp->init(point, stageCout);
 
 	_vEnemy.push_back(temp);
 
 }
-void enemyManager::setMinion1(POINT point)
+void enemyManager::setMinion1(POINT point, int stageCout)
 {
 	enemy* temp;
 	temp = new minion01;
-	temp->init(point);
+	temp->init(point, stageCout);
 
 	_vEnemy.push_back(temp);
 }
-void enemyManager::setMinion2(POINT point)
+void enemyManager::setMinion2(POINT point, int stageCout)
 {
 	enemy* temp;
 	temp = new minion02;
-	temp->init(point);
+	temp->init(point, stageCout);
 
 	_vEnemy.push_back(temp);
 }
 //정예
-void enemyManager::setPick(POINT point)
+void enemyManager::setPick(POINT point, int stageCout)
 {
 	enemy* temp;
 	temp = new minion02;
-	temp->init(point);
+	temp->init(point, stageCout);
 
 	_vEnemy.push_back(temp);
 }
 
 //보스
-void enemyManager::setBoss(POINT point)
+void enemyManager::setBoss(POINT point,int stageCout)
 {
 	enemy* temp;
 	temp = new boss00;
