@@ -36,7 +36,7 @@ using namespace HEXA_UTIL;
 // ## µðÆÄÀÎ ## 17.09.29 ##
 //=====================================
 
-#define WINNAME		(LPTSTR)(TEXT("Hexa API"))
+#define WINNAME		(LPTSTR)(TEXT("BBBB WORKS"))
 #define WINSTARTX	50
 #define WINSTARTY	50
 #define WINSIZEX	1152	
