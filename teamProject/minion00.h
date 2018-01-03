@@ -15,5 +15,7 @@ public:
 	
 	virtual void collision();
 
+	//¡÷ºÆ
+
 };
 
