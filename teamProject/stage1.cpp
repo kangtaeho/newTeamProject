@@ -416,6 +416,8 @@ void stage1::enemyItemCollision(){
 
 	//몬스터가 없으면 확인할 필요없다.
 	if (_em->getVMinion().size() == 0) return;
+	//아이템이 없으면 확인할 필요없다.
+	if (_vItem.size() == 0) return;
 
 	for (int i = 0; i < _em->getVMinion().size(); i++)
 	{
