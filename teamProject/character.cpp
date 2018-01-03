@@ -53,7 +53,7 @@ void character::update()
 	//}
 	if (_stageCount == 2)
 	{
-		COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom - 3);
+		COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom);
 
 		int r = GetRValue(color);
 		int g = GetGValue(color);
@@ -91,7 +91,10 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('Z'))//점프
 		{
-			_StartY = _y;
+			if (_stageCount != 2)
+			{
+				_StartY = _y;
+			}
 			_JP = CHARASPEED;
 			if (_state == CHARA_RIGHT_STOP)
 			{
@@ -176,7 +179,10 @@ void character::update()
 		 if (KEYMANAGER->isOnceKeyDown('Z'))//점프
 		 {
 		  //SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
-		  _StartY = _y;
+			 if (_stageCount != 2)
+			 {
+				 _StartY = _y;
+			 }
 		  _JP = CHARASPEED;
 		  _state = CHARA_RIGHT_MOVE_JUMP;
 		  _motion->stop();
@@ -271,13 +277,15 @@ void character::update()
 		 }
 		 if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 		 {
-			 if(_stageCount == 2)
 			 _x -= CHARASPEED;
 		 }
 
 		 if (KEYMANAGER->isOnceKeyDown('Z'))//점프
 		 {
-			 _StartY = _y;
+			 if (_stageCount != 2)
+			 {
+				 _StartY = _y;
+			 }
 			 _JP = CHARASPEED;
 			 _state = CHARA_LEFT_MOVE_JUMP;
 			 _motion->stop();
@@ -392,7 +400,10 @@ void character::update()
 		//니킥 하고나서 y축 보정작업 들어가야된다.
 		if (KEYMANAGER->isOnceKeyDown('C'))//킥
 		{
-			_StartY = _y;
+			if (_stageCount != 2)
+			{
+				_StartY = _y;
+			}
 			_JP = CHARAJUMP;
 			if (_isRight)
 			{
@@ -537,7 +548,10 @@ void character::update()
 			}
 			else
 			{
-				_StartY = _y;
+				if (_stageCount != 2)
+				{
+					_StartY = _y;
+				}
 				_JP = CHARAJUMP;
 				_JP = _JP / 2;
 				_state = CHARA_LEFT_BACKKICK;
@@ -551,7 +565,10 @@ void character::update()
 		{
 			if (_isRight)
 			{
-				_StartY = _y;
+				if (_stageCount != 2)
+				{
+					_StartY = _y;
+				}
 				_JP = CHARAJUMP;
 				_JP = _JP / 2;
 				_state = CHARA_RIGHT_BACKKICK;
@@ -587,7 +604,10 @@ void character::update()
 	case CHARA_LEFT_HEAD:
 		if (KEYMANAGER->isOnceKeyDown('X'))//주먹
 		{
-			_StartY = _y;
+			if (_stageCount != 2)
+			{
+				_StartY = _y;
+			}
 			_JP = CHARAJUMP;
 			if (_isRight)
 			{
