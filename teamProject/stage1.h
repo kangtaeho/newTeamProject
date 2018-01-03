@@ -35,8 +35,9 @@ private:
 
 	RECT _rc1;
 	RECT* _currentRC;
-	image* _DOOR; // 문추가(병철)
-	RECT _DOORRC; // 문추가(병철)
+	image* _DOOR;		 // 문추가(병철)
+	animation* _DoorAni; //도어를 애니메이션으로 
+	RECT _DOORRC;		 // 문추가(병철)
 
 	//float doorX, doorY;
 	
