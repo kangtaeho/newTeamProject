@@ -67,7 +67,7 @@ void stage2::update()
 	if (_ss == READY)
 	{
 		_mainPlayer->setX(760);
-		_mainPlayer->setY(2290);
+		_mainPlayer->setY(2280);
 		_mainPlayer->setStage(IMAGEMANAGER->findImage("스테이지_01_red"), 2);
 		if (_alpha < 255)
 			_alpha += 5;
@@ -293,8 +293,8 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	{
 		_firstWave = true;
 	//쫄따구 2마리 생성
-		_em->setMinion(PointMake(700, 2360),2);
-		_em->setMinion1(PointMake(550, 2360),2);
+		_em->setMinion(PointMake(700, 2350),2);
+		_em->setMinion1(PointMake(550, 2350),2);
 
 	//카메라 고정 추가(기성아 부탁한다) 추가
 	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
