@@ -81,6 +81,12 @@ void stage3::update()
 					_currentRC->left -= 10;
 					_currentRC->right -= 10;
 				}
+				else if (CAMERAMANAGER->getCameraCondition() == CAMERA_STAGE2)
+				{
+					CAMERAMANAGER->stage2CameraFollow(true, -10);
+					_currentRC->left -= 10;
+					_currentRC->right -= 10;
+				}
 				else
 				{
 					if (_currentRC->left <= 0)
@@ -104,9 +110,15 @@ void stage3::update()
 					_currentRC->left += 10;
 					_currentRC->right += 10;
 				}
+				else if (CAMERAMANAGER->getCameraCondition() == CAMERA_STAGE2)
+				{
+					CAMERAMANAGER->stage2CameraFollow(true, 10);
+					_currentRC->left += 10;
+					_currentRC->right += 10;
+				}
 				else
 				{
-					if (_currentRC->right >= 3456)
+					if (_currentRC->right >= 5550)
 					{
 						_currentRC->left -= 10;
 						_currentRC->right -= 10;
@@ -117,7 +129,7 @@ void stage3::update()
 			}
 		}
 
-		if (KEYMANAGER->isOnceKeyDown('W'))
+		if (KEYMANAGER->isOnceKeyDown('G'))
 		{
 			_currentRC = &_rc1;
 			CAMERAMANAGER->setCameraAim(_currentRC);
@@ -129,7 +141,13 @@ void stage3::update()
 		{
 			CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 		}
-
+		if (KEYMANAGER->isOnceKeyDown('W'))
+		{
+			CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+			_currentRC = &_rc1;
+			CAMERAMANAGER->setCameraAim(_currentRC);
+			CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
+		}
 		//_enemy->update();
 		//_mainPlayer->update();
 
