@@ -127,7 +127,7 @@ protected:
 	string _enemyKeyName[10];
 
 	bool _isBoss;					//보스입니까?
-
+	bool _isItemCollion;			//아이템이랑 부딪혔냐
 	stage1* _stage1;
 
 public:
@@ -167,6 +167,9 @@ public:
 	int getCountMove() { return _countMove; }
 
 	void getItem();
+
+	RECT getCollircEnemy(){ return _CollircEnemy; }
+	void setIsItemCollion(bool isItemCollion){ _isItemCollion = isItemCollion; }
 
 	void setStageMemoryLink(stage1* stage1){ _stage1 = stage1; }
 };

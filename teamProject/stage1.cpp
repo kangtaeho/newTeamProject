@@ -411,3 +411,37 @@ void stage1::draw(){
 	//알파렌더를 위한 검은화면 렌더
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
 }
+void stage1::enemyItemCollision(){
+
+	//몬스터가 없으면 확인할 필요없다.
+	if (_em->getVMinion().size() == 0) return;
+
+	for (int i = 0; i < _em->getVMinion().size(); i++)
+	{
+		for (int j = 0; j < _vItem.size(); j++)
+		{
+			//돈타입이면 체크 넘긴다.
+			if (_vItem[j]->getItemType() == 2) continue;
+
+			//그 외 아이템이면 충돌체크
+			RECT temp;
+			if (IntersectRect(&temp, &_vItem[j]->getItemRC(), &_em->getVMinion()[i]->getCollircEnemy()))
+			{
+				//아이템 상태가 스로잉이면 피격 (continue 대신 데미지 감소)
+				if (_vItem[j]->getState() == 1) continue;
+
+				//드롭상태
+				else
+				{
+					//변수 true 세팅
+					_em->getVMinion()[i]->setIsItemCollion(true);
+				}
+			}
+			//노 충돌시 기본 false
+			else
+			{
+				_em->getVMinion()[i]->setIsItemCollion(false);
+			}
+		}
+	}
+}

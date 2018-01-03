@@ -60,6 +60,11 @@ public:
 
 	//던질때 상태 변경
 	void setState(bool isThrow){ if (isThrow)_itemState = THROWING; else _itemState = DROP; }
+	//아이템 상태(0 드롭, 1 스로잉)
+	int getState(){ return _itemState; }
+
+	//아이템 타입 리턴(0 포션, 1 오브젝트, 2 돈)
+	int getItemType(){ return _itemType; }
 
 	float getX() { return _x; }
 	float getY() { return _y; }
