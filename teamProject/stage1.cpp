@@ -294,13 +294,8 @@ void stage1::makeEnemy() {
 	{
 		_firstWave = true;
 		CAMERAMANAGER->backGroundSizeSetting(2070, 648);
-<<<<<<< HEAD
 	//쫄따구 1마리 생성
 		_em->setMinion1(PointMake(1500, 400),1);
-=======
-		//쫄따구 1마리 생성
-		_em->setMinion1(PointMake(1500, 400));
->>>>>>> 2931abf503c5a9c00b5e1e857ac8dca67cd30609
 		//_em->setMinion(PointMake(1000, 400));
 		//_em->setMinion2(PointMake(1200, 400));
 	//_em->getVMinion()[0]->setStageMemoryLink(this);
@@ -325,17 +320,13 @@ void stage1::makeEnemy() {
 	{
 		////정예몹 1마리 생성
 		_secondWave = true;
-<<<<<<< HEAD
 		_em->setPick(PointMake(3000, 400),1);
 	//_em->getVMinion()[0]->setStageMemoryLink(this);
 	////카메라 고정 추가(이것도 부탁해) 추가
 	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
-=======
-		_em->setPick(PointMake(3000, 400));
 		//_em->getVMinion()[0]->setStageMemoryLink(this);
 		////카메라 고정 추가(이것도 부탁해) 추가
 		//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
->>>>>>> 2931abf503c5a9c00b5e1e857ac8dca67cd30609
 	}
 
 	////두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임

@@ -292,8 +292,8 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	{
 		_firstWave = true;
 	//쫄따구 2마리 생성
-		_em->setMinion(PointMake(700, 2290),2);
-		_em->setMinion2(PointMake(650, 2290),2);
+		_em->setMinion(PointMake(700, 2360),2);
+		_em->setMinion1(PointMake(550, 2360),2);
 
 	//카메라 고정 추가(기성아 부탁한다) 추가
 	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
@@ -389,7 +389,7 @@ void stage2::initialization()								//변수들 new선언 및 init 해주는 함수 이후 n
 
 
 	_mainPlayer = new character;
-	//_mainPlayer->init();
+	_mainPlayer->init();
 
 	_inven = new inventory;
 	_inven->init();
