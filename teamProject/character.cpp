@@ -22,6 +22,7 @@ HRESULT character::init()
 	_isRight = true;
 	_JP = 0;
 	_gravity = 0.1f;
+	_HP = _maxHP = 10;
 
 	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 	_colliRect = RectMakeCenter(_x, _y, 54, 120);
