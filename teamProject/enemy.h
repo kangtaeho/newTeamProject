@@ -127,7 +127,7 @@ protected:
 	string _enemyKeyName[10];
 
 	bool _isBoss;					//º¸½ºÀÔ´Ï±î?
-
+	bool _isItemCollion;			//¾ÆÀÌÅÛÀÌ¶û ºÎµúÇû³Ä
 	stage1* _stage1;
 
 public:
@@ -166,7 +166,8 @@ public:
 	float getX() { return CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x; }
 	int getCountMove() { return _countMove; }
 
-	void getItem();
+	RECT getCollircEnemy(){ return _CollircEnemy; }
+	void setIsItemCollion(bool isItemCollion){ _isItemCollion = isItemCollion; }
 
 	void setStageMemoryLink(stage1* stage1){ _stage1 = stage1; }
 };

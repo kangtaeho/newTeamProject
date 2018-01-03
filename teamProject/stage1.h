@@ -91,7 +91,7 @@ public:
 	void singletonInit();	//init에서 싱글톤들 세팅해주는 함수 이후 세팅은 여기서 하는걸로
 	void draw();	//그려주는 함수 이후 렌더는 여기서 하는걸로
 
-
+	void enemyItemCollision();
 	vector<item*> getVItem() { return _vItem; }
 
 };

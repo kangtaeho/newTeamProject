@@ -117,10 +117,10 @@ void stage1::update()
 		}
 
 		
-		if (KEYMANAGER->isOnceKeyDown('3')) //강제로 클리어상태로 전환
-		{
-			_ss = CLEAR; 		
-		}
+		//if (KEYMANAGER->isOnceKeyDown('3')) //강제로 클리어상태로 전환
+		//{
+		//	_ss = CLEAR; 		
+		//}
 		
 
 		if (KEYMANAGER->isOnceKeyDown('4')) //강제로 돈드랍
@@ -142,6 +142,7 @@ void stage1::update()
 			_vItem[i]->update();
 		}		
 		makeEnemy();
+		enemyItemCollision();
 	}
 
 	_em->update();
@@ -270,8 +271,8 @@ void stage1::makeEnemy(){
 		CAMERAMANAGER->backGroundSizeSetting(2070, 648);
 	//쫄따구 1마리 생성
 		_em->setMinion1(PointMake(1500, 400));
-		_em->setMinion(PointMake(1000, 400));
-		_em->setMinion2(PointMake(1200, 400));
+		//_em->setMinion(PointMake(1000, 400));
+		//_em->setMinion2(PointMake(1200, 400));
 	//_em->getVMinion()[0]->setStageMemoryLink(this);
 	//카메라 고정 추가(기성아 부탁한다) 추가 
 	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
@@ -290,24 +291,26 @@ void stage1::makeEnemy(){
 	}
 
 	////두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
-	if(!_secondWave && _firstWave/*&& 카메라가 특정지점이냐*/)
+	if (!_secondWave && _firstWave &&_em->getVMinion().size() == 0 /*&& 카메라가 특정지점이냐*/)
 	{
 	////정예몹 1마리 생성
-	//_em -> setPick()
+		_secondWave = true;
+		_em->setPick(PointMake(3000, 400));
 	//_em->getVMinion()[0]->setStageMemoryLink(this);
 	////카메라 고정 추가(이것도 부탁해) 추가
 	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
 	////두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	//else if(secondWave && _em.size() == 0)
-	//{
-
-	////카메라 다시 이동(기성아 부탁한다) 추가 
-	//currentRC = &rc1;
-	//CAMERAMANAGER->setCameraAim(currentRC);
-	//CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-	//}
+	else if(_secondWave && _em->getVMinion().size() == 0)
+	{
+		CAMERAMANAGER->backGroundSizeSetting(3456, 648);
+	//카메라 다시 이동(기성아 부탁한다) 추가 
+	_currentRC = &_rc1;
+	CAMERAMANAGER->setCameraAim(_currentRC);
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	_ss = CLEAR;
+	}
 
 	
 }
@@ -410,4 +413,46 @@ void stage1::draw(){
 
 	//알파렌더를 위한 검은화면 렌더
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
+
+	for (int i = 0; i < _em->getVMinion().size(); ++i) {
+		if (_em->getVMinion().size() == 0)return;
+
+		setColorRect(getMemDC(), _em->getVMinion()[i]->getCollircEnemy(), 30, 50, 80);
+	}
+}
+void stage1::enemyItemCollision(){
+
+	//몬스터가 없으면 확인할 필요없다.
+	if (_em->getVMinion().size() == 0) return;
+	//아이템이 없으면 확인할 필요없다.
+	if (_vItem.size() == 0) return;
+
+	for (int i = 0; i < _em->getVMinion().size(); i++)
+	{
+		for (int j = 0; j < _vItem.size(); j++)
+		{
+			//돈타입이면 체크 넘긴다.
+			if (_vItem[j]->getItemType() == 2) continue;
+
+			//그 외 아이템이면 충돌체크
+			RECT temp;
+			if (IntersectRect(&temp, &_vItem[j]->getItemRC(), &_em->getVMinion()[i]->getCollircEnemy()))
+			{
+				//아이템 상태가 스로잉이면 피격 (continue 대신 데미지 감소)
+				if (_vItem[j]->getState() == 1) continue;
+
+				//드롭상태
+				else
+				{
+					//변수 true 세팅
+					_em->getVMinion()[i]->setIsItemCollion(true);
+				}
+			}
+			//노 충돌시 기본 false
+			else
+			{
+				_em->getVMinion()[i]->setIsItemCollion(false);
+			}
+		}
+	}
 }

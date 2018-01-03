@@ -63,6 +63,11 @@ private:
 	RECT _rc;//렌더용 렉트
 	RECT _colliRect;//통신용 렉트
 
+	//스테이지 담을 변수(설정자)
+	//스테이지당 픽셀충돌 검사할 이미지 변수(설정자)
+
+
+
 	CHARA _state;//상태값
 	animation * _motion;//모션
 	image * _image;
