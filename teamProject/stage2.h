@@ -41,7 +41,8 @@ private:
 	//°­¹°
 
 	image* _liver;
-	int _frameX, _frameCount;
+	animation* _liverAni;
+
 
 
 

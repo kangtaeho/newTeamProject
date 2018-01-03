@@ -42,10 +42,13 @@ HRESULT stage2::init()
 
 	_elevatorSwitchOn = false;
 
-	_liver->setX(0);
+	_liver->setX(2900);
 	_liver->setY(2450);
 
-	_frameX = _frameCount = 0;
+	_liverAni->start();
+	
+
+
 	return S_OK;
 }
 
@@ -248,14 +251,11 @@ void stage2::update()
 		_currentRC = &_rc1;
 		CAMERAMANAGER->setCameraAim(_currentRC);
 	}
+	_liverAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 10);
+	//_liverAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 1);
 	
 	//boatMove(); 
-	_frameCount++;
-	if (_frameCount % 10 == 0)
-	{
-		_frameX++;
-		if (_frameX > _liver->getMaxFrameX()) _frameX = 0;
-	}
+	
 	
 	_mainPlayer->update();
 }
@@ -352,7 +352,7 @@ void stage2::characterMovement()							//캐릭터 키매지저를 관리하는 함수
 
 void stage2::addImage()									//이미기 추가해주는 함수 이후 이미지는 여기서 add하는걸로
 {
-	_liver = IMAGEMANAGER->addFrameImage("강물", "./images/liver_2frame.bmp", 11590, 128, 2, 1, true, RGB(255, 0, 255));
+	_liver = IMAGEMANAGER->addFrameImage("강물", "./images/liver_2frame.bmp", 11590, 126, 2, 1, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addImage("스테이지_01", "./images/02_stage00.bmp", 5795, 2593, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("스테이지_01_red", "./images/02_stage00_red.bmp", 5795, 2593, true, RGB(255, 0, 255));
@@ -369,6 +369,14 @@ void stage2::addImage()									//이미기 추가해주는 함수 이후 이미지는 여기서 ad
 }
 void stage2::initialization()								//변수들 new선언 및 init 해주는 함수 이후 new 및 init은 여기서 하는걸로
 {
+
+	//강 애니메이션
+	_liverAni = new animation;
+	_liverAni->init(_liver->getWidth(), _liver->getHeight(), _liver->getFrameWidth(), _liver->getFrameHeight());
+	_liverAni->setDefPlayFrame(true, true);
+	_liverAni->setFPS(1);
+
+
 	_mainPlayer = new character;
 	_mainPlayer->init();
 
@@ -416,10 +424,13 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
 
-	IMAGEMANAGER->findImage("강물")->frameRender(getMemDC(),
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).x,
-		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).y, _frameX, 0);
+//IMAGEMANAGER->findImage("강물")->aniRender(getMemDC(),
+//	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).x,
+//	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).y, _liverAni);
 
+	_liver->aniRender(getMemDC(), 
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).x,
+		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).y, _liverAni); 
 	
 
 	_mainPlayer->render();
