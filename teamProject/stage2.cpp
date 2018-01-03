@@ -3,16 +3,6 @@
 
 
 stage2::stage2() //절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
-<<<<<<< HEAD
-: _alpha(0),
-_ss(READY),
-_rc1(RectMakeCenter(760, 2310, 100, 100)), //카메라의 렉트 좌표
-_playerStartPoint(PointMake(760, 2310)), //스테이지 2 플레이어 시작좌표
-_currentRC(&_rc1),
-_firstWave(false),
-_secondWave(false),
-_thirdWave(false)
-=======
 	: _alpha(0),
 	_ss(READY),
 	_rc1(RectMakeCenter(560, 2286, 100, 100)), //카메라의 렉트 좌표
@@ -23,7 +13,6 @@ _thirdWave(false)
 	_thirdWave(false),
 	_boatSwitchOn(false),	//배랑 충돌했냐 ??
 	_elevatorSwitchOn(false)//엘베랑 충돌했냐??
->>>>>>> 884271881e3ce55b3f5e5bd7914b8b96d34527f4
 {
 }
 
@@ -77,6 +66,8 @@ void stage2::update()
 	//스테이지가 호출되어 레디상태일경우 알파값 덧셈
 	if (_ss == READY)
 	{
+		_mainPlayer->setX(760);
+		_mainPlayer->setY(2290);
 		if (_alpha < 255)
 			_alpha += 5;
 		//알파값 최대면 움직이기 가능
@@ -397,7 +388,7 @@ void stage2::initialization()								//변수들 new선언 및 init 해주는 함수 이후 n
 
 
 	_mainPlayer = new character;
-	_mainPlayer->init();
+	//_mainPlayer->init();
 
 	_inven = new inventory;
 	_inven->init();
