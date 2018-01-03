@@ -18,6 +18,7 @@ HRESULT minion01::init(POINT point, int currentStage)
 	_y = point.y;
 
 	_currentStage = currentStage;
+	_countMove = 0;
 	//디폴트
 
 	_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight()); //기본렉트

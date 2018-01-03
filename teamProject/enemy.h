@@ -4,7 +4,7 @@
 
 //에네미 상태설정 (더 추가 될수도 있음)
 
-class stage01;
+class stage1;
 
 //잡몹
 enum ENEMYDIRECTION
@@ -109,7 +109,7 @@ protected:
 	float _ZMove;					//z무브
 	float _jump, _Gravity;			//점프,중력
 
-	int _countMove=0;					//카운트 무브 (AI 상태 시간)
+	int _countMove;					//카운트 무브 (AI 상태 시간)
 
 	int _rndDirX;					//X방향설정
 	int _rndDirY;					//Y방향설정
@@ -124,13 +124,13 @@ protected:
 
 	bool _isBoss;					//보스입니까?
 
-	stage01* _stage01;
+	stage1* _stage1;
 
 public:
 	enemy();
 	~enemy();
 
-	virtual HRESULT init(POINT point);
+	virtual HRESULT init(POINT point, int currentStage = 1);
 	virtual void release();
 	virtual void update();
 	virtual void render();
@@ -164,6 +164,7 @@ public:
 
 	void getItem();
 
+	void setStageMemoryLink(stage1* stage1){ _stage1 = stage1; }
 };
 
 //이제 콜백함수가 필요한 모션들이라던가 그런거 뭐해야될까영

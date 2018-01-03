@@ -136,6 +136,9 @@
     <ClCompile Include="minion02.cpp">
       <Filter>MainGame\enemy</Filter>
     </ClCompile>
+    <ClCompile Include="tire.cpp">
+      <Filter>MainGame\inventory\item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h">
@@ -284,6 +287,9 @@
     </ClInclude>
     <ClInclude Include="minion02.h">
       <Filter>MainGame\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="tire.h">
+      <Filter>MainGame\inventory\item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
