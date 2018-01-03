@@ -54,7 +54,7 @@ private:
 	enemy* _minion02;
 
 
-	
+	bool _isOpenDoor; //문
 
 	int _alpha;	//알파렌더를 위한 변수
 
