@@ -6,6 +6,8 @@ stage2::stage2() //절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 �
 	: _alpha(0),
 	_ss(READY),
 	_rc1(RectMakeCenter(760, 2280, 100, 100)), //카메라의 렉트 좌표
+	_rc2(RectMakeCenter(760, 2280, 100, 100)),
+	_rc3(RectMakeCenter(760, 2280, 100, 100)),
 	_playerStartPoint(PointMake(760, 2310)), //스테이지 2 플레이어 시작좌표
 	_currentRC(&_rc1),
 	_firstWave(false),
@@ -121,13 +123,13 @@ void stage2::update()
 				if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 				{
 					CAMERAMANAGER->cameraMove(false, 0);
-					_currentRC->bottom -= 5;
-					_currentRC->top -= 5;
+					//_currentRC->bottom -= 5;
+					//_currentRC->top -= 5;
 				}
 				else
 				{
-					_currentRC->bottom -= 5;
-					_currentRC->top -= 5;
+					//_currentRC->bottom -= 5;
+					//_currentRC->top -= 5;
 				}
 			}
 		}
@@ -139,12 +141,12 @@ void stage2::update()
 				if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 				{
 					CAMERAMANAGER->cameraMove(false, 0);
-					_currentRC->bottom += 5;
-					_currentRC->top += 5;
+					//_currentRC->bottom += 5;
+					//_currentRC->top += 5;
 				}
 				else {
-					_currentRC->bottom += 5;
-					_currentRC->top += 5;
+					//_currentRC->bottom += 5;
+					//_currentRC->top += 5;
 				}
 			}
 		}
@@ -156,24 +158,24 @@ void stage2::update()
 				if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 				{
 					CAMERAMANAGER->cameraMove(true, 0);
-					_currentRC->left -= 5;
-					_currentRC->right -= 5;
+					//_currentRC->left -= 5;
+					//_currentRC->right -= 5;
 				}
 				else if (CAMERAMANAGER->getCameraCondition() == CAMERA_STAGE2)
 				{
 					CAMERAMANAGER->stage2CameraFollow(true, -5);
-					_currentRC->left -= 5;
-					_currentRC->right -= 5;
+					//_currentRC->left -= 5;
+					//_currentRC->right -= 5;
 				}
 				else
 				{
-					if (_currentRC->left <= 0)
-					{
-						_currentRC->left += 5;
-						_currentRC->right += 5;
-					}
-					_currentRC->left -= 5;
-					_currentRC->right -= 5;
+					//if (_currentRC->left <= 0)
+					//{
+					//	_currentRC->left += 5;
+					//	_currentRC->right += 5;
+					//}
+					//_currentRC->left -= 5;
+					//_currentRC->right -= 5;
 				}
 			}
 		}
@@ -185,24 +187,24 @@ void stage2::update()
 				if (CAMERAMANAGER->getCameraCondition() == CAMERA_FREE)
 				{
 					CAMERAMANAGER->cameraMove(true, 0);
-					_currentRC->left += 5;
-					_currentRC->right += 5;
+					//_currentRC->left += 5;
+					//_currentRC->right += 5;
 				}
 				else if (CAMERAMANAGER->getCameraCondition() == CAMERA_STAGE2)
 				{
 					CAMERAMANAGER->stage2CameraFollow(true, 5);
-					_currentRC->left += 5;
-					_currentRC->right += 5;
+					//_currentRC->left += 5;
+					//_currentRC->right += 5;
 				}
 				else
 				{
-					if (_currentRC->right >= 5795)
-					{
-						_currentRC->left -= 5;
-						_currentRC->right -= 5;
-					}
-					_currentRC->left += 5;
-					_currentRC->right += 5;
+					//if (_currentRC->right >= 5795)
+					//{
+					//	_currentRC->left -= 5;
+					//	_currentRC->right -= 5;
+					//}
+					//_currentRC->left += 5;
+					//_currentRC->right += 5;
 				}
 			}
 		}
@@ -271,6 +273,8 @@ void stage2::update()
 
 	}
 	_rc1 = RectMakeCenter(_mainPlayer->getX() /*- 30*/, _mainPlayer->getY()+25/* - 30*/, 100, 100);
+	_rc2 = RectMakeCenter(_mainPlayer->getX(), 2280, 100, 100);
+	_rc3 = RectMakeCenter(_mainPlayer->getX(), _mainPlayer->getY() + 25, 100, 100);
 	if (!_boatSwitchOn)
 	{
 		_mainPlayer->update();
@@ -294,68 +298,68 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	
 	/*카메라 특정 지점일때 몬스터 생성
 	첫 웨이브가 나왔냐 && 카메라가 특정 지점에 왔냐*/
-	if (!_firstWave )
+	if (!_firstWave)
 	{
 		_firstWave = true;
-	//쫄따구 2마리 생성
-		_em->setMinion(PointMake(700, 2350),2);
-		_em->setMinion1(PointMake(550, 2350),2);
+		//쫄따구 2마리 생성
+		_em->setMinion(PointMake(700, 2350), 2);
+		_em->setMinion1(PointMake(550, 2350), 2);
 
-	//카메라 고정 추가(기성아 부탁한다) 추가
-	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+		//카메라 고정 추가(기성아 부탁한다) 추가
+		//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 
 	}
 
 	//첫 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	else if(_firstWave && _em->getVMinion().size() == 0/*KEYMANAGER->isOnceKeyDown('P')*/)
+	else if (_firstWave && _em->getVMinion().size() == 0)
 	{
 
-	//카메라 다시 이동(기성아 부탁한다) 추가
+		//카메라 다시 이동(기성아 부탁한다) 추가
 		CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
-		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-		//_currentRC = &_rc1;
+		_currentRC = &_rc2;
 		CAMERAMANAGER->setCameraAim(_currentRC);
-		CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
-		
+		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 
-	//_currentRC = &_rc1;
-	//CAMERAMANAGER->setCameraAim(currentRC);
-	//CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+
+
 	}
-	
-	//두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
-	if (!_secondWave && _firstWave&&_em->getVMinion().size() == 0)
-	{
-	//쫄따구1 정예몹 1마리 생성
-		_secondWave = true;
-		_em->setMinion2(PointMake(5700, 2350),2);
-			_em->setPick(PointMake(5700, 2350),2);
-	
 
-	//카메라 고정 추가(이것도 부탁해) 추가
-	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+	//두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
+	if (!_secondWave && _firstWave&&_em->getVMinion().size() == 0 && _currentRC->right >= 5200)
+	{
+		//쫄따구1 정예몹 1마리 생성
+		_secondWave = true;
+		_em->setMinion2(PointMake(5700, 2350), 2);
+		_em->setPick(PointMake(5700, 2350), 2);
+		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+
+
+
+
 	}
 
 	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	else if(_secondWave && _em->getVMinion().size() == 0)
+	else if (_secondWave && _em->getVMinion().size() == 0)
 	{
 
-	//카메라 다시 이동(기성아 부탁한다) 추가
+		//카메라 다시 이동(기성아 부탁한다) 추가
 		CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
-		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-		//_currentRC = &_rc1;
+
+		_currentRC = &_rc1;
 		CAMERAMANAGER->setCameraAim(_currentRC);
-		CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
+		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+
 	}
 
-	//if (!_thirdWave && _secondWave&&_em->getVMinion().size() == 0)
+	//if (!_thirdWave && _secondWave&&_em->getVMinion().size() == 0&& _currentRC->top<= 140)
 	//{
 	////쫄따구1 정예몹 1마리 생성
 	////	_em->setBoss(PointMake(4864, 70), 2);
 
 
-	////카메라 고정 추가(이것도 부탁해) 추가
-	////CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+	//_currentRC = &_rc2;
+	//CAMERAMANAGER->setCameraAim(_currentRC);
+	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	//}
 
 	//세번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임

@@ -20,6 +20,8 @@ class stage2 : public gameNode
 private:
 	//카메라 렉트
 	RECT _rc1;
+	RECT _rc2;
+	RECT _rc3;
 	RECT* _currentRC;
 
 	//엘레베이터 렉트
