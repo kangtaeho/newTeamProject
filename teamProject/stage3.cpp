@@ -3,8 +3,9 @@
 
 //_rc1(RectMakeCenter(100, 900, 100, 100)),
 stage3::stage3()
-:_rc1(RectMakeCenter(100, 900, 100, 100)),	//절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
+:_rc1(RectMakeCenter(100, 900, 100, 100)),//절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
 _currentRC(&_rc1),
+_playerStartPoint(PointMake(100, 900)),
 _firstWave(false),
 _secondWave(false),
 _thirdWave(false)
@@ -22,8 +23,10 @@ HRESULT stage3::init()
 	initialization();	//멤버변수 초기화(ex. 아이템 등)
 	singletonInit();	//싱글톤 초기화(ex. 카메라 or 스테이지 사운드)
 
-	_HeliCopterX = 5200;
-	_HeliCopterY = 100;
+	_HeliCopterX = 5200;	//헬리콥터 좌표
+	_HeliCopterY = 100;		//헬리콥터 좌표
+
+
 	_vItem.push_back(_stone);
 	_vItem.push_back(_tire);
 	return S_OK;

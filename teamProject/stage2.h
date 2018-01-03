@@ -35,7 +35,7 @@ private:
 
 	float _boatX, _boatY; //쪽배 x,y좌표
 
-
+	bool _boatSwitchOn;		//보트랑 충돌했냐 ??
 	bool _elevatorSwitchOn; //엘레베이터 렉트 건드렸냐??
 
 	//강물

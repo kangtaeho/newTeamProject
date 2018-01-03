@@ -3,6 +3,7 @@
 
 
 stage2::stage2() //절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 받아서 초기화 해야한다면 init에서
+<<<<<<< HEAD
 : _alpha(0),
 _ss(READY),
 _rc1(RectMakeCenter(760, 2310, 100, 100)), //카메라의 렉트 좌표
@@ -11,6 +12,18 @@ _currentRC(&_rc1),
 _firstWave(false),
 _secondWave(false),
 _thirdWave(false)
+=======
+	: _alpha(0),
+	_ss(READY),
+	_rc1(RectMakeCenter(560, 2286, 100, 100)), //카메라의 렉트 좌표
+	_playerStartPoint(PointMake(760, 2310)), //스테이지 2 플레이어 시작좌표
+	_currentRC(&_rc1),
+	_firstWave(false),
+	_secondWave(false),
+	_thirdWave(false),
+	_boatSwitchOn(false),	//배랑 충돌했냐 ??
+	_elevatorSwitchOn(false)//엘베랑 충돌했냐??
+>>>>>>> 884271881e3ce55b3f5e5bd7914b8b96d34527f4
 {
 }
 
@@ -25,12 +38,12 @@ HRESULT stage2::init()
 	initialization();	//변수 new 및 init
 	singletonInit();	//싱글톤 init
 
-	_boatX = 1450;
+	_boatX = 1420;
 	_boatY = 2400;
 
 	//_boat->setX(1450);
 	//_boat->setY(2400);
-	_boatRC = RectMakeCenter(_boatX, _boatY, 527, 75);
+	_boatRC = RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight());
 	
 	//_elevator->setX(5520);
 	//_elevator->setY(2186);
@@ -40,7 +53,7 @@ HRESULT stage2::init()
 
 	_elevatorRC = RectMakeCenter(_elevatorX, _elevatorY, 10, 10);
 
-	_elevatorSwitchOn = false;
+
 
 	_liver->setX(2900);
 	_liver->setY(2450);
@@ -231,8 +244,21 @@ void stage2::update()
 	}
 	
 
-	//엘베무브 보트 무브
 	RECT temp;
+	//보트 무브
+	if (IntersectRect(&temp, &_rc1, &_boatRC)) 
+	{
+		_boatSwitchOn = true;
+	}
+
+	if(_boatSwitchOn && _boatRC.right < 5230)
+	{
+		boatMove();
+	}
+
+
+
+	//엘베무브 
 	if (IntersectRect(&temp, &_rc1, &_elevatorRC)) 
 	{
 		_elevatorSwitchOn = true;
@@ -240,21 +266,14 @@ void stage2::update()
 
 	if (_elevatorSwitchOn && _elevatorRC.top > 140)
 	{
-		elevatorMove();
-		_elevatorRC.top -= 5;
-		_elevatorRC.bottom -= 5;
-
-		_currentRC->top -= 5;
-		_currentRC->bottom -= 5;
-
-		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-		_currentRC = &_rc1;
-		CAMERAMANAGER->setCameraAim(_currentRC);
+		elevatorMove();	
 	}
+
+	//강 프레임 도는 시간
 	_liverAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 10);
-	//_liverAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 1);
-	
-	//boatMove(); 
+
+
+
 	
 	
 	_mainPlayer->update();
@@ -407,7 +426,6 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 	//엘레베이터 rc 작은거 충돌용
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_elevatorRC).x, CAMERAMANAGER->CameraRelativePoint(_elevatorRC).y, 10, 10);
-
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
 
 
@@ -422,6 +440,9 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	IMAGEMANAGER->findImage("쪽배_red")->render(getMemDC(),
 	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
 	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
+
+	//쪽배 렉트 충돌용
+	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_boatRC).x, CAMERAMANAGER->CameraRelativePoint(_boatRC).y, _boat->getWidth(), _boat->getHeight());
 
 
 	_liver->aniRender(getMemDC(), 
@@ -440,10 +461,31 @@ void stage2::boatMove()
 {
 	
 	_boatX += 5;
+	_boatRC.left += 5;
+	_boatRC.right += 5;
+
+	_currentRC->left += 5;
+	_currentRC->right += 5;
+	
+	
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	_currentRC = &_rc1;
+	CAMERAMANAGER->setCameraAim(_currentRC);
+	
 
 }
 
 void stage2::elevatorMove() 
 {
 	_elevatorY -= 5;
+
+	_elevatorRC.top -= 5;
+	_elevatorRC.bottom -= 5;
+
+	_currentRC->top -= 5;
+	_currentRC->bottom -= 5;
+
+	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	_currentRC = &_rc1;
+	CAMERAMANAGER->setCameraAim(_currentRC);
 }

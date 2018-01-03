@@ -19,7 +19,7 @@ CLEAR
 class stage3 : public gameNode
 {
 private:
-
+	POINT _playerStartPoint;
 	RECT _rc1;
 	RECT* _currentRC;
 
