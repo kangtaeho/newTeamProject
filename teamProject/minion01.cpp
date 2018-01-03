@@ -33,6 +33,7 @@ HRESULT minion01::init(POINT point, int currentStage)
 	_rndDirX = rndDirection(RND->getInt(3));
 	_rndDirY = rndDirection(RND->getInt(3));
 	_isItemCollion = false;
+	_isGetItemEnemy = false;
 
 	_enemyKeyName[0] = "enemyRightStop";
 	_enemyKeyName[1] = "enemyLeftStop";

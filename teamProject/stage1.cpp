@@ -8,9 +8,15 @@ stage1::stage1()	//절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 �
 _firstWave(false),					//처음 웨이브
 _secondWave(false),					//두번째 웨이브
 _stopCharacter(false),				//캐릭터가 멈췄니? (인벤토리 킬때 사용)
+<<<<<<< HEAD
 _rc1(RectMakeCenter(WINSIZEX/2, WINSIZEY/2, 100, 100)),	// 병철아!!!!! 여기꺼 수정하면된다 시작위치
 _DOORRC(RectMakeCenter(3225, 210, 10, 10)),
 _currentRC(&_rc1),
+=======
+//_rc1(RectMakeCenter(WINSIZEX/2, WINSIZEY/2, 100, 100)),	// 병철아!!!!! 여기꺼 수정하면된다 시작위치
+_DOORRC(RectMakeCenter(3225, 190, 10, 10)),
+//_currentRC(&_rc1),
+>>>>>>> 8ca8958cc98dfba4fc470f2d2bcf992944360c1f
 _ss(READY)
 {
 
@@ -45,6 +51,9 @@ HRESULT stage1::init()
 	_vItem.push_back(_stone);
 	_vItem.push_back(_knife);
 	_vItem.push_back(_bigStone);
+
+	_rc1 = RectMake(_mainPlayer->getRect().left, _mainPlayer->getRect().top, 100, 100);
+	_currentRC = &_rc1;
 
 	singletonInit();
 
@@ -82,6 +91,8 @@ void stage1::update()
 		//알파값이 0이 되면 다음 스테이지							 
 		else
 		{
+			_mainPlayer->setX(760);
+			_mainPlayer->setY(2310);
 			SCENEMANAGER->changeScene("스테이지01");
 			SOUNDMANAGER->stop("스테이지1");
 		}
@@ -253,6 +264,7 @@ void stage1::characterMovement() {
 	//_minion00->update();
 	//_minion01->update();
 	//_minion02->update();
+	_rc1 = RectMake(_mainPlayer->getX() - 30, _mainPlayer->getY() - 30, 100, 100);
 	_mainPlayer->update();
 
 	/*if (KEYMANAGER->isOnceKeyDown('P'))
@@ -360,6 +372,7 @@ void stage1::initialization(){
 
 	_mainPlayer = new character;
 	_mainPlayer->init();
+	_mainPlayer->setStage(IMAGEMANAGER->findImage("스테이지_00_red"), 1);
 
 	_inven = new inventory;
 	_inven->init();
@@ -389,13 +402,6 @@ void stage1::draw(){
 	//_minion01->render();
 	//_minion02->render();
 
-
-	_em->render();
-	_mainPlayer->render();
-
-	//카메라 렉트(이후 주석처리를 통해 지우도록!)
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
-	
 	IMAGEMANAGER->findImage("스테이지1_문")->frameRender(getMemDC(),
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_DOOR->getX(), _DOOR->getY(), _DOOR->getFrameWidth(), _DOOR->getFrameHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_DOOR->getX(), _DOOR->getY(), _DOOR->getFrameWidth(), _DOOR->getFrameHeight())).y,
@@ -403,6 +409,14 @@ void stage1::draw(){
 
 	//문 렉트(이후 삭제하도록)
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_DOORRC).x, CAMERAMANAGER->CameraRelativePoint(_DOORRC).y, 10, 10);
+
+	_em->render();
+	_mainPlayer->render();
+
+	//카메라 렉트(이후 주석처리를 통해 지우도록!)
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
+	
+	
 	_inven->render();
 
 	//아이템 렌더
