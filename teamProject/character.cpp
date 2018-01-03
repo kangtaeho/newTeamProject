@@ -233,53 +233,14 @@ void character::update()
 				if (!KEYMANAGER->isStayKeyDown(VK_LEFT))
 		{
 			_state = CHARA_LEFT_STOP;//¸ØÃã»óÅÂ·Î µ¹·Á¶ó
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
 			_motion->start();
 		}
-		//if (KEYMANAGER->isOnceKeyUp(VK_UP))
-		//{
-		//	_state = CHARA_LEFT_STOP;//¸ØÃã»óÅÂ·Î µ¹·Á¶ó
-		//	_motion->stop();
-		//	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-		//	_motion->start();
-		//}
-		//else
-		if (KEYMANAGER->isStayKeyDown(VK_UP))
-		{
-			//if(»ç´Ù¸®¸¦ Å» ¼ö ÀÖ°Ô µÇ¾ú´Ù)
-			//{
-			//_state = CHARA_STAIR;
-			//_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
-			//_motion->start();
-			//}
-			//else
-			_y -= _Zmove;
-		}
-		//if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
-		//{
-		//	_state = CHARA_LEFT_STOP;//¸ØÃã»óÅÂ·Î µ¹·Á¶ó
-		//	_motion->stop();
-		//	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-		//	_motion->start();
-		//}
-		//else
-		if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-		{
-			_y += _Zmove;
-		}
-		//if (KEYMANAGER->isOnceKeyUp(VK_LEFT) )
-		//{
-		//	_state = CHARA_LEFT_STOP;//¸ØÃã»óÅÂ·Î µ¹·Á¶ó
-		//	_motion->stop();
-		//	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-		//	_motion->start();
-		//}
-		//else 
 		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 		{
 			_x -= CHARASPEED;
 		}
-		
+
 		if (KEYMANAGER->isOnceKeyDown('Z'))//Á¡ÇÁ
 		{
 			_StartY = _y;
@@ -289,6 +250,63 @@ void character::update()
 			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJump");
 			_motion->start();
 		}
+		for (int i = _rc.bottom-5; i < _rc.bottom + 5; ++i)
+		{
+			COLORREF color = GetPixel(IMAGEMANAGER->findImage("½ºÅ×ÀÌÁö_00_red")->getMemDC(), _x, i);
+
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
+			if (!(r == 255 && g == 0 && b == 0))
+			{
+				break;
+			}
+			else
+			{
+				if (KEYMANAGER->isStayKeyDown(VK_UP))
+				{
+					//if(»ç´Ù¸®¸¦ Å» ¼ö ÀÖ°Ô µÇ¾ú´Ù)
+					//{
+					//_state = CHARA_STAIR;
+					//_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
+					//_motion->start();
+					//}
+					//else
+					_y -= _Zmove;
+				}
+				//if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
+				//{
+				//	_state = CHARA_LEFT_STOP;//¸ØÃã»óÅÂ·Î µ¹·Á¶ó
+				//	_motion->stop();
+				//	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+				//	_motion->start();
+				//}
+				//else
+				if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+				{
+					_y += _Zmove;
+				}
+				break;
+			}
+		}
+		//if (KEYMANAGER->isOnceKeyUp(VK_UP))
+		//{
+		//	_state = CHARA_LEFT_STOP;//¸ØÃã»óÅÂ·Î µ¹·Á¶ó
+		//	_motion->stop();
+		//	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+		//	_motion->start();
+		//}
+		//else
+		
+		//if (KEYMANAGER->isOnceKeyUp(VK_LEFT) )
+		//{
+		//	_state = CHARA_LEFT_STOP;//¸ØÃã»óÅÂ·Î µ¹·Á¶ó
+		//	_motion->stop();
+		//	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+		//	_motion->start();
+		//}
+		//else 
+		
 		break;
 
 	case CHARA_RIGHT_LAND:
@@ -867,7 +885,11 @@ void character::render()
 	//_image->frameRender(getMemDC(), 100, 100, 0, 0);
 	//_image->aniRender(getMemDC(), _rc.left, _rc.top, _motion);
 	_image->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc).x, CAMERAMANAGER->CameraRelativePoint(_rc).y, _motion);
-	//char 
+	
+	char str[256];
+	wsprintf(str, "camX : %d, camY : %d", CAMERAMANAGER->CameraRelativePoint(_rc).x, CAMERAMANAGER->CameraRelativePoint(_rc).y);
+	TextOut(getMemDC(), WINSIZEX/2, 10, str, strlen(str));
+
 }
 
 void character::MakeRightStop(void* obj)
