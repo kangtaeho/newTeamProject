@@ -14,7 +14,7 @@ minion02::~minion02()
 
 HRESULT minion02::init(POINT point, int currentStage)
 {
-	_imageEnemy = IMAGEMANAGER->addFrameImage("enemy07", "./images/enemy07.bmp", 0, 0, 3072, 1140, 16, 6, true, RGB(255, 0, 255));
+	_imageEnemy = IMAGEMANAGER->addFrameImage("enemy06", "./images/enemy06.bmp", 0, 0, 3072, 1140, 16, 6, true, RGB(255, 0, 255));
 	_x = point.x;
 	_y = point.y;
 
