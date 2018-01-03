@@ -40,6 +40,7 @@ public:
 	friend DWORD CALLBACK loadingThread(LPVOID prc);
 
 	bool isStartScene(string sceneName);
+	gameNode* getCurrentScene(){ return _currentScene; }
 
 	sceneManager();
 	~sceneManager();

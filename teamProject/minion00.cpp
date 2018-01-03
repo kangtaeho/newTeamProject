@@ -16,7 +16,7 @@ minion00::~minion00()
 
 HRESULT minion00::init(POINT point, int currentStage)
 {
-	  _imageEnemy = IMAGEMANAGER->addFrameImage("enemy01","./images/enemy01.bmp",0,0,3072,1344,16,7,true,RGB(255,0,255));
+	  _imageEnemy = IMAGEMANAGER->addFrameImage("enemy01","./images/enemy01.bmp",0, 0, 3072,1344,16,7,true,RGB(255,0,255));
 	  _x = point.x;
 	  _y = point.y;
 	  
@@ -28,9 +28,6 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  _CollircEnemy = RectMakeCenter(CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x + _imageEnemy->getFrameWidth() / 2,
 		  CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y + _imageEnemy->getFrameHeight() / 2, 75, 75); //충돌렉트
 
-	  //_rcEnemy = RectMakeCenter(_x,_y,_imageEnemy->getFrameWidth(),_imageEnemy->getFrameHeight()); //기본렉트
-	  //_CollircEnemy = RectMakeCenter(_x, _y, 50, 50); //충돌렉트
-	  //_EnemyDirection = ENEMYDIRECTION_RIGHT_STOP; //기본상태
 	  _jump = 0; //점프력
 	  _Gravity = 0.1f; //중력
 	  _HP = 100; //체에력
@@ -38,11 +35,18 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  
 	  _rndDirX = rndDirection(RND->getInt(3));
 	  _rndDirY = rndDirection(RND->getInt(3));
+
+	  _enemyKeyName[0] = "enemyRightStop";
+	  _enemyKeyName[1] = "enemyLeftStop";
+	  _enemyKeyName[2] = "--아직 값없음--";
+	  _enemyKeyName[3] = "--아직 값없음--";
+	  _enemyKeyName[4] = "enemyRightMove";
+	  _enemyKeyName[5] = "enemyLeftMove";
 	  
 	  int rightStop[] = { 0 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightStop", "enemy01", rightStop, 1,2,true);
 	  int leftStop[] = { 15 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemyleftStop", "enemy01", leftStop, 1, 6, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemyLeftStop", "enemy01", leftStop, 1, 6, true);
 	  int rightMove[] = { 0,1,2,1 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemyRightMove", "enemy01", rightMove, 4, 2, true);
 	  int leftMove[] = { 15,14,13,14 };

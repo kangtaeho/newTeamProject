@@ -116,6 +116,10 @@ protected:
 	int _currentStage;				//현재 스테이지 (굉장히 중요! 스테이 1은 xy다 움직이지만
 									//스테이지 2부터는 안움직이니깐 그때마다 예외처리가 달라야함
 									//굉장히 중요하다.
+
+	int _rndTum;					//랜덤 텀
+	int _rndTum2;					//랜덤 텀2
+
 	animation* _enemyMotion;
 	animation* _bossMotion;
 
