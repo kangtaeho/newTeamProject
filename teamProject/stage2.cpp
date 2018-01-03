@@ -296,20 +296,29 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 		_em->setMinion1(PointMake(550, 2360),2);
 
 	//카메라 고정 추가(기성아 부탁한다) 추가
-	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 
 	}
 
-	/*첫 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	else if(_firstWave && _em.size() == 0)
+	//첫 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	else if(_firstWave &&/* _em.size() == 0*/KEYMANAGER->isOnceKeyDown('P'))
 	{
 
-	카메라 다시 이동(기성아 부탁한다) 추가
-	currentRC = &rc1;
-	CAMERAMANAGER->setCameraAim(currentRC);
-	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-	}
+	//카메라 다시 이동(기성아 부탁한다) 추가
+		CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
+		//??
+		//_rc1 = RectMake(_mainPlayer->getX() - 30, _mainPlayer->getY() - 30, 100, 100);
+		//CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+		//_currentRC = &_rc1;
+		//CAMERAMANAGER->setCameraAim(_currentRC);
+		//CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
+		
 
+	//_currentRC = &_rc1;
+	//CAMERAMANAGER->setCameraAim(currentRC);
+	//CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	}
+	/*
 	두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
 	if(!_secondWave && 카메라가 특정지점이냐)
 	{
@@ -399,8 +408,8 @@ void stage2::initialization()								//변수들 new선언 및 init 해주는 함수 이후 n
 }
 void stage2::singletonInit()								//init에서 싱글톤들 세팅해주는 함수 이후 세팅은 여기서 하는걸로		  
 {
-	CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
-	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+	CAMERAMANAGER->backGroundSizeSetting(1152, 2593);
+	CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
 	CAMERAMANAGER->setCameraAim(&_rc1);
 
 	SOUNDMANAGER->play("스테이지2", 0.5f);
