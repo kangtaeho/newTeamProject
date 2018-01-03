@@ -30,15 +30,17 @@ void enemyManager::release()
 
 void enemyManager::update()
 {
+	if (KEYMANAGER->isOnceKeyDown(VK_F1))
+	{
+		_vEnemy.clear();
+	}
+
 	for (_viEnemy = _vEnemy.begin(); _viEnemy != _vEnemy.end(); ++_viEnemy)
 	{
 		(*_viEnemy)->update();
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_F1))
-	{
-		_vEnemy.clear();
-	}
+	
 
 	//_mini->update();
 

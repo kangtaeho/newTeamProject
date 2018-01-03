@@ -266,10 +266,10 @@ void stage2::update()
 
 		
 		_em->update();
-		
+
+		makeEnemy();
 
 	}
-	makeEnemy();
 	_rc1 = RectMakeCenter(_mainPlayer->getX() /*- 30*/, _mainPlayer->getY()+25/* - 30*/, 100, 100);
 	if (!_boatSwitchOn)
 	{
@@ -322,49 +322,51 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	//CAMERAMANAGER->setCameraAim(currentRC);
 	//CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	}
-	/*
-	두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
-	if(!_secondWave && 카메라가 특정지점이냐)
+	
+	//두번째 웨이브가 나왔냐 && 카메라가 특정 지점이냐
+	if (!_secondWave && _firstWave&&_em->getVMinion().size() == 0)
 	{
-	쫄따구1 정예몹 1마리 생성
-	_em -> setMinion2()
-	_em -> setPick()
+	//쫄따구1 정예몹 1마리 생성
+		_secondWave = true;
+		_em->setMinion2(PointMake(5700, 2350),2);
+			_em->setPick(PointMake(5700, 2350),2);
 	
 
-	카메라 고정 추가(이것도 부탁해) 추가
-	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+	//카메라 고정 추가(이것도 부탁해) 추가
+	//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
-	두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	else if(_secondWave && _em.size() == 0)
+	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	else if(_secondWave && _em->getVMinion().size() == 0)
 	{
 
-	카메라 다시 이동(기성아 부탁한다) 추가
-	currentRC = &rc1;
-	CAMERAMANAGER->setCameraAim(currentRC);
-	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	//카메라 다시 이동(기성아 부탁한다) 추가
+		CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
+		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+		//_currentRC = &_rc1;
+		CAMERAMANAGER->setCameraAim(_currentRC);
+		CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
 	}
 
-	if(!_thirdWave && 카메라가 특정지점이냐)
-	{
-	쫄따구1 정예몹 1마리 생성
-	_em -> setMinion2()
-	_em -> setPick()
+	//if (!_thirdWave && _secondWave&&_em->getVMinion().size() == 0)
+	//{
+	////쫄따구1 정예몹 1마리 생성
+	////	_em->setBoss(PointMake(4864, 70), 2);
 
 
-	카메라 고정 추가(이것도 부탁해) 추가
-	CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
-	}
+	////카메라 고정 추가(이것도 부탁해) 추가
+	////CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+	//}
 
-	세번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	else if(_thirdWave && _em.size() == 0)
-	{
+	//세번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	//else if(_thirdWave && _em.size() == 0)
+	//{
 
-	카메라 다시 이동(기성아 부탁한다) 추가
-	currentRC = &rc1;
-	CAMERAMANAGER->setCameraAim(currentRC);
-	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-	}*/
+	////카메라 다시 이동(기성아 부탁한다) 추가
+	//currentRC = &rc1;
+	//CAMERAMANAGER->setCameraAim(currentRC);
+	//CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	//}
 
 	
 }
@@ -436,7 +438,7 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 	//엘레베이터 rc 작은거 충돌용
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_elevatorRC).x, CAMERAMANAGER->CameraRelativePoint(_elevatorRC).y, 10, 10);
-	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
 
 
 	
@@ -452,7 +454,7 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
 
 	//쪽배 렉트 충돌용
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_boatRC).x, CAMERAMANAGER->CameraRelativePoint(_boatRC).y, _boat->getWidth(), _boat->getHeight());
+	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_boatRC).x, CAMERAMANAGER->CameraRelativePoint(_boatRC).y, _boat->getWidth(), _boat->getHeight());
 
 
 	_liver->aniRender(getMemDC(), 
@@ -463,8 +465,8 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	_mainPlayer->render();
 	_em->render();
 
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getRect()).x,
-		CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getRect()).y, 100, 100);
+	//RectangleMakeCenter(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getRect()).x,
+	//	CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getUnderBarRect()).y,100,100 );
 
 	/*Rectangle(getMemDC(), _mainPlayer->getUnderBarRect().left, _mainPlayer->getUnderBarRect().top, 
 		_mainPlayer->getUnderBarRect().right, _mainPlayer->getUnderBarRect().bottom);*/
