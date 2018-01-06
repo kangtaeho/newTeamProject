@@ -11,7 +11,9 @@
 #include <vector>
 
 
-
+class stage1;
+class stage2;
+class stage3;
 
 class enemyManager :public gameNode
 {
@@ -28,6 +30,11 @@ private:
 
 	//연결 할 플레이어 변수
 	character* _mainPlayer;
+
+	stage1* _stage1;
+	stage2* _stage2;
+	//stage3* _stage3;
+	int _stageNum;
 
 	//minion01* _mini;
 
@@ -58,6 +65,10 @@ public:
 
 	//플레이어와 연결할 통신함수(이후 수정)
 	void setCharacterMemoryAddressLink(character* mainPlayer) { _mainPlayer = mainPlayer; }
+	//스테이지 연결 통신함수
+	void setStage1MemoryAddressLink(stage1* stage1, int stageNum);
+	void setStage2MemoryAddressLink(stage2* stage2, int stageNum);
+	/*void setStage3MemoryAddressLink(stage3* stage3, int stageNum);*/
 
 	//플레이어와 적들의 통신을 위한 접근자
 	vector<enemy*> getVMinion() { return _vEnemy; }

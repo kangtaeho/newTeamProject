@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "enemyManager.h"
-
+#include "stage1.h"
+#include "stage2.h"
+#include "stage3.h"
 
 enemyManager::enemyManager()
 {
@@ -32,13 +34,17 @@ void enemyManager::update()
 {
 	if (KEYMANAGER->isOnceKeyDown(VK_F1))
 	{
-		_vEnemy.clear();
+		removeEnemy(0);
+		//_vEnemy.clear();
 	}
 
 	for (_viEnemy = _vEnemy.begin(); _viEnemy != _vEnemy.end(); ++_viEnemy)
 	{
 		
 		(*_viEnemy)->update();
+
+		
+		//else ++_viEnemy;
 	}
 
 	
@@ -116,8 +122,17 @@ void enemyManager::setBoss(POINT point,int stageCout)
 //Àû »ç¸Á½Ã Á¦°Å
 void enemyManager::removeEnemy(int arrNum)
 {
+	if (_stageNum == 1)
+	{
+		_stage1->dropMoney(PointMake(_vEnemy[arrNum]->getAbsoluteX(), _vEnemy[arrNum]->getAbsoluteY()), 20);
+	}
+	else if (_stageNum == 2)
+	{
+		_stage2->dropMoney(PointMake(_vEnemy[arrNum]->getAbsoluteX(), _vEnemy[arrNum]->getAbsoluteY()), 20);
+	}
 	SAFE_DELETE(_vEnemy[arrNum]);
 	_vEnemy.erase(_vEnemy.begin() + arrNum);
+
 }
 
 //µ· ½Àµæ½Ã Á¦°Å
@@ -165,3 +180,12 @@ void enemyManager::traceCharacter() {
 	}
 
 }
+void enemyManager::setStage1MemoryAddressLink(stage1* stage1, int stageNum){
+	_stage1 = stage1; _stageNum = stageNum;
+}
+void enemyManager::setStage2MemoryAddressLink(stage2* stage2, int stageNum){
+	_stage2 = stage2; _stageNum = stageNum;
+}
+//void enemyManager::setStage3MemoryAddressLink(stage3* stage3, int stageNum){
+//	_stage3 = stage3; _stageNum = stageNum;
+//}

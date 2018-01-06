@@ -189,6 +189,12 @@ public:
 
 	float getCenterX() { return  CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x + _imageEnemy->getFrameWidth() / 2; }
 	float getCenterY() { return  CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y + _imageEnemy->getFrameHeight() / 2; }
+
+	//적의 절대좌표 반환
+	float getAbsoluteX(){ return _x; }
+	float getAbsoluteY(){ return _y; }
+
+
 	void setPlayerCenterX(float playerCenterX) { _playerCenterX = playerCenterX; }
 	void setPlayerCenterY(float playerCenterY) { _playerCenterY = playerCenterY; }
 

@@ -414,6 +414,7 @@ void stage1::initialization()
 	_em->init();
 
 	_em->setCharacterMemoryAddressLink(_mainPlayer);
+	_em->setStage1MemoryAddressLink(this,1);
 }
 
 void stage1::singletonInit(){

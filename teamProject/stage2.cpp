@@ -269,6 +269,11 @@ void stage2::update()
 		
 		_em->update();
 
+		for (int i = 0; i < _vItem.size(); i++)
+		{
+			_vItem[i]->update();
+		}
+
 		makeEnemy();
 
 	}
@@ -417,6 +422,7 @@ void stage2::initialization()								//변수들 new선언 및 init 해주는 함수 이후 n
 	_em->init();
 
 	_em->setCharacterMemoryAddressLink(_mainPlayer);
+	_em->setStage2MemoryAddressLink(this,2);
 }
 void stage2::singletonInit()								//init에서 싱글톤들 세팅해주는 함수 이후 세팅은 여기서 하는걸로		  
 {
@@ -465,6 +471,10 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).y, _liverAni); 
 	
+	for (int i = 0; i < _vItem.size(); i++)
+	{
+		_vItem[i]->render();
+	}
 
 	_mainPlayer->render();
 	_em->render();
