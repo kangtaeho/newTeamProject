@@ -81,11 +81,11 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 		IMAGEMANAGER->findImage("유아이박스")->render(getMemDC(), 0, WINSIZEY - IMAGEMANAGER->findImage("유아이박스")->getHeight());
 
 		//IMAGEMANAGER->findImage("피박스")->render(getMemDC(), 400, 400);
-		/*for (int i = 0;
-			SCENEMANAGER->getCurrentScene()->getMainPlayer()->getHP(); i++)
+		for (int i = 0;
+			i < SCENEMANAGER->getCurrentScene()->getMainPlayer()->getHP(); i++)
 		{
-			IMAGEMANAGER->findImage("피박스")->render(getMemDC(), 400, 400);
-		}*/
+			IMAGEMANAGER->findImage("피박스")->render(getMemDC(), 100 + (30*i), 538);
+		}
 	}
 
 	//재호 : 이미지 출력 실험용
