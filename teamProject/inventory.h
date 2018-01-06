@@ -58,5 +58,6 @@ public:
 	int getQuickCount() { return _quickCount; }
 	int getQuickPotion() { return _quickPotion; }
 
+	void setCurrentMoney(int currentMoney){ _currentMoney += currentMoney; }
 };
 
