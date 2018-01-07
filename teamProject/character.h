@@ -90,6 +90,7 @@ private:
 	item* _item;
 	enemyManager* _EM;
 
+	bool _isHanded;			//손에 쥐었냐
 	bool _isItemCollision;	//투척 아이템과 충돌했냐
 	int _itemType;			//무슨 투척 아이템이냐(0 == 칼, 1 == 작은돌, 2 == 큰돌)
 public:
@@ -172,6 +173,8 @@ public:
 		_isItemCollision = isItemCollision;}	
 	bool getIsItemCollision(){ return _isItemCollision; } //접근자
 	
+	bool getIsHanded(){ return _isHanded; }
+
 	void setItemType(int itemType){ //무슨 투척 아이템이냐(0 == 칼, 1 == 작은돌, 2 == 큰돌)
 		_itemType = itemType;
 	}			
