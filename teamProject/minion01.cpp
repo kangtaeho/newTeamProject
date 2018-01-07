@@ -71,8 +71,10 @@ HRESULT minion01::init(POINT point, int currentStage)
 	_enemyKeyName[9] = "NONE";
 	_enemyKeyName[10] = "enemy07rightDownForever";
 	_enemyKeyName[11] = "enemy07leftDownForever";
+
 	_enemyKeyName[12] = "enemy07RightHittied";
 	_enemyKeyName[13] = "enemy07LeftHittied";
+
 	_enemyKeyName[14] = "enemy07RightTwoJab";
 	_enemyKeyName[15] = "enemy07LeftTwoJab";
 

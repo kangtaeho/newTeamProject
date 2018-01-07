@@ -76,12 +76,22 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  _enemyKeyName[9] = "enemy01LeftTwoJab";
 	  _enemyKeyName[10] = "enemy01rightDownForever";
 	  _enemyKeyName[11] = "enemy01leftDownForever";
-	  _enemyKeyName[12] = "enemy01LeftHittied";
-	  _enemyKeyName[13] = "enemy01RightHittied";
+
+	  _enemyKeyName[12] = "enemy01RightHittied";
+	  _enemyKeyName[13] = "enemy01LeftHittied";
+	  
 	  _enemyKeyName[14] = "enemy01RightTwoJab";
 	  _enemyKeyName[15] = "enemy01LeftTwoJab";
 
 
+
+	  //플레이어가 왼쪽에서 때릴때(플레이어 위치가 왼쪽)
+	  int leftHittied[] = { 46,47,48,47 };
+	  KEYANIMANAGER->addArrayFrameAnimation("enemy01LeftHittied", "enemy01", leftHittied, 4, 2, false);
+
+	  //플레이어가 오른쪽에서 때릴때(플레이어 위치가 오른쪽)
+	  int rightHittied[] = { 35, 34, 33, 34 };
+	  KEYANIMANAGER->addArrayFrameAnimation("enemy01RightHittied", "enemy01", rightHittied, 4, 2, false);
 
 
 	  //오른쪽 멈춤
@@ -124,14 +134,6 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  //오른쪽 경직당함
 	  int rightHit2[] = { 6,7 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemy01rightHit2", "enemy01", rightHit2, 2, 2, true);
-
-	  //플레이어가 왼쪽에서 때릴때(플레이어 위치가 왼쪽)
-	  int leftHittied[] = { 46,47,48,47 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemy01LeftHitted", "enemy01", leftHittied, 4, 2, false);
-
-	  //플레이어가 오른쪽에서 때릴때(플레이어 위치가 오른쪽)
-	  int rightHittied[] = { 35, 34, 33, 34 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemy01rightHitted", "enemy01", rightHittied, 4, 2, false);
 
 	  //왼쪽 경직당함
 	  int leftHit2[] = { 9,8 };
