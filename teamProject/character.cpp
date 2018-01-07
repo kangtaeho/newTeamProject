@@ -1890,6 +1890,9 @@ void character::addImage()
 	int KnifeLeftThrow[] = { 190,189 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeLeftThrow", "JIMMY", KnifeLeftThrow, 2, 4, true);
 
+	int LeftStoneThrow[] = { 183, 182 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftStoneThrow", "JIMMY",
+		LeftStoneThrow, 2, 4, false, MakeLeftStop, this);
 
 
 	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
