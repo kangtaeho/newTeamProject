@@ -420,8 +420,50 @@ void enemy::enemyMove() {
 				}
 
 				break;
+
+			case 3: // ¸÷ Á×À½
+				if (_alphaValue <= 0) {
+					_deleteEnemy = true;
+					break;
+				}
+
+				if (!_isRight&&_isLeft) {
+					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[10]);
+				}
+				else {
+					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[11]);
+				}
+
+				if (!_dieAniStart) _enemyMotion->start();
+				_dieAniStart = true;
+				_alphaValue -= 5;
+
+				break;
+
+			case 5:
+				_countHitted++;
+
+				if (_traceAngle > getDegree(90) && _traceAngle < getDegree(270)) {
+					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[13]);
+				}
+				else {
+					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[12]);
+				}
+
+				if (!_hittedAniStart) _enemyMotion->start();
+				_hittedAniStart = true;
+
+				if (_countHitted % 50 == 0) {
+					_hittedAniStart = false;
+					_isHitted = false;
+					_countHitted = 0;
+					_isTracePlayer = 2;
+				}
+
+				break;
+
 			}
-	
+
 		break;
 
 	}

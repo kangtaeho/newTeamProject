@@ -26,10 +26,6 @@ HRESULT boss00::init(POINT point, int currentStage)
 	_CollircEnemy = RectMakeCenter(CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x + _imageEnemy->getFrameWidth() / 2,
 		CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y + _imageEnemy->getFrameHeight() / 2, 75, 75); //충돌렉트
 
-
-	//_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight()); //기본렉트
-	//_CollircEnemy = RectMakeCenter(_x, _y, 50, 50); //충돌렉트
-	//_BossDirection = BOSSDIRECTION_RIGHT_STOP; //기본상태
 	_jump = 0; //점프력
 	_Gravity = 0.1f; //중력
 	_HP = 25; //체에력
@@ -37,6 +33,37 @@ HRESULT boss00::init(POINT point, int currentStage)
 
 	_rndDirX = rndDirection(RND->getInt(3));
 	_rndDirY = rndDirection(RND->getInt(3));
+
+	_traceAngle = 0;
+	_isTracePlayer = 0;
+	_rndAttackStyle = 0;
+	_alphaValue = 255;
+
+	_isItemCollion = false;				//아이템이랑 부딪혔냐
+	_isAttack = false;					//플레이어를 공격중이니?
+	_attackAniStart = false;			//어택 애니메이션 시작중
+	_hittedAniStart = false;			//맞는 애니메이션 시작중
+	_dieAniStart = false;
+
+	_isDead = false;
+	_isHitted = false;
+
+	_enemyKeyName[0] = "bossRightStop";
+	_enemyKeyName[1] = "bossLeftStop";
+	_enemyKeyName[2] = "--값 없음--";
+	_enemyKeyName[3] = "--값 없음--";
+	_enemyKeyName[4] = "bossRightMove";
+	_enemyKeyName[5] = "bossLeftMove";
+	_enemyKeyName[6] = "bossRightOneJab";
+	_enemyKeyName[7] = "bossLeftOneJab";
+	_enemyKeyName[8] = "NONE";
+	_enemyKeyName[9] = "NONE";
+	_enemyKeyName[10] = "bossDead";
+	_enemyKeyName[11] = "bossDead";
+	_enemyKeyName[12] = "bossrightHit2";
+	_enemyKeyName[13] = "bossleftHit2";
+	_enemyKeyName[14] = "bossRightTwoJab";
+	_enemyKeyName[15] = "bossLeftTwoJab";
 
 	int rightStop[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossRightStop", "boss00", rightStop, 1, 2, true);
@@ -46,14 +73,14 @@ HRESULT boss00::init(POINT point, int currentStage)
 	KEYANIMANAGER->addArrayFrameAnimation("bossRightMove", "boss00", rightMove, 4, 2, true);
 	int leftMove[] = { 15,14,13,14 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossLeftMove", "boss00", leftMove, 4, 2, true);
-	int rightOneJab[] = { 20,21 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossRightOneJab", "boss00", rightOneJab, 2, 2, true);
-	int leftOneJab[] = { 27,26 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossLeftOneJab", "boss00", leftOneJab, 2, 2, true);
-	int rightTwoJab[] = { 49,50,51 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossRightTwoJab", "boss00", rightTwoJab, 3, 2, true);
-	int leftTwoJab[] = { 62,61,60 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossLeftTwoJab", "boss00", leftTwoJab, 3, 2, true);
+	int rightOneJab[] = { 20,21,20 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossRightOneJab", "boss00", rightOneJab, 3, 2, false);
+	int leftOneJab[] = { 27,26,27 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossLeftOneJab", "boss00", leftOneJab, 3, 2, false);
+	int rightTwoJab[] = { 49,50,51,50 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossRightTwoJab", "boss00", rightTwoJab, 4, 2, false);
+	int leftTwoJab[] = { 62,61,60 ,61};
+	KEYANIMANAGER->addArrayFrameAnimation("bossLeftTwoJab", "boss00", leftTwoJab, 4, 2, false);
 	int rightHit[] = { 4 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossrightHit", "boss00", rightHit, 1, 2, true);
 	int leftHit[] = { 12 };
@@ -80,7 +107,7 @@ HRESULT boss00::init(POINT point, int currentStage)
 	KEYANIMANAGER->addArrayFrameAnimation("bossleftStandUp", "boss00", leftStandUp, 1, 6, true);
 	//쥬금
 	int bossDead[] = { 22,23,32,33,34,35,36,37 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossDead", "boss00", bossDead, 8, 1, true);
+	KEYANIMANAGER->addArrayFrameAnimation("bossDead", "boss00", bossDead, 8, 2, false);
 
 	int clime[] = { 54,55 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossClime", "boss00", clime, 2, 2, true);
@@ -90,36 +117,6 @@ HRESULT boss00::init(POINT point, int currentStage)
 
 	return S_OK;
 }
-
-//void boss00::release()
-//{
-//
-//
-//}
-
-//void boss00::update()
-//{
-//
-//	//_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight());
-//
-//	//KEYANIMANAGER->update();
-//}
-
-//void boss00::render()
-//{
-//	//에네미rc
-//	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x, CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y, 100, 100);
-//
-//
-//	/*IMAGEMANAGER->findImage("boss00")->frameRender(getMemDC(),
-//		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageBoss->getFrameWidth(), _imageBoss->getFrameHeight())).x,
-//		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageBoss->getFrameWidth(), _imageBoss->getFrameHeight())).y, 0, 0);*/
-//
-//	//_imageEnemy->aniRender(getMemDC(), _rcEnemy.left, _rcEnemy.top, _enemyMotion);
-//}
-
-
-
 
 //여기서부터 콜백함수
 void boss00::rightAttack(void * obj)
@@ -141,7 +138,6 @@ void boss00::leftJumpAttack(void * obj)
 {
 
 }
-
 
 void boss00::collision()
 {

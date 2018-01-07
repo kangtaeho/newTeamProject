@@ -393,7 +393,7 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	{
 		//쫄따구1 정예몹 1마리 생성
 		_thirdWave = true;
-		_em->setPick(PointMake(5700, 260), 2);
+		_em->setBoss(PointMake(5700, 260), 2);
 
 		_currentRC = &_rc1;
 		CAMERAMANAGER->setCameraAim(_currentRC);
