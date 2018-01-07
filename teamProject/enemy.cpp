@@ -248,21 +248,26 @@ void enemy::enemyMove() {
 				if (_isRight) {
 					if (_traceAngle > getDegree(180)) {
 						_y += 1.0f;
+						//if (_y >= 333) _y = 333;
 					}
 					else {
 						_y -= 1.0f;
+					//	if (_y <= 150) _y = 150;
 					}
 
 				}
 				else {
 					if (_traceAngle > getDegree(0)) {
 						_y += 1.0f;
+						//if (_y > 333) _y = 333;
 					}
 					else if (_traceAngle < getDegree(360)) {
 						_y -= 1.0f;
+						//if (_y <= 150) _y = 150;
 					}
 					else {
 						_y -= 1.0f;
+						//if (_y <= 150) _y = 150;
 					}
 				}
 
