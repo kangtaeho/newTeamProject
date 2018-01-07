@@ -14,7 +14,9 @@ stage2::stage2() //절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 �
 	_secondWave(false),
 	_thirdWave(false),
 	_boatSwitchOn(false),	//배랑 충돌했냐 ??
-	_elevatorSwitchOn(false)//엘베랑 충돌했냐??
+	_elevatorSwitchOn(false),//엘베랑 충돌했냐??
+	_finishBoat(false),
+	_finishElevator(false)
 {
 }
 
@@ -254,11 +256,12 @@ void stage2::update()
 		else if (_boatSwitchOn && _boatRC.right >= 5200)
 		{
 			_boatSwitchOn = false;
+			_finishBoat = true;
 		}
 
 
 		//엘베무브 
-		if (IntersectRect(&temp, &_rc1, &_elevatorRC))
+		if (IntersectRect(&temp, &_rc1, &_elevatorRC) && _em->getVMinion().size() == 0)
 		{
 			_elevatorSwitchOn = true;
 		}
@@ -266,6 +269,12 @@ void stage2::update()
 		if (_elevatorSwitchOn && _elevatorRC.top > 140)
 		{
 			elevatorMove();
+		}
+		else if (_elevatorSwitchOn && _elevatorRC.top <= 140)
+		{
+			_elevatorSwitchOn = false;
+			_finishElevator = true;
+
 		}
 
 		//강 프레임 도는 시간
@@ -285,7 +294,17 @@ void stage2::update()
 	_rc1 = RectMakeCenter(_mainPlayer->getX() - 30, _mainPlayer->getY() +25 , 100, 100);
 	_rc2 = RectMakeCenter(_mainPlayer->getX(), 2280, 100, 100);
 	_rc3 = RectMakeCenter(_mainPlayer->getX(), _mainPlayer->getY() + 25, 100, 100);
-	if (!_boatSwitchOn || !_elevatorSwitchOn)
+	if (!_boatSwitchOn && !_finishBoat)
+	{
+		_mainPlayer->update();
+		playerItemCollisioin();
+	}
+	if (!_elevatorSwitchOn && _finishBoat && !_finishElevator)
+	{
+		_mainPlayer->update();
+		playerItemCollisioin();
+	}
+	if (_finishElevator)
 	{
 		_mainPlayer->update();
 		playerItemCollisioin();
