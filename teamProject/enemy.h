@@ -237,6 +237,7 @@ public:
 
 	bool getDeleteEnemy() { return _deleteEnemy; }
 
+
 };
 
 //이제 콜백함수가 필요한 모션들이라던가 그런거 뭐해야될까영

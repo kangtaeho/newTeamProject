@@ -217,7 +217,7 @@ void enemy::enemyMove() {
 				_attackAniStart = true;
 
 				_countAttack++;
-				if (_countAttack % 30 == 0) {
+				if (_countAttack % 25 == 0) {
 					_attackAniStart = false;
 					_isAttack = false;
 					_countAttack = 0;
@@ -441,6 +441,13 @@ void enemy::enemyMove() {
 				break;
 
 			case 4:
+
+				if (!_isRight&&_isLeft) {
+					_traceAngle = getDegree(0);
+				}
+				else {
+					_traceAngle = getDegree(1);
+				}
 
 				break;
 

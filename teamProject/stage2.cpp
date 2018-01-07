@@ -502,8 +502,8 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 
 	//엘레베이터 rc 작은거 충돌용
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_elevatorRC).x, CAMERAMANAGER->CameraRelativePoint(_elevatorRC).y, 10, 10);
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
+	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_elevatorRC).x, CAMERAMANAGER->CameraRelativePoint(_elevatorRC).y, 10, 10);
+	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
 
 
 	
@@ -518,10 +518,6 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
 	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
 
-	//쪽배 렉트 충돌용
-	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_boatRC).x, CAMERAMANAGER->CameraRelativePoint(_boatRC).y, _boat->getWidth(), _boat->getHeight());
-
-
 	_liver->aniRender(getMemDC(), 
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).x,
 		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_liver->getX(), _liver->getY(), _liver->getFrameWidth(), _liver->getFrameHeight())).y, _liverAni); 
@@ -535,13 +531,7 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 	_mainPlayer->render();
 	_em->render();
-	//showFloatData(getMemDC(), "x 좌표 : %0.2f", _mainPlayer->getCenterX(), 800, 40);
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getRect()).x,
-		CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getUnderBarRect()).y,192,150 );
 
-	/*Rectangle(getMemDC(), _mainPlayer->getUnderBarRect().left, _mainPlayer->getUnderBarRect().top, 
-		_mainPlayer->getUnderBarRect().right, _mainPlayer->getUnderBarRect().bottom);*/
-	
 	//이 검은화면이 제밀 밑에 있도록 코드쳐주세요~~
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
 }
