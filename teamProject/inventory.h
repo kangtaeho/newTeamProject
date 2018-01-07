@@ -4,6 +4,8 @@
 #include "redPotion.h"
 #include "whitePotion.h"
 
+class character;
+
 class inventory:public gameNode
 {
 private:
@@ -35,6 +37,8 @@ private:
 	orangePotion* _OPotion;
 	whitePotion* _WPotion;
 
+	character* _mainPlayer;
+
 public:
 	inventory();
 	~inventory();
@@ -59,5 +63,7 @@ public:
 	int getQuickPotion() { return _quickPotion; }
 
 	void setCurrentMoney(int currentMoney){ _currentMoney += currentMoney; }
+
+	void setMainPlayerMemoryLink(character* mainPlayer){ _mainPlayer = mainPlayer; }
 };
 

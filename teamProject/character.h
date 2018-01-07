@@ -93,6 +93,7 @@ private:
 	char test[128];
 
 	item* _item;
+	item* _potion;
 	enemyManager* _EM;
 
 	bool _isHanded;			//손에 쥐었냐
@@ -173,6 +174,7 @@ public:
 		
 	//HP반환
 	int getHP(){ return _HP; }
+	void setHP(int HP) { _HP = HP; }
 
 	void setIsItemCollision(bool isItemCollision){ //설정자
 		_isItemCollision = isItemCollision;}	
@@ -184,9 +186,12 @@ public:
 		_itemType = itemType;
 	}			
 
+	void drinkPotion();
+
 	void setItem(item* item){ _item = item; }
 
 	void SetMemoryEnemyManager(enemyManager* EM) { _EM = EM; }
+	void setMemoryPotion(item* potion){ _potion = potion; }
 };
 
 

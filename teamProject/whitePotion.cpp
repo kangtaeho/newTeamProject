@@ -18,7 +18,7 @@ HRESULT whitePotion::init()
 	//타입 초기화
 	_itemType = POTION;
 	//물약 효과
-	_itemEffect = 5;
+	_itemEffect = 10;
 	//상점가격
 	_price = 96;
 	//갯수

@@ -531,6 +531,8 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 		_vItem[i]->render();
 	}
 
+	_inven->render();
+
 	_mainPlayer->render();
 	_em->render();
 	//showFloatData(getMemDC(), "x 좌표 : %0.2f", _mainPlayer->getCenterX(), 800, 40);

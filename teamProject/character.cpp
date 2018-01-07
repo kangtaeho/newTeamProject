@@ -33,6 +33,8 @@ HRESULT character::init()
 	_isItemCollision = false;
 	_isHanded = false;
 
+	_potion = NULL;
+
 	return S_OK;
 
 }
@@ -1459,7 +1461,7 @@ void character::update()
 	
 	KEYANIMANAGER->update();
 	UpdateRect();
-
+	drinkPotion();
 	sprintf(test, "%d", _isOn);
 
 	
@@ -1558,7 +1560,10 @@ void character::MakeLeftDrill(void* obj)
 void character::MakeRightLand(void* obj)
 {
 	character* C = (character*)obj;
-
+	if (C->getHP() <= 0)
+	{
+		C->setHP(10);
+	}
 	C->setState(CHARA_RIGHT_LAND);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightLand"));
 	C->getMotion()->start();
@@ -1566,7 +1571,10 @@ void character::MakeRightLand(void* obj)
 void character::MakeLeftLand(void* obj)
 {
 	character* C = (character*)obj;
-
+	if (C->getHP() <= 0)
+	{
+		C->setHP(10);
+	}
 	C->setState(CHARA_LEFT_LAND);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftLand"));
 	C->getMotion()->start();
@@ -1599,6 +1607,7 @@ void character::UpdateRect()
 void character::hurt(int damage, float x)
 {
 	_HP -= damage;
+
 	if (_state == CHARA_RIGHT_JUMP
 		|| _state == CHARA_RIGHT_MOVE_JUMP
 		|| _state == CHARA_RIGHT_BACKKICK
@@ -1628,7 +1637,7 @@ void character::hurt(int damage, float x)
 	{
 		if (_HP <= 0)
 		{
-			_HP -= damage;
+			//_HP -= damage;
 			_JP = CHARAJUMP;
 			_JP = _JP / 2;
 			_StartY = _y;
@@ -1974,4 +1983,17 @@ void character::addImage()
 
 
 	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+}
+
+void character::drinkPotion()
+{
+	if (KEYMANAGER->isOnceKeyDown('A'))
+	{
+		if (_potion == NULL) return;
+		if (_potion->getCount() <= 0) return;
+		if (_HP >= 10) return;
+		_HP += _potion->getItemEffect();
+		if (_HP >= 10) _HP = 10;
+		_potion->setCount(_potion->getCount()-1);
+	}
 }
