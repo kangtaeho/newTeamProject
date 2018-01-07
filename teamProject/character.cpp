@@ -54,7 +54,10 @@ void character::update()
 	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	//{
 	//}
-	
+	if (KEYMANAGER->isOnceKeyDown('6'))
+	{
+		hurt(1, WINSIZEX + 100);
+	}
 	
 
 	switch (_state)
@@ -656,6 +659,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -664,6 +668,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -732,6 +737,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -740,6 +746,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -817,6 +824,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -825,6 +833,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -928,6 +937,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -936,6 +946,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -1019,6 +1030,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -1027,6 +1039,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -1059,6 +1072,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -1067,6 +1081,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -1215,6 +1230,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -1223,6 +1239,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -1259,6 +1276,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -1267,6 +1285,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -1310,11 +1329,13 @@ void character::update()
 			{
 				_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 				_EM->getVMinion()[i]->setIsTracePlayer(5);
+				_EM->getVMinion()[i]->setIsHitted(true);
 			}
 			if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
 			{
 				_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 				_EM->getVMinion()[i]->setIsTracePlayer(5);
+				_EM->getVMinion()[i]->setIsHitted(true);
 			}
 		}
 		break;
@@ -1546,51 +1567,76 @@ void character::UpdateRect()
 }
 
 //상태값을 HIT로 바꾸고 damage만큼 데미지
-void character::hurt(int damage)
+void character::hurt(int damage, float x)
 {
 	_HP -= damage;
-	if (_state== CHARA_RIGHT_JUMP
-		||_state==CHARA_RIGHT_MOVE_JUMP
-		||_state==CHARA_RIGHT_BACKKICK
-		|| _state ==CHARA_RIGHT_DRILL
-		|| _state ==CHARA_RIGHT_JUMP_KICK
-		|| _state ==CHARA_RIGHT_MOVE_JUMP_KICK
-		|| _state ==CHARA_RIGHT_ATT)
+	if (_state == CHARA_RIGHT_JUMP
+		|| _state == CHARA_RIGHT_MOVE_JUMP
+		|| _state == CHARA_RIGHT_BACKKICK
+		|| _state == CHARA_RIGHT_DRILL
+		|| _state == CHARA_RIGHT_JUMP_KICK
+		|| _state == CHARA_RIGHT_MOVE_JUMP_KICK
+		|| _state == CHARA_RIGHT_ATT)
 	{
-			_state = CHARA_RIGHT_STRIKED;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightStriked");
-			_motion->start();
+		_state = CHARA_RIGHT_STRIKED;
+		_motion = KEYANIMANAGER->findAnimation("JIMMYRightStriked");
+		_motion->start();
 	}
-		//상대의 위치가 나보다 크다면(적이 오른쪽)
-	else if(_state == CHARA_LEFT_ATT
-			|| _state == CHARA_LEFT_JUMP_KICK
-			|| _state == CHARA_LEFT_DRILL
-			|| _state == CHARA_LEFT_MOVE_JUMP_KICK
-			|| _state == CHARA_LEFT_JUMP
-			|| _state == CHARA_LEFT_BACKKICK
-			|| _state == CHARA_LEFT_MOVE_JUMP)
-		{
-			_state = CHARA_LEFT_STRIKED;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStriked");
-			_motion->start();
-		}
+	//상대의 위치가 나보다 크다면(적이 오른쪽)
+	else if (_state == CHARA_LEFT_ATT
+		|| _state == CHARA_LEFT_JUMP_KICK
+		|| _state == CHARA_LEFT_DRILL
+		|| _state == CHARA_LEFT_MOVE_JUMP_KICK
+		|| _state == CHARA_LEFT_JUMP
+		|| _state == CHARA_LEFT_BACKKICK
+		|| _state == CHARA_LEFT_MOVE_JUMP)
+	{
+		_state = CHARA_LEFT_STRIKED;
+		_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStriked");
+		_motion->start();
+	}
 	else
 	{
-		if (_isRight)
+		if (_HP <= 0)
 		{
-			_state = CHARA_RIGHT_HIT;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightHit");
-			_motion->start();
+			_HP -= damage;
+			_JP = CHARAJUMP;
+			_JP = _JP / 2;
+			//상대의 위치가 나보다 작다면(적이 왼쪽)
+			if (x<_x)
+			{
+				_isRight = false;
+				_state = CHARA_LEFT_STRIKED;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStriked");
+				_motion->start();
+			}
+			//상대의 위치가 나보다 크다면(적이 오른쪽)
+			else if (_x<x)
+			{
+				_isRight = true;
+				_state = CHARA_RIGHT_STRIKED;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStriked");
+				_motion->start();
+			}
 		}
 		else
 		{
-			_state = CHARA_LEFT_HIT;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftHit");
-			_motion->start();
+			if (_isRight)
+			{
+				_state = CHARA_RIGHT_HIT;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightHit");
+				_motion->start();
+			}
+			else
+			{
+				_state = CHARA_LEFT_HIT;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftHit");
+				_motion->start();
+			}
 		}
 	}
+	
 }
-
 //상태값 STRIKED로 바뀌고 damage만큼 데미지 입으며
 //x값이 클때는 왼쪽 작을때는 오른쪽으로 쓰러짐
 void character::strike(int damage, float x)
@@ -1603,16 +1649,16 @@ void character::strike(int damage, float x)
 	if (x<_x)
 	{
 		_isRight = false;
-		_state = CHARA_RIGHT_STRIKED;
-		_motion = KEYANIMANAGER->findAnimation("JIMMYRightStriked");
+		_state = CHARA_LEFT_STRIKED;
+		_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStriked");
 		_motion->start();
 	}
 	//상대의 위치가 나보다 크다면(적이 오른쪽)
 	else if (_x<x)
 	{
 		_isRight = true;
-		_state = CHARA_LEFT_STRIKED;
-		_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStriked");
+		_state = CHARA_RIGHT_STRIKED;
+		_motion = KEYANIMANAGER->findAnimation("JIMMYRightStriked");
 		_motion->start();
 	}
 }
@@ -1813,11 +1859,11 @@ void character::addImage()
 
 	//오른쪽 피격
 	int RightHit[] = { 74 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHit", "JIMMY", RightHit, 1, 4, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightHit", "JIMMY", RightHit, 1, 3, false, MakeRightStop, this);
 
 	//왼쪽 피격
 	int LeftHit[] = { 181 };
-	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHit", "JIMMY", LeftHit, 1, 4, true);
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftHit", "JIMMY", LeftHit, 1, 3, false, MakeLeftStop, this);
 
 	//오른쪽 쓰러짐
 	int RightStriked[] = { 77 };
