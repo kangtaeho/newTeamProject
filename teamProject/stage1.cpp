@@ -282,6 +282,8 @@ void stage1::characterMovement() {
 	for (int i = 0; i < _vItem.size(); i++)
 	{
 		_vItem[i]->update();
+
+		ZORDERMANAGER->addZOrder(_vItem[i], _vItem[i]->getItemRC().bottom);
 	}
 	makeEnemy();
 	enemyItemCollision();
@@ -290,7 +292,7 @@ void stage1::characterMovement() {
 		_em->update();
 	
 	ZORDERMANAGER->addZOrder(_mainPlayer, _mainPlayer->getZOrderY());
-	ZORDERMANAGER->addZOrder(_stone, _stone->getItemRC().bottom);
+	//ZORDERMANAGER->addZOrder(_stone, _stone->getItemRC().bottom);
 	/*if (KEYMANAGER->isOnceKeyDown('P'))
 	{
 		SCENEMANAGER->changeScene("스테이지01");
@@ -364,6 +366,7 @@ void stage1::dropMoney(POINT point, int won){
 	tempMoney->init(point, won);
 
 	_vItem.push_back(tempMoney);
+	
 
 }
 void stage1::addImage(){
@@ -421,7 +424,6 @@ void stage1::singletonInit(){
 	SOUNDMANAGER->setCurrentBgmKey("스테이지1");
 
 	ZORDERMANAGER->addZOrder(_mainPlayer, _mainPlayer->getZOrderY());
-	ZORDERMANAGER->addZOrder(_stone, _stone->getItemRC().bottom);
 }
 
 void stage1::draw(){
@@ -495,6 +497,7 @@ void stage1::playerItemCollisioin(){
 			//돈타입이면 소지금 올려주고 
 			if (_vItem[i]->getItemType() == 2)
 			{
+				ZORDERMANAGER->allClear();
 				_inven->setCurrentMoney(_vItem[i]->getItemEffect());
 				SAFE_DELETE(_vItem[i]);
 				_vItem.erase(_vItem.begin() + i);

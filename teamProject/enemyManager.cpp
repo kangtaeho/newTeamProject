@@ -129,6 +129,7 @@ void enemyManager::removeEnemy(int arrNum)
 	if (_stageNum == 1)
 	{
 		_stage1->dropMoney(PointMake(_vEnemy[arrNum]->getAbsoluteX(), _vEnemy[arrNum]->getAbsoluteY()), 20);
+	
 	}
 	else if (_stageNum == 2)
 	{
