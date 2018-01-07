@@ -1985,6 +1985,7 @@ void character::drinkPotion()
 	{
 		if (_potion == NULL) return;
 		if (_potion->getCount() <= 0) return;
+		if (_HP >= 10) return;
 		_HP += _potion->getItemEffect();
 		if (_HP >= 10) _HP = 10;
 		_potion->setCount(_potion->getCount()-1);
