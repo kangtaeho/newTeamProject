@@ -50,6 +50,8 @@ enum CHARA {
 	CHARA_LEFT_ATT,
 };
 
+class item;
+
 class character : public gameNode
 {
 private:
@@ -76,6 +78,10 @@ private:
 
 	char test[128];
 
+	item* _item;
+
+	bool _isItemCollision;	//투척 아이템과 충돌했냐
+	int _itemType;			//무슨 투척 아이템이냐(0 == 칼, 1 == 작은돌, 2 == 큰돌)
 public:
 	character();
 	~character();
@@ -152,5 +158,16 @@ public:
 		
 	//HP반환
 	int getHP(){ return _HP; }
+
+	void setIsItemCollision(bool isItemCollision){ //설정자
+		_isItemCollision = isItemCollision;}	
+	bool getIsItemCollision(){ return _isItemCollision; } //접근자
+	
+	void setItemType(int itemType){ //무슨 투척 아이템이냐(0 == 칼, 1 == 작은돌, 2 == 큰돌)
+		_itemType = itemType;
+	}			
+
+	void setItem(item* item){ _item = item; }
 };
+
 
