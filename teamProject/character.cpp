@@ -1219,11 +1219,11 @@ void character::update()
 		//쓰러지는 함수있음
 		_y -= _JP;
 		_JP -= _gravity;
-		if (_isRight)
+		if (CHARA_RIGHT_STRIKED)
 		{
 			_x -= CHARASPEED;
 		}
-		else
+		else if (CHARA_LEFT_STRIKED)
 		{
 			_x += CHARASPEED;
 		}
