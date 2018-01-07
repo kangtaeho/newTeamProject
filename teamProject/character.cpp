@@ -1560,7 +1560,10 @@ void character::MakeLeftDrill(void* obj)
 void character::MakeRightLand(void* obj)
 {
 	character* C = (character*)obj;
-
+	if (C->getHP() <= 0)
+	{
+		C->setHP(10);
+	}
 	C->setState(CHARA_RIGHT_LAND);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYRightLand"));
 	C->getMotion()->start();
@@ -1568,7 +1571,10 @@ void character::MakeRightLand(void* obj)
 void character::MakeLeftLand(void* obj)
 {
 	character* C = (character*)obj;
-
+	if (C->getHP() <= 0)
+	{
+		C->setHP(10);
+	}
 	C->setState(CHARA_LEFT_LAND);
 	C->setMotion(KEYANIMANAGER->findAnimation("JIMMYLeftLand"));
 	C->getMotion()->start();
