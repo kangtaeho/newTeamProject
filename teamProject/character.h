@@ -53,6 +53,12 @@ enum CHARA {
 	CHARA_RIGHT_STONE_STOP,		//큰돌 작은돌 가만히 있는거 공용
 	CHARA_RIGHT_STONE_HAND,	//오른쪽 돌 드는거 (왼쪽 추가해야함)
 	CHARA_RIGHT_STONE_THROWING,	//오른쪽 돌 던지는거 (왼쪽 추가해야함)
+
+	CHARA_LEFT_KNIFE_HAND,	//왼쪽 칼 쥐는거 (오른쪽 추가해야함)
+	CHARA_LEFT_KNIFE_THROWING,	//왼쪽 칼 던지는거 (오른쪽 추가해야함)
+	CHARA_LEFT_STONE_STOP,		//큰돌 작은돌 가만히 있는거 공용
+	CHARA_LEFT_STONE_HAND,	//왼쪽 돌 드는거 (오른쪽 추가해야함)
+	CHARA_LEFT_STONE_THROWING	//왼쪽 돌 던지는거 (오른쪽 추가해야함)
 };
 
 class item;
@@ -83,7 +89,7 @@ private:
 	CHARA _state;//상태값
 	animation * _motion;//모션
 	image * _image;
-	image*_JIMMYKnife;
+	image* _JIMMYKnife;
 	char test[128];
 
 	item* _item;
