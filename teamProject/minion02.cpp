@@ -54,14 +54,16 @@ HRESULT minion02::init(POINT point, int currentStage)
 
 	_isHitted = false;
 	_hittedAniStart = false;
+	_isDead = false;
+	_deleteEnemy = false;				//에너미 백터 재거 할래?
 
-	_countAttack = 0;				//어택카운트
+	_countAttack = 0;					//어택카운트
 	_countHitted = 0;
 	_traceAngle = 0;
 
 	_jump = 0; //점프력
 	_Gravity = 0.1f; //중력
-	_HP = 10; //체에력
+	_HP = 100; //체에력
 	_speed = 3; //스퓌드
 
 	_enemyCenterX = 0;
@@ -69,6 +71,7 @@ HRESULT minion02::init(POINT point, int currentStage)
 	_playerCenterX = 0;
 	_playerCenterY = 0;
 	_rndAttackStyle = 0;
+	_alphaValue = 255;
 
 	_rndDirX = rndDirection(RND->getInt(3));
 	_rndDirY = rndDirection(RND->getInt(3));
@@ -126,9 +129,9 @@ HRESULT minion02::init(POINT point, int currentStage)
 	KEYANIMANAGER->addArrayFrameAnimation("enemy06leftStandUp", "enemy06", leftStandUp, 1, 2, true);
 	//다운 후 쥬금
 	int rightDownForever[] = { 17,60 };
-	KEYANIMANAGER->addArrayFrameAnimation("enemy06rightDownForever", "enemy06", rightDownForever, 2, 2, true);
+	KEYANIMANAGER->addArrayFrameAnimation("enemy06rightDownForever", "enemy06", rightDownForever, 2, 2, false);
 	int leftDownForever[] = { 30,60 };
-	KEYANIMANAGER->addArrayFrameAnimation("enemy06leftDownForever", "enemy06", leftDownForever, 2, 2, true);
+	KEYANIMANAGER->addArrayFrameAnimation("enemy06leftDownForever", "enemy06", leftDownForever, 2, 2, false);
 
 
 

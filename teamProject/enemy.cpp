@@ -50,9 +50,9 @@ void enemy::render()
 
 	//setColorRect(getMemDC(), _CollircEnemy, 200, 20, 20);
 
-	_imageEnemy->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x, 
+	_imageEnemy->aniAlphaRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x, 
 									   CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y-50, 
-									   _enemyMotion);
+									   _enemyMotion,_alphaValue);
 }
 
 
@@ -227,9 +227,11 @@ void enemy::enemyMove() {
 				break;
 
 			case 3: // ¸÷ Á×À½
-
-				if (_HP == 0)
-				{
+				if (_alphaValue <= 0) {
+					_deleteEnemy = true;
+					break;
+				} 
+				
 					if (!_isRight&&_isLeft) {
 						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[10]);
 					}
@@ -239,7 +241,7 @@ void enemy::enemyMove() {
 
 					if (!_dieAniStart) _enemyMotion->start();
 					_dieAniStart = true;
-				}
+					_alphaValue-=5;
 
 				break;
 

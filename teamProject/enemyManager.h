@@ -74,6 +74,7 @@ public:
 	vector<enemy*> getVMinion() { return _vEnemy; }
 
 	void traceCharacter();
+	void deadEnemy();
 
 };
 

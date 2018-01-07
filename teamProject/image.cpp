@@ -541,6 +541,9 @@ void image::alphaRender(HDC hdc, int destX, int destY, BYTE alpha)
 
 void image::alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha)
 {
+
+	_blendFunc.SourceConstantAlpha = alpha;
+
 	if (_trans)
 	{
 		BitBlt(_blendImage->hMemDC,
@@ -551,7 +554,8 @@ void image::alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int
 			destX,
 			destY, SRCCOPY);
 
-		GdiTransparentBlt(_blendImage->hMemDC,
+		GdiTransparentBlt(
+			_blendImage->hMemDC,
 			0,
 			0,
 			sourWidth,
@@ -564,23 +568,28 @@ void image::alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int
 			_transColor);
 
 		AlphaBlend(hdc,
-			destX, destY,
+			destX, 
+			destY,
 			sourWidth, 
 			sourHeight,
 
 			_blendImage->hMemDC,
 			0, 0,
-			sourWidth, sourHeight,
+			sourWidth, 
+			sourHeight,
 			_blendFunc);
 	}
 	else
 	{
 		AlphaBlend(hdc,
 			destX, destY,
-			sourWidth, sourHeight,
+			sourWidth, 
+			sourHeight,
 			_imageInfo->hMemDC,
-			sourX, sourY,
-			sourWidth, sourHeight,
+			sourX, 
+			sourY,
+			sourWidth, 
+			sourHeight,
 			_blendFunc);
 	}
 
@@ -596,11 +605,15 @@ void image::alphaFrameRender(HDC hdc, int destX, int destY, int currentFrameX, i
 
 	if (_trans)
 	{
-		BitBlt(_blendImage->hMemDC, 0, 0,
-			_imageInfo->frameWidth, _imageInfo->frameHeight,
-			hdc, destX, destY, SRCCOPY);
+		BitBlt(_blendImage->hMemDC, 
+			0, 0,
+			_imageInfo->frameWidth, 
+			_imageInfo->frameHeight,
+			hdc, 
+			destX, destY, SRCCOPY);
 
-		GdiTransparentBlt(_blendImage->hMemDC,
+		GdiTransparentBlt(
+			_blendImage->hMemDC,
 			0,
 			0,
 			_imageInfo->frameWidth,
@@ -615,10 +628,12 @@ void image::alphaFrameRender(HDC hdc, int destX, int destY, int currentFrameX, i
 
 		AlphaBlend(hdc,
 			destX, destY,
-			_imageInfo->frameWidth, _imageInfo->frameHeight,
+			_imageInfo->frameWidth, 
+			_imageInfo->frameHeight,
 			_blendImage->hMemDC,
 			0, 0,
-			_imageInfo->frameWidth, _imageInfo->frameHeight,
+			_imageInfo->frameWidth, 
+			_imageInfo->frameHeight,
 			_blendFunc);
 	}
 	else

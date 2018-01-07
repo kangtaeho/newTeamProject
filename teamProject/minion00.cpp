@@ -30,7 +30,7 @@ HRESULT minion00::init(POINT point, int currentStage)
 
 	  _jump = 0; //점프력
 	  _Gravity = 0.1f; //중력
-	  _HP = 10; //체에력
+	  _HP = 100; //체에력
 	  _speed = 3; //스퓌드
 	  _isItemCollion = false;
 	  _isGetItemEnemy = true;
@@ -39,9 +39,11 @@ HRESULT minion00::init(POINT point, int currentStage)
 
 	  _isAttack = false;				//적이 공격상태이니?
 	  _attackAniStart = false;			//어택 애니 시작중
-	  _dieAniStart = false;
-	  _isHitted = false;
-	  _hittedAniStart = false;
+	  _dieAniStart = false;				//죽는거 애니메이션 시작했냐?
+	  _isHitted = false;				//처맞고있니?
+	  _hittedAniStart = false;			//맞는 애니메이션 시작?
+	  _isDead = false;					//죽었니?
+	  _deleteEnemy = false;				//에너미 백터 재거 할래?
 	  
 	  _rndDirX = rndDirection(RND->getInt(3));
 	  _rndDirY = rndDirection(RND->getInt(3));
@@ -59,6 +61,7 @@ HRESULT minion00::init(POINT point, int currentStage)
 
 	  _traceAngle = 0;
 	  _rndAttackStyle = 0;
+	  _alphaValue = 255;
 
 	  _enemyKeyName[0] = "enemy01RightStop";
 	  _enemyKeyName[1] = "enemy01LeftStop";
@@ -169,10 +172,10 @@ HRESULT minion00::init(POINT point, int currentStage)
 
 	  //오른쪽 다운 후 쥬금
 	  int rightDownForever[] = { 17,82 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemy01rightDownForever", "enemy01", rightDownForever, 2, 4, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemy01rightDownForever", "enemy01", rightDownForever, 2, 2, false);
 	  //왼쪽 다운 후 쥬금
 	  int leftDownForever[] = { 30,82 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemy01leftDownForever", "enemy01", leftDownForever, 2, 4, true);
+	  KEYANIMANAGER->addArrayFrameAnimation("enemy01leftDownForever", "enemy01", leftDownForever, 2, 2, false);
 
 	  //오른쪽 돌 들음
 	  int rightStoneUp[] = { 67 };
@@ -212,133 +215,7 @@ HRESULT minion00::init(POINT point, int currentStage)
 	return S_OK;
 }
 
-
-
-//void minion00::release()
-//{
-//
-//
-//}
-//
-//void minion00::update()
-//{
-//	//카메라확인겸 움직이는지 확인중
-//	//_x = (_rcEnemy.left + _rcEnemy.right) / 2;
-//	//_y = (_rcEnemy.top + _rcEnemy.bottom) / 2;
-//
-//	//여기 모르겠음
-//	//if (_x < _backgroundsizex-300) _speed = 3;
-//	//if (_x > _backgroundsizex+300) _speed = -3;
-//
-//	//_x -= _speed;
-//	_rcEnemy = RectMakeCenter(_x, _y, 100, 100);
-//
-//	          //switch (_EnemyDirection)
-//	          //{
-//	          //case ENEMYDIRECTION_RIGHT_STOP:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_MOVE:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_RUN:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_ONE_JAB:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_TWO_JAB:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_JUMP_ATTACK:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_HIT:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_HIT2:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_CROUCH:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_CROUCH_HIT:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_CROUCH_THROW:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_DOWN:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_COMBO_DOWN:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_DOWN_STAND:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_DOWN_FOREVER:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_STONE_UP:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_STONE_UP_MOVE:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_STONE_THROW:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_KNIFE_UP:
-//	          //	break;
-//	          //case ENEMYDIRECTION_RIGHT_KNIFE_THROW:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_STOP:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_MOVE:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_RUN:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_ONE_JAB:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_TWO_JAB:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_JUMP_ATTACK:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_HIT:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_HIT2:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_CROUCH:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_CROUCH_HIT:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_CROUCH_THROW:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_DOWN:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFR_COMBO_DOWN:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_DOWN_STAND:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_DOWN_FOREVER:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_STONE_UP:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_STONE_UP_MOVE:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_STONE_THROW:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_KNIFE_UP:
-//	          //	break;
-//	          //case ENEMYDIRECTION_LEFT_KNIFE_THROW:
-//	          //	break;
-//	          //case ENEMYDIRECTION_Clime:
-//	          //	break;
-//	          //default:
-//	          //	break;
-//	          //}
-//	_rcEnemy = RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight());
-//
-//	KEYANIMANAGER->update();
-//}
-//
-//void minion00::render()
-//{
-//	//에네미rc
-//	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x, CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y, 100, 100);
-//
-//	//되는지 실험중
-//
-//	IMAGEMANAGER->findImage("enemy01")->frameRender(getMemDC(),
-//		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight())).x,
-//		CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight())).y, 0, 0);
-//
-//	//_imageEnemy->aniRender(getMemDC(), _rcEnemy.left, _rcEnemy.top, _enemyMotion);
-//}
-
 void minion00::collision()
 {
+
 }

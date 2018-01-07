@@ -46,12 +46,13 @@ void enemyManager::update()
 	
 
 	//_mini->update();
-
+	
+	deadEnemy();
 	traceCharacter();
 
 	if (KEYMANAGER->isOnceKeyDown('M'))
 	{
-		_vEnemy[0]->setHP(_vEnemy[0]->getHP() - 1);
+		_vEnemy[0]->setHP(_vEnemy[0]->getHP() - 10);
 	}
 
 }
@@ -65,8 +66,7 @@ void enemyManager::render()
 	if (_vEnemy.size() == 0) return;
 	//showFloatData(getMemDC(), "x 좌표 : %0.2f", _mini->getX(), 800, 20);
 	//
-	showIntData(getMemDC(), "카운트 증가하고는 있냐? : %d", _vEnemy[0]->getCountHitted(), 800, 40);
-	showIntData(getMemDC(), "카운트 증가하고는 있냐? : %d", _vEnemy[0]->getIsTracePlayer(), 800, 60);
+	showIntData(getMemDC(), "카운트 증가하고는 있냐? : %d", _vEnemy[0]->getHP(), 800, 40);
 	///_mini->render();
 
 }
@@ -148,6 +148,7 @@ void enemyManager::traceCharacter() {
 
 	for (int i = 0; i < _vEnemy.size(); ++i) {
 		if (_vEnemy.size() == 0) return;
+		if (_vEnemy[i]->getIsDead()) return;
 
 		if (getDistance(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()) < 300) {
 
@@ -199,3 +200,23 @@ void enemyManager::setStage2MemoryAddressLink(stage2* stage2, int stageNum){
 //void enemyManager::setStage3MemoryAddressLink(stage3* stage3, int stageNum){
 //	_stage3 = stage3; _stageNum = stageNum;
 //}
+
+
+void enemyManager::deadEnemy() {
+	for (int i = 0; i < _vEnemy.size(); ++i) {
+		if (_vEnemy.size() == 0) return;
+
+		if (_vEnemy[i]->getHP() < 0) {
+
+			if (_vEnemy[i]->getDeleteEnemy()) {
+				removeEnemy(i);
+				break;
+			}
+
+			_vEnemy[i]->setIsTracePlayer(3);
+			_vEnemy[i]->setIsDead(true);
+
+			break;
+		}
+	}
+}
