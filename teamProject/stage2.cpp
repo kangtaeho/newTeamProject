@@ -285,6 +285,7 @@ void stage2::update()
 	if (!_boatSwitchOn)
 	{
 		_mainPlayer->update();
+		playerItemCollisioin();
 	}
 }
 
@@ -525,4 +526,29 @@ void stage2::elevatorMove()
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	_currentRC = &_rc1;
 	CAMERAMANAGER->setCameraAim(_currentRC);
+}
+void stage2::playerItemCollisioin(){
+	//아이템이 없으면 확인할 필요없다.
+	if (_vItem.size() == 0) return;
+
+	for (int i = 0; i < _vItem.size(); /*++i*/)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_mainPlayer->getRect(), &_vItem[i]->getAbsoluteRC()))
+		{
+			//돈타입이면 소지금 올려주고 
+			if (_vItem[i]->getItemType() == 2)
+			{
+				_inven->setCurrentMoney(_vItem[i]->getItemEffect());
+				SAFE_DELETE(_vItem[i]);
+				_vItem.erase(_vItem.begin() + i);
+				continue;
+			}
+			
+			++i;
+		}
+		else ++i;
+
+	}
+
 }
