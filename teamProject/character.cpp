@@ -83,8 +83,8 @@ void character::update()
 			}
 			else if (_state == CHARA_RIGHT_STONE_STOP)
 			{
-				//큰돌
-				if (_itemType == 2)
+				//큰돌과 작은돌
+				if (_itemType == 2 || _itemType == 0)
 				{
 					_state = CHARA_RIGHT_STONE_HAND;
 					_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneMove");
@@ -122,19 +122,35 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
-			_isRight = false;
-			_state = CHARA_LEFT_MOVE;
-			_motion->stop();
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMove");
-			_motion->start();
+			if (_state == CHARA_RIGHT_STONE_STOP)//또는 왼쪽일때
+			{
+				
+			}
+			else
+			{
+				_isRight = false;
+				_state = CHARA_LEFT_MOVE;
+				_motion->stop();
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMove");
+				_motion->start();
+			}
 		}
 		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
 		{
-			_isRight = true;
-			_state = CHARA_RIGHT_MOVE;
-			_motion->stop();
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightMove");
-			_motion->start();
+			if (_state == CHARA_RIGHT_STONE_STOP)//또는 왼쪽일때
+			{
+				_state = CHARA_RIGHT_STONE_HAND;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneMove");
+				_motion->start();
+			}
+			else
+			{
+				_isRight = true;
+				_state = CHARA_RIGHT_MOVE;
+				_motion->stop();
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightMove");
+				_motion->start();
+			}
 		}
 		if (KEYMANAGER->isOnceKeyDown('X'))//주먹
 		{
@@ -145,8 +161,11 @@ void character::update()
 					//작은 돌
 					if (_itemType == 0)
 					{
-						_state = CHARA_RIGHT_STONE_HAND;
-						_item->setY(_rc.top -20);
+						_state = CHARA_RIGHT_STONE_STOP;
+						_item->setX(_x);
+						_item->setY(_rc.top +5);
+						_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneStop");
+						_motion->start();
 					}
 					//칼
 					else if (_itemType == 1)
@@ -273,6 +292,8 @@ void character::update()
 			  //}
 			  //else
 			  _y -= _Zmove;
+
+			  //돌의 y축 수정
 			  if (_state == CHARA_RIGHT_STONE_HAND)
 			  {
 				  _item->setY(_item->getY() - _Zmove);
@@ -297,6 +318,8 @@ void character::update()
 			  //}
 			  //else
 			  _y += _Zmove;
+
+			  //돌의 y축 수정
 			  if (_state == CHARA_RIGHT_STONE_HAND)
 			  {
 				  _item->setY(_item->getY() + _Zmove);
@@ -317,6 +340,10 @@ void character::update()
 			
 			// else
 		  _x += CHARASPEED;
+		  if (_state == CHARA_RIGHT_STONE_HAND)
+		  {
+			  _item->setX(_x);
+		  }
 		 }
 
 		 //if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) || KEYMANAGER->isOnceKeyUp(VK_DOWN) || KEYMANAGER->isOnceKeyUp(VK_UP))
