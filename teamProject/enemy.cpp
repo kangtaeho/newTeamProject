@@ -250,26 +250,34 @@ void enemy::enemyMove() {
 				if (_isRight) {
 					if (_traceAngle > getDegree(180)) {
 						_y += 1.0f;
-						//if (_y >= 333) _y = 333;
+						if (_y >= 480) _y = 480;
 					}
+					/*
+						if (_y > 482) {
+					_rndDirY = -1;
+				}
+				else if (_y < 337) {
+					_rndDirY = 1;
+
+				}*/
 					else {
 						_y -= 1.0f;
-					//	if (_y <= 150) _y = 150;
+						if (_y <= 337) _y = 337;
 					}
 
 				}
 				else {
 					if (_traceAngle > getDegree(0)) {
 						_y += 1.0f;
-						//if (_y > 333) _y = 333;
+						if (_y >= 480) _y = 480;
 					}
 					else if (_traceAngle < getDegree(360)) {
 						_y -= 1.0f;
-						//if (_y <= 150) _y = 150;
+						if (_y <= 337) _y = 337;
 					}
 					else {
 						_y -= 1.0f;
-						//if (_y <= 150) _y = 150;
+						if (_y <= 337) _y = 337;
 					}
 				}
 
