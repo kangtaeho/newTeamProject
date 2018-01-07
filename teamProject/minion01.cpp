@@ -42,6 +42,9 @@ HRESULT minion01::init(POINT point, int currentStage)
 	_isItemCollion = false;
 	_isGetItemEnemy = false;
 
+	_isHitted = false;
+	_hittedAniStart = false;
+
 
 
 	_enemyCenterX = 0;
@@ -62,7 +65,15 @@ HRESULT minion01::init(POINT point, int currentStage)
 	_enemyKeyName[9] = "NONE";
 	_enemyKeyName[10] = "enemy07rightDownForever";
 	_enemyKeyName[11] = "enemy07leftDownForever";
+	_enemyKeyName[12] = "enemy07RightHittied";
+	_enemyKeyName[13] = "enemy07LeftHittied";
 
+
+
+	int rightHittied[] = { 39,38,37,38,};
+	KEYANIMANAGER->addArrayFrameAnimation("enemy07RightHittied", "enemy07", rightHittied, 4, 2, false);
+	int leftHittied[] = { 42,43,44,43};
+	KEYANIMANAGER->addArrayFrameAnimation("enemy07LeftHittied", "enemy07", leftHittied, 4, 2, false);
 
 	int rightStop[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemy07RightStop", "enemy07", rightStop, 1, 2, true);

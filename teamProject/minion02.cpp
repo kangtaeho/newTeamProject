@@ -38,6 +38,8 @@ HRESULT minion02::init(POINT point, int currentStage)
 	_enemyKeyName[9] = "NONE";
 	_enemyKeyName[10] = "enemy06rightDownForever";
 	_enemyKeyName[11] = "enemy06leftDownForever";
+	_enemyKeyName[12] = "enemy06rightHit2";
+	_enemyKeyName[13] = "enemy06leftHit2";
 
 
 	_isItemCollion = false;
@@ -47,6 +49,9 @@ HRESULT minion02::init(POINT point, int currentStage)
 	_isAttack = false;					//적이 공격상태이니?
 	_attackAniStart = false;			//어택 애니 시작중
 	_dieAniStart = false;
+
+	_isHitted = false;
+	_hittedAniStart = false;
 
 
 

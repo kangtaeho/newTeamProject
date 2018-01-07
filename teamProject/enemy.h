@@ -130,12 +130,13 @@ protected:
 	animation* _bossMotion;
 
 
-	string _enemyKeyName[12];
+	string _enemyKeyName[14];
 
 	bool _isItemCollion;			//아이템이랑 부딪혔냐
 	bool _isGetItemEnemy;			//아이탬을 잡을수 있는 에너미니?
 	bool _isAttack;					//플레이어를 공격중이니?
 	bool _attackAniStart;			//어택 애니메이션 시작중
+	bool _hittedAniStart;			//맞는 애니메이션 시작중
 	bool _dieAniStart;
 	
 	int _isTracePlayer;				//플레이어를 만났니?
@@ -144,7 +145,11 @@ protected:
 	bool _isLeft = true;					//왼쪽입니까?
 	bool _isRight = true;
 
-	int _countAttack=0;				//어택카운트
+	bool _isHitted;				//플레이어 한테 맞았습니까?
+
+	int _countAttack = 0;				//어택카운트
+	int _countHitted = 0;
+
 	stage1* _stage1;
 
 public:
@@ -207,6 +212,9 @@ public:
 
 	void setIsAttack(bool isAttack) { _isAttack = isAttack; }
 	bool getIsAttack() { return _isAttack; }
+
+	void setIsHitted(bool isHitted) { _isHitted = isHitted; }
+	bool getIsHitted() { return _isHitted; }
 
 
 	bool getIsRight() { return _isRight; }
