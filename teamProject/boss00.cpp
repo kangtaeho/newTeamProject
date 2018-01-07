@@ -14,20 +14,6 @@ boss00::~boss00()
 HRESULT boss00::init(POINT point, int currentStage)
 {
 
-	/*
-	image* _imageEnemy;				//이미지
-	RECT _rcEnemy;				//렉트
-	RECT _CollircEnemy;			//충돌렉트
-	int _HP;					//체력
-	int _maxHP;					//최대체력
-	int _speed;					//속도
-	int _x, _y;					//xy값
-	float _ZMove;				//z무브
-	float _jump, _Gravity;		//점프,중력
-
-	animation* _enemyMotion;
-	*/
-
 	_imageEnemy = IMAGEMANAGER->addFrameImage("boss00", "./images/boss00.bmp", 0, 0, 3072, 1170, 16, 6, true, RGB(255, 0, 255));
 	_x = point.x;
 	_y = point.y;
