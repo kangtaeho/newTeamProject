@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "character.h"
 #include "item.h"
+#include "enemyManager.h"
+
 
 character::character()
 {
@@ -52,6 +54,7 @@ void character::update()
 	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	//{
 	//}
+	
 	
 
 	switch (_state)
@@ -430,6 +433,25 @@ void character::update()
 	case CHARA_RIGHT_PUNCH_ONE:
 	case CHARA_LEFT_PUNCH_ONE:
 		//펀치중 공격전환
+		for (int i = 0; i <_EM->getVMinion().size(); ++i)
+		{
+			RECT temp;
+			if (_isRight)
+			{
+				if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+			else {
+				if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+		}
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
 			if (_isRight)
@@ -1090,8 +1112,11 @@ void character::render()
 	*/
 	//Rectangle(getMemDC(), _rc.left,  _rc.top,  _rc.right, _rc.bottom);
 
-
 	setColorRect(getMemDC(), _colliRect, 30, 40, 150);
+	Rectangle(getMemDC(), _rightATK.left, _rightATK.top, _rightATK.right, _rightATK.bottom);
+	Rectangle(getMemDC(), _leftATK.left, _leftATK.top, _leftATK.right, _leftATK.bottom);
+
+
 
 	char str[256];
 	wsprintf(str, "camX : %d, camY : %d", CAMERAMANAGER->CameraRelativePoint(_rc).x, CAMERAMANAGER->CameraRelativePoint(_rc).y);
@@ -1202,6 +1227,8 @@ void character::UpdateRect()
 {
 	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 	_colliRect = RectMakeCenter(_x, _y, 54, 120);
+	_rightATK = RectMakeCenter(CAMERAMANAGER->CameraRelativePoint(_rc).x + 137, CAMERAMANAGER->CameraRelativePoint(_rc).y+80, 50, 50);
+	_leftATK = RectMakeCenter(CAMERAMANAGER->CameraRelativePoint(_rc).x + 63, CAMERAMANAGER->CameraRelativePoint(_rc).y+80, 50, 50);
 }
 
 //상태값을 HIT로 바꾸고 damage만큼 데미지
