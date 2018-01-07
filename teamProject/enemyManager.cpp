@@ -16,11 +16,6 @@ enemyManager::~enemyManager()
 HRESULT enemyManager::init()
 {
 
-	/*POINT value;
-	value.x = 2400;
-	value.y = 400;
-	_mini = new minion01;
-	_mini->init(value);*/
 
 	return S_OK;
 }
@@ -67,14 +62,13 @@ void enemyManager::render()
 		(*_viEnemy)->render();
 	}
 
+	if (_vEnemy.size() == 0) return;
 	//showFloatData(getMemDC(), "x 좌표 : %0.2f", _mini->getX(), 800, 20);
 	//
-	//showIntData(getMemDC(), "카운트 증가하고는 있냐? : %d", _mini->getCountMove(), 800, 40);
-	
+	showIntData(getMemDC(), "카운트 증가하고는 있냐? : %d", _vEnemy[0]->getCountHitted(), 800, 40);
+	showIntData(getMemDC(), "카운트 증가하고는 있냐? : %d", _vEnemy[0]->getIsTracePlayer(), 800, 60);
 	///_mini->render();
 
-
-//showFloatData(getMemDC(), "x 좌표 : %0.2f", _mainPlayer->getCenterX(), 800, 40);
 }
 
 //쫄따구
@@ -155,11 +149,10 @@ void enemyManager::traceCharacter() {
 	for (int i = 0; i < _vEnemy.size(); ++i) {
 		if (_vEnemy.size() == 0) return;
 
-		if (_vEnemy[i]->getHP() < 0) _vEnemy[i]->setIsTracePlayer(3);
-
 		if (getDistance(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()) < 300) {
 
 			if (_vEnemy[i]->getIsAttack()) return;			//적이 공격상태이면 추적 금지
+			if (_vEnemy[i]->getIsHitted()) return;
 
 			if (getDistance(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()) < 80) {
 

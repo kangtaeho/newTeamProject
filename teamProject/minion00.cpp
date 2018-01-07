@@ -54,6 +54,9 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  _playerCenterX = 0;
 	  _playerCenterY = 0;
 
+	  _countAttack = 0;
+	  _countHitted = 0;
+
 	  _traceAngle = 0;
 
 	  _enemyKeyName[0] = "enemy01RightStop";

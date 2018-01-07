@@ -537,6 +537,8 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
+					break;
 				}
 			}
 			else
@@ -545,6 +547,8 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
+					break;
 				}
 			}
 		}

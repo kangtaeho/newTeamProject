@@ -53,6 +53,9 @@ HRESULT minion02::init(POINT point, int currentStage)
 	_isHitted = false;
 	_hittedAniStart = false;
 
+	_countAttack = 0;				//어택카운트
+	_countHitted = 0;
+
 
 
 	_traceAngle = 0;
