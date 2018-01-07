@@ -155,6 +155,16 @@ void character::update()
 		if (KEYMANAGER->isOnceKeyDown('X'))//ÁÖ¸Ô
 		{
 			//¾ÆÀÌÅÛ Ãæµ¹ ¤·¤·
+			if (_state == CHARA_RIGHT_STONE_STOP)
+			{
+				_state = CHARA_RIGHT_STONE_THROWING;
+				_item->setState(true);
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneThrow");
+				_motion->start();
+				_isHanded = false;
+			}
+			else
+			{
 				if (_isItemCollision == true)
 				{
 					_isHanded = true;
@@ -163,23 +173,23 @@ void character::update()
 					{
 						_state = CHARA_RIGHT_STONE_STOP;
 						_item->setX(_x);
-						_item->setY(_rc.top +5);
+						_item->setY(_rc.top + 5);
 						_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneStop");
 						_motion->start();
 					}
 					//Ä®
 					else if (_itemType == 1)
 					{
-						
+
 					}
 					//Å« µ¹
 					else if (_itemType == 2)
 					{
 						_state = CHARA_RIGHT_STONE_STOP;
 						_item->setX(_x);
-						_item->setY(_rc.top -20);
+						_item->setY(_rc.top - 20);
 						_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneStop");
-						_motion ->start();
+						_motion->start();
 					}
 				}
 				//¾ÆÀÌÅÛ Ãæµ¹ ¤¤¤¤
@@ -201,6 +211,7 @@ void character::update()
 
 					SOUNDMANAGER->play("Èî(¶§¸±¶§)", 1.0);
 				}
+			}
 		}
 		if (KEYMANAGER->isOnceKeyDown('C'))//Å±
 		{
@@ -1264,6 +1275,7 @@ void character::update()
 			}
 		}
 		break;
+		
 	default:
 		break;
 	}
@@ -1793,15 +1805,14 @@ void character::addImage()
 	//µ¹ µé°í ¿òÁ÷ÀÓ
 	int RightStoneMove[] = { 70, 71 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightStoneMove", "JIMMY",
-		RightStoneMove, 2, 1, true);
+		RightStoneMove, 2, 4, true);
 	//¿ÞÂÊ Ä® ÅõÃ´(¹Ì±¸Çö)
 
-	//¿À¸¥ÂÊ ÀÛÀº µ¹ ÅõÃ´
+	//¿À¸¥ÂÊ µ¹ ÅõÃ´
+	int RightStoneThrow[] = { 72, 73 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightStoneThrow", "JIMMY",
+		RightStoneThrow, 2, 4, false, MakeRightStop, this);
 
-	//¿ÞÂÊ ÀÛÀº µ¹ ÅõÃ´(¹Ì±¸Çö)
-
-	//¿À¸¥ÂÊ Å« µ¹ ÅõÃ´
-
-	//¿ÞÂÊ Å« µ¹ ÅõÃ´(¹Ì±¸Çö)
+	//¿ÞÂÊ µ¹ ÅõÃ´(¹Ì±¸Çö)
 	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
 }
