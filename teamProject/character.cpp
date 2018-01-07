@@ -1818,6 +1818,43 @@ void character::addImage()
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightStoneThrow", "JIMMY",
 		RightStoneThrow, 2, 4, false, MakeRightStop, this);
 
-	//¿ÞÂÊ µ¹ ÅõÃ´(¹Ì±¸Çö)
+	// ¿ÞÂÊ ÀÛÀº µ¹
+	int LeftStoneStop[] = { 185 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftStoneStop", "JIMMY",
+		RightStoneStop, 1, 4, true);
+
+	int LeftStoneMove[] = { 185, 184 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftStoneMove", "JIMMY",
+		LeftStoneMove, 2, 4, true);
+
+	//³ªÀÌÇÁ
+	_JIMMYKnife = IMAGEMANAGER->addFrameImage("JIMMYKNIFE", "./images/JIMMY.bmp", 1536, 150, 8, 1, true, RGB(255, 0, 255));
+
+	int KnifeRightStop[] = { 0 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeRightStop", "JIMMYKNIFE", KnifeRightStop, 1, 6, true);
+
+	int KnifeLeftStop[] = { 7 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeLeftStop", "JIMMYKNIFE", KnifeLeftStop, 1, 6, true);
+
+	int KnifeRightMove[] = { 0,1,2 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeRightMove", "JIMMYKNIFE", KnifeRightMove, 3, 4, true);
+
+	int KnifeLeftMove[] = { 7,6,5 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeLeftMove", "JIMMYKNIFE", KnifeLeftMove, 3, 4, true);
+
+	int KnifeRightJump[] = { 3 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeRightJump", "JIMMYKNIFE", KnifeRightJump, 1, 6, true);
+
+	int KnifeLeftJump[] = { 4 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeLeftJump", "JIMMYKNIFE", KnifeLeftJump, 1, 6, true);
+
+	int KnifeRightThrow[] = { 65,66 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeRightThrow", "JIMMY", KnifeRightThrow, 2, 4, true);
+
+	int KnifeLeftThrow[] = { 190,189 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeLeftThrow", "JIMMY", KnifeLeftThrow, 2, 4, true);
+
+
+
 	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
 }
