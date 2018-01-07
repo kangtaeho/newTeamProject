@@ -287,8 +287,9 @@ void stage1::characterMovement() {
 	enemyItemCollision();
 	playerItemCollisioin();
 
-	_em->update();
-	ZORDERMANAGER->addZOrder(_mainPlayer, _mainPlayer->getRect().bottom);
+		_em->update();
+	
+	ZORDERMANAGER->addZOrder(_mainPlayer, _mainPlayer->getZOrderY());
 	ZORDERMANAGER->addZOrder(_stone, _stone->getItemRC().bottom);
 	/*if (KEYMANAGER->isOnceKeyDown('P'))
 	{
@@ -419,7 +420,7 @@ void stage1::singletonInit(){
 	SOUNDMANAGER->play("스테이지1", 0.5f);
 	SOUNDMANAGER->setCurrentBgmKey("스테이지1");
 
-	ZORDERMANAGER->addZOrder(_mainPlayer, _mainPlayer->getRect().bottom);
+	ZORDERMANAGER->addZOrder(_mainPlayer, _mainPlayer->getZOrderY());
 	ZORDERMANAGER->addZOrder(_stone, _stone->getItemRC().bottom);
 }
 

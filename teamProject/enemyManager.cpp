@@ -30,8 +30,10 @@ void enemyManager::update()
 	
 	for (_viEnemy = _vEnemy.begin(); _viEnemy != _vEnemy.end(); /*++_viEnemy*/)
 	{
-		
-		(*_viEnemy)->update();
+		if (KEYMANAGER->isToggleKey('7'))
+		{
+			(*_viEnemy)->update();
+		}
 		ZORDERMANAGER->addZOrder(*_viEnemy, (*_viEnemy)->getCollircEnemy().bottom);
 		if (KEYMANAGER->isOnceKeyDown(VK_F1))
 		{

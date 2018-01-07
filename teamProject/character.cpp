@@ -29,7 +29,7 @@ HRESULT character::init()
 
 	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 	_colliRect = RectMakeCenter(_x, _y, 54, 120);
-
+	_zOrderY = _rc.bottom;
 	_isItemCollision = false;
 	_isHanded = false;
 
@@ -109,12 +109,14 @@ void character::update()
 					_motion->start();
 				}
 			}
+			_zOrderY = _rc.bottom;
 		}
 		if (KEYMANAGER->isOnceKeyDown('Z'))//점프
 		{
 			if (_stageCount != 2)
 			{
 				_StartY = _y;
+				_zOrderY = _StartY + _image->getFrameHeight();
 			}
 			_JP = CHARASPEED;
 			if (_state == CHARA_RIGHT_STOP)
@@ -324,6 +326,7 @@ void character::update()
 			 if (_stageCount != 2)
 			 {
 				 _StartY = _y;
+				 _zOrderY = _StartY + _image->getFrameHeight();
 			 }
 		  _JP = CHARASPEED;
 		  _state = CHARA_RIGHT_MOVE_JUMP;
@@ -359,7 +362,7 @@ void character::update()
 			  //}
 			  //else
 			  _y -= _Zmove;
-
+			  _zOrderY = _rc.bottom;
 			  //돌의 y축 수정
 			  if (_state == CHARA_RIGHT_STONE_HAND)
 			  {
@@ -385,7 +388,7 @@ void character::update()
 			  //}
 			  //else
 			  _y += _Zmove;
-
+			  _zOrderY = _rc.bottom;
 			  //돌의 y축 수정
 			  if (_state == CHARA_RIGHT_STONE_HAND)
 			  {
@@ -463,6 +466,7 @@ void character::update()
 			if (_stageCount != 2)
 			{
 				_StartY = _y;
+				_zOrderY = _StartY + _image->getFrameHeight();
 			}
 			_JP = CHARASPEED;
 			_state = CHARA_LEFT_MOVE_JUMP;
@@ -489,6 +493,7 @@ void character::update()
 				//}
 				//else
 				_y -= _Zmove;
+				_zOrderY = _rc.bottom;
 				if (_state == CHARA_LEFT_STONE_HAND)
 				{
 					_item->setY(_item->getY() - _Zmove);
@@ -513,6 +518,7 @@ void character::update()
 				//}
 				//else
 				_y += _Zmove;
+				_zOrderY = _rc.bottom;
 				if (_state == CHARA_LEFT_STONE_HAND)
 				{
 					_item->setY(_item->getY() + _Zmove);
@@ -550,6 +556,7 @@ void character::update()
 			if (_stageCount != 2)
 			{
 				_StartY = _y;
+				_zOrderY = _StartY + _image->getFrameHeight();
 			}
 			_JP = CHARAJUMP;
 			if (_isRight)
@@ -783,6 +790,7 @@ void character::update()
 				if (_stageCount != 2)
 				{
 					_StartY = _y;
+					_zOrderY = _StartY + _image->getFrameHeight();
 				}
 				_JP = CHARAJUMP;
 				_JP = _JP / 2;
@@ -800,6 +808,7 @@ void character::update()
 				if (_stageCount != 2)
 				{
 					_StartY = _y;
+					_zOrderY = _StartY + _image->getFrameHeight();
 				}
 				_JP = CHARAJUMP;
 				_JP = _JP / 2;
@@ -894,6 +903,7 @@ void character::update()
 			if (_stageCount != 2)
 			{
 				_StartY = _y;
+				_zOrderY = _StartY + _image->getFrameHeight();
 			}
 			_JP = CHARAJUMP;
 			if (_isRight)
@@ -1641,6 +1651,7 @@ void character::hurt(int damage, float x)
 			_JP = CHARAJUMP;
 			_JP = _JP / 2;
 			_StartY = _y;
+			_zOrderY = _StartY + _image->getFrameHeight();
 			//상대의 위치가 나보다 작다면(적이 왼쪽)
 			if (x<_x)
 			{
@@ -1684,6 +1695,7 @@ void character::strike(int damage, float x)
 	_JP = CHARAJUMP;
 	_JP = _JP / 2;
 	_StartY = _y;
+	_zOrderY = _StartY + _image->getFrameHeight();
 	//상대의 위치가 나보다 작다면(적이 왼쪽)
 	if (x<_x)
 	{

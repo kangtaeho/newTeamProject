@@ -74,6 +74,7 @@ private:
 	int _HP, _maxHP;//현피, 맥피
 	bool _isRight;//오른쪽?
 	bool _isOn;		//2스테이지 땅위?
+	int _zOrderY;
 
 	RECT _rc;//렌더용 렉트
 	RECT _colliRect;//통신용 렉트
@@ -175,6 +176,7 @@ public:
 	//HP반환
 	int getHP(){ return _HP; }
 	void setHP(int HP) { _HP = HP; }
+	int getZOrderY(){ return _zOrderY; }
 
 	item* getQuickPotion(){ return _potion; }
 
