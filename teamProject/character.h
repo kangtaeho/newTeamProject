@@ -93,6 +93,7 @@ private:
 	char test[128];
 
 	item* _item;
+	item* _potion;
 	enemyManager* _EM;
 
 	bool _isHanded;			//¼Õ¿¡ Áã¾ú³Ä
@@ -184,9 +185,12 @@ public:
 		_itemType = itemType;
 	}			
 
+	void drinkPotion();
+
 	void setItem(item* item){ _item = item; }
 
 	void SetMemoryEnemyManager(enemyManager* EM) { _EM = EM; }
+	void setMemoryPotion(item* potion){ _potion = potion; }
 };
 
 

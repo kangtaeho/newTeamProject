@@ -399,6 +399,7 @@ void stage1::initialization()
 	_em = new enemyManager;
 	_em->init();
 
+	_inven->setMainPlayerMemoryLink(_mainPlayer);
 	_mainPlayer->SetMemoryEnemyManager(_em);
 	_em->setCharacterMemoryAddressLink(_mainPlayer);
 	_em->setStage1MemoryAddressLink(this,1);

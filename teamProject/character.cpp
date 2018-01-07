@@ -33,6 +33,8 @@ HRESULT character::init()
 	_isItemCollision = false;
 	_isHanded = false;
 
+	_potion = NULL;
+
 	return S_OK;
 
 }
@@ -1430,7 +1432,7 @@ void character::update()
 	
 	KEYANIMANAGER->update();
 	UpdateRect();
-
+	drinkPotion();
 	sprintf(test, "%d", _isOn);
 
 	
@@ -1570,6 +1572,7 @@ void character::UpdateRect()
 void character::hurt(int damage, float x)
 {
 	_HP -= damage;
+
 	if (_state == CHARA_RIGHT_JUMP
 		|| _state == CHARA_RIGHT_MOVE_JUMP
 		|| _state == CHARA_RIGHT_BACKKICK
@@ -1599,9 +1602,10 @@ void character::hurt(int damage, float x)
 	{
 		if (_HP <= 0)
 		{
-			_HP -= damage;
+			//_HP -= damage;
 			_JP = CHARAJUMP;
 			_JP = _JP / 2;
+			_StartY = _y;
 			//상대의 위치가 나보다 작다면(적이 왼쪽)
 			if (x<_x)
 			{
@@ -1944,4 +1948,16 @@ void character::addImage()
 
 
 	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+}
+
+void character::drinkPotion()
+{
+	if (KEYMANAGER->isOnceKeyDown('A'))
+	{
+		if (_potion == NULL) return;
+		if (_potion->getCount() <= 0) return;
+		_HP += _potion->getItemEffect();
+		if (_HP >= 10) _HP = 10;
+		_potion->setCount(_potion->getCount()-1);
+	}
 }

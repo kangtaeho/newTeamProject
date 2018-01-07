@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "inventory.h"
+#include "character.h"
 
 
 inventory::inventory()
@@ -257,18 +258,20 @@ void inventory::inventoryState() {
 	if (KEYMANAGER->isOnceKeyDown('Z')) {
 		switch (_currentSelectY) {
 			case 0:
-				_quickPotion = _RPotion->getItemEffect();
-				_quickCount = _RPotion->getCount();
+				_mainPlayer->setMemoryPotion(_RPotion);
+				//_quickCount = _RPotion->getCount();
 			break;
 
 			case 1:
-				_quickPotion = _OPotion->getItemEffect();
-				_quickCount = _OPotion->getCount();
+				_mainPlayer->setMemoryPotion(_OPotion);
+				/*_quickPotion = _OPotion->getItemEffect();
+				_quickCount = _OPotion->getCount();*/
 			break;
 
 			case 2:
-				_quickPotion = _WPotion->getItemEffect();
-				_quickCount = _WPotion->getCount();
+				_mainPlayer->setMemoryPotion(_WPotion);
+				/*_quickPotion = _WPotion->getItemEffect();
+				_quickCount = _WPotion->getCount();*/
 			break;
 		}
 	}
