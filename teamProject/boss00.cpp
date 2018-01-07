@@ -28,7 +28,7 @@ HRESULT boss00::init(POINT point, int currentStage)
 
 	_jump = 0; //점프력
 	_Gravity = 0.1f; //중력
-	_HP = 25; //체에력
+	_HP = 2500; //체에력
 	_speed = 3; //스퓌드
 
 	_rndDirX = rndDirection(RND->getInt(3));
@@ -65,6 +65,7 @@ HRESULT boss00::init(POINT point, int currentStage)
 	_enemyKeyName[14] = "bossRightTwoJab";
 	_enemyKeyName[15] = "bossLeftTwoJab";
 
+	/* 6 14 7 15 */
 	int rightStop[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossRightStop", "boss00", rightStop, 1, 2, true);
 	int leftStop[] = { 15 };
@@ -74,9 +75,9 @@ HRESULT boss00::init(POINT point, int currentStage)
 	int leftMove[] = { 15,14,13,14 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossLeftMove", "boss00", leftMove, 4, 2, true);
 	int rightOneJab[] = { 20,21,20 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossRightOneJab", "boss00", rightOneJab, 3, 2, false);
+	KEYANIMANAGER->addArrayFrameAnimation("bossRightOneJab", "boss00", rightOneJab, 3, 2, true);
 	int leftOneJab[] = { 27,26,27 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossLeftOneJab", "boss00", leftOneJab, 3, 2, false);
+	KEYANIMANAGER->addArrayFrameAnimation("bossLeftOneJab", "boss00", leftOneJab, 3, 2, true);
 	int rightTwoJab[] = { 49,50,51,50 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossRightTwoJab", "boss00", rightTwoJab, 4, 2, false);
 	int leftTwoJab[] = { 62,61,60 ,61};

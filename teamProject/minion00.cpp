@@ -83,7 +83,7 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  _enemyKeyName[14] = "enemy01RightTwoJab";
 	  _enemyKeyName[15] = "enemy01LeftTwoJab";
 
-
+	 // 6 14 7 15
 
 	  //플레이어가 왼쪽에서 때릴때(플레이어 위치가 왼쪽)
 	  int leftHittied[] = { 46,47,48,47 };
