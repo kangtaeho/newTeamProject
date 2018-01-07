@@ -26,6 +26,7 @@ HRESULT stone::init(POINT point)
 	_frameX = _frameCount = 0;
 
 	_gravity =0.1;
+	_isRight = true;
 	//_throwPower = 1;
 	return S_OK;
 }
@@ -58,7 +59,9 @@ void stone::move(){
 		//_x = CAMERAMANAGER->getBackGroundSizeX() - _itemImage->getFrameWidth();
 		return;
 	}
-	_x += 3;
+	if (_isRight) _x += 3;	
+	else _x -= 3;
+
 	_y -= _throwPower;
 	_throwPower -= _gravity;
 }
