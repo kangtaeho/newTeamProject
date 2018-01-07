@@ -446,7 +446,7 @@ void enemy::enemyMove() {
 					_traceAngle = getDegree(0);
 				}
 				else {
-					_traceAngle = getDegree(1);
+					_traceAngle = getDegree(180);
 				}
 
 				break;

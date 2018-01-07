@@ -64,8 +64,10 @@ void enemyManager::render()
 	}
 
 	if (_vEnemy.size() == 0) return;
-	//showFloatData(getMemDC(), "x 좌표 : %0.2f", _mini->getX(), 800, 20);
-	//
+
+
+	setColorRect(getMemDC(), _vEnemy[0]->getCollircEnemy(), 20, 30, 90);
+
 	showIntData(getMemDC(), "첫번째 적 Y좌표 : %d", _vEnemy[0]->getCenterY(), 700, 40);
 	showIntData(getMemDC(), "첫번째 적 상태(0번 패트롤, 2번 추적, 4번 공격, 5번 맞음 : %d", _vEnemy[0]->getIsTracePlayer(), 700, 60);
 	showFloatData(getMemDC(), "각도 3.14가 180도 : %0.2f ",_vEnemy[0]->getTraceAngle(),700,80);
@@ -158,24 +160,26 @@ void enemyManager::traceCharacter() {
 			if (_vEnemy[i]->getIsHitted()) return;
 
 			if (getDistance(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()) < 80) {
-
+				
+				if (_vEnemy[i]->getCurrentStage() != 2) {
+					_vEnemy[i]->setTraceAngle(getAngle(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()));
+				}
 				_vEnemy[i]->setIsTracePlayer(4);
-				_vEnemy[i]->setTraceAngle(getAngle(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()));
 
 				if (_vEnemy[i]->getTraceAngle() <= getDegree(188) && _vEnemy[i]->getTraceAngle() >= getDegree(172)) {
 					_vEnemy[i]->setIsAttack(true);			//공격해라
 					_vEnemy[i]->setIsTracePlayer(2);		//다시 한번 이야기 하지만 0번이 패트롤 상태 1번이 추격, 2번이 공격
-					//_mainPlayer->hurt(1, _vEnemy[i]->getCenterX());
+					_mainPlayer->hurt(1, _vEnemy[i]->getCenterX());
 				}
 				else if (_vEnemy[i]->getTraceAngle() <= getDegree(10) && _vEnemy[i]->getTraceAngle() >= getDegree(0)) {
 					_vEnemy[i]->setIsAttack(true);			//공격해라
 					_vEnemy[i]->setIsTracePlayer(2);
-					//_mainPlayer->hurt(1, _vEnemy[i]->getCenterX());
+					_mainPlayer->hurt(1, _vEnemy[i]->getCenterX());
 				}
 				else if (_vEnemy[i]->getTraceAngle() <= getDegree(360) && _vEnemy[i]->getTraceAngle() >= getDegree(350)) {
 					_vEnemy[i]->setIsAttack(true);			//공격해라
 					_vEnemy[i]->setIsTracePlayer(2);
-					//_mainPlayer->hurt(1, _vEnemy[i]->getCenterX());
+					_mainPlayer->hurt(1, _vEnemy[i]->getCenterX());
 				}
 				
 			}
