@@ -91,7 +91,6 @@ public:
 	void render();
 
 	//렉트최신화함수
-	void RectUpdate();
 
 	RECT getRect() { return _colliRect; }
 

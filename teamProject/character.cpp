@@ -1075,6 +1075,8 @@ void character::update()
 	UpdateRect();
 
 	sprintf(test, "%d", _isOn);
+
+	
 }
 void character::render()
 {

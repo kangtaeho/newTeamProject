@@ -383,21 +383,6 @@ void stage1::initialization()
 	_doorAni->init(_door->getWidth(), _door->getHeight(), _door->getFrameWidth(), _door->getFrameHeight());
 	_doorAni->setDefPlayFrame(false, false);
 	_doorAni->setFPS(1);
-	//에너미 추가...중  //수빈
-
-	//_boss00 = new boss00;
-	//_boss00->init(PointMake(500, 300));
-	
-	//_minion00 = new minion00;
-	//_minion00->init(PointMake(800, 300));
-	//
-	//_minion01 = new minion01;
-	//_minion01->init(PointMake(650, 300));
-	//
-	//_minion02 = new minion02;
-	//_minion02->init(PointMake(350, 300));
-
-	//미니돌덩이 //병철
 	_stone = new stone;
 	_stone->init(PointMake(2000, 450));
 
@@ -431,11 +416,6 @@ void stage1::singletonInit(){
 void stage1::draw(){
 	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
-
-	//_boss00->render();
-	//_minion00->render();
-	//_minion01->render();
-	//_minion02->render();
 	
 	_door->aniRender(getMemDC(),
 								CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_door->getX(), _door->getY(), _door->getFrameWidth(), _door->getFrameHeight())).x,
@@ -450,14 +430,6 @@ void stage1::draw(){
 	//카메라 렉트(이후 주석처리를 통해 지우도록!)
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
 
-	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getRect()).x, CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getRect()).y, 100, 100);
-	/*for (int i = 0; i < _vItem.size(); i++)
-	{
-		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_vItem[i]->getAbsoluteRC()).x,
-			CAMERAMANAGER->CameraRelativePoint(_vItem[i]->getAbsoluteRC()).y, 100, 100);
-	}*/
-
-
 	//아이템 렌더
 	for (int i = 0; i < _vItem.size(); i++)
 	{
@@ -470,11 +442,6 @@ void stage1::draw(){
 	//알파렌더를 위한 검은화면 렌더
 	IMAGEMANAGER->findImage("검은화면")->alphaRender(getMemDC(), 0, 0, 255 - _alpha);
 
-	//for (int i = 0; i < _em->getVMinion().size(); ++i) {
-	//	if (_em->getVMinion().size() == 0)return;
-	//
-	//	setColorRect(getMemDC(), _em->getVMinion()[i]->getCollircEnemy(), 30, 50, 80);
-	//}
 }
 void stage1::enemyItemCollision(){
 
