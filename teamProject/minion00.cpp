@@ -58,6 +58,7 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  _countHitted = 0;
 
 	  _traceAngle = 0;
+	  _rndAttackStyle = 0;
 
 	  _enemyKeyName[0] = "enemy01RightStop";
 	  _enemyKeyName[1] = "enemy01LeftStop";
@@ -74,6 +75,8 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  _enemyKeyName[11] = "enemy01leftDownForever";
 	  _enemyKeyName[12] = "enemy01LeftHittied";
 	  _enemyKeyName[13] = "enemy01RightHittied";
+	  _enemyKeyName[14] = "enemy01RightTwoJab";
+	  _enemyKeyName[15] = "enemy01LeftTwoJab";
 
 
 
@@ -98,11 +101,11 @@ HRESULT minion00::init(POINT point, int currentStage)
 	  int leftOneJab[] = { 90,89 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemy01LeftOneJab", "enemy01", leftOneJab, 2, 2, true);
 	  //¿À¸¥ÂÊ ÅõÂµ
-	  int rightTwoJab[] = { 21,22 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemy01RightTwoJab", "enemy01", rightTwoJab, 2, 2, true);
+	  int rightTwoJab[] = { 21,22,21 };
+	  KEYANIMANAGER->addArrayFrameAnimation("enemy01RightTwoJab", "enemy01", rightTwoJab, 3, 2, false);
 	  //¿ÞÂÊ ÅõÂµ
-	  int leftTwoJab[] = { 26,25 };
-	  KEYANIMANAGER->addArrayFrameAnimation("enemy01LeftTwoJab", "enemy01", leftTwoJab, 2, 2, true);
+	  int leftTwoJab[] = { 26,25,26 };
+	  KEYANIMANAGER->addArrayFrameAnimation("enemy01LeftTwoJab", "enemy01", leftTwoJab, 3, 2, false);
 	  //¿À¸¥ÂÊ Á¡ÇÁ°ø°Ý
 	  int rightJumpAttack[] = { 19,20 };
 	  KEYANIMANAGER->addArrayFrameAnimation("enemy01RightJumpAttack", "enemy01", rightJumpAttack, 2, 2, true);

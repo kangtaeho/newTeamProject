@@ -48,7 +48,7 @@ void enemy::update()
 void enemy::render()
 {
 
-	setColorRect(getMemDC(), _CollircEnemy, 200, 20, 20);
+	//setColorRect(getMemDC(), _CollircEnemy, 200, 20, 20);
 
 	_imageEnemy->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x, 
 									   CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y-50, 
@@ -196,22 +196,32 @@ void enemy::enemyMove() {
 
 			case 2: // 플레이어 공격
 
-				_countAttack++;
-
 				if (!_isRight&&_isLeft) {
-					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[6]);
+					if (_rndAttackStyle == 0) {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[6]);
+					}
+					else {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[14]);
+					}
 				}
 				else {
-					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[7]);
+					if (_rndAttackStyle == 0) {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[7]);
+					}
+					else {
+						_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[15]);
+					}
 				}
 
 				if (!_attackAniStart) _enemyMotion->start();
 				_attackAniStart = true;
 
-				if (_countAttack % 20 == 0) {
+				_countAttack++;
+				if (_countAttack % 30 == 0) {
 					_attackAniStart = false;
 					_isAttack = false;
 					_countAttack = 0;
+					_rndAttackStyle = RND->getInt(2);
 				}
 
 				break;
@@ -271,7 +281,7 @@ void enemy::enemyMove() {
 				if (!_hittedAniStart) _enemyMotion->start();
 				_hittedAniStart = true;
 				
-				if (_countHitted % 20 == 0) {
+				if (_countHitted % 25 == 0) {
 					_hittedAniStart = false;
 					_isHitted = false;
 					_countHitted = 0;
@@ -281,6 +291,8 @@ void enemy::enemyMove() {
 				break;
 
 			}
+
+			break;
 
 		case 2:
 

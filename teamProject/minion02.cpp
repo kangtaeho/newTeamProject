@@ -40,7 +40,8 @@ HRESULT minion02::init(POINT point, int currentStage)
 	_enemyKeyName[11] = "enemy06leftDownForever";
 	_enemyKeyName[12] = "enemy06rightHit2";
 	_enemyKeyName[13] = "enemy06leftHit2";
-
+	_enemyKeyName[14] = "enemy06RightTwoJab";
+	_enemyKeyName[15] = "enemy06LeftTwoJab";
 
 	_isItemCollion = false;
 	_isGetItemEnemy = false;
@@ -55,9 +56,6 @@ HRESULT minion02::init(POINT point, int currentStage)
 
 	_countAttack = 0;				//어택카운트
 	_countHitted = 0;
-
-
-
 	_traceAngle = 0;
 
 	_jump = 0; //점프력
@@ -69,6 +67,7 @@ HRESULT minion02::init(POINT point, int currentStage)
 	_enemyCenterY = 0;
 	_playerCenterX = 0;
 	_playerCenterY = 0;
+	_rndAttackStyle = 0;
 
 	_rndDirX = rndDirection(RND->getInt(3));
 	_rndDirY = rndDirection(RND->getInt(3));
@@ -85,10 +84,10 @@ HRESULT minion02::init(POINT point, int currentStage)
 	KEYANIMANAGER->addArrayFrameAnimation("enemy06RightOneJab", "enemy06", rightOneJab, 2, 2, true);
 	int leftOneJab[] = { 27,26 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemy06LeftOneJab", "enemy06", leftOneJab, 2, 2, true);
-	int rightTwoJab[] = { 22,23 };
-	KEYANIMANAGER->addArrayFrameAnimation("enemy06RightTwoJab", "enemy06", rightTwoJab, 2, 2, true);
-	int leftTwoJab[] = { 25,24 };
-	KEYANIMANAGER->addArrayFrameAnimation("enemy06LeftTwoJab", "enemy06", leftTwoJab, 2, 2, true);
+	int rightTwoJab[] = { 22,23.22 };
+	KEYANIMANAGER->addArrayFrameAnimation("enemy06RightTwoJab", "enemy06", rightTwoJab, 3, 2, false);
+	int leftTwoJab[] = { 25,24,25 };
+	KEYANIMANAGER->addArrayFrameAnimation("enemy06LeftTwoJab", "enemy06", leftTwoJab, 3, 2, false);
 	int rightJumpAttack[] = { 19,81 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemy06RightJumpAttack", "enemy06", rightJumpAttack, 2, 2, true);
 	int leftJumpAttack[] = { 28,94 };
