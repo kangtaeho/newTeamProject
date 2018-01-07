@@ -71,6 +71,9 @@ void enemyManager::render()
 	//showIntData(getMemDC(), "카운트 증가하고는 있냐? : %d", _mini->getCountMove(), 800, 40);
 	
 	///_mini->render();
+
+
+	//showFloatData(getMemDC(), "x 좌표 : %0.2f", _mainPlayer->getCenterX(), 800, 40);
 }
 
 //쫄따구

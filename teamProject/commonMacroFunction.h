@@ -74,3 +74,20 @@ inline float getDegree(int degree) {
 
 	return value;
 }
+
+
+inline void showIntData(HDC hdc, char* dataInfo, int data, int x, int y) {
+
+	char str[100];
+	sprintf(str, dataInfo, data);
+	TextOut(hdc, x, y, str, strlen(str));
+
+}
+
+inline void showFloatData(HDC hdc, char* dataInfo, float data, int x, int y) {
+
+	char str[100];
+	sprintf(str, dataInfo, data);
+	TextOut(hdc, x, y, str, strlen(str));
+
+}

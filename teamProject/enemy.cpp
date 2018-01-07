@@ -205,7 +205,7 @@ void enemy::render()
 	//	CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _imageEnemy->getFrameWidth(), _imageEnemy->getFrameHeight())).y, 0, 0);
 	
 
-//	setColorRect(getMemDC(), _CollircEnemy, 200, 20, 20);
+	setColorRect(getMemDC(), _CollircEnemy, 200, 20, 20);
 
 	_imageEnemy->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x, 
 									   CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y-50, 

@@ -1089,6 +1089,8 @@ void character::render()
 	//Rectangle(getMemDC(), _rc.left,  _rc.top,  _rc.right, _rc.bottom);
 
 
+	setColorRect(getMemDC(), _colliRect, 30, 40, 150);
+
 	char str[256];
 	wsprintf(str, "camX : %d, camY : %d", CAMERAMANAGER->CameraRelativePoint(_rc).x, CAMERAMANAGER->CameraRelativePoint(_rc).y);
 	TextOut(getMemDC(), WINSIZEX/2, 10, str, strlen(str));

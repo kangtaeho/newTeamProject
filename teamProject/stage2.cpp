@@ -71,6 +71,7 @@ void stage2::update()
 		_mainPlayer->setX(760);
 		_mainPlayer->setY(2280);
 		_mainPlayer->setStage(IMAGEMANAGER->findImage("스테이지_01_red"), 2);
+		_mainPlayer->UpdateRect();
 		_em->setCharacterMemoryAddressLink(_mainPlayer);
 		if (_alpha < 255)
 			_alpha += 5;
@@ -478,7 +479,7 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 	_mainPlayer->render();
 	_em->render();
-
+	showFloatData(getMemDC(), "x 좌표 : %0.2f", _mainPlayer->getCenterX(), 800, 40);
 	//RectangleMakeCenter(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getRect()).x,
 	//	CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getUnderBarRect()).y,100,100 );
 
