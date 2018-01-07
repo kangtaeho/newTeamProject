@@ -42,7 +42,7 @@ HRESULT stage2::init()
 	_elevatorX = 5520;
 	_elevatorY = 2186;
 
-	_elevatorRC = RectMakeCenter(_elevatorX, _elevatorY, 10, 10);
+	_elevatorRC = RectMakeCenter(_elevatorX, _elevatorY+ 30, 10, 10);
 
 
 
@@ -283,7 +283,7 @@ void stage2::update()
 	_rc1 = RectMakeCenter(_mainPlayer->getX() - 30, _mainPlayer->getY() + 25 - 30, 100, 100);
 	_rc2 = RectMakeCenter(_mainPlayer->getX(), 2280, 100, 100);
 	_rc3 = RectMakeCenter(_mainPlayer->getX(), _mainPlayer->getY() + 25, 100, 100);
-	if (!_boatSwitchOn)
+	if (!_boatSwitchOn || !_elevatorSwitchOn)
 	{
 		_mainPlayer->update();
 		playerItemCollisioin();
@@ -525,7 +525,9 @@ void stage2::elevatorMove()
 	_currentRC->top -= 5;
 	_currentRC->bottom -= 5;
 
+	_mainPlayer->MakeRightStop(_mainPlayer);
 	_mainPlayer->setY(_mainPlayer->getY() - 5);
+	_mainPlayer->UpdateRect();
 
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	_currentRC = &_rc1;
