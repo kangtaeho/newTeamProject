@@ -1597,41 +1597,45 @@ void character::hurt(int damage, float x)
 	}
 	else
 	{
-		if (_isRight)
+		if (_HP <= 0)
 		{
-			_state = CHARA_RIGHT_HIT;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightHit");
-			_motion->start();
+			_HP -= damage;
+			_JP = CHARAJUMP;
+			_JP = _JP / 2;
+			//상대의 위치가 나보다 작다면(적이 왼쪽)
+			if (x<_x)
+			{
+				_isRight = false;
+				_state = CHARA_LEFT_STRIKED;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStriked");
+				_motion->start();
+			}
+			//상대의 위치가 나보다 크다면(적이 오른쪽)
+			else if (_x<x)
+			{
+				_isRight = true;
+				_state = CHARA_RIGHT_STRIKED;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStriked");
+				_motion->start();
+			}
 		}
 		else
 		{
-			_state = CHARA_LEFT_HIT;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftHit");
-			_motion->start();
+			if (_isRight)
+			{
+				_state = CHARA_RIGHT_HIT;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightHit");
+				_motion->start();
+			}
+			else
+			{
+				_state = CHARA_LEFT_HIT;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftHit");
+				_motion->start();
+			}
 		}
 	}
-	if (_HP <= 0)
-	{
-		_HP -= damage;
-		_JP = CHARAJUMP;
-		_JP = _JP / 2;
-		//상대의 위치가 나보다 작다면(적이 왼쪽)
-		if (x<_x)
-		{
-			_isRight = false;
-			_state = CHARA_LEFT_STRIKED;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStriked");
-			_motion->start();
-		}
-		//상대의 위치가 나보다 크다면(적이 오른쪽)
-		else if (_x<x)
-		{
-			_isRight = true;
-			_state = CHARA_RIGHT_STRIKED;
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightStriked");
-			_motion->start();
-		}
-	}
+	
 }
 //상태값 STRIKED로 바뀌고 damage만큼 데미지 입으며
 //x값이 클때는 왼쪽 작을때는 오른쪽으로 쓰러짐
