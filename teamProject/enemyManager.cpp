@@ -154,56 +154,57 @@ void enemyManager::collision(void)
 }
 
 void enemyManager::traceCharacter() {
+	if (KEYMANAGER->isToggleKey('7'))
+	{
+		for (int i = 0; i < _vEnemy.size(); ++i) {
+			if (_vEnemy.size() == 0) return;
+			if (_vEnemy[i]->getIsDead()) return;
 
-	for (int i = 0; i < _vEnemy.size(); ++i) {
-		if (_vEnemy.size() == 0) return;
-		if (_vEnemy[i]->getIsDead()) return;
+			if (getDistance(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()) < 300) {
 
-		if (getDistance(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()) < 300) {
+				if (_vEnemy[i]->getIsAttack()) return;			//적이 공격상태이면 추적 금지
+				if (_vEnemy[i]->getIsHitted()) return;
 
-			if (_vEnemy[i]->getIsAttack()) return;			//적이 공격상태이면 추적 금지
-			if (_vEnemy[i]->getIsHitted()) return;
+				if (getDistance(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()) < 80) {
 
-			if (getDistance(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()) < 80) {
-				
-				if (_vEnemy[i]->getCurrentStage() != 2) {
+					if (_vEnemy[i]->getCurrentStage() != 2) {
+						_vEnemy[i]->setTraceAngle(getAngle(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()));
+					}
+					_vEnemy[i]->setIsTracePlayer(4);
+
+					if (_vEnemy[i]->getTraceAngle() <= getDegree(188) && _vEnemy[i]->getTraceAngle() >= getDegree(172)) {
+						_vEnemy[i]->setIsAttack(true);			//공격해라
+						_vEnemy[i]->setIsTracePlayer(2);		//다시 한번 이야기 하지만 0번이 패트롤 상태 1번이 추격, 2번이 공격
+						_mainPlayer->hurt(1, _vEnemy[i]->getCenterX());
+					}
+					else if (_vEnemy[i]->getTraceAngle() <= getDegree(10) && _vEnemy[i]->getTraceAngle() >= getDegree(0)) {
+						_vEnemy[i]->setIsAttack(true);			//공격해라
+						_vEnemy[i]->setIsTracePlayer(2);
+						_mainPlayer->hurt(1, _vEnemy[i]->getCenterX());
+					}
+					else if (_vEnemy[i]->getTraceAngle() <= getDegree(360) && _vEnemy[i]->getTraceAngle() >= getDegree(350)) {
+						_vEnemy[i]->setIsAttack(true);			//공격해라
+						_vEnemy[i]->setIsTracePlayer(2);
+						_mainPlayer->hurt(1, _vEnemy[i]->getCenterX());
+					}
+
+				}
+
+				else {
+
+					_vEnemy[i]->setIsTracePlayer(1);
 					_vEnemy[i]->setTraceAngle(getAngle(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()));
-				}
-				_vEnemy[i]->setIsTracePlayer(4);
 
-				if (_vEnemy[i]->getTraceAngle() <= getDegree(188) && _vEnemy[i]->getTraceAngle() >= getDegree(172)) {
-					_vEnemy[i]->setIsAttack(true);			//공격해라
-					_vEnemy[i]->setIsTracePlayer(2);		//다시 한번 이야기 하지만 0번이 패트롤 상태 1번이 추격, 2번이 공격
-					_mainPlayer->hurt(1, _vEnemy[i]->getCenterX());
 				}
-				else if (_vEnemy[i]->getTraceAngle() <= getDegree(10) && _vEnemy[i]->getTraceAngle() >= getDegree(0)) {
-					_vEnemy[i]->setIsAttack(true);			//공격해라
-					_vEnemy[i]->setIsTracePlayer(2);
-					_mainPlayer->hurt(1, _vEnemy[i]->getCenterX());
-				}
-				else if (_vEnemy[i]->getTraceAngle() <= getDegree(360) && _vEnemy[i]->getTraceAngle() >= getDegree(350)) {
-					_vEnemy[i]->setIsAttack(true);			//공격해라
-					_vEnemy[i]->setIsTracePlayer(2);
-					_mainPlayer->hurt(1, _vEnemy[i]->getCenterX());
-				}
-				
+
 			}
-			
 			else {
-
-				_vEnemy[i]->setIsTracePlayer(1);
-				_vEnemy[i]->setTraceAngle(getAngle(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()));
-
+				_vEnemy[i]->setIsTracePlayer(0);
 			}
 
-		}
-		else {
-			_vEnemy[i]->setIsTracePlayer(0);
-		}
 
-		
+		}
 	}
-
 }
 void enemyManager::setStage1MemoryAddressLink(stage1* stage1, int stageNum){
 	_stage1 = stage1; _stageNum = stageNum;

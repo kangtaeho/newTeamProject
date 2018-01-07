@@ -370,7 +370,7 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	}
 
 	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	else if (_secondWave && _em->getVMinion().size() == 0 && _currentRC->left >= 400)
+	else if (_secondWave && !_thirdWave && _em->getVMinion().size() == 0 && _currentRC->left >= 400)
 	{
 
 		//카메라 다시 이동(기성아 부탁한다) 추가
@@ -407,6 +407,11 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
+	else if (_thirdWave && _em->getVMinion().size() == 0)
+	{
+		_ss = CLEAR;
+		//SCENEMANAGER->changeScene("3스테이지대화",false);
+	}
 	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
 	//else if (_secondWave && _em->getVMinion().size() == 0)
 	//{
