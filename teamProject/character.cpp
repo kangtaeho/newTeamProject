@@ -659,6 +659,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -667,6 +668,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -735,6 +737,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -743,6 +746,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -820,6 +824,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -828,6 +833,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -931,6 +937,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -939,6 +946,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -1022,6 +1030,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -1030,6 +1039,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -1062,6 +1072,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -1070,6 +1081,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -1218,6 +1230,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -1226,6 +1239,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -1262,6 +1276,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 			else
@@ -1270,6 +1285,7 @@ void character::update()
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
+					_EM->getVMinion()[i]->setIsHitted(true);
 				}
 			}
 		}
@@ -1313,11 +1329,13 @@ void character::update()
 			{
 				_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 				_EM->getVMinion()[i]->setIsTracePlayer(5);
+				_EM->getVMinion()[i]->setIsHitted(true);
 			}
 			if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
 			{
 				_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
 				_EM->getVMinion()[i]->setIsTracePlayer(5);
+				_EM->getVMinion()[i]->setIsHitted(true);
 			}
 		}
 		break;
@@ -1594,7 +1612,9 @@ void character::hurt(int damage, float x)
 	}
 	if (_HP <= 0)
 	{
+		_HP -= damage;
 		_JP = CHARAJUMP;
+		_JP = _JP / 2;
 		//상대의 위치가 나보다 작다면(적이 왼쪽)
 		if (x<_x)
 		{
