@@ -57,6 +57,7 @@ enum CHARA {
 };
 
 class item;
+class enemyManager;
 
 class character : public gameNode
 {
@@ -71,6 +72,8 @@ private:
 
 	RECT _rc;//렌더용 렉트
 	RECT _colliRect;//통신용 렉트
+	RECT _rightATK;
+	RECT _leftATK;
 
 	//스테이지 담을 변수(설정자)
 	//스테이지당 픽셀충돌 검사할 이미지 변수(설정자)
@@ -85,6 +88,7 @@ private:
 	char test[128];
 
 	item* _item;
+	enemyManager* _EM;
 
 	bool _isItemCollision;	//투척 아이템과 충돌했냐
 	int _itemType;			//무슨 투척 아이템이냐(0 == 칼, 1 == 작은돌, 2 == 큰돌)
@@ -173,6 +177,8 @@ public:
 	}			
 
 	void setItem(item* item){ _item = item; }
+
+	void SetMemoryEnemyManager(enemyManager* EM) { _EM = EM; }
 };
 
 
