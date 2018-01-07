@@ -174,6 +174,7 @@ public:
 		
 	//HP반환
 	int getHP(){ return _HP; }
+	void setHP(int HP) { _HP = HP; }
 
 	void setIsItemCollision(bool isItemCollision){ //설정자
 		_isItemCollision = isItemCollision;}	
