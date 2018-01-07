@@ -267,13 +267,13 @@ void character::update()
 						_motion->start();
 					}
 
-					SOUNDMANAGER->play("흣(때릴때)", 1.0);
+					//soundmanager->play("흣(때릴때)", 1.0);
 				}
 			}
 		}
 		if (KEYMANAGER->isOnceKeyDown('C'))//킥
 		{
-			SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
+			//soundmanager->play("흐앗(발차기할때)", 1.0);
 			if (_state == CHARA_RIGHT_STOP)
 			{
 				_state = CHARA_RIGHT_KICK;
@@ -322,7 +322,7 @@ void character::update()
 		 //돌 들고 있을떄 점프 XX
 		 if (KEYMANAGER->isOnceKeyDown('Z') && _state == CHARA_RIGHT_MOVE)//점프
 		 {
-		  //SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
+		  ////soundmanager->play("흐앗(발차기할때)", 1.0);
 			 if (_stageCount != 2)
 			 {
 				 _StartY = _y;
@@ -532,7 +532,7 @@ void character::update()
 	case CHARA_LEFT_LAND:
 		if (KEYMANAGER->isOnceKeyDown('X'))//주먹
 		{
-			SOUNDMANAGER->play("흣(때릴때)", 1.0);
+			//soundmanager->play("흣(때릴때)", 1.0);
 			if (_isRight)
 			{
 				_state = CHARA_RIGHT_UPPER;
@@ -640,7 +640,7 @@ void character::update()
 		}
 		else if (KEYMANAGER->isOnceKeyDown('X'))
 		{
-			SOUNDMANAGER->play("흣(때릴때)", 1.0);
+			//soundmanager->play("흣(때릴때)", 1.0);
 			if (_isRight)
 			{
 				_state = CHARA_RIGHT_PUNCH_TWO;
@@ -950,7 +950,7 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('C')|| KEYMANAGER->isOnceKeyDown('X'))//발차기
 		{
-			SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
+			//soundmanager->play("흐앗(발차기할때)", 1.0);
 			if (_JP*_JP <= 1)
 			{
 				_JP = 0;
@@ -1022,7 +1022,7 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('C') || KEYMANAGER->isOnceKeyDown('X'))//발차기
 		{
-			SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
+			//soundmanager->play("흐앗(발차기할때)", 1.0);
 			if (_JP*_JP <= 1)
 			{
 				_JP = 0;

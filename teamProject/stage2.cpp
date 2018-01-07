@@ -510,6 +510,8 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 
 		IMAGEMANAGER->findImage("스테이지_01")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
+		if (KEYMANAGER->isToggleKey('8'))
+			IMAGEMANAGER->findImage("스테이지_01_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 
 		//엘레베이터 rc 작은거 충돌용
 		//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_elevatorRC).x, CAMERAMANAGER->CameraRelativePoint(_elevatorRC).y, 10, 10);
@@ -524,6 +526,7 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
 
 		//쪽배 픽셀충돌 컬러
+		if (KEYMANAGER->isToggleKey('8'))
 		IMAGEMANAGER->findImage("쪽배_red")->render(getMemDC(),
 			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).x,
 			CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_boatX, _boatY, _boat->getWidth(), _boat->getHeight())).y);
@@ -545,7 +548,7 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 		_mainPlayer->render();
 
 		IMAGEMANAGER->findImage("스테이지_01")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
-		IMAGEMANAGER->findImage("스테이지_01_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
+		//IMAGEMANAGER->findImage("스테이지_01_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 	}
 	for (int i = 0; i < _vItem.size(); i++)
 	{
