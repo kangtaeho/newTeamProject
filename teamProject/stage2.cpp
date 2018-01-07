@@ -393,25 +393,10 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	{
 		//쫄따구1 정예몹 1마리 생성
 		_thirdWave = true;
-		//_em->setBoss(PointMake(5700, 400), 2);
-<<<<<<< HEAD
 		_em->setPick(PointMake(5700, 260), 2);
-		//	_em->setPick(PointMake(5700, 270), 2);
-		/*_em->setPick(PointMake(5700, 280), 2);
-		_em->setPick(PointMake(5700, 290), 2);
-		_em->setPick(PointMake(5700, 300), 2);*/
-		//_em->setPick(PointMake(5700, 400), 2);
-	/*	_em->setPick(PointMake(5700, 150), 2);
-		_em->setPick(PointMake(5700, 150), 2);
-		_em->setPick(PointMake(5700, 150), 2);
-		_em->setPick(PointMake(5700, 150), 2);
-		_em->setPick(PointMake(5700, 150), 2);*/
 
-=======
-		_em->setPick(PointMake(5700, 400), 2);
 		_currentRC = &_rc1;
 		CAMERAMANAGER->setCameraAim(_currentRC);
->>>>>>> 17a5ad30ef1b884a051237ee33a048e444625d5e
 		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
