@@ -6,8 +6,8 @@ stage2::stage2() //절대값같은 수치는 여기서 초기화, 이미지의 크기처럼 무언가를 �
 	: _alpha(0),
 	_ss(READY),
 	_rc1(RectMakeCenter(760, 2280, 100, 100)), //카메라의 렉트 좌표
-	_rc2(RectMakeCenter(760, 2280, 100, 100)),
-	_rc3(RectMakeCenter(760, 2280, 100, 100)),
+	//_rc2(RectMakeCenter(760, 2280, 100, 100)),
+	//_rc3(RectMakeCenter(760, 2280, 100, 100)),
 	_playerStartPoint(PointMake(760, 2310)), //스테이지 2 플레이어 시작좌표
 	_currentRC(&_rc1),
 	_firstWave(false),
@@ -293,7 +293,7 @@ void stage2::update()
 	}
 	_rc1 = RectMakeCenter(_mainPlayer->getX() - 30, _mainPlayer->getY() +25 , 100, 100);
 	_rc2 = RectMakeCenter(_mainPlayer->getX(), 2280, 100, 100);
-	_rc3 = RectMakeCenter(_mainPlayer->getX(), _mainPlayer->getY() + 25, 100, 100);
+	_rc3 = RectMakeCenter(5516, 2280, 100, 100);
 	if (!_boatSwitchOn && !_finishBoat)
 	{
 		_mainPlayer->update();
@@ -370,15 +370,22 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	}
 
 	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	else if (_secondWave && _em->getVMinion().size() == 0)
+	else if (_secondWave && _em->getVMinion().size() == 0 && _currentRC->left >= 400)
 	{
 
 		//카메라 다시 이동(기성아 부탁한다) 추가
 		CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
 
-		_currentRC = &_rc1;
+		_currentRC = &_rc3;
 		CAMERAMANAGER->setCameraAim(_currentRC);
-		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+		if (_elevatorSwitchOn)
+		{
+			CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+			_currentRC = &_rc1;
+			CAMERAMANAGER->setCameraAim(_currentRC);
+		}
+
 
 	}
 
@@ -387,6 +394,7 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 		//쫄따구1 정예몹 1마리 생성
 		_thirdWave = true;
 		//_em->setBoss(PointMake(5700, 400), 2);
+<<<<<<< HEAD
 		_em->setPick(PointMake(5700, 260), 2);
 		//	_em->setPick(PointMake(5700, 270), 2);
 		/*_em->setPick(PointMake(5700, 280), 2);
@@ -399,21 +407,26 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 		_em->setPick(PointMake(5700, 150), 2);
 		_em->setPick(PointMake(5700, 150), 2);*/
 
+=======
+		_em->setPick(PointMake(5700, 400), 2);
+		_currentRC = &_rc1;
+		CAMERAMANAGER->setCameraAim(_currentRC);
+>>>>>>> 17a5ad30ef1b884a051237ee33a048e444625d5e
 		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
 	}
 
 	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
-	else if (_secondWave && _em->getVMinion().size() == 0)
-	{
-
-		//카메라 다시 이동(기성아 부탁한다) 추가
-		CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
-
-		_currentRC = &_rc1;
-		CAMERAMANAGER->setCameraAim(_currentRC);
-		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-
-	}
+	//else if (_secondWave && _em->getVMinion().size() == 0)
+	//{
+	//
+	//	//카메라 다시 이동(기성아 부탁한다) 추가
+	//	CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
+	//
+	//	_currentRC = &_rc1;
+	//	CAMERAMANAGER->setCameraAim(_currentRC);
+	//	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+	//
+	//}
 	//if (!_thirdWave && _secondWave&&_em->getVMinion().size() == 0&& _currentRC->top<= 140)
 	//{
 	////쫄따구1 정예몹 1마리 생성
@@ -582,9 +595,7 @@ void stage2::elevatorMove()
 	_mainPlayer->setY(_mainPlayer->getY() - 5);
 	_mainPlayer->UpdateRect();
 
-	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
-	_currentRC = &_rc1;
-	CAMERAMANAGER->setCameraAim(_currentRC);
+	
 }
 void stage2::playerItemCollisioin(){
 	//아이템이 없으면 확인할 필요없다.

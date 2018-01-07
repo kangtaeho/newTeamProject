@@ -122,6 +122,8 @@ protected:
 
 	float _traceAngle;
 
+	int _alphaValue;
+
 	int _rndAttackStyle;			//어택스타일
 
 
@@ -146,6 +148,8 @@ protected:
 
 	bool _isLeft = true;					//왼쪽입니까?
 	bool _isRight = true;
+	bool _isDead;
+	bool _deleteEnemy;						//에너미 삭제
 
 	bool _isHitted;				//플레이어 한테 맞았습니까?
 
@@ -218,6 +222,9 @@ public:
 	void setIsHitted(bool isHitted) { _isHitted = isHitted; }
 	bool getIsHitted() { return _isHitted; }
 
+	void setIsDead(bool isDead) { _isDead = isDead; }
+	bool getIsDead() { return _isDead; }
+
 
 	bool getIsRight() { return _isRight; }
 	bool getIsLeft() { return _isLeft; }
@@ -227,6 +234,9 @@ public:
 
 	int getCountHitted() { return _countAttack; }
 	int getIsTracePlayer() { return _isTracePlayer; }
+
+	bool getDeleteEnemy() { return _deleteEnemy; }
+
 };
 
 //이제 콜백함수가 필요한 모션들이라던가 그런거 뭐해야될까영
