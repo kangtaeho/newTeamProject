@@ -155,6 +155,16 @@ void character::update()
 		if (KEYMANAGER->isOnceKeyDown('X'))//주먹
 		{
 			//아이템 충돌 ㅇㅇ
+			if (_state == CHARA_RIGHT_STONE_STOP)
+			{
+				_state = CHARA_RIGHT_STONE_THROWING;
+				_item->setState(true);
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneThrow");
+				_motion->start();
+				_isHanded = false;
+			}
+			else
+			{
 				if (_isItemCollision == true)
 				{
 					_isHanded = true;
@@ -163,23 +173,23 @@ void character::update()
 					{
 						_state = CHARA_RIGHT_STONE_STOP;
 						_item->setX(_x);
-						_item->setY(_rc.top +5);
+						_item->setY(_rc.top + 5);
 						_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneStop");
 						_motion->start();
 					}
 					//칼
 					else if (_itemType == 1)
 					{
-						
+
 					}
 					//큰 돌
 					else if (_itemType == 2)
 					{
 						_state = CHARA_RIGHT_STONE_STOP;
 						_item->setX(_x);
-						_item->setY(_rc.top -20);
+						_item->setY(_rc.top - 20);
 						_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneStop");
-						_motion ->start();
+						_motion->start();
 					}
 				}
 				//아이템 충돌 ㄴㄴ
@@ -201,6 +211,7 @@ void character::update()
 
 					SOUNDMANAGER->play("흣(때릴때)", 1.0);
 				}
+			}
 		}
 		if (KEYMANAGER->isOnceKeyDown('C'))//킥
 		{
@@ -1268,6 +1279,7 @@ void character::update()
 			}
 		}
 		break;
+		
 	default:
 		break;
 	}
@@ -1797,15 +1809,51 @@ void character::addImage()
 	//돌 들고 움직임
 	int RightStoneMove[] = { 70, 71 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightStoneMove", "JIMMY",
-		RightStoneMove, 2, 1, true);
+		RightStoneMove, 2, 4, true);
 	//왼쪽 칼 투척(미구현)
 
-	//오른쪽 작은 돌 투척
+	//오른쪽 돌 투척
+	int RightStoneThrow[] = { 72, 73 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightStoneThrow", "JIMMY",
+		RightStoneThrow, 2, 4, false, MakeRightStop, this);
 
-	//왼쪽 작은 돌 투척(미구현)
+	// 왼쪽 작은 돌
+	int LeftStoneStop[] = { 185 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftStoneStop", "JIMMY",
+		RightStoneStop, 1, 4, true);
 
-	//오른쪽 큰 돌 투척
+	int LeftStoneMove[] = { 185, 184 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftStoneMove", "JIMMY",
+		LeftStoneMove, 2, 4, true);
 
-	//왼쪽 큰 돌 투척(미구현)
+	//나이프
+	_JIMMYKnife = IMAGEMANAGER->addFrameImage("JIMMYKNIFE", "./images/JIMMY.bmp", 1536, 150, 8, 1, true, RGB(255, 0, 255));
+
+	int KnifeRightStop[] = { 0 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeRightStop", "JIMMYKNIFE", KnifeRightStop, 1, 6, true);
+
+	int KnifeLeftStop[] = { 7 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeLeftStop", "JIMMYKNIFE", KnifeLeftStop, 1, 6, true);
+
+	int KnifeRightMove[] = { 0,1,2 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeRightMove", "JIMMYKNIFE", KnifeRightMove, 3, 4, true);
+
+	int KnifeLeftMove[] = { 7,6,5 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeLeftMove", "JIMMYKNIFE", KnifeLeftMove, 3, 4, true);
+
+	int KnifeRightJump[] = { 3 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeRightJump", "JIMMYKNIFE", KnifeRightJump, 1, 6, true);
+
+	int KnifeLeftJump[] = { 4 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeLeftJump", "JIMMYKNIFE", KnifeLeftJump, 1, 6, true);
+
+	int KnifeRightThrow[] = { 65,66 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeRightThrow", "JIMMY", KnifeRightThrow, 2, 4, true);
+
+	int KnifeLeftThrow[] = { 190,189 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeLeftThrow", "JIMMY", KnifeLeftThrow, 2, 4, true);
+
+
+
 	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
 }
