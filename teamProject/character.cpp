@@ -436,7 +436,7 @@ void character::update()
 		for (int i = 0; i <_EM->getVMinion().size(); ++i)
 		{
 			RECT temp;
-			if (_isRight)
+			if (_state== CHARA_RIGHT_PUNCH_ONE)
 			{
 				if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
 				{
@@ -444,7 +444,8 @@ void character::update()
 					_EM->getVMinion()[i]->setIsTracePlayer(5);
 				}
 			}
-			else {
+			else
+			{
 				if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
 				{
 					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
@@ -508,6 +509,26 @@ void character::update()
 		break;
 	case CHARA_RIGHT_PUNCH_TWO:
 	case CHARA_LEFT_PUNCH_TWO:
+		for (int i = 0; i <_EM->getVMinion().size(); ++i)
+		{
+			RECT temp;
+			if (_state == CHARA_RIGHT_PUNCH_TWO)
+			{
+				if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+			else
+			{
+				if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+		}
 		//펀치중 공격전환
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
@@ -564,6 +585,26 @@ void character::update()
 		break;
 	case CHARA_LEFT_KICK:
 	case CHARA_RIGHT_KICK:
+		for (int i = 0; i <_EM->getVMinion().size(); ++i)
+		{
+			RECT temp;
+			if (_state == CHARA_RIGHT_KICK)
+			{
+				if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+			else
+			{
+				if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+		}
 		//킥중 공격전환
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
@@ -629,6 +670,26 @@ void character::update()
 		break;
 	case CHARA_RIGHT_HEAD:
 	case CHARA_LEFT_HEAD:
+		for (int i = 0; i <_EM->getVMinion().size(); ++i)
+		{
+			RECT temp;
+			if (_state == CHARA_RIGHT_HEAD)
+			{
+				if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+			else
+			{
+				if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+		}
 		if (KEYMANAGER->isOnceKeyDown('X'))//주먹
 		{
 			if (_stageCount != 2)
@@ -720,6 +781,26 @@ void character::update()
 		break;
 	case CHARA_RIGHT_MOVE_JUMP:
 	case CHARA_LEFT_MOVE_JUMP:
+		for (int i = 0; i <_EM->getVMinion().size(); ++i)
+		{
+			RECT temp;
+			if (_state == CHARA_RIGHT_MOVE_JUMP)
+			{
+				if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+			else
+			{
+				if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+		}
 		_y -= _JP;
 		_JP -= _gravity;
 		if (_isRight)
@@ -791,6 +872,26 @@ void character::update()
 		break;
 	case CHARA_RIGHT_BACKKICK:
 	case CHARA_LEFT_BACKKICK:
+		for (int i = 0; i <_EM->getVMinion().size(); ++i)
+		{
+			RECT temp;
+			if (_state == CHARA_RIGHT_BACKKICK)
+			{
+				if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+			else
+			{
+				if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+		}
 		_y -= _JP;
 		_JP -= _gravity*2;
 		if (_isRight)
@@ -811,6 +912,26 @@ void character::update()
 		break;
 	case CHARA_RIGHT_DRILL:
 	case CHARA_LEFT_DRILL:
+		for (int i = 0; i <_EM->getVMinion().size(); ++i)
+		{
+			RECT temp;
+			if (_state == CHARA_RIGHT_DRILL)
+			{
+				if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+			else
+			{
+				if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+		}
 		//니킥과 같이줄것
 		_y -= _JP/2;
 		_JP -= _gravity*2;
@@ -947,6 +1068,26 @@ void character::update()
 		break;
 	case CHARA_RIGHT_JUMP_KICK:
 	case CHARA_LEFT_JUMP_KICK:
+		for (int i = 0; i <_EM->getVMinion().size(); ++i)
+		{
+			RECT temp;
+			if (_state == CHARA_RIGHT_JUMP_KICK)
+			{
+				if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+			else
+			{
+				if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+		}
 		_y -= _JP;
 		_JP -= _gravity;
 		if (_StartY <= _y&&_stageCount != 2)
@@ -971,6 +1112,26 @@ void character::update()
 		break;
 	case CHARA_RIGHT_MOVE_JUMP_KICK:
 	case CHARA_LEFT_MOVE_JUMP_KICK:
+		for (int i = 0; i <_EM->getVMinion().size(); ++i)
+		{
+			RECT temp;
+			if (_state == CHARA_RIGHT_MOVE_JUMP_KICK)
+			{
+				if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+			else
+			{
+				if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+				{
+					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+					_EM->getVMinion()[i]->setIsTracePlayer(5);
+				}
+			}
+		}
 		_y -= _JP;
 		_JP -= _gravity;
 		if (_isRight)
@@ -1004,6 +1165,20 @@ void character::update()
 	case CHARA_RIGHT_ATT:
 	case CHARA_LEFT_ATT:
 		//JP값 0준상태
+		for (int i = 0; i < _EM->getVMinion().size(); ++i)
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+			{
+				_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+				_EM->getVMinion()[i]->setIsTracePlayer(5);
+			}
+			if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+			{
+				_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+				_EM->getVMinion()[i]->setIsTracePlayer(5);
+			}
+		}
 		break;
 	default:
 		break;
@@ -1235,17 +1410,45 @@ void character::UpdateRect()
 void character::hurt(int damage)
 {
 	_HP -= damage;
-	if (_isRight)
+	if (_state== CHARA_RIGHT_JUMP
+		||_state==CHARA_RIGHT_MOVE_JUMP
+		||_state==CHARA_RIGHT_BACKKICK
+		|| _state ==CHARA_RIGHT_DRILL
+		|| _state ==CHARA_RIGHT_JUMP_KICK
+		|| _state ==CHARA_RIGHT_MOVE_JUMP_KICK
+		|| _state ==CHARA_RIGHT_ATT)
 	{
-		_state = CHARA_RIGHT_HIT;
-		_motion = KEYANIMANAGER->findAnimation("JIMMYRightHit");
-		_motion->start();
+			_state = CHARA_RIGHT_STRIKED;
+			_motion = KEYANIMANAGER->findAnimation("JIMMYRightStriked");
+			_motion->start();
 	}
+		//상대의 위치가 나보다 크다면(적이 오른쪽)
+	else if(_state == CHARA_LEFT_ATT
+			|| _state == CHARA_LEFT_JUMP_KICK
+			|| _state == CHARA_LEFT_DRILL
+			|| _state == CHARA_LEFT_MOVE_JUMP_KICK
+			|| _state == CHARA_LEFT_JUMP
+			|| _state == CHARA_LEFT_BACKKICK
+			|| _state == CHARA_LEFT_MOVE_JUMP)
+		{
+			_state = CHARA_LEFT_STRIKED;
+			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStriked");
+			_motion->start();
+		}
 	else
 	{
-		_state = CHARA_LEFT_HIT;
-		_motion = KEYANIMANAGER->findAnimation("JIMMYLeftHit");
-		_motion->start();
+		if (_isRight)
+		{
+			_state = CHARA_RIGHT_HIT;
+			_motion = KEYANIMANAGER->findAnimation("JIMMYRightHit");
+			_motion->start();
+		}
+		else
+		{
+			_state = CHARA_LEFT_HIT;
+			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftHit");
+			_motion->start();
+		}
 	}
 }
 
