@@ -523,6 +523,8 @@ void stage2::elevatorMove()
 	_currentRC->top -= 5;
 	_currentRC->bottom -= 5;
 
+	_mainPlayer->setY(_mainPlayer->getY() - 5);
+
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
 	_currentRC = &_rc1;
 	CAMERAMANAGER->setCameraAim(_currentRC);
