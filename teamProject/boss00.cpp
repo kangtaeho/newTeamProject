@@ -86,10 +86,10 @@ HRESULT boss00::init(POINT point, int currentStage)
 	KEYANIMANAGER->addArrayFrameAnimation("bossrightHit", "boss00", rightHit, 1, 2, true);
 	int leftHit[] = { 12 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossleftHit", "boss00", leftHit, 1, 2, true);
-	int rightHit2[] = { 5,6 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossrightHit2", "boss00", rightHit2, 2, 2, false);
-	int leftHit2[] = { 11,10 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossleftHit2", "boss00", leftHit2, 2, 2, false);
+	int rightHit2[] = { 70,69,70 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossrightHit2", "boss00", rightHit2, 3, 2, false);
+	int leftHit2[] = { 73,74,73 };
+	KEYANIMANAGER->addArrayFrameAnimation("bossleftHit2", "boss00", leftHit2, 3, 2, false);
 
 	//쓰러진상태
 	int rightDown[] = { 7 };

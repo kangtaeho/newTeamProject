@@ -237,6 +237,8 @@ public:
 
 	bool getDeleteEnemy() { return _deleteEnemy; }
 
+	int getCurrentStage() { return _currentStage; }
+
 
 };
 
