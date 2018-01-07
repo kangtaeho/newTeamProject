@@ -18,10 +18,10 @@ HRESULT mainGame::init()			//초기화 함수
 	//SCENEMANAGER->changeScene("스테이지00");
 
 	//재호 : 게임 시작신으로설정
-	SCENEMANAGER->changeScene("스타트", false);
+	//SCENEMANAGER->changeScene("스타트", false);
 
 	//이걸 주석 풀면 바로 2스테에서 튀어나옴
-	//SCENEMANAGER->changeScene("스테이지01", false);
+	SCENEMANAGER->changeScene("스테이지01", false);
 
 	//이걸 주석풀면 바로 3스테에서 튀어나옴
 	//SCENEMANAGER->changeScene("스테이지02", false);
