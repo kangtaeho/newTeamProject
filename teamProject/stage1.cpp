@@ -150,13 +150,6 @@ void stage1::update()
 		}
 
 		_inven->update();
-		for (int i = 0; i < _vItem.size(); i++)
-		{
-			_vItem[i]->update();
-		}		
-		makeEnemy();
-		enemyItemCollision();
-		playerItemCollisioin();
 	}
 
 	_doorAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 10);
@@ -173,7 +166,6 @@ void stage1::update()
 
 
 
-	_em->update();
 	
 }
 
@@ -285,6 +277,15 @@ void stage1::characterMovement() {
 	_rc1 = RectMake(_mainPlayer->getX() - 30, _mainPlayer->getY() - 30, 100, 100);
 	_mainPlayer->update();
 
+	for (int i = 0; i < _vItem.size(); i++)
+	{
+		_vItem[i]->update();
+	}
+	makeEnemy();
+	enemyItemCollision();
+	playerItemCollisioin();
+
+	_em->update();
 	/*if (KEYMANAGER->isOnceKeyDown('P'))
 	{
 		SCENEMANAGER->changeScene("스테이지01");

@@ -393,7 +393,7 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	{
 		//쫄따구1 정예몹 1마리 생성
 		_thirdWave = true;
-		_em->setPick(PointMake(5700, 260), 2);
+		_em->setBoss(PointMake(5700, 260), 2);
 
 		_currentRC = &_rc1;
 		CAMERAMANAGER->setCameraAim(_currentRC);
@@ -530,6 +530,8 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	{
 		_vItem[i]->render();
 	}
+
+	_inven->render();
 
 	_mainPlayer->render();
 	_em->render();

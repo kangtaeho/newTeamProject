@@ -27,7 +27,7 @@ HRESULT orangePotion::init()
 	//타입 초기화
 	_itemType = POTION;
 	//물약 효과
-	_itemEffect = 3;
+	_itemEffect = 5;
 	//상점가격
 	_price = 48;
 	//갯수
