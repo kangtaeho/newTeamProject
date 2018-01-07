@@ -60,3 +60,17 @@ inline void setColorRect(HDC hdc, RECT rc, int R, int G, int B) {
 	SelectObject(hdc, oldBrush);
 	DeleteObject(hBrush);
 }
+
+#define PI 3.141591
+
+#define PI8		float(PI / 8.0f)
+#define PI16	float(PI / 16.0f)
+#define PI32	float(PI / 32.0f)
+#define PI64	float(PI / 64.0f)
+#define PI128	float(PI / 128.0f)
+
+inline float getDegree(int degree) {
+	float value = (PI / 180)*degree;
+
+	return value;
+}

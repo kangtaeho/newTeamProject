@@ -157,11 +157,20 @@ void enemyManager::traceCharacter() {
 			
 			if (_vEnemy[i]->getIsAttack()) return;			//적이 공격상태이면 추적 금지
 
-			if (getDistance(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()) < 75) {
-			
-				_vEnemy[i]->setIsAttack(true);			//공격해라
-				_vEnemy[i]->setIsTracePlayer(2);		//다시 한번 이야기 하지만 0번이 패트롤 상태 1번이 추격, 2번이 공격
+			if (getDistance(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()) < 80) {
 
+				_vEnemy[i]->setIsTracePlayer(4);
+				_vEnemy[i]->setTraceAngle(getAngle(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()));
+
+				if (_vEnemy[i]->getTraceAngle() <= getDegree(185) && _vEnemy[i]->getTraceAngle() >= getDegree(175)) {
+					_vEnemy[i]->setIsAttack(true);			//공격해라
+					_vEnemy[i]->setIsTracePlayer(2);		//다시 한번 이야기 하지만 0번이 패트롤 상태 1번이 추격, 2번이 공격
+				}
+				else if (_vEnemy[i]->getTraceAngle() <= getDegree(10) && _vEnemy[i]->getTraceAngle()>= getDegree(0)) {
+					_vEnemy[i]->setIsAttack(true);			//공격해라
+					_vEnemy[i]->setIsTracePlayer(2);
+				}
+				
 			}
 			
 			else {

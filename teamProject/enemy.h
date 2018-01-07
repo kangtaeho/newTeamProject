@@ -185,7 +185,7 @@ public:
 
 	void setIsTracePlayer(int isTracePlayer) { _isTracePlayer = isTracePlayer; }
 	void setTraceAngle(float traceAngle) { _traceAngle= traceAngle; } //각도 구하기
-
+	float getTraceAngle() { return _traceAngle; }
 
 	float getCenterX() { return  CAMERAMANAGER->CameraRelativePoint(_rcEnemy).x + _imageEnemy->getFrameWidth() / 2; }
 	float getCenterY() { return  CAMERAMANAGER->CameraRelativePoint(_rcEnemy).y + _imageEnemy->getFrameHeight() / 2; }
@@ -207,6 +207,10 @@ public:
 
 	void setIsAttack(bool isAttack) { _isAttack = isAttack; }
 	bool getIsAttack() { return _isAttack; }
+
+
+	bool getIsRight() { return _isRight; }
+	bool getIsLeft() { return _isLeft; }
 
 	void setHP(int HP) { _HP = HP; }
 	int getHP() { return _HP; }

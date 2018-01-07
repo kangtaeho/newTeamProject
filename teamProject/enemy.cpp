@@ -256,7 +256,7 @@ void enemy::enemyMove() {
 					_x += _rndDirX;
 					_y += _rndDirY;;
 				}
-				else if (_countMove >= 100 && _countMove<150) {
+				else if (_countMove >= 100 && _countMove < 150) {
 
 					if (_countMove == 100) {
 						_rndDirX = rndDirection(RND->getInt(3));
@@ -284,13 +284,13 @@ void enemy::enemyMove() {
 						}
 					}
 				}
-				else if (_countMove >= 150 && _countMove<150 + _rndTum) {
+				else if (_countMove >= 150 && _countMove < 150 + _rndTum) {
 
 					_x += _rndDirX;
 					_y += _rndDirY;
 
 				}
-				else if (_countMove >= 150 + _rndTum && _countMove<_rndTum2) {
+				else if (_countMove >= 150 + _rndTum && _countMove < _rndTum2) {
 
 					if (_countMove == 250) {
 						_rndDirX = rndDirection(RND->getInt(3));
@@ -327,7 +327,7 @@ void enemy::enemyMove() {
 				if (_y > 482) {
 					_rndDirY = -1;
 				}
-				else if (_y<337) {
+				else if (_y < 337) {
 					_rndDirY = 1;
 				}
 
@@ -340,7 +340,7 @@ void enemy::enemyMove() {
 
 				if (cosf(_traceAngle) * 1.2f > 0) {
 					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[4]);
-					if(_isRight) _enemyMotion->start();
+					if (_isRight) _enemyMotion->start();		//오른쪽 발견
 					_isRight = false;
 					_isLeft = true;
 				}
@@ -348,7 +348,7 @@ void enemy::enemyMove() {
 					_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[5]);
 					if (_isLeft) _enemyMotion->start();
 					_isRight = true;
-					_isLeft = false;	
+					_isLeft = false;
 				}
 
 				break;
@@ -389,11 +389,36 @@ void enemy::enemyMove() {
 					if (!_dieAniStart) _enemyMotion->start();
 					_dieAniStart = true;
 				}
-			}
-						
+
+				break;
+
+			case 4:	 //접근하고 나서 플레이어와 각도 설정
+
 			
-		break;
-	
+				if (_isRight) {
+					if (_traceAngle > getDegree(180)) {
+						_y += 1.0f;
+					}
+					else {
+						_y -= 1.0f;
+					}
+				
+				}
+				else {
+					if (_traceAngle > getDegree(0)) {
+						_y += 1.0f;
+					}
+					else if(_traceAngle < getDegree(360)){
+						_y -= 1.0f;
+					}
+					else {
+						_y -= 1.0f;
+					}
+				}	
+
+				break;
+			}
+
 		case 2:
 
 			switch (_isTracePlayer) {
