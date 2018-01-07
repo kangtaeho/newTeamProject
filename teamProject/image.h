@@ -101,8 +101,10 @@ public:
 	void alphaRender(HDC hdc, BYTE alpha);
 	void alphaRender(HDC hdc, int destX, int destY, BYTE alpha);
 	void alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha);
+	void alphaFrameRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFraemY, BYTE alpha);
 
 	void aniRender(HDC hdc, int destX, int destY, animation* ani);
+	void aniAlphaRender(HDC hdc, int destX, int destY, animation* ani, BYTE alpha);
 
 	inline HDC getMemDC() { return _imageInfo->hMemDC; }
 

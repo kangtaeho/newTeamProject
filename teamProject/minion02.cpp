@@ -43,6 +43,7 @@ HRESULT minion02::init(POINT point, int currentStage)
 	_enemyKeyName[14] = "enemy06RightTwoJab";
 	_enemyKeyName[15] = "enemy06LeftTwoJab";
 
+
 	_isItemCollion = false;
 	_isGetItemEnemy = false;
 	_isTracePlayer = 0;
@@ -84,7 +85,7 @@ HRESULT minion02::init(POINT point, int currentStage)
 	KEYANIMANAGER->addArrayFrameAnimation("enemy06RightOneJab", "enemy06", rightOneJab, 2, 2, true);
 	int leftOneJab[] = { 27,26 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemy06LeftOneJab", "enemy06", leftOneJab, 2, 2, true);
-	int rightTwoJab[] = { 22,23.22 };
+	int rightTwoJab[] = { 22,23,22 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemy06RightTwoJab", "enemy06", rightTwoJab, 3, 2, false);
 	int leftTwoJab[] = { 25,24,25 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemy06LeftTwoJab", "enemy06", leftTwoJab, 3, 2, false);

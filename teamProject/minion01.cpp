@@ -76,9 +76,9 @@ HRESULT minion01::init(POINT point, int currentStage)
 
 
 	int rightHittied[] = { 38,37,36,37,};
-	KEYANIMANAGER->addArrayFrameAnimation("enemy07RightHittied", "enemy07", rightHittied, 4, 2, true);
+	KEYANIMANAGER->addArrayFrameAnimation("enemy07RightHittied", "enemy07", rightHittied, 4, 2, false);
 	int leftHittied[] = { 42,43,44,43};
-	KEYANIMANAGER->addArrayFrameAnimation("enemy07LeftHittied", "enemy07", leftHittied, 4, 2, true);
+	KEYANIMANAGER->addArrayFrameAnimation("enemy07LeftHittied", "enemy07", leftHittied, 4, 2, false);
 
 	int rightStop[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemy07RightStop", "enemy07", rightStop, 1, 2, true);
