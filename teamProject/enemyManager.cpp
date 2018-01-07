@@ -66,7 +66,8 @@ void enemyManager::render()
 	if (_vEnemy.size() == 0) return;
 	//showFloatData(getMemDC(), "x 좌표 : %0.2f", _mini->getX(), 800, 20);
 	//
-	showIntData(getMemDC(), "카운트 증가하고는 있냐? : %d", _vEnemy[0]->getHP(), 800, 40);
+	showIntData(getMemDC(), "첫번째 적 Y좌표 : %d", _vEnemy[0]->getCenterY(), 700, 40);
+	showIntData(getMemDC(), "첫번째 적 상태(0번 패트롤, 2번 추적, 4번 공격, 5번 맞음 : %d", _vEnemy[0]->getIsTracePlayer(), 700, 60);
 	///_mini->render();
 
 }
