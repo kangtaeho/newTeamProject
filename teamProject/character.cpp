@@ -62,6 +62,7 @@ void character::update()
 		//멈춘상태
 	case CHARA_RIGHT_STOP:
 	case CHARA_LEFT_STOP:
+	case CHARA_RIGHT_STONE_STOP:
 		if (KEYMANAGER->isOnceKeyDown(VK_UP)|| KEYMANAGER->isOnceKeyDown(VK_DOWN))
 		{
 			//_isRight라는 변수가 필요없다
@@ -79,6 +80,16 @@ void character::update()
 				_motion->stop();
 				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMove");
 				_motion->start();
+			}
+			else if (_state == CHARA_RIGHT_STONE_STOP)
+			{
+				//큰돌과 작은돌
+				if (_itemType == 2 || _itemType == 0)
+				{
+					_state = CHARA_RIGHT_STONE_HAND;
+					_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneMove");
+					_motion ->start();
+				}
 			}
 		}
 		if (KEYMANAGER->isOnceKeyDown('Z'))//점프
@@ -111,19 +122,35 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
-			_isRight = false;
-			_state = CHARA_LEFT_MOVE;
-			_motion->stop();
-			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMove");
-			_motion->start();
+			if (_state == CHARA_RIGHT_STONE_STOP)//또는 왼쪽일때
+			{
+				
+			}
+			else
+			{
+				_isRight = false;
+				_state = CHARA_LEFT_MOVE;
+				_motion->stop();
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftMove");
+				_motion->start();
+			}
 		}
 		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
 		{
-			_isRight = true;
-			_state = CHARA_RIGHT_MOVE;
-			_motion->stop();
-			_motion = KEYANIMANAGER->findAnimation("JIMMYRightMove");
-			_motion->start();
+			if (_state == CHARA_RIGHT_STONE_STOP)//또는 왼쪽일때
+			{
+				_state = CHARA_RIGHT_STONE_HAND;
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneMove");
+				_motion->start();
+			}
+			else
+			{
+				_isRight = true;
+				_state = CHARA_RIGHT_MOVE;
+				_motion->stop();
+				_motion = KEYANIMANAGER->findAnimation("JIMMYRightMove");
+				_motion->start();
+			}
 		}
 		if (KEYMANAGER->isOnceKeyDown('X'))//주먹
 		{
@@ -134,8 +161,11 @@ void character::update()
 					//작은 돌
 					if (_itemType == 0)
 					{
-						_state = CHARA_RIGHT_STONE_HAND;
-						_item->setY(_rc.top -20);
+						_state = CHARA_RIGHT_STONE_STOP;
+						_item->setX(_x);
+						_item->setY(_rc.top +5);
+						_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneStop");
+						_motion->start();
 					}
 					//칼
 					else if (_itemType == 1)
@@ -145,8 +175,11 @@ void character::update()
 					//큰 돌
 					else if (_itemType == 2)
 					{
-						_state = CHARA_RIGHT_BIGSTONE_HAND;
+						_state = CHARA_RIGHT_STONE_STOP;
+						_item->setX(_x);
 						_item->setY(_rc.top -20);
+						_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneStop");
+						_motion ->start();
 					}
 				}
 				//아이템 충돌 ㄴㄴ
@@ -190,6 +223,7 @@ void character::update()
 		break;
 
 	case CHARA_RIGHT_MOVE://오른쪽으로 움직이는 중
+	case CHARA_RIGHT_STONE_HAND:
 	{
 		if (_stageCount == 2 && !_isOn)
 		{
@@ -201,11 +235,23 @@ void character::update()
 		 if (!KEYMANAGER->isStayKeyDown(VK_DOWN))
 		 if (!KEYMANAGER->isStayKeyDown(VK_RIGHT))
 		 {
-		  _state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
-		  _motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
-		  _motion->start();
+			 //오른쪽 움직이는 상태이면
+			 if (_state == CHARA_RIGHT_MOVE)
+			 {
+				 _state = CHARA_RIGHT_STOP;//멈춤상태로 돌려라
+				 _motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
+				 _motion->start();
+			 }
+			 //돌을 들고 있으면
+			 else
+			 {
+				 _state = CHARA_RIGHT_STONE_STOP;
+				 _motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneStop");
+				 _motion->start();
+			 }
 		 }
-		 if (KEYMANAGER->isOnceKeyDown('Z'))//점프
+		 //돌 들고 있을떄 점프 XX
+		 if (KEYMANAGER->isOnceKeyDown('Z') && _state == CHARA_RIGHT_MOVE)//점프
 		 {
 		  //SOUNDMANAGER->play("흐앗(발차기할때)", 1.0);
 			 if (_stageCount != 2)
@@ -246,6 +292,12 @@ void character::update()
 			  //}
 			  //else
 			  _y -= _Zmove;
+
+			  //돌의 y축 수정
+			  if (_state == CHARA_RIGHT_STONE_HAND)
+			  {
+				  _item->setY(_item->getY() - _Zmove);
+			  }
 		  }
 		 }
 		 if (KEYMANAGER->isStayKeyDown(VK_DOWN) && _stageCount != 2)
@@ -266,6 +318,12 @@ void character::update()
 			  //}
 			  //else
 			  _y += _Zmove;
+
+			  //돌의 y축 수정
+			  if (_state == CHARA_RIGHT_STONE_HAND)
+			  {
+				  _item->setY(_item->getY() + _Zmove);
+			  }
 		  }
 		 }
 
@@ -282,6 +340,10 @@ void character::update()
 			
 			// else
 		  _x += CHARASPEED;
+		  if (_state == CHARA_RIGHT_STONE_HAND)
+		  {
+			  _item->setX(_x);
+		  }
 		 }
 
 		 //if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) || KEYMANAGER->isOnceKeyUp(VK_DOWN) || KEYMANAGER->isOnceKeyUp(VK_UP))
@@ -1727,6 +1789,15 @@ void character::addImage()
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightKnifeThrowingn", "JIMMY", 
 		RightKnifeThrowing, 2, 1, false, MakeRightStop, this);
 
+	//돌 들고 가만히
+	int RightStoneStop[] = { 70 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightStoneStop", "JIMMY",
+		RightStoneStop, 1, 1, true);
+
+	//돌 들고 움직임
+	int RightStoneMove[] = { 70, 71 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightStoneMove", "JIMMY",
+		RightStoneMove, 2, 1, true);
 	//왼쪽 칼 투척(미구현)
 
 	//오른쪽 작은 돌 투척

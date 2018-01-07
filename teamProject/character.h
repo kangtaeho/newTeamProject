@@ -50,10 +50,9 @@ enum CHARA {
 	CHARA_LEFT_ATT,
 	CHARA_RIGHT_KNIFE_HAND,	//오른쪽 칼 쥐는거 (왼쪽 추가해야함)
 	CHARA_RIGHT_KNIFE_THROWING,	//오른쪽 칼 던지는거 (왼쪽 추가해야함)
+	CHARA_RIGHT_STONE_STOP,		//큰돌 작은돌 가만히 있는거 공용
 	CHARA_RIGHT_STONE_HAND,	//오른쪽 돌 드는거 (왼쪽 추가해야함)
 	CHARA_RIGHT_STONE_THROWING,	//오른쪽 돌 던지는거 (왼쪽 추가해야함)
-	CHARA_RIGHT_BIGSTONE_HAND,	//오른쪽 큰 돌 드는거 (왼쪽 추가해야함)
-	CHARA_RIGHT_BOGSTONE_THROWING	//오른쪽 큰 돌 던지는거 (왼쪽 추가해야함)
 };
 
 class item;
