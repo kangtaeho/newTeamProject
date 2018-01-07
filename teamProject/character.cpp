@@ -180,6 +180,8 @@ void character::update()
 				_motion->stop();
 				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneThrow");
 				_motion->start();
+				_item->setThrowPower(0);
+				_item->setEndY(_rc.bottom);
 				_isHanded = false;
 			}
 			else if (_state == CHARA_LEFT_STONE_STOP)
@@ -189,6 +191,8 @@ void character::update()
 				_motion->stop();
 				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStoneThrow");
 				_motion->start();
+				_item->setThrowPower(0);
+				_item->setEndY(_rc.bottom);
 				_isHanded = false;
 			}
 			else
@@ -1853,7 +1857,7 @@ void character::addImage()
 	// ¿ÞÂÊ ÀÛÀº µ¹
 	int LeftStoneStop[] = { 185 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftStoneStop", "JIMMY",
-		RightStoneStop, 1, 4, true);
+		LeftStoneStop, 1, 4, true);
 
 	int LeftStoneMove[] = { 185, 184 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftStoneMove", "JIMMY",
