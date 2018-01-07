@@ -80,6 +80,9 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 		SCENEMANAGER->render();
 		IMAGEMANAGER->findImage("유아이박스")->render(getMemDC(), 0, WINSIZEY - IMAGEMANAGER->findImage("유아이박스")->getHeight());
 
+		IMAGEMANAGER->findImage("퀵포션박스")->render(getMemDC(), 700, 538);
+		if (SCENEMANAGER->getCurrentScene()->getMainPlayer()->getQuickPotion() != NULL)
+		SCENEMANAGER->getCurrentScene()->getMainPlayer()->getQuickPotion()->getItemImage()->render(getMemDC(), 703, 540);
 		//IMAGEMANAGER->findImage("피박스")->render(getMemDC(), 400, 400);
 		for (int i = 0;
 			i < SCENEMANAGER->getCurrentScene()->getMainPlayer()->getHP(); i++)
@@ -124,7 +127,7 @@ void mainGame::addImage()		//이미기 추가해주는 함수 이후 이미지는 여기서 add하는
 
 	IMAGEMANAGER->addImage("유아이박스", "./images/ui_box.bmp", 1152, 144, true, RGB(255, 0, 255));
 
-
+	IMAGEMANAGER->addImage("퀵포션박스", "./images/circle.bmp", 40, 40, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("피박스", "./images/hprect.bmp", 24, 24, true, RGB(255, 0, 255));
 
 }

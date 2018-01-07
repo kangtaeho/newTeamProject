@@ -176,6 +176,8 @@ public:
 	int getHP(){ return _HP; }
 	void setHP(int HP) { _HP = HP; }
 
+	item* getQuickPotion(){ return _potion; }
+
 	void setIsItemCollision(bool isItemCollision){ //설정자
 		_isItemCollision = isItemCollision;}	
 	bool getIsItemCollision(){ return _isItemCollision; } //접근자

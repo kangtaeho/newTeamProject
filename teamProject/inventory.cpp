@@ -258,17 +258,20 @@ void inventory::inventoryState() {
 	if (KEYMANAGER->isOnceKeyDown('Z')) {
 		switch (_currentSelectY) {
 			case 0:
+				if (_RPotion->getCount() <= 0) return;
 				_mainPlayer->setMemoryPotion(_RPotion);
 				//_quickCount = _RPotion->getCount();
 			break;
 
 			case 1:
+				if (_OPotion->getCount() <= 0) return;
 				_mainPlayer->setMemoryPotion(_OPotion);
 				/*_quickPotion = _OPotion->getItemEffect();
 				_quickCount = _OPotion->getCount();*/
 			break;
 
 			case 2:
+				if (_WPotion->getCount() <= 0) return;
 				_mainPlayer->setMemoryPotion(_WPotion);
 				/*_quickPotion = _WPotion->getItemEffect();
 				_quickCount = _WPotion->getCount();*/
