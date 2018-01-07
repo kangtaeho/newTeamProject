@@ -73,11 +73,11 @@ void enemyManager::render()
 	///_mini->render();
 
 
-	//showFloatData(getMemDC(), "x 좌표 : %0.2f", _mainPlayer->getCenterX(), 800, 40);
+//showFloatData(getMemDC(), "x 좌표 : %0.2f", _mainPlayer->getCenterX(), 800, 40);
 }
 
 //쫄따구
-void enemyManager::setMinion(POINT point,int stageCout)
+void enemyManager::setMinion(POINT point, int stageCout)
 {
 	enemy* temp;
 	temp = new minion00;
@@ -113,7 +113,7 @@ void enemyManager::setPick(POINT point, int stageCout)
 }
 
 //보스
-void enemyManager::setBoss(POINT point,int stageCout)
+void enemyManager::setBoss(POINT point, int stageCout)
 {
 	enemy* temp;
 	temp = new boss00;
@@ -154,10 +154,10 @@ void enemyManager::traceCharacter() {
 	for (int i = 0; i < _vEnemy.size(); ++i) {
 		if (_vEnemy.size() == 0) return;
 
-		if (_vEnemy[i]->getHP()<0) _vEnemy[i]->setIsTracePlayer(3);
+		if (_vEnemy[i]->getHP() < 0) _vEnemy[i]->setIsTracePlayer(3);
 
 		if (getDistance(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()) < 300) {
-			
+
 			if (_vEnemy[i]->getIsAttack()) return;			//적이 공격상태이면 추적 금지
 
 			if (getDistance(_vEnemy[i]->getCenterX(), _vEnemy[i]->getCenterY(), _mainPlayer->getCenterX(), _mainPlayer->getCenterY()) < 80) {
@@ -169,7 +169,11 @@ void enemyManager::traceCharacter() {
 					_vEnemy[i]->setIsAttack(true);			//공격해라
 					_vEnemy[i]->setIsTracePlayer(2);		//다시 한번 이야기 하지만 0번이 패트롤 상태 1번이 추격, 2번이 공격
 				}
-				else if (_vEnemy[i]->getTraceAngle() <= getDegree(10) && _vEnemy[i]->getTraceAngle()>= getDegree(0)) {
+				else if (_vEnemy[i]->getTraceAngle() <= getDegree(10) && _vEnemy[i]->getTraceAngle() >= getDegree(0)) {
+					_vEnemy[i]->setIsAttack(true);			//공격해라
+					_vEnemy[i]->setIsTracePlayer(2);
+				}
+				else if (_vEnemy[i]->getTraceAngle() < getDegree(360) && _vEnemy[i]->getTraceAngle() >= getDegree(355)) {
 					_vEnemy[i]->setIsAttack(true);			//공격해라
 					_vEnemy[i]->setIsTracePlayer(2);
 				}
