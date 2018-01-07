@@ -520,10 +520,22 @@ void stage1::playerItemCollisioin(){
 				{
 					_mainPlayer->setItemType(2);
 				}
+				break;
 			}
 			++i;
 		}
-		else ++i;
+		else
+		{
+			//아이템 들고있으면 밑에 진행안함
+			if (_mainPlayer->getIsHanded())
+			{
+				++i;
+				continue;
+			}
+
+			_mainPlayer->setIsItemCollision(false);
+			++i;
+		}
 
 	}
 	
