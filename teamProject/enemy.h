@@ -122,6 +122,8 @@ protected:
 
 	float _traceAngle;
 
+	int _rndAttackStyle;			//어택스타일
+
 
 	float _enemyCenterX, _enemyCenterY;
 	float _playerCenterX, _playerCenterY;
@@ -130,7 +132,7 @@ protected:
 	animation* _bossMotion;
 
 
-	string _enemyKeyName[14];
+	string _enemyKeyName[20];
 
 	bool _isItemCollion;			//아이템이랑 부딪혔냐
 	bool _isGetItemEnemy;			//아이탬을 잡을수 있는 에너미니?
@@ -223,7 +225,7 @@ public:
 	void setHP(int HP) { _HP = HP; }
 	int getHP() { return _HP; }
 
-	int getCountHitted() { return _countHitted; }
+	int getCountHitted() { return _countAttack; }
 	int getIsTracePlayer() { return _isTracePlayer; }
 };
 
