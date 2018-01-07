@@ -177,6 +177,7 @@ void character::update()
 			{
 				_state = CHARA_RIGHT_STONE_THROWING;
 				_item->setState(true);
+				_item->setIsRight(true);
 				_motion->stop();
 				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneThrow");
 				_motion->start();
@@ -188,6 +189,7 @@ void character::update()
 			{
 				_state = CHARA_LEFT_STONE_THROWING;
 				_item->setState(true);
+				_item->setIsRight(false);
 				_motion->stop();
 				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStoneThrow");
 				_motion->start();

@@ -28,7 +28,7 @@ protected:
 	int _frameCount;			//프레임 카운트변수
 
 	float _throwPower;
-	
+	bool _isRight;
 
 public:
 	item();
@@ -80,5 +80,6 @@ public:
 	void setY(float y) { _y = y; }
 	void setEndY(float endY){ _endY = endY; }
 	void setThrowPower(float throwPower){ _throwPower = throwPower; }
+	void setIsRight(bool isRight){ _isRight = isRight; }
 };
 
