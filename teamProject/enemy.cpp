@@ -394,7 +394,6 @@ void enemy::enemyMove() {
 
 			case 4:	 //접근하고 나서 플레이어와 각도 설정
 
-			
 				if (_isRight) {
 					if (_traceAngle > getDegree(180)) {
 						_y += 1.0f;
@@ -402,21 +401,42 @@ void enemy::enemyMove() {
 					else {
 						_y -= 1.0f;
 					}
-				
+
 				}
 				else {
 					if (_traceAngle > getDegree(0)) {
 						_y += 1.0f;
 					}
-					else if(_traceAngle < getDegree(360)){
+					else if (_traceAngle < getDegree(360)) {
 						_y -= 1.0f;
 					}
 					else {
 						_y -= 1.0f;
 					}
-				}	
+				}
 
 				break;
+
+			case 5:
+
+				//if (_traceAngle > getDegree(90) && _traceAngle < getDegree(270)) {
+				//	//_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[13]);
+				//}
+				//else {
+				//	//_enemyMotion = KEYANIMANAGER->findAnimation(_enemyKeyName[12]);
+				//}
+				//
+				//if (!_hittedAniStart) _enemyMotion->start();
+				//_hittedAniStart = true;
+				//
+				//if (_countHitted % 20 == 0) {
+				//	_hittedAniStart = false;
+				//	_isHitted = false;
+				//	_countHitted = 0;
+				//}
+				//
+				break;
+
 			}
 
 		case 2:
