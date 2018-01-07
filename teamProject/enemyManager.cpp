@@ -32,17 +32,18 @@ void enemyManager::release()
 
 void enemyManager::update()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_F1))
-	{
-		removeEnemy(0);
-		//_vEnemy.clear();
-	}
-
-	for (_viEnemy = _vEnemy.begin(); _viEnemy != _vEnemy.end(); ++_viEnemy)
+	
+	for (_viEnemy = _vEnemy.begin(); _viEnemy != _vEnemy.end(); /*++_viEnemy*/)
 	{
 		
 		(*_viEnemy)->update();
-
+		if (KEYMANAGER->isOnceKeyDown(VK_F1))
+		{
+			removeEnemy(0);
+			continue;
+			//_vEnemy.clear();
+		}
+		else ++_viEnemy;
 		
 		//else ++_viEnemy;
 	}
@@ -134,7 +135,7 @@ void enemyManager::removeEnemy(int arrNum)
 		_stage2->dropMoney(PointMake(_vEnemy[arrNum]->getAbsoluteX(), _vEnemy[arrNum]->getAbsoluteY()), 20);
 	}
 	SAFE_DELETE(_vEnemy[arrNum]);
-	_vEnemy.erase(_vEnemy.begin() + arrNum);
+	_viEnemy = _vEnemy.erase(_vEnemy.begin() + arrNum);
 
 }
 
