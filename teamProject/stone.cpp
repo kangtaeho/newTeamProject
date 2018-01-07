@@ -25,6 +25,8 @@ HRESULT stone::init(POINT point)
 
 	_frameX = _frameCount = 0;
 
+	_gravity =0.04;
+	_throwPower = 1;
 	return S_OK;
 }
 
@@ -49,11 +51,14 @@ void stone::move(){
 	//아이템이 떨어져있는 상태 = 움직일 필요없으니
 	if (_itemState == DROP) return;
 
-	if (_x > CAMERAMANAGER->getBackGroundSizeX() - _itemImage->getFrameWidth())
+	if (_x > CAMERAMANAGER->getBackGroundSizeX() - _itemImage->getFrameWidth()
+		|| _y > _endY - _itemImage->getFrameHeight())
 	{
 		_itemState = DROP;
 		//_x = CAMERAMANAGER->getBackGroundSizeX() - _itemImage->getFrameWidth();
 		return;
 	}
-	_x += 5;
+	_x += 3;
+	_y -= _throwPower;
+	_throwPower -= _gravity;
 }

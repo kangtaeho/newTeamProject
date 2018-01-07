@@ -506,7 +506,7 @@ void stage1::playerItemCollisioin(){
 					++i;
 					continue;
 				}
-				//_mainPlayer->setIsItemCollision(true);
+				_mainPlayer->setIsItemCollision(true);
 				_mainPlayer->setItem(_vItem[i]);
 				if (i == 0) //µ¹, Ä® Å«µ¹
 				{

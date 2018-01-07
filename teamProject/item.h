@@ -77,6 +77,7 @@ public:
 	float getY() { return _y; }
 	void setX(float x) { _x = x; }
 	void setY(float y) { _y = y; }
+	void setEndY(float endY){ _endY = endY; }
 
 };
 
