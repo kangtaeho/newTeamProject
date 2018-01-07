@@ -126,7 +126,7 @@ public:
 	}
 
 	//상태값 HIT로 바뀌고 데미지
-	void hurt(int damage);
+	void hurt(int damage, float x);
 	//상태값 STRIKED로 바뀌고 데미지 입으며
 	//x값이 클때는 왼쪽 작을때는 오른쪽으로 쓰러짐
 	void strike(int damage, float x);
