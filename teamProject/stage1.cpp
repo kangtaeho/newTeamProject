@@ -44,8 +44,8 @@ HRESULT stage1::init()
 	
 	//¾ÆÀÌÅÛ º¤ÅÍ¿¡ µ¹, Ä® Ãß°¡
 	_vItem.push_back(_stone);
-	_vItem.push_back(_knife);
-	_vItem.push_back(_bigStone);
+	//_vItem.push_back(_knife);
+	//_vItem.push_back(_bigStone);
 
 	_rc1 = RectMake(_mainPlayer->getRect().left, _mainPlayer->getRect().top, 100, 100);
 	_currentRC = &_rc1;
@@ -376,8 +376,8 @@ void stage1::initialization()
 {
 
 	//Ä®Ãß°¡ //º´Ã¶
-	_knife = new knife;
-	_knife->init(PointMake(1000, 350));
+	//_knife = new knife;
+	//_knife->init(PointMake(1000, 350));
 
 
 	_doorAni = new animation;
@@ -387,8 +387,8 @@ void stage1::initialization()
 	_stone = new stone;
 	_stone->init(PointMake(2000, 450));
 
-	_bigStone = new bigStone;
-	_bigStone->init(PointMake(2000, 380));
+	//_bigStone = new bigStone;
+	//_bigStone->init(PointMake(2000, 380));
 
 	_mainPlayer = new character;
 	_mainPlayer->init();

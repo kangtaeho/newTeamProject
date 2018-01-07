@@ -42,9 +42,9 @@ private:
 
 	//float doorX, doorY;
 	
-	item* _knife; // 칼 스테이지로 가져옴
+	//item* _knife; // 칼 스테이지로 가져옴
 	item* _stone; // 미니돌덩이 ㅇㅇ
-	item* _bigStone; //큰 돌덩이 
+	//item* _bigStone; //큰 돌덩이 
 	//enemy* _enemy;
 	//boss00* _boss00;
 	//enemy* _minion00; //enemy로
