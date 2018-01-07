@@ -399,6 +399,7 @@ void stage1::initialization()
 	_em = new enemyManager;
 	_em->init();
 
+	_mainPlayer->SetMemoryEnemyManager(_em);
 	_em->setCharacterMemoryAddressLink(_mainPlayer);
 	_em->setStage1MemoryAddressLink(this,1);
 }
@@ -428,7 +429,7 @@ void stage1::draw(){
 	_mainPlayer->render();
 
 	//카메라 렉트(이후 주석처리를 통해 지우도록!)
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
+	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
 
 	//아이템 렌더
 	for (int i = 0; i < _vItem.size(); i++)
@@ -482,7 +483,7 @@ void stage1::enemyItemCollision(){
 void stage1::playerItemCollisioin(){
 	//아이템이 없으면 확인할 필요없다.
 	if (_vItem.size() == 0) return;
-
+	
 	for (int i = 0; i < _vItem.size(); /*++i*/)
 	{
 		RECT temp;
@@ -499,8 +500,26 @@ void stage1::playerItemCollisioin(){
 			//투척가능타입이면
 			else if (_vItem[i]->getItemType() == 1)
 			{
+				//이미 무언가 들고 있는 상태면
+				if (_mainPlayer->getIsHanded())
+				{
+					++i;
+					continue;
+				}
 				_mainPlayer->setIsItemCollision(true);
 				_mainPlayer->setItem(_vItem[i]);
+				if (i == 0) //돌, 칼 큰돌
+				{
+					_mainPlayer->setItemType(0);
+				}
+				if (i == 1) //돌, 칼 큰돌
+				{
+					_mainPlayer->setItemType(1);
+				}
+				if (i == 2) //돌, 칼 큰돌
+				{
+					_mainPlayer->setItemType(2);
+				}
 			}
 			++i;
 		}

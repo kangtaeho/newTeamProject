@@ -31,7 +31,7 @@ HRESULT character::init()
 	_colliRect = RectMakeCenter(_x, _y, 54, 120);
 
 	_isItemCollision = false;
-
+	_isHanded = false;
 
 	return S_OK;
 
@@ -127,25 +127,47 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('X'))//주먹
 		{
-			if (_isItemCollision == true)
-			{
+			//아이템 충돌 ㅇㅇ
+				if (_isItemCollision == true)
+				{
+					_isHanded = true;
+					//작은 돌
+					if (_itemType == 0)
+					{
+						_state = CHARA_RIGHT_STONE_HAND;
+						_item->setY(_rc.top -20);
+					}
+					//칼
+					else if (_itemType == 1)
+					{
+						
+					}
+					//큰 돌
+					else if (_itemType == 2)
+					{
+						_state = CHARA_RIGHT_BIGSTONE_HAND;
+						_item->setY(_rc.top -20);
+					}
+				}
+				//아이템 충돌 ㄴㄴ
+				else{
+					if (_state == CHARA_RIGHT_STOP)
+					{
+						_state = CHARA_RIGHT_PUNCH_ONE;
+						_motion->stop();
+						_motion = KEYANIMANAGER->findAnimation("JIMMYRightPunchOne");
+						_motion->start();
+					}
+					else if (_state == CHARA_LEFT_STOP)
+					{
+						_state = CHARA_LEFT_PUNCH_ONE;
+						_motion->stop();
+						_motion = KEYANIMANAGER->findAnimation("JIMMYLeftPunchOne");
+						_motion->start();
+					}
 
-			}
-			if (_state == CHARA_RIGHT_STOP)
-			{
-				_state = CHARA_RIGHT_PUNCH_ONE;
-				_motion->stop();
-				_motion = KEYANIMANAGER->findAnimation("JIMMYRightPunchOne");
-				_motion->start();
-			}
-			else if (_state == CHARA_LEFT_STOP)
-			{
-				_state = CHARA_LEFT_PUNCH_ONE;
-				_motion->stop();
-				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftPunchOne");
-				_motion->start();
-			}
-			SOUNDMANAGER->play("흣(때릴때)", 1.0);
+					SOUNDMANAGER->play("흣(때릴때)", 1.0);
+				}
 		}
 		if (KEYMANAGER->isOnceKeyDown('C'))//킥
 		{
