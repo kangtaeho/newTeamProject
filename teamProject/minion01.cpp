@@ -32,6 +32,8 @@ HRESULT minion01::init(POINT point, int currentStage)
 
 	_traceAngle = 0;
 	_isTracePlayer = 0;
+	_countAttack = 0;				//어택카운트
+	_countHitted = 0;
 
 	_isAttack = false;					//적이 공격상태이니?
 	_attackAniStart = false;			//어택 애니 시작중
@@ -70,10 +72,10 @@ HRESULT minion01::init(POINT point, int currentStage)
 
 
 
-	int rightHittied[] = { 39,38,37,38,};
-	KEYANIMANAGER->addArrayFrameAnimation("enemy07RightHittied", "enemy07", rightHittied, 4, 2, false);
+	int rightHittied[] = { 38,37,36,37,};
+	KEYANIMANAGER->addArrayFrameAnimation("enemy07RightHittied", "enemy07", rightHittied, 4, 2, true);
 	int leftHittied[] = { 42,43,44,43};
-	KEYANIMANAGER->addArrayFrameAnimation("enemy07LeftHittied", "enemy07", leftHittied, 4, 2, false);
+	KEYANIMANAGER->addArrayFrameAnimation("enemy07LeftHittied", "enemy07", leftHittied, 4, 2, true);
 
 	int rightStop[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("enemy07RightStop", "enemy07", rightStop, 1, 2, true);
