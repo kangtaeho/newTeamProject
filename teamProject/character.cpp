@@ -710,23 +710,40 @@ void character::update()
 				_motion->start();
 			}
 		}
-		//if(적에게 데미지 입히면)
-		//  {어퍼컷
-		//	if (_isRight)
-		//	{
-		//		_state = CHARA_RIGHT_UPPER;
-		//_motion->stop();
-		//		_motion = KEYANIMANAGER->findAnimation("JIMMYRightUpper");
-		//		_motion->start();
-		//	}
-		//	else
-		//	{
-		//		_state = CHARA_LEFT_UPPER;
-		//_motion->stop();
-		//		_motion = KEYANIMANAGER->findAnimation("JIMMYLeftUpper");
-		//		_motion->start();
-		//	}
-		//  }
+		if (KEYMANAGER->isOnceKeyDown('X'))
+		{
+			for (int i = 0; i < _EM->getVMinion().size(); ++i)
+			{
+				RECT temp;
+				if (_state == CHARA_RIGHT_PUNCH_TWO)
+				{
+					if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+					{
+						_state = CHARA_RIGHT_UPPER;
+						_motion->stop();
+						_motion = KEYANIMANAGER->findAnimation("JIMMYRightUpper");
+						_motion->start();
+						_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+						_EM->getVMinion()[i]->setIsTracePlayer(5);
+						_EM->getVMinion()[i]->setIsHitted(true);
+					}
+				}
+				else
+				{
+					if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+					{
+						_state = CHARA_LEFT_UPPER;
+						_motion->stop();
+						_motion = KEYANIMANAGER->findAnimation("JIMMYLeftUpper");
+						_motion->start();
+						_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+						_EM->getVMinion()[i]->setIsTracePlayer(5);
+						_EM->getVMinion()[i]->setIsHitted(true);
+					}
+				}
+			}
+		}
+		
 		break;
 	case CHARA_LEFT_KICK:
 	case CHARA_RIGHT_KICK:
@@ -799,19 +816,52 @@ void character::update()
 				_motion->start();
 			}
 		}
+		if (KEYMANAGER->isOnceKeyDown('C'))
+		{
+			for (int i = 0; i < _EM->getVMinion().size(); ++i)
+			{
+				RECT temp;
+				if (_state == CHARA_RIGHT_KICK)
+				{
+					if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+					{
+						_state = CHARA_RIGHT_HIGHKICK;
+						_motion->stop();
+						_motion = KEYANIMANAGER->findAnimation("JIMMYRightHighKick");
+						_motion->start();
+						_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+						_EM->getVMinion()[i]->setIsTracePlayer(5);
+						_EM->getVMinion()[i]->setIsHitted(true);
+					}
+				}
+				else
+				{
+					if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
+					{
+						_state = CHARA_LEFT_HIGHKICK;
+						_motion->stop();
+						_motion = KEYANIMANAGER->findAnimation("JIMMYLeftHighKick");
+						_motion->start();
+						_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
+						_EM->getVMinion()[i]->setIsTracePlayer(5);
+						_EM->getVMinion()[i]->setIsHitted(true);
+					}
+				}
+			}
+		}
 		//if(적에게 데미지 입히면)
 		//  {하이킥
 		//	if (_isRight)
 		//	{
-		//		_state = CHARA_RIGHT_HIGHKICK;
-		//		_motion = KEYANIMANAGER->findAnimation("JIMMYRightHighKick");
-		//		_motion->start();
+		//		
+		//		
+		//		
 		//	}
 		//	else
 		//	{
-		//		_state = CHARA_LEFT_HIGHKICK;
-		//		_motion = KEYANIMANAGER->findAnimation("JIMMYLeftHighKick");
-		//		_motion->start();
+		//		
+		//		
+		//		
 		//	}
 		//  }
 		break;
@@ -930,28 +980,7 @@ void character::update()
 		break;
 	case CHARA_RIGHT_MOVE_JUMP:
 	case CHARA_LEFT_MOVE_JUMP:
-		for (int i = 0; i <_EM->getVMinion().size(); ++i)
-		{
-			RECT temp;
-			if (_state == CHARA_RIGHT_MOVE_JUMP)
-			{
-				if (IntersectRect(&temp, &_rightATK, &_EM->getVMinion()[i]->getCollircEnemy()))
-				{
-					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
-					_EM->getVMinion()[i]->setIsTracePlayer(5);
-					_EM->getVMinion()[i]->setIsHitted(true);
-				}
-			}
-			else
-			{
-				if (IntersectRect(&temp, &_leftATK, &_EM->getVMinion()[i]->getCollircEnemy()))
-				{
-					_EM->getVMinion()[i]->setHP(_EM->getVMinion()[i]->getHP() - 1);
-					_EM->getVMinion()[i]->setIsTracePlayer(5);
-					_EM->getVMinion()[i]->setIsHitted(true);
-				}
-			}
-		}
+		
 		_y -= _JP;
 		_JP -= _gravity;
 		if (_isRight)
