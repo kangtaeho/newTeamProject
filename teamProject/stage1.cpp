@@ -530,10 +530,11 @@ void stage1::playerItemCollisioin(){
 				continue;
 			}
 			//투척가능타입이면
-			/*else if (_vItem[i]->getItemType() == 1)
+			else if (_vItem[i]->getItemType() == 1)
 			{
-
-			}*/
+				_mainPlayer->setIsItemCollision(true);
+				_mainPlayer->setItem(_vItem[i]);
+			}
 			++i;
 		}
 		else ++i;

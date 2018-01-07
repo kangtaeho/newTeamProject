@@ -17,6 +17,7 @@ protected:
 	image* _itemImage;			//아이템 이미지
 	RECT _rcItem;
 	float _x, _y;				//아이템 중점좌표
+	float _endY;				//던져졌을때 보정할 y좌표
 	tagItemType	_itemType;		//아이템 종류
 	tagItemState _itemState;	//아이템 상태
 	int _itemEffect;			//아이템 효과(투척 -> 데미지 & 물약 -> 회복 & 돈->획득량)

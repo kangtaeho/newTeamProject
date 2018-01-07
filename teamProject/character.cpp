@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "character.h"
-
+#include "item.h"
 
 character::character()
 {
@@ -28,7 +28,7 @@ HRESULT character::init()
 	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 	_colliRect = RectMakeCenter(_x, _y, 54, 120);
 
-
+	_isItemCollision = false;
 
 
 	return S_OK;
@@ -124,6 +124,10 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('X'))//ÁÖ¸Ô
 		{
+			if (_isItemCollision == true)
+			{
+
+			}
 			if (_state == CHARA_RIGHT_STOP)
 			{
 				_state = CHARA_RIGHT_PUNCH_ONE;
@@ -1458,5 +1462,19 @@ void character::addImage()
 	int LeftDown[] = { 177 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftDown", "JIMMY", LeftDown, 1, 1, false, MakeLeftLand, this);
 
+	//¿À¸¥ÂÊ Ä® ÅõÃ´
+	int RightKnifeThrowing[] = { 65, 66 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYRightKnifeThrowingn", "JIMMY", 
+		RightKnifeThrowing, 2, 1, false, MakeRightStop, this);
+
+	//¿ÞÂÊ Ä® ÅõÃ´(¹Ì±¸Çö)
+
+	//¿À¸¥ÂÊ ÀÛÀº µ¹ ÅõÃ´
+
+	//¿ÞÂÊ ÀÛÀº µ¹ ÅõÃ´(¹Ì±¸Çö)
+
+	//¿À¸¥ÂÊ Å« µ¹ ÅõÃ´
+
+	//¿ÞÂÊ Å« µ¹ ÅõÃ´(¹Ì±¸Çö)
 	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
 }
