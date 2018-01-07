@@ -50,3 +50,15 @@ void knife::render()
 
 	//_itemImage->frameRender(getMemDC(), 300, 300, 0, 0);
 }
+void knife::move(){
+	//아이템이 떨어져있는 상태 = 움직일 필요없으니
+	if (_itemState == DROP) return;
+
+	if (_x > CAMERAMANAGER->getBackGroundSizeX() - _itemImage->getFrameWidth())
+	{
+		_itemState = DROP;
+		//_x = CAMERAMANAGER->getBackGroundSizeX() - _itemImage->getFrameWidth();
+		return;
+	}
+	_x += 5;
+}

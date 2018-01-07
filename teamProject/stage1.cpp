@@ -450,6 +450,14 @@ void stage1::draw(){
 	//카메라 렉트(이후 주석처리를 통해 지우도록!)
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
 
+	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getRect()).x, CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getRect()).y, 100, 100);
+	/*for (int i = 0; i < _vItem.size(); i++)
+	{
+		RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_vItem[i]->getAbsoluteRC()).x,
+			CAMERAMANAGER->CameraRelativePoint(_vItem[i]->getAbsoluteRC()).y, 100, 100);
+	}*/
+
+
 	//아이템 렌더
 	for (int i = 0; i < _vItem.size(); i++)
 	{
@@ -510,14 +518,23 @@ void stage1::playerItemCollisioin(){
 
 	for (int i = 0; i < _vItem.size(); /*++i*/)
 	{
-		
-		//돈타입이면 소지금 올려주고 
-		if (_vItem[i]->getItemType() == 2)
+		RECT temp;
+		if (IntersectRect(&temp, &_mainPlayer->getRect(), &_vItem[i]->getAbsoluteRC()))
 		{
-			_inven->setCurrentMoney(_vItem[i]->getItemEffect());
-			SAFE_DELETE(_vItem[i]);
-			_vItem.erase(_vItem.begin() + i);
+			//돈타입이면 소지금 올려주고 
+			if (_vItem[i]->getItemType() == 2)
+			{
+				_inven->setCurrentMoney(_vItem[i]->getItemEffect());
+				SAFE_DELETE(_vItem[i]);
+				_vItem.erase(_vItem.begin() + i);
+				continue;
+			}
+			//투척가능타입이면
+			/*else if (_vItem[i]->getItemType() == 1)
+			{
 
+			}*/
+			++i;
 		}
 		else ++i;
 

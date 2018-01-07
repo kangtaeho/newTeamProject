@@ -80,6 +80,7 @@ public:
 	void cameraEffecting();
 
 	void backGroundSizeSetting(int x, int y);
+	int getBackGroundSizeX(){ return _backgroundsizex; }
 
 	int getCameraCondition() { return _cameraCondition; }
 

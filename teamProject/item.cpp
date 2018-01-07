@@ -47,6 +47,7 @@ void item::update()
 	_rcItem = RectMakeCenter(CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).x + _itemImage->getFrameWidth() / 2
 						   , CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_x, _y, _itemImage->getFrameWidth(), _itemImage->getFrameHeight())).y + _itemImage->getFrameHeight() / 2,
 						   30, 30);
+	move();
 }
 void item::render()
 {
