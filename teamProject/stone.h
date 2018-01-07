@@ -5,7 +5,7 @@ class stone :public item
 
 private:
 	float _gravity;
-	float _throwPower;
+	
 public:
 	stone();
 	~stone();

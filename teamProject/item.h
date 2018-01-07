@@ -27,6 +27,7 @@ protected:
 	int _frameX;				//현재 프레임X
 	int _frameCount;			//프레임 카운트변수
 
+	float _throwPower;
 	
 
 public:
@@ -78,6 +79,6 @@ public:
 	void setX(float x) { _x = x; }
 	void setY(float y) { _y = y; }
 	void setEndY(float endY){ _endY = endY; }
-
+	void setThrowPower(float throwPower){ _throwPower = throwPower; }
 };
 

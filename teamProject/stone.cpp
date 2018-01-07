@@ -25,8 +25,8 @@ HRESULT stone::init(POINT point)
 
 	_frameX = _frameCount = 0;
 
-	_gravity =0.04;
-	_throwPower = 1;
+	_gravity =0.1;
+	//_throwPower = 1;
 	return S_OK;
 }
 

@@ -458,24 +458,15 @@ void stage1::enemyItemCollision(){
 			//돈타입이면 체크 넘긴다.
 			if (_vItem[j]->getItemType() == 2) continue;
 
-			//그 외 아이템이면 충돌체크
+			//드랍상태면 넘긴다.
+			if (_vItem[j]->getState() == 0) continue;
+
+			//그 외 아이템이면서 날라가는 상태면 충돌체크
 			RECT temp;
 			if (IntersectRect(&temp, &_vItem[j]->getItemRC(), &_em->getVMinion()[i]->getCollircEnemy()))
 			{
-				//아이템 상태가 스로잉이면 피격 (continue 대신 데미지 감소)
-				if (_vItem[j]->getState() == 1) continue;
-
-				//드롭상태
-				else
-				{
-					//변수 true 세팅
-					_em->getVMinion()[i]->setIsItemCollion(true);
-				}
-			}
-			//노 충돌시 기본 false
-			else
-			{
-				_em->getVMinion()[i]->setIsItemCollion(false);
+				_em->getVMinion()[i]->setIsTracePlayer(5);
+				_em->getVMinion()[i]->setHP(-_vItem[j]->getItemEffect());				
 			}
 		}
 	}

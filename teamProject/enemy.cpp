@@ -281,7 +281,7 @@ void enemy::enemyMove() {
 				if (!_hittedAniStart) _enemyMotion->start();
 				_hittedAniStart = true;
 				
-				if (_countHitted % 25 == 0) {
+				if (_countHitted % 50 == 0) {
 					_hittedAniStart = false;
 					_isHitted = false;
 					_countHitted = 0;

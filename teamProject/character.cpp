@@ -162,6 +162,7 @@ void character::update()
 				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneThrow");
 				_motion->start();
 				_item->setEndY(_rc.bottom);
+				_item->setThrowPower(0);
 				_isHanded = false;
 			}
 			else
