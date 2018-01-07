@@ -1478,26 +1478,9 @@ void character::update()
 }
 void character::render()
 {
-	//_image->frameRender(getMemDC(), 100, 100, 0, 0);
-	//_image->aniRender(getMemDC(), _rc.left, _rc.top, _motion);
+
 	_image->aniRender(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc).x, CAMERAMANAGER->CameraRelativePoint(_rc).y, _motion);
 
-	/*
-	RECT _rc;//렌더용 렉트
-	RECT _colliRect;//통신용 렉트
-	*/
-	//Rectangle(getMemDC(), _rc.left,  _rc.top,  _rc.right, _rc.bottom);
-
-	setColorRect(getMemDC(), _colliRect, 30, 40, 150);
-	Rectangle(getMemDC(), _rightATK.left, _rightATK.top, _rightATK.right, _rightATK.bottom);
-	Rectangle(getMemDC(), _leftATK.left, _leftATK.top, _leftATK.right, _leftATK.bottom);
-
-
-
-	char str[256];
-	wsprintf(str, "camX : %d, camY : %d", CAMERAMANAGER->CameraRelativePoint(_rc).x, CAMERAMANAGER->CameraRelativePoint(_rc).y);
-	TextOut(getMemDC(), WINSIZEX/2, 10, str, strlen(str));
-	TextOut(getMemDC(), 100, 100, test, strlen(test));
 }
 
 void character::MakeRightStop(void* obj)

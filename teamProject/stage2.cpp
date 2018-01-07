@@ -498,7 +498,6 @@ void stage2::singletonInit()								//init에서 싱글톤들 세팅해주는 함수 이후 세�
 	CAMERAMANAGER->setCameraCondition(CAMERA_STAGE2);
 	CAMERAMANAGER->setCameraAim(&_rc1);
 
-	SOUNDMANAGER->play("스테이지2", 0.5f);
 }
 void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로								
 {
@@ -511,7 +510,6 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 
 
 		IMAGEMANAGER->findImage("스테이지_01")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
-		IMAGEMANAGER->findImage("스테이지_01_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
 
 		//엘레베이터 rc 작은거 충돌용
 		//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_elevatorRC).x, CAMERAMANAGER->CameraRelativePoint(_elevatorRC).y, 10, 10);

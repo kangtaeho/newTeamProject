@@ -69,13 +69,6 @@ void enemyManager::render()
 	if (_vEnemy.size() == 0) return;
 
 
-	setColorRect(getMemDC(), _vEnemy[0]->getCollircEnemy(), 20, 30, 90);
-
-	showIntData(getMemDC(), "첫번째 적 Y좌표 : %d", _vEnemy[0]->getCenterY(), 700, 40);
-	showIntData(getMemDC(), "첫번째 적 상태(0번 패트롤, 2번 추적, 4번 공격, 5번 맞음 : %d", _vEnemy[0]->getIsTracePlayer(), 700, 60);
-	showFloatData(getMemDC(), "각도 3.14가 180도 : %0.2f ",_vEnemy[0]->getTraceAngle(),700,80);
-	///_mini->render();
-
 }
 
 //쫄따구

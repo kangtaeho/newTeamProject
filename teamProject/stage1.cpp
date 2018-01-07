@@ -97,6 +97,7 @@ void stage1::update()
 			_mainPlayer->UpdateRect();*/
 			SCENEMANAGER->changeScene("스테이지01");
 			SOUNDMANAGER->stop("스테이지1");
+			SOUNDMANAGER->play("스테이지2", 0.5f);
 		}
 	}
 
@@ -427,27 +428,11 @@ void stage1::singletonInit(){
 }
 
 void stage1::draw(){
-	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
-	IMAGEMANAGER->findImage("스테이지_00_red")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);
+	IMAGEMANAGER->findImage("스테이지_00")->render(getMemDC(), 0, 0, CAMERAMANAGER->getCameraPoint().x, CAMERAMANAGER->getCameraPoint().y, WINSIZEX, WINSIZEY);	
 	
 	_door->aniRender(getMemDC(),
 								CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_door->getX(), _door->getY(), _door->getFrameWidth(), _door->getFrameHeight())).x,
 								CAMERAMANAGER->CameraRelativePoint(RectMakeCenter(_door->getX(), _door->getY(), _door->getFrameWidth(), _door->getFrameWidth())).y, _doorAni);
-
-	//문 렉트(이후 삭제하도록)
-	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_DOORRC).x, CAMERAMANAGER->CameraRelativePoint(_DOORRC).y, 10, 10);
-
-	//_em->render();
-	//_mainPlayer->render();
-
-	//카메라 렉트(이후 주석처리를 통해 지우도록!)
-	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
-
-	//아이템 렌더
-	/*for (int i = 0; i < _vItem.size(); i++)
-	{
-		_vItem[i]->render();
-	}*/
 	
 	ZORDERMANAGER->paintZOrder();
 	_inven->render();
