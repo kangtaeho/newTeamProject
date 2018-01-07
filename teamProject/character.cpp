@@ -63,7 +63,8 @@ void character::update()
 	case CHARA_RIGHT_STOP:
 	case CHARA_LEFT_STOP:
 	case CHARA_RIGHT_STONE_STOP:
-		if (KEYMANAGER->isOnceKeyDown(VK_UP)|| KEYMANAGER->isOnceKeyDown(VK_DOWN))
+	case CHARA_LEFT_STONE_STOP:
+		if (KEYMANAGER->isOnceKeyDown(VK_UP) || KEYMANAGER->isOnceKeyDown(VK_DOWN))
 		{
 			//_isRight라는 변수가 필요없다
 			//why?? 캐릭터의 상태에 right, left 정보가 들어있기 때문이다.
@@ -87,8 +88,20 @@ void character::update()
 				if (_itemType == 2 || _itemType == 0)
 				{
 					_state = CHARA_RIGHT_STONE_HAND;
+					_motion->stop();
 					_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneMove");
-					_motion ->start();
+					_motion->start();
+				}
+			}
+			else if (_state == CHARA_LEFT_STONE_STOP)
+			{
+				//큰돌과 작은돌
+				if (_itemType == 2 || _itemType == 0)
+				{
+					_state = CHARA_LEFT_STONE_HAND;
+					_motion->stop();
+					_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStoneMove");
+					_motion->start();
 				}
 			}
 		}
@@ -115,16 +128,20 @@ void character::update()
 			}
 		}
 
-		if (_stageCount == 2 && !_isOn )
+		if (_stageCount == 2 && !_isOn)
 		{
-		_y -= _JP;
-		_JP -= _gravity;
+			_y -= _JP;
+			_JP -= _gravity;
 		}
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
-			if (_state == CHARA_RIGHT_STONE_STOP)//또는 왼쪽일때
+			if (_state == CHARA_RIGHT_STONE_STOP || _state == CHARA_LEFT_STONE_STOP)//또는 왼쪽일때
 			{
-				
+				_isRight = false;
+				_state = CHARA_LEFT_STONE_HAND;
+				_motion->stop();
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStoneMove");
+				_motion->start();
 			}
 			else
 			{
@@ -137,9 +154,10 @@ void character::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
 		{
-			if (_state == CHARA_RIGHT_STONE_STOP)//또는 왼쪽일때
+			if (_state == CHARA_RIGHT_STONE_STOP || _state == CHARA_LEFT_STONE_STOP)//또는 왼쪽일때
 			{
 				_state = CHARA_RIGHT_STONE_HAND;
+				_motion->stop();
 				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneMove");
 				_motion->start();
 			}
@@ -159,15 +177,29 @@ void character::update()
 			{
 				_state = CHARA_RIGHT_STONE_THROWING;
 				_item->setState(true);
+				_item->setIsRight(true);
+				_motion->stop();
 				_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneThrow");
 				_motion->start();
-				_item->setEndY(_rc.bottom);
 				_item->setThrowPower(0);
+				_item->setEndY(_rc.bottom);
+				_isHanded = false;
+			}
+			else if (_state == CHARA_LEFT_STONE_STOP)
+			{
+				_state = CHARA_LEFT_STONE_THROWING;
+				_item->setState(true);
+				_item->setIsRight(false);
+				_motion->stop();
+				_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStoneThrow");
+				_motion->start();
+				_item->setThrowPower(0);
+				_item->setEndY(_rc.bottom);
 				_isHanded = false;
 			}
 			else
 			{
-				if (_isItemCollision == true)
+				if (_isItemCollision == true && _state == CHARA_RIGHT_STOP)
 				{
 					_isHanded = true;
 					//작은 돌
@@ -179,11 +211,6 @@ void character::update()
 						_motion = KEYANIMANAGER->findAnimation("JIMMYRightStoneStop");
 						_motion->start();
 					}
-					//칼
-					else if (_itemType == 1)
-					{
-
-					}
 					//큰 돌
 					else if (_itemType == 2)
 					{
@@ -194,8 +221,30 @@ void character::update()
 						_motion->start();
 					}
 				}
+				else if (_isItemCollision == true && _state == CHARA_LEFT_STOP)
+				{
+					_isHanded = true;
+					//작은 돌
+					if (_itemType == 0)
+					{
+						_state = CHARA_LEFT_STONE_STOP;
+						_item->setX(_x);
+						_item->setY(_rc.top + 5);
+						_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStoneStop");
+						_motion->start();
+					}
+					//큰 돌
+					else if (_itemType == 2)
+					{
+						_state = CHARA_LEFT_STONE_STOP;
+						_item->setX(_x);
+						_item->setY(_rc.top - 20);
+						_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStoneStop");
+						_motion->start();
+					}
+				}
 				//아이템 충돌 ㄴㄴ
-				else{
+				else {
 					if (_state == CHARA_RIGHT_STOP)
 					{
 						_state = CHARA_RIGHT_PUNCH_ONE;
@@ -370,115 +419,103 @@ void character::update()
 		 break;
 	}
 	case CHARA_LEFT_MOVE://왼쪽으로 움직이는 중
+	case CHARA_LEFT_STONE_HAND:
 	{
-		 //상하좌우키를 누른상태가 아니라면
-		 if (!KEYMANAGER->isStayKeyDown(VK_UP))
-		 if (!KEYMANAGER->isStayKeyDown(VK_DOWN))
-		 if (!KEYMANAGER->isStayKeyDown(VK_LEFT))
-		 {
-			 _state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
-			 _motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-			 _motion->start();
-		 }
-		 if (KEYMANAGER->isStayKeyDown(VK_LEFT))
-		 {
-			 _x -= CHARASPEED;
-		 }
+		if (_stageCount == 2 && !_isOn)
+		{
+			_y -= _JP;
+			_JP -= _gravity;
+		}
+		//상하좌우키를 누른상태가 아니라면
+		if (!KEYMANAGER->isStayKeyDown(VK_UP))
+			if (!KEYMANAGER->isStayKeyDown(VK_DOWN))
+				if (!KEYMANAGER->isStayKeyDown(VK_LEFT))
+				{
+					if (_state == CHARA_LEFT_MOVE)
+					{
+						_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
+						_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
+						_motion->start();
+					}
+					else
+					{
+						_state = CHARA_LEFT_STONE_STOP;//멈춤상태로 돌려라
+						_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStoneStop");
+						_motion->start();
+					}
+				}
+		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+		{
+			_x -= CHARASPEED;
+			if (_state == CHARA_LEFT_STONE_HAND)
+			{
+				_item->setX(_x);
+			}
+		}
 
-		 if (KEYMANAGER->isOnceKeyDown('Z'))//점프
-		 {
-			 if (_stageCount != 2)
-			 {
-				 _StartY = _y;
-			 }
-			 _JP = CHARASPEED;
-			 _state = CHARA_LEFT_MOVE_JUMP;
-			 _motion->stop();
-			 _motion = KEYANIMANAGER->findAnimation("JIMMYLeftJump");
-			 _motion->start();
-		 }
-		 /*for (int i = _rc.bottom-5; i < _rc.bottom + 5; ++i)
-		 {*/
+		if (KEYMANAGER->isOnceKeyDown('Z') && _state == CHARA_LEFT_MOVE)//점프
+		{
+			if (_stageCount != 2)
+			{
+				_StartY = _y;
+			}
+			_JP = CHARASPEED;
+			_state = CHARA_LEFT_MOVE_JUMP;
+			_motion->stop();
+			_motion = KEYANIMANAGER->findAnimation("JIMMYLeftJump");
+			_motion->start();
+		}
 
-		
-			 /*break;
-		 }
-		 else
-		 {*/
-		 if (KEYMANAGER->isStayKeyDown(VK_UP) && _stageCount != 2)
-		 {
-			 COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom - 3);
+		if (KEYMANAGER->isStayKeyDown(VK_UP) && _stageCount != 2)
+		{
+			COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom - 3);
 
-			 int r = GetRValue(color);
-			 int g = GetGValue(color);
-			 int b = GetBValue(color);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
 
-			 if ((r == 255 && g == 0 && b == 0))
-			 {
-				 //if(사다리를 탈 수 있게 되었다)
-				 //{
-				 //_state = CHARA_STAIR;
-				 //_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
-				 //_motion->start();
-				 //}
-				 //else
-				 _y -= _Zmove;
-			 }
-		 }
-		 if (KEYMANAGER->isStayKeyDown(VK_DOWN) && _stageCount != 2)
-		 {
-			 COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom + 3);
+			if ((r == 255 && g == 0 && b == 0))
+			{
+				//if(사다리를 탈 수 있게 되었다)
+				//{
+				//_state = CHARA_STAIR;
+				//_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
+				//_motion->start();
+				//}
+				//else
+				_y -= _Zmove;
+				if (_state == CHARA_LEFT_STONE_HAND)
+				{
+					_item->setY(_item->getY() - _Zmove);
+				}
+			}
+		}
+		if (KEYMANAGER->isStayKeyDown(VK_DOWN) && _stageCount != 2)
+		{
+			COLORREF color = GetPixel(_stage->getMemDC(), _x, _rc.bottom + 3);
 
-			 int r = GetRValue(color);
-			 int g = GetGValue(color);
-			 int b = GetBValue(color);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
 
-			 if ((r == 255 && g == 0 && b == 0))
-			 {
-				 //if(사다리를 탈 수 있게 되었다)
-				 //{
-				 //_state = CHARA_STAIR;
-				 //_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
-				 //_motion->start();
-				 //}
-				 //else
-				 _y += _Zmove;
-			 }
-		 }
-			 //if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
-			 //{
-			 //	_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
-			 //	_motion->stop();
-			 //	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-			 //	_motion->start();
-			 //}
-			 //else
-			 //if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-			 //{
-				// _y += _Zmove;
-			 //}
-			 ////break;
-		 
-		 //}
-		 //if (KEYMANAGER->isOnceKeyUp(VK_UP))
-		 //{
-		 //	_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
-		 //	_motion->stop();
-		 //	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-		 //	_motion->start();
-		 //}
-		 //else
+			if ((r == 255 && g == 0 && b == 0))
+			{
+				//if(사다리를 탈 수 있게 되었다)
+				//{
+				//_state = CHARA_STAIR;
+				//_motion = KEYANIMANAGER->findAnimation("JIMMYStairStop");
+				//_motion->start();
+				//}
+				//else
+				_y += _Zmove;
+				if (_state == CHARA_LEFT_STONE_HAND)
+				{
+					_item->setY(_item->getY() + _Zmove);
+				}
+			}
+		}
 
-		 //if (KEYMANAGER->isOnceKeyUp(VK_LEFT) )
-		 //{
-		 //	_state = CHARA_LEFT_STOP;//멈춤상태로 돌려라
-		 //	_motion->stop();
-		 //	_motion = KEYANIMANAGER->findAnimation("JIMMYLeftStop");
-		 //	_motion->start();
-		 //}
-		 //else 
-
-		 break;
+		break;
 	}
 	case CHARA_RIGHT_LAND:
 	case CHARA_LEFT_LAND:
@@ -1822,7 +1859,7 @@ void character::addImage()
 	// 왼쪽 작은 돌
 	int LeftStoneStop[] = { 185 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftStoneStop", "JIMMY",
-		RightStoneStop, 1, 4, true);
+		LeftStoneStop, 1, 4, true);
 
 	int LeftStoneMove[] = { 185, 184 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftStoneMove", "JIMMY",
@@ -1855,6 +1892,9 @@ void character::addImage()
 	int KnifeLeftThrow[] = { 190,189 };
 	KEYANIMANAGER->addArrayFrameAnimation("JIMMYKnifeLeftThrow", "JIMMY", KnifeLeftThrow, 2, 4, true);
 
+	int LeftStoneThrow[] = { 183, 182 };
+	KEYANIMANAGER->addArrayFrameAnimation("JIMMYLeftStoneThrow", "JIMMY",
+		LeftStoneThrow, 2, 4, false, MakeLeftStop, this);
 
 
 	_motion = KEYANIMANAGER->findAnimation("JIMMYRightStop");
