@@ -71,6 +71,8 @@ void stage2::update()
 		_mainPlayer->setX(760);
 		_mainPlayer->setY(2280);
 		_mainPlayer->setStage(IMAGEMANAGER->findImage("스테이지_01_red"), 2);
+
+		_em->setCharacterMemoryAddressLink(_mainPlayer);
 		//_mainPlayer->UpdateRect();
 		/*_rc1 = RectMake(_mainPlayer->getRect().left, _mainPlayer->getRect().top, 100, 100);
 		_currentRC = &_rc1;*/
@@ -280,7 +282,7 @@ void stage2::update()
 		makeEnemy();
 		
 	}
-	_rc1 = RectMakeCenter(_mainPlayer->getX() - 30, _mainPlayer->getY() + 25 - 30, 100, 100);
+	_rc1 = RectMakeCenter(_mainPlayer->getX() - 30, _mainPlayer->getY() +25 , 100, 100);
 	_rc2 = RectMakeCenter(_mainPlayer->getX(), 2280, 100, 100);
 	_rc3 = RectMakeCenter(_mainPlayer->getX(), _mainPlayer->getY() + 25, 100, 100);
 	if (!_boatSwitchOn || !_elevatorSwitchOn)
@@ -425,7 +427,6 @@ void stage2::initialization()								//변수들 new선언 및 init 해주는 함수 이후 n
 	_em = new enemyManager;
 	_em->init();
 
-	_em->setCharacterMemoryAddressLink(_mainPlayer);
 	_em->setStage2MemoryAddressLink(this,2);
 }
 void stage2::singletonInit()								//init에서 싱글톤들 세팅해주는 함수 이후 세팅은 여기서 하는걸로		  
