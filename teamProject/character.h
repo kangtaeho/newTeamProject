@@ -83,7 +83,7 @@ private:
 	CHARA _state;//상태값
 	animation * _motion;//모션
 	image * _image;
-
+	image*_JIMMYKnife;
 	char test[128];
 
 	item* _item;
