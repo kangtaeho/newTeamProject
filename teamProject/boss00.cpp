@@ -68,7 +68,7 @@ HRESULT boss00::init(POINT point, int currentStage)
 	int rightStop[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossRightStop", "boss00", rightStop, 1, 2, true);
 	int leftStop[] = { 15 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossleftStop", "boss00", leftStop, 1, 2, true);
+	KEYANIMANAGER->addArrayFrameAnimation("bossLeftStop", "boss00", leftStop, 1, 2, true);
 	int rightMove[] = { 0,1,2,1 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossRightMove", "boss00", rightMove, 4, 2, true);
 	int leftMove[] = { 15,14,13,14 };
@@ -86,9 +86,9 @@ HRESULT boss00::init(POINT point, int currentStage)
 	int leftHit[] = { 12 };
 	KEYANIMANAGER->addArrayFrameAnimation("bossleftHit", "boss00", leftHit, 1, 2, true);
 	int rightHit2[] = { 5,6 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossrightHit2", "boss00", rightHit2, 2, 2, true);
+	KEYANIMANAGER->addArrayFrameAnimation("bossrightHit2", "boss00", rightHit2, 2, 2, false);
 	int leftHit2[] = { 11,10 };
-	KEYANIMANAGER->addArrayFrameAnimation("bossleftHit2", "boss00", leftHit2, 2, 2, true);
+	KEYANIMANAGER->addArrayFrameAnimation("bossleftHit2", "boss00", leftHit2, 2, 2, false);
 
 	//쓰러진상태
 	int rightDown[] = { 7 };

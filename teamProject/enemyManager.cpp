@@ -114,7 +114,7 @@ void enemyManager::setBoss(POINT point, int stageCout)
 {
 	enemy* temp;
 	temp = new boss00;
-	temp->init(point);
+	temp->init(point, stageCout);
 
 	_vEnemy.push_back(temp);
 }
