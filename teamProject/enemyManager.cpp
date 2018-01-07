@@ -32,6 +32,7 @@ void enemyManager::update()
 	{
 		
 		(*_viEnemy)->update();
+		ZORDERMANAGER->addZOrder(*_viEnemy, (*_viEnemy)->getCollircEnemy().bottom);
 		if (KEYMANAGER->isOnceKeyDown(VK_F1))
 		{
 			removeEnemy(0);
@@ -122,6 +123,7 @@ void enemyManager::setBoss(POINT point, int stageCout)
 //적 사망시 제거
 void enemyManager::removeEnemy(int arrNum)
 {
+	ZORDERMANAGER->allClear();
 	if (_stageNum == 1)
 	{
 		_stage1->dropMoney(PointMake(_vEnemy[arrNum]->getAbsoluteX(), _vEnemy[arrNum]->getAbsoluteY()), 20);

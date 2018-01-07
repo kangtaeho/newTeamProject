@@ -103,6 +103,7 @@ void stage1::update()
 	//스테이지 상태가 레디나 클리어가 아닐때만 모든 행동 가능하도록 // 문에 닿지 않았을때 추가 
 	else if (_ss == MOVING || (_ss == CLEAR && !IntersectRect(&temp, &_rc1, &_DOORRC)))
 	{
+		
 		if (!_stopCharacter) {
 			characterMovement();
 		}
@@ -176,6 +177,7 @@ void stage1::render()
 
 void stage1::characterMovement() {
 
+	ZORDERMANAGER->allClear();
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
 		if (CAMERAMANAGER->getCameraCondition() != CAMERA_EFFECT)
@@ -286,6 +288,8 @@ void stage1::characterMovement() {
 	playerItemCollisioin();
 
 	_em->update();
+	ZORDERMANAGER->addZOrder(_mainPlayer, _mainPlayer->getRect().bottom);
+	ZORDERMANAGER->addZOrder(_stone, _stone->getItemRC().bottom);
 	/*if (KEYMANAGER->isOnceKeyDown('P'))
 	{
 		SCENEMANAGER->changeScene("스테이지01");
@@ -414,6 +418,9 @@ void stage1::singletonInit(){
 
 	SOUNDMANAGER->play("스테이지1", 0.5f);
 	SOUNDMANAGER->setCurrentBgmKey("스테이지1");
+
+	ZORDERMANAGER->addZOrder(_mainPlayer, _mainPlayer->getRect().bottom);
+	ZORDERMANAGER->addZOrder(_stone, _stone->getItemRC().bottom);
 }
 
 void stage1::draw(){
@@ -427,18 +434,19 @@ void stage1::draw(){
 	//문 렉트(이후 삭제하도록)
 	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_DOORRC).x, CAMERAMANAGER->CameraRelativePoint(_DOORRC).y, 10, 10);
 
-	_em->render();
-	_mainPlayer->render();
+	//_em->render();
+	//_mainPlayer->render();
 
 	//카메라 렉트(이후 주석처리를 통해 지우도록!)
 	//RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_rc1).x, CAMERAMANAGER->CameraRelativePoint(_rc1).y, 100, 100);
 
 	//아이템 렌더
-	for (int i = 0; i < _vItem.size(); i++)
+	/*for (int i = 0; i < _vItem.size(); i++)
 	{
 		_vItem[i]->render();
-	}
+	}*/
 	
+	ZORDERMANAGER->paintZOrder();
 	_inven->render();
 
 
