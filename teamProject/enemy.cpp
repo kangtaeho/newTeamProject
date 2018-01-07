@@ -252,14 +252,6 @@ void enemy::enemyMove() {
 						_y += 1.0f;
 						if (_y >= 480) _y = 480;
 					}
-					/*
-						if (_y > 482) {
-					_rndDirY = -1;
-				}
-				else if (_y < 337) {
-					_rndDirY = 1;
-
-				}*/
 					else {
 						_y -= 1.0f;
 						if (_y <= 337) _y = 337;

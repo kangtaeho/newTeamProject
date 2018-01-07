@@ -467,6 +467,7 @@ void stage1::enemyItemCollision(){
 			{
 				_em->getVMinion()[i]->setIsTracePlayer(5);
 				_em->getVMinion()[i]->setHP(-_vItem[j]->getItemEffect());				
+				_em->getVMinion()[i]->setIsHitted(true);
 			}
 		}
 	}
