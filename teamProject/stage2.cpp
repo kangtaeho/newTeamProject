@@ -73,7 +73,7 @@ void stage2::update()
 		_mainPlayer->setX(760);
 		_mainPlayer->setY(2280);
 		_mainPlayer->setStage(IMAGEMANAGER->findImage("스테이지_01_red"), 2);
-
+		_mainPlayer->SetMemoryEnemyManager(_em);
 		_em->setCharacterMemoryAddressLink(_mainPlayer);
 		//_mainPlayer->UpdateRect();
 		/*_rc1 = RectMake(_mainPlayer->getRect().left, _mainPlayer->getRect().top, 100, 100);
@@ -333,7 +333,7 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 		_firstWave = true;
 		//쫄따구 2마리 생성
 		_em->setMinion(PointMake(700, 2350), 2);
-		_em->setMinion1(PointMake(550, 2350), 2);
+		_em->setMinion2(PointMake(550, 2350), 2);
 
 		//카메라 고정 추가(기성아 부탁한다) 추가
 		//CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
@@ -359,13 +359,14 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 	{
 		//쫄따구1 정예몹 1마리 생성
 		_secondWave = true;
-		_em->setMinion2(PointMake(5700, 2350), 2);
-		_em->setPick(PointMake(5700, 2350), 2);
+		//_em->setMinion(PointMake(5700, 2100), 2);
+		//_em->setMinion(PointMake(5700, 2150), 2);
+		//_em->setMinion(PointMake(5700, 2200), 2);
+		//_em->setMinion(PointMake(5700, 2250), 2);
+		_em->setMinion(PointMake(5700, 2300), 2);
+		//_em->setMinion(PointMake(5700, 2350), 2);
+		_em->setMinion1(PointMake(5700, 2300), 2);
 		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
-
-
-
-
 	}
 
 	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
@@ -381,6 +382,27 @@ void stage2::makeEnemy()									//몬스터 생성 함수
 
 	}
 
+	if (!_thirdWave && _secondWave&&_em->getVMinion().size() == 0  && _finishElevator)
+	{
+		//쫄따구1 정예몹 1마리 생성
+		_thirdWave = true;
+		//_em->setBoss(PointMake(5700, 400), 2);
+		_em->setPick(PointMake(5700, 400), 2);
+		CAMERAMANAGER->setCameraCondition(CAMERA_FREE);
+	}
+
+	//두번째 웨이브는 나왔는데 에너미 매니져의 크기가 0이다 --> 몹 다죽임
+	else if (_secondWave && _em->getVMinion().size() == 0)
+	{
+
+		//카메라 다시 이동(기성아 부탁한다) 추가
+		CAMERAMANAGER->backGroundSizeSetting(5795, 2593);
+
+		_currentRC = &_rc1;
+		CAMERAMANAGER->setCameraAim(_currentRC);
+		CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
+
+	}
 	//if (!_thirdWave && _secondWave&&_em->getVMinion().size() == 0&& _currentRC->top<= 140)
 	//{
 	////쫄따구1 정예몹 1마리 생성
@@ -503,8 +525,8 @@ void stage2::draw()									//그려주는 함수 이후 렌더는 여기서 하는걸로
 	_mainPlayer->render();
 	_em->render();
 	//showFloatData(getMemDC(), "x 좌표 : %0.2f", _mainPlayer->getCenterX(), 800, 40);
-	//RectangleMakeCenter(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getRect()).x,
-	//	CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getUnderBarRect()).y,100,100 );
+	RectangleMake(getMemDC(), CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getRect()).x,
+		CAMERAMANAGER->CameraRelativePoint(_mainPlayer->getUnderBarRect()).y,192,150 );
 
 	/*Rectangle(getMemDC(), _mainPlayer->getUnderBarRect().left, _mainPlayer->getUnderBarRect().top, 
 		_mainPlayer->getUnderBarRect().right, _mainPlayer->getUnderBarRect().bottom);*/
@@ -525,7 +547,7 @@ void stage2::boatMove()
 	
 	_mainPlayer->MakeRightStop(_mainPlayer);
 	_mainPlayer->setX(_mainPlayer->getX() + 5);
-	_mainPlayer->setY(_boatRC.top-90);
+	//_mainPlayer->setY(_boatRC.top);
 	_mainPlayer->UpdateRect();
 	
 	CAMERAMANAGER->setCameraCondition(CAMERA_AIMING);
